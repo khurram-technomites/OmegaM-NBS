@@ -1,0 +1,50 @@
+﻿@model NowBuySell.Data.Booking
+
+@{
+    ViewBag.Title = "Status Changes";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title">Booking Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i aria-hidden="true" class="ki ki-close"></i>
+        </button>
+    </div>
+    @using (Html.BeginForm("StatusChange", "Booking", new { area = "VendorPortal" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-12" style="margin-top:20px">
+            <label class="control-label">Status</label>
+            @Html.HiddenFor(Model => Model.ID)
+            @*@Html.HiddenFor(Model => Model.Status)*@
+			<select class="col-sm-12 form-control" name="Status" id="txtstatus">
+				<option value="Pending">Pending</option>
+				<option value="Confirmed">Confirmed</option>
+				<option value="Processing">Processing</option>
+				<option value="Completed">Completed</option>
+				<option value="Canceled">Canceled</option>
+			</select>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-info" form="Userform">Submit</button>
+            </div>
+        </div>
+    }
+</body>
+</html>
+<script>
+	$(document).ready(function () {
+		$("#txtstatus").val("@Model.Status");
+		//$("#txtstatus").change(function () {
+		//
+		//    var status = $("#txtstatus option:selected").val();
+
+		//})
+	});
+</script>
+
+

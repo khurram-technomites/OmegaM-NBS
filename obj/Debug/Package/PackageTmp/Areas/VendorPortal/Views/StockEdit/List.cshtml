@@ -1,0 +1,72 @@
+﻿@model IEnumerable<NowBuySell.Data.Car>
+
+
+
+@{
+	ViewBag.Title = "List";
+	Layout = null;
+}
+<style>
+	#kt_datatable1 tbody tr td:last-child {
+		white-space: nowrap;
+	}
+</style>
+<!--begin::Row-->
+<div class="row">
+	<div class="col-xl-12">
+		<!--begin::Card-->
+		<div class="card card-custom gutter-b">
+			<div class="card-header flex-wrap border-0 pt-6 pb-0">
+				<div class="card-title">
+					<h3 class="card-label">
+						Bulk Stock
+						<span class="d-block text-muted pt-2 font-size-sm">Manage Stocks Here...</span>
+					</h3>
+				</div>
+				<div class="card-toolbar">
+					<!--begin::Button-->
+					
+					
+					<button class="btn btn-info font-weight-bolder" type="submit" disabled id="btnUpdate" >
+						Update All
+					</button>
+					<!--end::Button-->
+				</div>
+			</div>
+			<div class="card-body">
+				@Html.AntiForgeryToken()
+				<!--begin: Datatable-->
+				<table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Name</th>
+							@*<th>SKU</th>*@
+							<th>Regular Price</th>
+							<th> Sale Price</th>
+							<th>Stock</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody style="display:none">
+						@foreach (var item in Model)
+						{
+							<tr id="@item.ID">
+								<td>@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")	</td>
+								@*<td>@(item.Vendor != null ? item.Vendor.Logo + "|" + item.Vendor.Name + "|" + item.Vendor.VendorCode : "-")</td>*@
+								<td>@item.Name|@item.SKU</td>
+								<td><input type="number" value="@item.RegularPrice" class="form-control RegularPrice"></td>
+								<td><input type="number" value="@item.SalePrice" min="0" class="form-control SalePrice"></td>
+								<td><input type="number" value="@item.Stock" class="form-control stock"></td>
+								<td nowrap="nowrap">@item.ID</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+				<!--end: Datatable-->
+			</div>
+		</div>
+		<!--end::Card-->
+	</div>
+</div>
+<!--end::Row-->

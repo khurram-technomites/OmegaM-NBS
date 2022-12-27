@@ -1,0 +1,344 @@
+﻿@{
+	ViewBag.Title = Resources.FAQs;
+	var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+	bool RTL = CultureHelper.IsRighToLeft();
+}
+<style>
+	.wo-forumcontent p {
+		text-align: justify;
+	}
+</style>
+@if (!RTL) //English
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								<h2>@Html.Raw(Resources.FAQsTag)</h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Why is it necessary or needed to rent a car in UAE?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Rental cars are the flexible and convenient sources of travelling within the UAE for all, be it for a holiday or you are living in the region. A car is the best way that would help you enjoy the outstanding infrastructure of UAE. A number of variations are given to you falling into your budget, requirement and comfort. We also deliver your preferred cars to your preferred locations.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>What is the cost of renting a car in UAE?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Different costs are set for different cars and according to the place you want to book the ride. However, to give an overview of the cost, the cost of a rental car in the UAE is around AED 40 per day, which means if you want to hire for a month, it would be AED 1200.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>How can I book a rental car in UAE?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										You can contact any of the registered vendors or car suppliers on this website. Select your plan and get your car wherever you want.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>What are the additional costs for renting a car in UAE?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										You might face SALIK (toll), parking charges (if any) based on your usage. In addition, the charges according to every supplier of delivering the car at your desired address and picking-up of the same might charge you extra.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>What is the minimum age to be eligible to rent a car in UAE?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										The minimum age required is 21 years to rent a car across the UAE. However, it completely depends on Rental Company. Some suppliers might allow for 18 years of age as well and some might allow 23 years old for hiring rental cars.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>What should I know about the commission fee and rental fees?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										The booking of cars is totally free. There is no booking fee, a mark-up fee or a commission fee. You can simply contact, book and pay the car rental provider very easily.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>What is a security deposit and why is it payable?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										A Security deposit you would pay is refundable and it is the requirement of the suppliers of the rental cars. RTA fines, car theft or damage to the car (if not covered by insurance) are included in the security deposit payment. This amount can be held for up to 25 days because the fines might get delayed in legal procedures for instance, in the case of RTA fines.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>What is the procedure to rent a car without any deposit in UAE?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Security deposit is essential in the UAE and this will totally depend on your supplier, for this, check ‘select’ car terms and condition while booking a car.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Can I rent a car without a credit card?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Yes, some of the car rental companies take rental payment and security deposit by debit card or cash.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Is it allowed that the driver is someone other than the person registering for rent?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										The car is only allowed to the assigned rentee. However, if you wish to add another name to drive in case of an emergency you can add a name to the insurance coverage to drive the same car. Additional charges may apply.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Can I hire a driver to drive my rental car?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Driver service is currently not available in our services.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>How to find a rental car near me in UAE?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Google and Google Map is the best answer to that. In addition, nowbuysell.com has made it easier for you, you can search for “live rental cars near me”. Also, you can search by your area name, for example, UAE International Airport.
+									</p>
+									<p>
+										With our bespoke Car Rental Search MAP, you can even view car rental shops and their live car offers nearest to you.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Can I rent a car with a new driving license in the UAE?</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Yes, you can. Though most car rental companies in UAE prefer to rent out to driving license holders which are at least 6 months old. You can still rent a car with a new driving license.
+									</p>
+									<p>
+										However, please note that the insurance terms may differ from those with driving licenses less than 6 months old. For instance, the insurance coverage is only 90%, which means that incase of any accident or damage due to your fault (UAE Police Report required). You will be liable to pay the excess amount and 10% of the amount the insurance company quotes.
+									</p>
+									<p>
+										Please be informed of the terms and conditions and privacy policy of the car rental supplier before choosing the services.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}
+else //Arabic
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section  wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								<h2>@Html.Raw(Resources.FAQsTag)</h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50 text-right">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>لماذا يتطلب الأمر استئجار سيارة بدولة الإمارات؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										تأجير السيارات هو المصدر المرن والمريح للسفر داخل دولة الإمارات العربية المتحدة للجميع، سواء كان ذلك لقضاء عطلة أو كنت تعيش في المنطقة. تعد السيارة أفضل طريقة تساعدك على الاستمتاع بالبنية التحتية المتميزة لدولة الإمارات العربية المتحدة. يتم منحك عدداً من العروض المختلفة التي تندرج ضمن نطاق ميزانيتك وتلبي متطلباتك وتضمن راحتك. نوفر لك كذلك سياراتك المفضلة في أماكنك المفضلة.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>ما هي تكلفة استئجار سيارة في الإمارات؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										تتحدد تكاليف مختلفة لمختلف السيارات حسب المكان الذي تريد حجز الرحلة فيه. ولإعطاء لمحة عامة عن التكاليف، تبلغ تكلفة استئجار سيارة بدولة الإمارات حوالي 40 درهماً إماراتي في اليوم ما يعني أنه إن كنت ترغب في استئجار سيارة لمدة شهر فستكون التكلفة 1200 درهم إماراتي.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>كيف لي أن أحجز سيارة للإيجار في الإمارات؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										يمكنك الاتصال بأي من موفري الخدمات أو موردي السيارات المسجلين على هذا الموقع. حدد خطتك واحصل على سيارتك أينما تريد.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>ما هي التكاليف الإضافية لاستئجار سيارة في الإمارات؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										قد تُفرض عليك (رسوم) بوابات سالك ورسوم إيقاف السيارات (إن وجد) على أساس استخدامك، بالإضافة إلى الرسوم الإضافية التي تتحدد وفقاً لكل مورد نظير تسليم السيارة إلى العنوان المطلوب واستلامها من نفس العنوان.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>ما هو الحد الأدنى لسن التأهل لاستئجار سيارة في الإمارات؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										الحد الأدنى للسن المطلوب لاستئجار سيارة بدولة الإمارات العربية المتحدة هو 21 سنة. ومع ذلك، يعتمد الأمر برمته على شركة تأجير السيارات التي تستأجر منها إذ قد يسمح بعض الموردين بخفض حد السن إلى 18 عاماً وقد يرفع البعض السن إلى 23 سنة لاستئجار السيارات.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>ما الذي يجب أن أعرفه عن رسوم الحجز أو عمولة استئجار سيارة؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										حجز السيارات مجاني تماماً فليست هناك أي رسوم حجز أو رسوم إضافية أو رسوم عمولة. يمكنك ببساطة الاتصال بموفر خدمات تأجير السيارات وإتمام الحجز ودفع الرسوم بسهولة تامة.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>ما هو مبلغ التأمين ولما يتم دفعه؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										يمكن استرداد مبلغ التأمين الذي تدفعه وهو مطلب يوجبه موردي السيارات المستأجرة. يشمل مبلغ التأمين الغرامات التي تفرضها هيئة الطرق والمواصلات أو تكاليف سرقة السيارة أو تلفها (إذا لم يغطيها التأمين). يمكن الاحتفاظ بهذا المبلغ لمدة تصل إلى 25 يوماً بسبب تأخر الإجراءات القانونية لاستصدار الغرامات بما في ذلك الغرامات التي تفرضها هيئة الطرق والمواصلات.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>ما هو الإجراء المتبع لاستئجار سيارة دون الحاجة لدفع أي مبلغ تأمين بدولة الإمارات؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										يعد مبلغ التأمين متطلباً أساسياً بدولة الإمارات العربية المتحدة إذ يعتمد ذلك بشكل أساسي على المورد الذي تتعامل معه، لذا يرجى مطالعة شروط وأحكام تأجير السيارات أثناء حجز السيارة.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>هل يمكنني استئجار سيارة بدون بطاقة ائتمان؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										نعم إذ تقبل بعض شركات تأجير السيارات دفع إيجار السيارات بالإضافة إلى مبلغ التأمين نقداً و / أو باستخدام بطاقة خصم حيث تُطبق على ذلك نفس الشروط والأحكام المذكورة أعلاه.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>هل يجوز قيادة السيارة المستأجرة من قبل شخص آخر وليس من قبلي؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										يُسمح فقط للمستأجر المحدد بقيادة السيارة. على الرغم من أنه إن كنت ترغب في إضافة اسم آخر للقيادة في حالات الطوارئ، فبإمكانك أن تضيف اسماً إلى التغطية التأمينية لقيادة نفس السيارة علماً بأنه قد يُفرض على ذلك رسوماً إضافية.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>هل يمكنني استئجار سائق لقيادة سيارتي المستأجرة؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										خدمة السائق غير متوفرة حالياً ضمن خدماتنا.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>كيف أجد سيارة مستأجرة قريبة مني بدولة الإمارات؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										موقع جوجل وخريطة جوجل هي أفضل إجابة على ذلك. وبالإضافة إلى هذا، سهل موقع nowbuysell.com الأمر عليك إذا بات بإمكانك البحث عن "تأجير سيارات بالقرب مني". يمكنك كذلك البحث باستخدام اسم منطقتك على سبيل المثال مطار الإمارات الدولي.
+									</p>
+									<p>
+										باستخدام خريطة بحث تأجير السيارات المفصلة الخاصة بنا، يمكنك حتى استعراض متاجر تأجير السيارات وعروض سياراتهم الأقرب لك.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>هل يمكنني استئجار سيارة برخصة قيادة جديدة في الإمارات؟</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										نعم تستطيع؛ على الرغم من أن معظم شركات تأجير السيارات بدولة الإمارات تفضل التأجير لحاملي رخص القيادة الصادرة منذ 6 أشهر على الأقل؛ لكن لا يزال بإمكانك استئجار سيارة برخصة قيادة جديدة.
+									</p>
+									<p>
+										ومع ذلك، يرجى العلم بأن شروط التأمين قد تختلف بالنسبة لأولئك الذين يملكون رخصة صادرة منذ أقل من 6 أشهر. على سبيل المثال، توفر التغطية التأمينية نسبة 90٪ فقط ما يعني أنه عند وقوع أي حادث أو ضرر بسبب خطأك (يجب تقديم تقرير شرطي من دولة الإمارات العربية المتحدة)، فستتحمل المسؤولية عن دفع المبلغ الزائد بالإضافة إلى نسبة 10٪ من المبلغ الذي تحدده شركة التأمين.
+									</p>
+									<p>
+										يرجى مراجعة الشروط والأحكام وسياسة الخصوصية المتبعة لدى مورد تأجير السيارات قبل اختيار الخدمات.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}

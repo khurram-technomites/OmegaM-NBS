@@ -1,0 +1,257 @@
+﻿@model NowBuySell.Data.VendorPackage
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+<script type="text/javascript">
+    function EnableTextbox(free) {
+        var Price = document.getElementById("Price");
+
+        Price.disabled = $("#IsFree").prop('checked') ? true : false;
+    }
+    function EnableMotorTextbox(MotorLimit) {
+        var MotorLimit = document.getElementById("MotorLimit");
+
+        MotorLimit.disabled = $("#hasMotorModule").prop('checked') ? false : true;
+    }
+    function EnablePropertyTextbox(PropertyLimit) {
+        var PropertyLimit = document.getElementById("PropertyLimit");
+
+        PropertyLimit.disabled = $("#hasPropertyModule").prop('checked') ? false : true;
+
+    }
+</script>
+<div class="modal-header">
+    <h5 class="modal-title">Create</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+
+    <form id="createform">
+        @Html.AntiForgeryToken()
+
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, "Name", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter package name here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameAr, "Name (Ar)", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.NameAr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter package name arabic here ...", required = "required", dir = "rtl" } })
+                        @Html.ValidationMessageFor(model => model.NameAr, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                    </div>
+                </div>
+            </div>
+
+            @{
+                var domainsList = new SelectList(new[]
+                {
+                new SelectListItem { Text = "Monthly", Value = "Monthly", Selected = true },
+                new SelectListItem { Text = "Quarterly", Value = "Quarterly"},
+                new SelectListItem { Text = "Half Yearly", Value = "Half Yearly"},
+                new SelectListItem { Text = "Yearly", Value = "Yearly"},
+            }, "Value", "Text");
+            }
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BillingPeriod, "Billing Period ", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.DropDownListFor(model => model.BillingPeriod, domainsList, htmlAttributes: new { @class = "form-control", required = "required" })
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-history"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-1 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Free</label>
+                    <span class="switch ml-10">
+                        <label type="checkbox" id="free" name="free" style=" margin-left =-35px;" onclick="EnableTextbox(this)">
+                            @Html.CheckBox("IsFree")
+                            <span></span>
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group" style="width: 100%; margin-left: auto;">
+                    @Html.LabelFor(model => model.Price, "Price", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0", min = "0.00", placeholder = "Enter price here ...", required = "required", id = "Price", value = 0, enabled = "enabled" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-money-bill-wave"></i></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <div class="input-group mb-2">
+                        <textarea name="Description" id="Description" form="btnFormSubmit" class="form-control" placeholder="Enter Description here .." rows="3">@Model.Description</textarea>
+                        @*@Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Enter description here ...", required = "required", rows = "3" })*@
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="control-label">Description (Ar)</label>
+                    <div class="input-group mb-2">
+                        <textarea name="DescriptionAr" id="DescriptionAr" form="btnFormSubmit" style="text-align:right" class="form-control" placeholder="Enter Description here .." rows="3">@Model.DescriptionAr</textarea>
+                        @*@Html.TextAreaFor(m => m.DescriptionAr, new { @class = "form-control", placeholder = "Enter description (Ar) here ...", required = "required", dir = "rtl", rows = "3" })*@
+                    </div>
+                    @Html.ValidationMessageFor(model => model.DescriptionAr, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Property</label>
+                    <span class="switch ml-10">
+                        <label name="hasPropertyModule" onclick="EnablePropertyTextbox(this)">
+                            @Html.CheckBox("hasPropertyModule")
+                            <span></span>
+                        </label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Motor</label>
+                    <span class="switch ml-10">
+                        <label onclick="EnableMotorTextbox(this)">
+                            @Html.CheckBox("hasMotorModule")
+                            <span></span>
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PropertyLimit, "Property Limit", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.PropertyLimit, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0", min = "0", placeholder = "Enter property limit here ...", required = "required", id = "PropertyLimit", value = 0, disabled = true } })
+                        @Html.ValidationMessageFor(model => model.PropertyLimit, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-building"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MotorLimit, "Motor Limit", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.MotorLimit, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0", min = "0", placeholder = "Enter motor limit here ...", required = "required", id = "MotorLimit", value = 0, disabled = true } })
+                        @Html.ValidationMessageFor(model => model.MotorLimit, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-car"></i></span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="createform">Submit</button>
+</div>
+
+
+
+<script>
+    var Description, DescriptionAr;
+
+    $(document).ready(function () {
+      
+
+        ClassicEditor
+            .create(document.querySelector('#Description'))
+            .then(editor => {
+                Description = editor;
+                Description.setData(`@Html.Raw(Model.Description)`);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+        ClassicEditor
+            .create(document.querySelector('#DescriptionAr'))
+            .then(editor => {
+                DescriptionAr = editor;
+                DescriptionAr.setData(`@Html.Raw(Model.DescriptionAr)`);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+          $('#createform').submit(function () {
+           debugger
+           $.ajax({
+            url: '/Admin/VendorPackage/Create/',
+            type: 'POST',
+            data:
+            {
+                "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val(),
+                package: {
+
+                    //ID: $('#ID').val(),
+                    BillingPeriod: $('#BillingPeriod').val(),
+                    hasPropertyModule:  $("#hasPropertyModule").prop('checked'),
+                    hasMotorModule:  $("#hasMotorModule").prop('checked'),
+                    Name: $('#Name').val(),
+                    NameAr: $('#NameAr').val(),
+                    Price: $('#Price').val(),
+                    PropertyLimit: $("#PropertyLimit").val(),
+                    MotorLimit: $("#MotorLimit").val(),
+                     IsFree: $("#IsFree").prop('checked'),
+                    Description: Description.getData(),
+                    DescriptionAr: DescriptionAr.getData(),
+                    // CreatedOn: $("#CreatedOn").val(),
+                    //IsActive: $("#IsActive").val(),
+                    //   IsDeleted: $("#IsDeleted").val(),
+
+
+                }
+            },
+            success: function (response) {
+                if (response.success) {
+                    toastr.success(response.message);
+                 location.reload()
+                }
+                else {
+                    toastr.error(response.message);
+                   
+                }
+           
+            },
+           
+        });
+
+        return false;
+});
+    })
+</script>
+

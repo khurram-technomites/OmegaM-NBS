@@ -1,0 +1,68 @@
+﻿@model NowBuySell.Web.ViewModels.SubscriberMailViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title"> Email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i aria-hidden="true" class="ki ki-close"></i>
+        </button>
+    </div>
+    @using (Html.BeginForm("SendEmailToSubscribers", "Subscribers", new { area = "Admin" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+<div class="col-md-12" style="margin-top:20px">
+    <div class="col-12">
+        <div class="form-group">
+            @Html.Label("Subscriber", htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownList("Email", null, htmlAttributes: new { @class = "form-control kt-selectpicker", @data_actions_box = "true", @multiple = "multiple", required = "required" })
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            @Html.Label("Email Subject", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter subject title here ...", required = "required" } })
+        </div>
+    </div>
+    @*<div class="col-12">
+            <div class="form-group">
+                @Html.Label("Email Body", htmlAttributes: new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter message here ...", required = "required" } })
+            </div>
+        </div>*@
+    <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+            <label class="control-label">Message</label>
+            <div class="input-group mb-3">
+                @Html.TextAreaFor(model => model.Message, 5, 20, new { @class = "form-control", placeholder = "Enter message here ..." })
+                @*@Html.TextAreaFor(model => model.TitleDescriptionAr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description (ar) here ...", required = "required", dir = "rtl" } })*@
+
+            </div>
+            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <button type="submit" id="send-notification" class="btn btn-info mb-10">
+                Send Email
+            </button>
+        </div>
+    </div>
+
+</div>
+    }
+</body>
+</html>
+<script>
+	$(document).ready(function () {
+        $('.kt-selectpicker').selectpicker();
+		//$("#txtstatus").change(function () {
+		//
+		//    var status = $("#txtstatus option:selected").val();
+
+		//})
+	});
+</script>

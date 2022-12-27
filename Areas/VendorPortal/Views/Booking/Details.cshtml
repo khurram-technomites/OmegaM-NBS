@@ -1,0 +1,329 @@
+﻿@model NowBuySell.Data.Booking
+
+@{
+	ViewBag.Title = "Booking Details";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+	<!--begin::Subheader-->
+	<div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+		<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div class="d-flex align-items-center flex-wrap mr-1">
+				<!--begin::Heading-->
+				<div class="d-flex flex-column">
+					<!--begin::Breadcrumb-->
+					<div class="d-flex align-items-center font-weight-bold my-2">
+						<!--begin::Item-->
+						<a href="/Admin/Dashboard/Index" class="opacity-75 hover-opacity-100">
+							<i class="flaticon2-shelter text-white icon-1x"></i>
+						</a>
+						<!--end::Item-->
+						<!--begin::Item-->
+						<a href="/Admin/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+						<!--end::Item-->
+						<!--begin::Item-->
+						<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+						<a href="/Admin/Order/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">Bookings</a>
+						<!--end::Item-->
+						<!--begin::Item-->
+						<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+						<a href="javascript:;" class="text-white text-hover-white opacity-75 hover-opacity-100">Details</a>
+						<!--end::Item-->
+					</div>
+					<!--end::Breadcrumb-->
+				</div>
+				<!--end::Heading-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+	<!--end::Subheader-->
+	<!--begin::Entry-->
+	<div class="d-flex flex-column-fluid">
+		<!--begin::Container-->
+		<div class="container">
+			<!--begin::Dashboard-->
+			<!--begin::Row-->
+			<div class="row">
+				<div class="col-xl-12">
+					<!--begin::Card-->
+					<div class="card card-custom gutter-b">
+						<div class="card-header flex-wrap border-0 pt-6 pb-0">
+							<div class="card-title">
+								<h3 class="card-label">
+									Booking Details
+									<span class="d-block text-muted pt-2 font-size-sm">Manage Booking Details Here...</span>
+								</h3>
+							</div>
+						</div>
+						<div class="card-body">
+							<!-- begin: Invoice-->
+							<!-- begin: Invoice header-->
+							<div class="justify-content-center px-8 px-md-0 py-8 row">
+								<div class="col-md-10">
+									@*<div class="border-bottom w-100"></div>*@
+									<div class="d-flex justify-content-between pt-6">
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">BOOKING DATE</span>
+											<span class="opacity-70">@(Model.CreatedOn.Value.ToString("MMM dd, yyyy"))</span>
+										</div>
+
+
+										<div class="d-flex flex-column flex-root text-right">
+											<span class="font-weight-bolder mb-2">ORDER STATUS </span>
+											<span class="opacity-70">@Model.Status</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end: Invoice header-->
+							<!-- begin: Invoice body-->
+							<div class="border-bottom w-100"></div>
+							<div class="row justify-content-between pt-6">
+								<div class="col-4  justify-content-center pl-19">
+									<h4 class="card-label">
+										Customer Details
+									</h4>
+
+									<div class="">
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">Name</span>
+											<span class="opacity-70">@Model.Customer.Name</span>
+										</div>
+
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">Emaild</span>
+											<span class="opacity-70">@Model.Customer.Email</span>
+										</div>
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">Contact</span>
+											<span class="opacity-70">@Model.Customer.Contact</span>
+										</div>
+
+									</div>
+
+								</div>
+								<div class="col-4 pl-19">
+									<h4 class="card-label">
+										Booking Details
+									</h4>
+
+									<div class="">
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">Name</span>
+											<span class="opacity-70">@Model.Customer.Name</span>
+										</div>
+
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">Emaild</span>
+											<span class="opacity-70">@Model.Customer.Email</span>
+										</div>
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">Contact</span>
+											<span class="opacity-70">@Model.Customer.Contact</span>
+										</div>
+
+									</div>
+
+								</div>
+								<div class="col-4 pl-19">
+									<h4 class="card-label">
+										Car Details
+									</h4>
+
+									<div class="">
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">Name</span>
+											<span class="opacity-70">@Model.Customer.Name</span>
+										</div>
+
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">Emaild</span>
+											<span class="opacity-70">@Model.Customer.Email</span>
+										</div>
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">Contact</span>
+											<span class="opacity-70">@Model.Customer.Contact</span>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+							<br />
+							<br />
+
+							<div class="border-bottom w-100"></div>
+							<br />
+							<div class="row">
+								<div class="col-12 col-sm-12 col-md-4 pl-16 col-lg-4 mb-4 pr-5">
+									<h5><i class="icon fa fa-map-marker mr-1 "></i>Delivery Address</h5>
+									<div class="cart__footer mt-5">
+										<div class="solid-border">
+											<div class="row border-bottom pb-2">
+
+												<span class="col-12 col-sm-12 text-left"><span class="coupon-code">House# 113,Street# 26, al-fujairah,Dubai</span></span>
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-12 col-sm-12 col-md-4 pl-16 col-lg-4 mb-4 pr-5">
+									<h5><i class="icon fa fa-gift "></i> Coupon & Redeem</h5>
+									<div class="cart__footer mt-5">
+										<div class="solid-border">
+											<div class="row border-bottom pb-2">
+												<span class="col-12 col-sm-6 cart__subtotal-title">Coupon Code</span>
+												<span class="col-12 col-sm-6 text-right"><span class="coupon-code">pl-11111</span></span>
+											</div>
+											<div class="row border-bottom pb-2 pt-2">
+												<span class="col-12 col-sm-6 cart__subtotal-title">Coupon Discount</span>
+												<span class="col-12 col-sm-6 text-right"> 5.00</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-sm-12 col-md-4 col-lg-4 pl-16 ">
+									<h5><i class="fa fa-shopping-cart "></i> Billing Details</h5>
+									<div class="cart__footer mt-5">
+										<div class="solid-border">
+											@*<div class="row border-bottom pb-2">
+													<span class="col-12 col-sm-6 cart__subtotal-title">Subtotal</span>
+													<span class="col-12 col-sm-6 text-right"><span class="money price"> @Model.NetAmount</span></span>
+												</div>*@
+											<div class="row border-bottom pb-2 pt-2">
+												<span class="col-12 col-sm-6 cart__subtotal-title">Tax Percent</span>
+												<span class="col-12 col-sm-6 text-right price">17 Percent</span>
+											</div>
+											<div class="row border-bottom pb-2 pt-2" style="color:darkred">
+												<span class="col-12 col-sm-6 cart__subtotal-title"><strong>Grand Total</strong></span>
+												<span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right">
+													<strong><span class="money price"> 2500 AED</span></strong>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							@*<table>
+									<tr>
+										<th class="font-weight-bold text-muted text-uppercase" style="padding-left:950px"> Coupen Code</th>
+										<td class="text-primary font-size-h5 font-weight-boldest text-right">@Model.CoupenCode</td>
+									</tr>
+									<tr>
+										<th class="font-weight-bold text-muted text-uppercase" style="padding-left:950px"> Coupen Discount</th>
+										<td class="text-primary font-size-h5 font-weight-boldest text-right">@Model.CoupenDiscount</td>
+									</tr>
+									<tr>
+										<th class="font-weight-bold text-muted text-uppercase" style="padding-left:950px">Redeem Amount</th>
+										<td class="text-primary font-size-h5 font-weight-boldest text-right">@Model.RedeemAmount </td>
+									</tr>
+									<tr>
+										<th class="font-weight-bold text-muted text-uppercase" style="padding-left:950px">DISCOUNT: </th>
+										<td class="text-primary font-size-h5 font-weight-boldest text-right">@Model.DiscountAmount</td>
+									</tr>
+									<tr>
+										<th class="font-weight-bold text-muted text-uppercase" style="padding-left:950px">DISCOUNT(%):</th>
+										<td class="text-primary font-size-h5 font-weight-boldest text-right">
+											@Model.DiscountPercent
+										</td>
+									</tr>
+									<tr>
+
+										<th class="" style="padding-left:950px">TAX(%): </th>
+										<td class="text-primary font-size-h5 font-weight-boldest text-right">
+											@Model.OrderTaxPercent
+										</td>
+									</tr>
+									<tr>
+
+										<th class="font-weight-bold text-muted text-uppercase" style="padding-left:950px">TOTAL PAID</th>
+
+										<td class="text-primary font-size-h3 font-weight-boldest text-right">@Model.Currency @Model.Amount</td>
+									</tr>
+								</table>*@
+
+							<!-- end: Invoice body-->
+							<!-- begin: Invoice footer-->
+							<!-- end: Invoice footer-->
+							<!-- begin: Invoice action-->
+							<div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+								<div class="col-md-10">
+									<div class="d-flex justify-content-between">
+										<a href="/Admin/Order/Index" class="btn btn-light-primary font-weight-bold">Back to Orders</a>
+
+									</div>
+								</div>
+							</div>
+							<!-- end: Invoice action-->
+							<!-- end: Invoice-->
+						</div>
+					</div>
+					<!--end::Card-->
+				</div>
+			</div>
+			<!--end::Row-->
+		</div>
+		<!--end::Container-->
+	</div>
+	<!--end::Entry-->
+</div>
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-dialog-centered modal-md">
+		<div class="modal-content" style="min-height:100px">
+			<div id='myModalContent'>
+				<div class="row justify-content-center">
+					<div class="col-16">
+						<div class="kt-spinner kt-spinner--lg kt-spinner--dark kt-spinner-modal"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section IndexScript {
+	<script>
+        function callback(dialog, elem, isedit, response) {
+
+            
+            if (response.success) {
+                toastr.success(response.message);
+                window.location.href = "/Admin/Order/Details?id=" + response.data.OrderID;
+            }
+            else {
+                jQuery('form', dialog).closest('.modal').find('button[type=submit]').removeClass('spinner spinner-sm spinner-left').attr('disabled', false);
+
+                toastr.error(response.message);
+            }
+        }
+
+        FormatPrices();
+                //function addRow(row) {
+
+                //	table1.row.add([
+                //		row.Date,
+                //		row.OrderNo,
+                //		row.Customer ? row.Customer.Name + '|' + row.Customer.Contact : '',
+                //		row.TotalAmount + ' ' + row.Currency,
+                //		row.ShipmentStatus,
+                //		row.Status,
+                //		row.ID,
+                //	]).draw(true);
+
+                //}
+
+	</script>
+
+	<!--begin::Page Vendors(used by this page)-->
+	<script src="~/assets/Admin/plugins/custom/datatables/datatables.bundle.js"></script>
+	<!--end::Page Vendors-->
+	<!--begin::Page Scripts(used by this page)-->
+	@*<script src="@Url.ContentVersioned("~/Assets/Admin/js/vendor/order/list.js")"></script>*@
+	<!--end::Page Scripts-->
+	<script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+	<!--end::Page Scripts-->

@@ -1,0 +1,268 @@
+﻿@model NowBuySell.Data.City
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title">Create</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("Create", "City", new { area = "Admin" }, FormMethod.Post, new { id = "Userform", @class = "Userform" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            <div class="col-lg-12 text-center">
+                <div class="col-lg-12 text-center">
+                    <label>Thumbnail</label>
+                </div>
+                <div class="image-input image-input-outline" id="kt_image_1">
+                    <div class="image-input-wrapper" style="background-image: url('../../../../Assets/AppFiles/Images/default.png')"></div>
+                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change logo">
+                        <i class="fa fa-pen icon-sm text-muted"></i>
+                        <input type="file" name="logo" id="logo" accept=".png, .jpg, .jpeg" required style="width:1px;height:1px" />
+                        <input type="hidden" name="profile_avatar_remove" />
+                    </label>
+                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow cancelimage" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                    </span>
+
+                </div>
+                <div class="col-lg-12 text-center">
+                    <span class="form-text text-muted">Image dimensions should be 525 x 438 pixels and Image size must be less than 500 kb</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CountryID, "Country Name", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-3">
+                        @Html.DropDownList("CountryID", null, "Select Country", htmlAttributes: new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-flag"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, "City Name", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter city name here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-home"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameAR, "City Name (Ar)", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter city name (ar) here ...", required = "required", dir = "rtl" } })
+                        @Html.ValidationMessageFor(model => model.NameAR, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-home"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label class="wo-titleinput mb-0">Search Location</label>
+                    <div class="wo-form-icon">
+                        <input type="text" class="form-control show-map-input Address" id="Address" name="Address" placeholder="Choose location" required value="@Model.Address">
+                        <a href="javascript:void(0);" class="wo-right-icon get-current-location" onclick="getLocation()">
+                            <i class="flaticon2-map"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="wo-right-icon pin-on-map" @*data-toggle="modal" data-target="#map-modal"*@ onclick="openMap()">
+                            Pin On Map
+                        </a>
+                    </div>
+                </div>
+                <div class="MapSearchResult" style="display:none">
+                </div>
+                <input type="hidden" name="PlaceId" id="PlaceId" value="@Model.PlaceId" />
+                <input type="hidden" name="Latitude" id="Latitude" value="@Model.Latitude" />
+                <input type="hidden" name="Longitude" id="Longitude" value="@Model.Longitude" />
+
+            </div>
+
+
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="Userform">Submit</button>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEmhLaFjth5xau57Gy1NwE1O6apk443xY&libraries=places&callback=initAutocomplete"></script>
+
+<script>
+    var _URL = window.URL || window.webkitURL;
+    $(document).ready(function () {
+        $("#logo").change(function () {
+            var file, img;
+
+            if ((file = this.files[0])) {
+                img = new Image();
+                img.onload = function () {
+
+                    if (this.width < 525 || this.width > 525) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image dimension should be equal to 525 x 438!',
+
+                        }).then(function (result) {
+                            $("#logo").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (this.height < 438 || this.height > 438) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image dimension should be equal to 525 x 438!',
+
+                        }).then(function (result) {
+                            $("#logo").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (file.size > 500000) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image size must be less than 500 kb!',
+
+                        }).then(function (result) {
+                            $("#logo").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else {
+                        img.onerror = function () {
+                            alert("not a valid file: " + file.type);
+                        };
+                    }
+                };
+
+                console.log(_URL.createObjectURL(file))
+                img.src = _URL.createObjectURL(file);
+            }
+        });
+        new KTImageInput('kt_image_1');
+
+
+
+        @* $("#Icon").change(function () {
+            var file1, img;
+            if ((file1 = this.files[0])) {
+                img = new Image();
+                img.onload = function () {
+
+                    if (this.width < 525 || this.width > 525) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image width should be 525 pixels ! ',
+
+                        }).then(function (result) {
+                            $("#Icon").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (this.height < 438 || this.height > 438) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image Height should be 438 pixels!',
+
+                        }).then(function (result) {
+                            $("#Icon").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (file1.size > 100000) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image size must be less than 100 kb!',
+
+                        }).then(function (result) {
+                            $("#Icon").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else {
+                        img.onerror = function () {
+                            alert("not a valid file: " + file1.type);
+                        };
+                    }
+                };
+
+
+                console.log(_URL.createObjectURL(file1))
+                img.src = _URL.createObjectURL(file1);
+            }
+        });
+        new KTImageInput('kt_image_2');*@
+
+
+        $("#Userform").submit(function () {
+
+            $(this).closest('.modal').find('button[type=submit]').addClass('spinner spinner-sm spinner-left').attr('disabled', true);
+
+            var data = new FormData();
+            var files = $("#logo").get(0).files;
+            @*  var files1 = $("#Icon").get(0).files;*@
+            if (files.length > 0) {
+                data.append("Image", files[0]);
+            }
+            @*    if (files1.length > 0) {
+                data.append("Icon", files[0]);
+            }*@
+            console.log("data", data);
+            data.append("CountryID", $('#CountryID').val());
+            data.append("Name", $('#Name').val());
+            data.append("NameAR", $('#NameAR').val());
+            data.append("PlaceId", $('#PlaceId').val());
+            data.append("Latitude", $('#Latitude').val());
+            data.append("Longitude", $('#Longitude').val());
+            data.append("Address", $('#Address').val());
+            data.append("__RequestVerificationToken", $('input[name=__RequestVerificationToken]').val());
+            //data.append("Image", $('#Image').files[0]);
+
+            $.ajax({
+
+                url: "/Admin/City/Create",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+
+                    if (callback) {
+                        callback($('#myModalContent'), element, false, response);
+                    }
+                },
+                error: function (er) {
+                    toastr.error(er);
+                    @* console.log("Erro" , er);*@
+                }
+            });
+            return false;
+        });
+
+    });
+</script>

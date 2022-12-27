@@ -1,0 +1,184 @@
+﻿@model NowBuySell.Data.VendorAddPurchas
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title">Create</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    @using (Html.BeginForm("Create", "VendorAddPurchases", new { area = "Admin" }, FormMethod.Post, new { id = "VendorAddPurchasesform", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="control-label">Vendor</label>
+                    <div class="input-group">
+                        @Html.DropDownList("VendorId", new SelectList(ViewBag.Vendor, "Value", "Text"), "Select Vendor", htmlAttributes: new { @class = "form-control kt-selectpicker", @data_actions_box = "true", data_live_search = "true", id = "vendor", required = "required" })
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div hidden id="packagedetails">
+            
+            <h5 class="modal-title">Package Details</h5>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">Package Name</label>
+                        <div class="input-group mb-2">
+                            <input disabled type="text" class="form-control" id="packagename" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">No of Motor</label>
+                        <div class="input-group mb-2">
+                            <input disabled type="text" class="form-control" id="noofmotor" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">No of Property</label>
+                        <div class="input-group mb-2">
+                            <input disabled type="text" class="form-control" id="noofproperty" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+       
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">No Of Motor</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.NoOfMotor, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter No Of Motor here ...", disabled = "disabled" } })@Html.ValidationMessageFor(model => model.NoOfMotor, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-car"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">No Of Property</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.NoOfProperty, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter No Of Property here ...", disabled = "disabled" } })@Html.ValidationMessageFor(model => model.NoOfProperty, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-building"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Price</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Price here ...", required = "required" } })@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-dollar-sign"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Payment Method</label>
+                    <div class="input-group">
+                        <select name="PaymentMethod" id="PaymentMethod" class="form-control" required="required">
+                            <option value="" selected disabled>Select Payment Method</option>
+                            <option value="Card">Card</option>
+                            <option value="Cash">Cash</option>
+                        </select>
+                        @*<div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-pay"></i>
+                                </span>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Expiry Date</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control", required = "required", type = "date" } })@Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-clock"></i></span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="VendorAddPurchasesform">Submit</button>
+</div>
+
+<script>
+
+     var KTBootstrapSelect = function () {
+        debugger;
+        // Private functions
+        var demos = function () {
+            // minimum setup
+            $('.kt-selectpicker').selectpicker();
+        }
+
+        return {
+            // public functions
+            init: function () {
+            demos();
+            }
+        };
+    }();
+        jQuery(document).ready(function () {
+            KTBootstrapSelect.init();
+    })
+
+    $('#vendor').change(function () {
+        debugger;
+        $('#NoOfMotor').attr("disabled", "disabled")
+        $('#NoOfProperty').attr("disabled", "disabled")
+        if ($(this).val() == 0) {
+            $('#packagedetails').attr("hidden", "hidden")
+        }
+        else {
+            $.ajax({
+                type: 'Get',
+                url: '/VendorAddPurchases/GetVendorDetails/' + $(this).val(),
+                success: function (response) {
+                    
+                    if (response.success) {
+                       
+                        $('#packagedetails').removeAttr("hidden", "hidden")
+                        $('#noofmotor').val(response.data.NoOfMotor)
+                        $('#noofproperty').val(response.data.NoOfProperty)
+                        $('#packagename').val(response.data.PackageName)
+                        if (response.data.hasMotorModule != false && response.data.hasMotorModule != null) {
+                            $('#NoOfMotor').attr("required", "required")
+                            $('#NoOfMotor').removeAttr("disabled", "disabled")
+                        }
+                        if (response.data.hasPropertyModule !=false && response.data.hasPropertyModule != null) {
+                            $('#NoOfProperty').attr("required", "required")
+                            $('#NoOfProperty').removeAttr("disabled", "disabled")
+                        }
+                       
+                    }
+                  
+                }
+            });
+        }
+    });
+</script>

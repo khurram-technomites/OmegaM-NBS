@@ -1,0 +1,199 @@
+﻿@model IEnumerable<NowBuySell.Data.Property>
+
+@{
+    ViewBag.Title = "List";
+    Layout = null;
+}
+<style>
+    #kt_datatable1 tbody tr td:last-child {
+        white-space: nowrap;
+    }
+
+    .switch {
+        position: relative;
+        display: contents;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    /*  .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }*/
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    .switch input:empty ~ span:after {
+        height: 17px;
+        width: 17px;
+        top: 2px;
+        /* bottom: -4px; */
+        /* margin-left: 3px; */
+        font-size: 0.65em;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .switch input:empty ~ span {
+        margin: 2px 0;
+        height: 22px;
+        width: 44px;
+        border-radius: 15px;
+        margin-left: 10px;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+    .switch input:empty ~ span:before {
+        width: 0px;
+    }
+
+
+    .switch input:checked ~ span:after {
+        margin-left: 23px;
+        background-color: #ffffff;
+    }
+</style>
+<!--begin::Row-->
+<div class="row">
+    <div class="col-xl-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        Properties
+                        <span class="d-block text-muted pt-2 font-size-sm">Manage Properties Here...</span>
+                    </h3>
+                </div>
+
+                <div class="card-toolbar">
+                    
+                    <div class="dropdown dropdown-inline mr-2">
+                        <select id="filterdropdown" class="form-control" onchange="Filterlist()">
+                            <option selected value="All">All</option>
+                            <option value="Sold">Sold</option>
+                            <option value="Featured">Featured</option>
+                            <option value="Premium">Premium</option>
+                            <option value="Verified">Verified</option>
+                        </select>
+                    </div>
+                    <div class="dropdown dropdown-inline mr-2">
+                        @Html.DropDownList("Vendor", new SelectList(ViewBag.Vendor, "Value", "Text"), "All Vendor", htmlAttributes: new { @class = "form-control", id = "vendordropdown", onchange = "Filterlist()" })
+
+                    </div>
+                    <div class="dropdown dropdown-inline mr-2">
+                        <button type="button" class="btn btn-outline-secondary" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <form action="/Admin/Property/PropertiesReport" method="post">
+                                <button type="submit" class="dropdown-item">
+                                    <i class="far fa-file-excel" style="margin-right: 4px;"></i>
+                                    Export Excel
+                                </button>
+                            </form>
+
+                            <a href="~/Assets/AppFiles/Documents/CSVSample/BulkProperty.xlsx" download type="button" class="dropdown-item">
+                                <i class="fa fa-download" style="margin-right: 4px;"></i>
+                                Sample CSV
+                            </a>
+                            <form id="BlkUploader" action="/City/BulkUpload" method="post" enctype="multipart/form-data">
+                                <input type="file" hidden id="FileUpload" name="FileUpload" />
+                                <button type="button" class="dropdown-item" onclick="OpenModelPopup(this, '/Admin/Property/BulkUpload')" data="/Vendor/Property/BulkUpload">
+                                    <i class="fa fa-plus" style="margin-right: 4px;"></i>
+                                    Bulk Upload
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                <!--begin: Datatable-->
+                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+                    <thead>
+                        <tr>
+                            @*<th hidden>ID</th>*@
+                            <th>Date</th>
+                            <th>Title</th>
+                            @*<th>Listed For</th>*@
+                            <th>Featured</th>
+                            <th>Verified</th>
+                            <th>Premium</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody style="display:none">
+                        @* @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.ID</td>
+                                    <td data-order="@item.ID">@(item.CreatedOn.ToString("dd MMM yyyy, h:mm tt"))</td>
+                                    <td>@item.Thumbnail,@item.Title,@item.Address,@item.IsSold,@item.Vendor.Name,@(item.ForSale ? "Sale" : "Rent"),@item.IsPublished</td>
+                                    <td>@(item.ForSale ? "Sale" : "Rent")</td>
+                                    <th>@item.IsFeatured</th>
+                                    <th>@item.IsVerified</th>
+                                    <th>@item.IsPremium</th>
+                                    <td>@item.IsActive</td>
+                                    <td></td>
+                                    </tr>
+                                    }*@
+                    </tbody>
+                </table>
+                <!--end: Datatable-->
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+<!--end::Row-->

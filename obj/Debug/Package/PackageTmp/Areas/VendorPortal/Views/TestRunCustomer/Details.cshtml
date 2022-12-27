@@ -1,0 +1,115 @@
+﻿
+@model NowBuySell.Data.TestRunCustomer
+@{
+    ViewBag.Title = "Approval Cancel";
+    Layout = null;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title">Details</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("Details", "TestRunCustomer", new { area = "Vendor" }, FormMethod.Post, new { id = "frm-edit", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        @*<p>@Html.Raw(Model.Comments)</p>*@
+<div class="row">
+    @*<div class="col-md-6 col-sm-6">
+            <div class="form-group" style="padding: 0 1rem; padding: 0px 1rem;">
+                <label class="control-label" style="font-weight: bold;">Booking No</label>
+
+                <p>@Model.TrialBookingNo</p>
+
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group" style="padding: 0 1rem; padding: 0px 1rem; ">
+                <label class="control-label" style="font-weight: bold;">Booked Date</label>
+
+                <p>@Model.BookedDate.Value.ToString("dd MMM yyyy"), @Model.BookedTime</p>
+
+            </div>
+        </div>*@
+    <div class="col-md-3 col-sm-6">
+        <div class="form-group" style="padding: 0 1rem;">
+            <label class="control-label " style="font-weight: bold;">Customer</label><br />
+            <div> <span class="fa fa-user" style="margin-top:-10px"></span> <p style="margin-left: 20px; margin-top: -18px;">@Html.Raw(Model.Customer.Name)</p></div>
+            <div style="margin-top:-10px"><span class="fa fa-envelope"></span> <p style="margin-top: -21px; margin-left: 21px;">@Html.Raw(Model.Customer.Email)</p></div>
+            <div style="margin-top:-10px"><span class="fa fa-phone"></span><p style="margin-top: -20px; margin-left: 21px;">@Html.Raw(Model.Customer.Contact)</p></div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-">
+        <div class="form-group" >
+
+            @{
+                string For = string.Empty;
+                if (Model.MotorID != null)
+                {
+                    <label class="control-label" style="font-weight: bold;">Motor</label>
+                    For = Model.Car.Name + " Car";
+                }
+                else
+                {
+                    <label class="control-label" style="font-weight: bold;">Property </label>
+                    For = Model.Property.Title + " Property";
+                }
+
+            }
+            <p>@(!String.IsNullOrEmpty(For) ? For : "-")</p>
+
+        </div>
+        <div class="form-group" >
+            <label class="control-label" style="font-weight: bold;">Status</label>
+
+            <p>@Model.Status</p>
+
+        </div>
+    </div>
+
+    @*</div>
+        <br/>
+        <div class="row">*@
+    <div class="col-md-3">
+        <label class="control-label" style="font-weight: bold;">Booking Date</label>
+        <p>@Model.BookedDate</p>
+    </div>
+
+</div>
+        <div class="d-flex">
+            <div class="form-group" style="padding: 0 1rem;">
+                <div class="form-group">
+                    <label class="control-label" style="font-weight: bold;">Description</label>
+                    <textarea class="form-control" style=" width: 1032px;" readonly="readonly">@(!String.IsNullOrEmpty(Model.Description) ? Model.Description : "-")</textarea>
+                </div>
+            </div>
+
+        </div>
+        @*<div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group" style="padding: 0 1rem;">
+                        <label class="control-label" style="font-weight: bold;">Customer Email</label>
+                        <label class="control-label float-right" readonly="readonly">@(!String.IsNullOrEmpty(Model.Email) ? Model.Email : "-")</label>
+
+                    </div>
+                </div>
+
+
+            </div>*@
+
+    }
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+</div>
+

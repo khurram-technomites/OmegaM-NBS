@@ -1,0 +1,472 @@
+﻿.card-custom .card-body {
+    padding: 10px 20px !important;
+}
+
+.symbol {
+    box-shadow: 2px 2px 5px #0000004d;
+}
+
+.btn-remove-gallery-image {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+
+.symbol .spinner.spinner-right:before {
+    right: .97px;
+}
+
+.symbol .spinner.spinner-right.btn:not(.btn-block) {
+    padding-right: unset;
+}
+
+.wizard.simple-car .variat-car, .wizard.variat-car .simple-car {
+    display: none;
+}
+
+article {
+    width: 100%;
+    max-width: 700px;
+}
+
+.customLook {
+    --tag-bg: #0052BF;
+    --tag-hover: #CE0078;
+    --tag-text-color: #FFF;
+    --tags-border-color: silver;
+    --tag-text-color--edit: #111;
+    --tag-remove-bg: var(--tag-hover);
+    --tag-pad: .6em 1em;
+    --tag-inset-shadow-size: 1.3em;
+    --tag-remove-btn-bg--hover: black;
+    display: inline-block;
+    min-width: 0;
+    border: none;
+}
+
+    .customLook .tagify__tag {
+        margin-top: 0;
+    }
+
+        .customLook .tagify__tag > div {
+            border-radius: 25px;
+        }
+
+        /* Do not show the "remove tag" (x) button when only a single tag remains */
+        .customLook .tagify__tag:only-of-type .tagify__tag__removeBtn {
+            display: none;
+        }
+
+    .customLook .tagify__tag__removeBtn {
+        opacity: 0;
+        transform: translateX(-6px) scale(.5);
+        margin-left: -3ch;
+        transition: .12s;
+    }
+
+    .customLook .tagify__tag:hover .tagify__tag__removeBtn {
+        transform: none;
+        opacity: 1;
+        margin-left: -1ch;
+    }
+
+    .customLook + button {
+        color: #0052BF;
+        font: bold 1.4em/1.65 Arial;
+        border: 0;
+        background: none;
+        box-shadow: 0 0 0 2px inset currentColor;
+        border-radius: 50%;
+        width: 1.65em;
+        height: 1.65em;
+        cursor: pointer;
+        outline: none;
+        transition: .1s ease-out;
+        margin: 0 0 0 5px;
+        vertical-align: top;
+    }
+
+        .customLook + button:hover {
+            box-shadow: 0 0 0 5px inset currentColor;
+        }
+
+    .customLook .tagify__input {
+        display: none;
+    }
+
+
+.car-image {
+    width: 150px !important;
+    height: 150px !important;
+}
+.checkbox-list-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+    .checkbox-list-scroll::-webkit-scrollbar {
+        width: .2em;
+    }
+
+    .checkbox-list-scroll::-webkit-scrollbar-track {
+        /*box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);*/
+        background-color: #000;
+    }
+
+    .checkbox-list-scroll::-webkit-scrollbar-thumb {
+        /*background-color: #E7B701;
+		outline: 1px solid #E7B701;*/
+        background-image: linear-gradient(to bottom, rgb(68 139 185), rgb(68 139 185) 15%, rgb(68 139 185) 1%, rgb(68 139 185));
+        background-repeat: repeat-x;
+        outline: 1px solid rgb(68 139 185);
+    }
+
+
+.car-documents .row {
+    box-shadow: 0px 0px 10px #eef0f8;
+    border-radius: 3px;
+    padding: 5px;
+    transition: 100ms linear;
+}
+
+    .car-documents .row:hover {
+        cursor: pointer;
+        transform: scale(1.01);
+    }
+
+.car-inspections .row {
+    box-shadow: 0px 0px 10px #eef0f8;
+    border-radius: 3px;
+    padding: 5px;
+    transition: 100ms linear;
+}
+
+    .car-inspections .row:hover {
+        cursor: pointer;
+        transform: scale(1.01);
+    }
+
+#tableCarPackages tr th, #tableCarPackages tr td {
+    text-align: center;
+    width: 25%;
+}
+
+    #tableCarPackages tr td .switch {
+        flex-direction: column;
+    }
+
+    #tableCarPackages tr td .form-group {
+        width: 80%;
+    }
+
+
+.prop-features .checkbox {
+    display: flex;
+    align-items: center;
+}
+
+
+    .prop-features .checkbox > span {
+        height: 25px;
+        width: 100%;
+        position: absolute;
+        top: 1px;
+        z-index: -1;
+    }
+
+
+
+/*New CSS*/
+.ui-datepicker-calendar {
+    display: none;
+}
+
+.ck {
+    width: 100%;
+}
+
+div.pac-container {
+    /*for search locaton on map model popup txtaddress*/
+    z-index: 99999999999 !important;
+}
+
+.wo-right-icon {
+    position: absolute;
+    top: 30px;
+    font-size: 12px;
+    color: #0989b8;
+    font-weight: 900;
+}
+
+    .wo-right-icon:hover {
+        color: #0989b8;
+    }
+
+.pin-on-map {
+    right: 50px;
+    padding-right: 5px;
+    border-right: 1px solid rgb(9 137 184 / 5%);
+}
+
+.get-current-location {
+    top: 25px;
+    right: 30px;
+}
+
+    .get-current-location i {
+        color: #0989b8;
+    }
+
+#map {
+    height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+#infowindow-content .title {
+    font-weight: bold;
+}
+
+#infowindow-content {
+    display: none;
+}
+
+#map #infowindow-content {
+    display: inline;
+}
+
+.pac-card {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    font-family: Roboto;
+    padding: 0;
+}
+
+#pac-container {
+    z-index: 1051 !important;
+}
+
+.pac-container {
+    z-index: 1051 !important;
+}
+
+.pac-controls {
+    padding: 5px 11px;
+}
+
+    .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 503px;
+    height: 40px;
+}
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+
+#title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+
+#target {
+    width: 345px;
+}
+
+.color-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    display: inline-block;
+    position: relative;
+    margin-top: 0px;
+    padding-top: 5px;
+    top: 1px;
+}
+
+.variat {
+    border-top: 1px solid #0000001c;
+    padding-top: 1.25rem !important;
+    border-bottom: 1px solid #0000004a;
+    padding-bottom: 1.25rem !important;
+}
+
+
+
+
+.car-features .checkbox {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    margin: 0px;
+    /* height: 40px; */
+    padding: 10px 15px;
+    font-weight: 500;
+}
+
+.checkbox-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 1em;
+}
+
+/*.checkbox-list .prop-feature {
+            flex-grow: 1;
+        }*/
+
+.car-features .checkbox > span {
+    background: rgb(9 137 184 / 5%);
+    color: rgb(25 25 25 / 40%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+    left: 0;
+    border-radius: 25px;
+}
+
+.car-features .checkbox {
+    color: rgb(25 25 25 / 40%);
+}
+
+    .car-features .checkbox.active {
+        color: #FFF;
+    }
+
+    .car-features .checkbox > input:checked ~ span {
+        background: #0989B8;
+        color: #FFF;
+    }
+
+        .car-features .checkbox > input:checked ~ span:after {
+            border-color: #0989B8;
+        }
+
+input[readonly] {
+    border: unset;
+    background: unset !important;
+    font-weight: 700;
+}
+
+.input-group-prepend[readonly] .input-group-text {
+    background: unset !important;
+    border: unset;
+    border-right: 1px solid #e4e6ef;
+}
+
+.tab-options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 1em;
+    margin-left: 1em;
+}
+
+/* The animation code */
+@keyframes example {
+    from {
+        box-shadow: unset;
+        transform: scale(1);
+    }
+
+    to {
+        box-shadow: 5px 5px 10px #0000001c;
+        transform: scale(1.2);
+    }
+}
+
+.tab-options > span {
+    background: rgb(9 137 184 / 5%);
+    color: rgb(25 25 25 / 40%);
+    border-radius: 25px;
+    /*width: 38px;*/
+    height: 38px;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+    .tab-options > span:not(.active):hover {
+        cursor: pointer;
+        /*box-shadow: 5px 5px 10px #0000001c;
+            transform: scale(1);*/
+        animation-name: example;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .tab-options > span.active {
+        background: #0989B8;
+        color: #FFF;
+        box-shadow: 5px 5px 10px #0000001c;
+        transform: scale(1.2);
+        /*font-weight:700;*/
+    }
+
+select[name=Doors], select[name=FuelType], select[name=Transmission], select[name=Capacity], select[name=Wheels], select[name=SteeringSide], select[name=Condition], select[name=MechanicalCondition] {
+    opacity: 0;
+    position: absolute !important;
+    top: 6px;
+    width: 0px;
+    right: 567px;
+}
+
+select[name=Doors], select[name=Capacity] {
+    opacity: 0;
+    position: absolute !important;
+    top: 0px;
+    width: 0px;
+    right: 555px;
+}
+
+select[name=Cylinders] {
+    opacity: 0;
+    position: absolute !important;
+    top: 7px;
+    width: 0px;
+    right: 774px;
+}

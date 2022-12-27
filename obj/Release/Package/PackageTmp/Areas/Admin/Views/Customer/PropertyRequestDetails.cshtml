@@ -1,0 +1,132 @@
+﻿@model NowBuySell.Data.PropertyRequest
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+@{string tag = @Model.ForSale ? "Sale" : "Rent"; }
+<div class="modal-header">
+    <h5 class="modal-title" style="font-size: 16px;">
+        @Model.Title
+        <span class="label label-lg font-weight-bold label-info label-inline" style="margin-left:5px">@tag</span>
+    </h5>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group" style="padding: 0 1rem;">
+                <label class="control-label " style="font-weight: bold;">Description</label>
+                <br />
+                <label class="control-label" readonly="readonly">@Model.Description</label>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group" style="padding: 0 1rem;">
+                <label class="control-label" style="font-weight: bold;">No Of Rooms</label>
+                <br />
+                <label class="control-label" readonly="readonly">@(Model.NoOfRooms.HasValue ? Model.NoOfRooms.Value.ToString() : "-")</label>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group" style="padding: 0 1rem;">
+                <label class="control-label " style="font-weight: bold;">Size</label>
+                <br />
+                <label class="control-label" readonly="readonly">@(Model.Size.HasValue ? Model.Size.Value.ToString() : "-")</label>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group" style="padding: 0 1rem;">
+                <label class="control-label" style="font-weight: bold;">No Of Bath Rooms</label>
+                <br />
+                <label class="control-label" readonly="readonly">@(Model.NoOfBathRooms.HasValue ? Model.NoOfBathRooms.Value.ToString() : "-")</label>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group" style="padding: 0 1rem;">
+                <label class="control-label" style="font-weight: bold;">Price</label>
+                <br />
+                <label class="control-label" readonly="readonly">AED: @(Model.MinPrice.HasValue ? Model.MinPrice.Value.ToString() : "-") - AED: @(Model.MaxPrice.HasValue ? Model.MaxPrice.ToString() : "-")</label>
+            </div>
+        </div>
+
+    </div>
+    <hr />
+    <div class="row">
+        @*<div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 1rem;">
+                    <label class="control-label" style="font-weight: bold;">Latitude</label>
+                    <label class="control-label float-right" readonly="readonly">@(Model.Latitude.HasValue ? Model.Latitude.ToString() : "-")</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 1rem;">
+                    <label class="control-label" style="font-weight: bold;">Longitude</label>
+                    <label class="control-label float-right" readonly="readonly">@(Model.Longitude.HasValue ? Model.Longitude.ToString() : "-")</label>
+                </div>
+            </div>*@
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group" style="padding: 0 1rem;">
+                <label class="control-label" style="font-weight: bold;">Location</label>
+                <br />
+                <label class="control-label" readonly="readonly"> @(!String.IsNullOrEmpty(Model.Address) ? Model.Address : "-")</label>
+            </div>
+        </div>
+
+        <div id="googleMap" style="width:100%;height:400px;"></div>
+    </div>
+</div>
+<hr />
+<div class="d-flex" style=" padding: 0 2rem;">
+    <label style="font-weight: bold; font-size: 20px;"> Customer Details</label>'
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="form-group" style="padding: 0 2rem;">
+            <label class="control-label" style="font-weight: bold;">Customer Name: </label>
+            <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.Customer.Name) ? Model.Customer.Name : "-")</label>
+
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12">
+        <div class="form-group" style="padding: 0 2rem;">
+            <label class="control-label" style="font-weight: bold;">Phone No: </label>
+            <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.Customer.Contact) ? Model.Customer.Contact : "-")</label>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+</div>
+<script>
+
+    function myMap() {
+        const myLatLng = { lat: @Model.Latitude, lng: @Model.Longitude };
+        const map = new google.maps.Map(document.getElementById("googleMap"), {
+            zoom: 16,
+            center: myLatLng,
+        });
+
+        new google.maps.Marker({
+            position: myLatLng,
+            map,
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEmhLaFjth5xau57Gy1NwE1O6apk443xY&libraries=places&callback=myMap"></script>
+
+
+
+

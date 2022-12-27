@@ -1,0 +1,167 @@
+﻿@model NowBuySell.Data.CarRequest
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+    <div class="modal-header">
+
+        <h5 class="modal-title" style="font-size: 16px;">@Model.Title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i aria-hidden="true" class="ki ki-close"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group" style="padding: 0 1rem;">
+                    <label class="control-label " style="font-weight: bold;">Description</label>
+                    <br />
+                    <label class="control-label" readonly="readonly">@Model.Description</label>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 3rem;">
+                    <label class="control-label " style="font-weight: bold;">Make</label>
+                    <br />
+                    <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.CarMake.Name) ? Model.CarMake.Name.ToString() : "-") </label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 3rem;">
+                    <label class="control-label" style="font-weight: bold;">Color</label>
+                    <br />
+                    <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.Color) ? Model.Color.ToString() : "-")</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 3rem;">
+                    <label class="control-label" style="font-weight: bold;">Doors</label>
+                    <br />
+                    <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.Doors) ? Model.Doors.ToString() : "-")</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 3rem;">
+                    <label class="control-label" style="font-weight: bold;">Cylinders</label>
+                    <br />
+                    <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.Cylinders) ? Model.Cylinders.ToString() : "-")</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 3rem;">
+                    <label class="control-label" style="font-weight: bold;">Transmission</label>
+                    <br />
+                    <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.Transmission) ? Model.Transmission.ToString() : "-")</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 3rem;">
+                    <div class="form-group">
+                        <label class="control-label" style="font-weight: bold;">Year</label>
+                        <br />
+                        <label class="control-label" readonly="readonly">@(Model.MinYear) - @(Model.MaxYear)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 3rem;">
+                    <label class="control-label" style="font-weight: bold;">Kilometers</label>
+                    <br />
+                    <label class="control-label" readonly="readonly">@(Model.MinKilometers.HasValue ? Model.MinKilometers.Value.ToString() + " KM" : "-") - @(Model.MaxKilometers.HasValue ? Model.MaxKilometers.Value.ToString() + " KM" : "-")</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 3rem;">
+                    <div class="form-group">
+                        <label class="control-label" style="font-weight: bold;">Price</label>
+                        <br />
+                        <label class="control-label" readonly="readonly">AED: @(Model.MinPrice.HasValue ? Model.MinPrice.Value.ToString() : "-") - AED: @(Model.MaxPrice.HasValue ? Model.MaxPrice.ToString() : "-")</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="padding: 0 3rem;">
+                    <label class="control-label" style="font-weight: bold;">Regional Specification</label>
+                    <br />
+                    <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.RegionalSpecification) ? Model.RegionalSpecification.ToString() : "-")</label>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="d-flex" style=" padding: 0 2rem;">
+            <label style="font-weight: bold; font-size: 20px;"> Customer Details</label>'
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group" style="padding: 0 2rem;">
+                    <label class="control-label" style="font-weight: bold;">Customer Name: </label>
+                    <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.Customer.Name) ? Model.Customer.Name : "-")</label>
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group" style="padding: 0 2rem;">
+                    <label class="control-label" style="font-weight: bold;">Phone No: </label>
+                    <label class="control-label" readonly="readonly">@(!String.IsNullOrEmpty(Model.Customer.Contact) ? Model.Customer.Contact : "-")</label>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        @{ if (ViewBag.IsFlagAllow)
+            {
+                <button type="button" class="btn btn-info" id="btnFlag">Flag</button>
+            }
+        }
+    </div>
+<script>
+    $(document).ready(function () {
+        $('#btnFlag').click(function () {
+            $(this).closest('.modal').find('button[type=submit]').addClass('spinner spinner-sm spinner-left').attr('disabled', true);
+            var data = new FormData();
+            data.append("id", $('#ID').val());
+            $.ajax({
+                url: '/Vendor/CarRequests/Flag',
+                type: 'POST',
+                data:
+                {
+                        id: $('#ID').val(),
+
+                       
+                },
+                success: function (response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        $('#myModal').modal('toggle');
+                    }
+                    else {
+                        toastr.error(response.message);
+                    }
+                    $(e).find('i').show();
+                    $(e).removeClass('spinner spinner-light spinner-left').prop('disabled', false);
+                },
+                error: function (e) {
+                    $(e).find('i').show();
+                    $(e).removeClass('spinner spinner-light spinner-left').prop('disabled', false);
+                    toastr.error("Ooops, something went wrong.Try to refresh this page or contact Administrator if the problem persists.");
+                },
+                failure: function (e) {
+                    $(e).find('i').show();
+                    $(e).removeClass('spinner spinner-light spinner-left').prop('disabled', false);
+                    toastr.error("Ooops, something went wrong.Try to refresh this page or contact Administrator if the problem persists.");
+                }
+            });
+
+            return false;
+        });
+    });
+ </script>

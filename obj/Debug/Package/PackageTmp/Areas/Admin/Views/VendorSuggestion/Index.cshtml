@@ -1,0 +1,214 @@
+﻿@model IEnumerable<NowBuySell.Data.VendorSuggestion>
+
+@{
+    ViewBag.Title = "Vendor Suggestion";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<!--begin::Page Vendors Styles(used by this page)-->
+<link href="~/assets/Admin/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+<!--end::Page Vendors Styles-->
+<style>
+    .car-name {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 176px;
+        /* height: 1.2em; */
+        white-space: nowrap;
+    }
+
+    .seemore {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 52vw;
+    }
+
+        .seemore .fa-thumbtack {
+            display: none;
+        }
+
+
+
+        .seemore:hover {
+            overflow: visible;
+            white-space: normal;
+            cursor: pointer;
+        }
+
+            .seemore:hover .fa-thumbtack, .seemore.hover .fa-thumbtack {
+                display: block;
+            }
+
+    tr.docked .seemore {
+        overflow: visible;
+        white-space: normal;
+        cursor: pointer;
+    }
+
+        tr.docked .seemore .fa-thumbtack {
+            display: block;
+            background: #6993ff;
+            padding: 5px 6.7px;
+            border-radius: 50%;
+            color: #2d2d2d;
+        }
+
+    .fa-thumbtack {
+        position: relative;
+        top: -7px;
+        right: 0px;
+        float: right;
+        background: #2d2d2d;
+        padding: 5px 6.7px;
+        border-radius: 50%;
+        color: #fff;
+    }
+
+        .fa-thumbtack:hover {
+            box-shadow: 3px 3px 5px #000000b3;
+        }
+
+
+
+    td p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 35vw;
+        height: 1.2em;
+        white-space: nowrap;
+    }
+</style>
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Heading-->
+                <div class="d-flex flex-column">
+
+                    <!--begin::Breadcrumb-->
+                    <div class="d-flex align-items-center font-weight-bold my-2">
+                        <!--begin::Item-->
+                        <a href="/Vendor/Dashboard/Index" class="opacity-75 hover-opacity-100">
+                            <i class="flaticon2-shelter text-white icon-1x"></i>
+                        </a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <a href="/Vendor/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript:;" class="text-white text-hover-white opacity-75 hover-opacity-100">Suggestions</a>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Dashboard-->
+            <div class="row">
+                <div class="col-xl-12">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Vendor Suggestions
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Suggestions Here...</span>
+                                </h3>
+                            </div>
+
+                            @*<div class="card-toolbar">
+                                    <div class="dropdown dropdown-inline mr-2">
+                                        @using (Html.BeginForm("PropertiesReport", "Property", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <button type="submit" class="btn btn-dark btn-sm excel-btn">
+                                                <i class="far fa-file-excel"></i>
+                                                Export Excel
+                                            </button>
+                                        }
+                                    </div>
+
+                                </div>*@
+                        </div>
+                        <div class="card-body">
+                            @Html.AntiForgeryToken()
+                            <!--begin: Datatable-->
+                            <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Vendor</th>
+                                        <th>Suggestion</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody style="display:none">
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td data-order="@item.ID">@(item.CreatedOn.ToString("dd MMM yyyy, h:mm tt"))</td>
+                                            <td>@item.Vendor.Logo|@item.Vendor.Name|@item.Vendor.VendorCode|@item.Vendor.Email</td>
+                                            <td><p>@item.Suggestion<p></td>
+                                            <td>@item.ID</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <!--end: Datatable-->
+                        </div>
+                    </div>
+                    <!--end::Card-->
+                </div>
+            </div>
+
+            <!--end::Dashboard-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+<!--end::Content-->
+
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content" style="min-height:100px">
+            <div id='myModalContent'>
+                <div class="row justify-content-center">
+                    <div class="col-16">
+                        <div class="kt-spinner kt-spinner--lg kt-spinner--dark kt-spinner-modal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section IndexScript {
+    <!--begin::Page Vendors(used by this page)-->
+    @*<script src="~/assets/Admin/plugins/custom/datatables/datatables.bundle.js"></script>*@
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <!--end::Page Vendors-->
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="@Url.ContentVersioned("~/Assets/Admin/js/admin/VendorSuggestion/list.js")"></script>
+    <!--end::Page Scripts-->
+    <script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+    <!--end::Page Scripts-->
+}

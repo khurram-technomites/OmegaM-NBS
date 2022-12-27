@@ -1,0 +1,961 @@
+﻿@model NowBuySell.Data.Property
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Assets/Admin/css/vendor/property/edit.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    body.modal-open {
+        height: 100vh;
+        overflow: visible !important;
+        padding-right: 15px;
+    }
+
+    #myModalContent {
+        overflow: visible !important;
+    }
+</style>
+@Html.AntiForgeryToken()
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+        <div class="container-fluid align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Heading-->
+                <div class="d-flex flex-column">
+
+                    <!--begin::Breadcrumb-->
+                    <div class="d-flex align-items-center font-weight-bold my-2">
+                        <!--begin::Item-->
+                        <a href="/Vendor/Dashboard/Index" class="opacity-75 hover-opacity-100">
+                            <i class="flaticon2-shelter text-white icon-1x"></i>
+                        </a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <a href="/Vendor/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript: window.history.go(-1);" class="text-white text-hover-white opacity-75 hover-opacity-100">Property</a>
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript:;" class="text-white text-hover-white opacity-75 hover-opacity-100">Edit</a>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Dashboard-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-custom  gutter-b">
+                        <div class="card-body">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionBasicDetails">
+                                <div class="card">
+                                    <div class="card-header" id="headingBasicDetails">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseBasicDetails">
+                                            <div class="card-label pl-4">About Property  </div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseBasicDetails" class="collapse show" data-parent="#accordionBasicDetails">
+                                        <div class="card-body pl-12">
+                                            <form id="btnFormSubmit">
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                @Html.HiddenFor(model => model.ID)
+
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ads Reference Code</label>
+                                                            <div class="input-group mb-2">
+                                                                <div class="input-group-prepend" readonly>
+                                                                    <span class="input-group-text">
+                                                                        <i class="fa fa-hashtag"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" class="form-control" required readonly name="AdsReferenceCode" id="AdsReferenceCode" value="@Model.AdsReferenceCode" />
+                                                                @Html.ValidationMessageFor(model => model.AdsReferenceCode, "", new { @class = "text-danger" })
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Slug</label>
+                                                            <div class="input-group mb-2">
+                                                                <div class="input-group-prepend" readonly>
+                                                                    <span class="input-group-text">
+                                                                        <i class="fa fa-link"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" class="form-control" required readonly name="Slug" id="Slug" placeholder="Slug" value="@Model.Slug" />
+                                                                @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    @{
+                                                        var domainsList = new SelectList(new[]
+                                                        {
+                                                            new SelectListItem { Text = "Select Type", Value = ""},
+                                                            new SelectListItem { Text = "Rent", Value = false.ToString()},
+                                              new SelectListItem { Text = "Sale", Value = true.ToString()},
+                                        }, "Value", "Text");
+                                                    }
+
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Type</label>
+                                                            <div class="input-group mb-2">
+                                                                @Html.DropDownListFor(model => model.ForSale, domainsList, htmlAttributes: new { @class = "form-control", required = "required" })
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text"><i class="fas fa-truck-loading"></i></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Property Category</label>
+                                                            <div class="input-group mb-2">
+                                                                @Html.DropDownList("CategoryId", null, "Select Category", htmlAttributes: new { @class = "form-control", required = "required" })
+                                                                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text"><i class="far fa-building"></i></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Title</label>
+                                                            <div class="input-group mb-2">
+                                                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Title (Ar)</label>
+                                                            <div class="input-group mb-2">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                                                                </div>
+                                                                @Html.EditorFor(model => model.TitleAr, new { htmlAttributes = new { @class = "form-control", required = "required", dir = "rtl" } })
+                                                                @Html.ValidationMessageFor(model => model.TitleAr, "", new { @class = "text-danger" })
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-12">
+
+                                                                <div class="form-group tab-option">
+                                                                    <label class="control-label">Number of Rooms</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend" readonly>
+                                                                            <span class="input-group-text"><i class="fa fa-bed"></i></span>
+                                                                        </div>
+                                                                        <div class="tab-options">
+                                                                            <span>0</span>
+                                                                            <span>1</span>
+                                                                            <span>2</span>
+                                                                            <span>3</span>
+                                                                            <span>4</span>
+                                                                            <span>5</span>
+                                                                            <span>6</span>
+                                                                            <span>7</span>
+                                                                            <span>8</span>
+                                                                            <span>9</span>
+                                                                            <span>10</span>
+                                                                            <span>11</span>
+                                                                            <span>12+</span>
+                                                                        </div>
+                                                                        @Html.EditorFor(model => model.NoOfRooms, new { htmlAttributes = new { required = "required", oninput = "value == '' ? value = '' : value < 0 ? value = value * -1 : false", type = "number", min = "0" } })
+                                                                        @Html.ValidationMessageFor(model => model.NoOfDinings, "", new { @class = "text-danger" })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Number of Baths</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend" readonly>
+                                                                            <span class="input-group-text"><i class="fa fa-bath"></i></span>
+                                                                        </div>
+                                                                        <div class="tab-options">
+                                                                            <span>0</span>
+                                                                            <span>1</span>
+                                                                            <span>2</span>
+                                                                            <span>3</span>
+                                                                            <span>4</span>
+                                                                            <span>5+</span>
+                                                                        </div>
+                                                                        @Html.EditorFor(model => model.NoOfBaths, new { htmlAttributes = new { required = "required", oninput = "value == '' ? value = '' : value < 0 ? value = value * -1 : false", type = "number", min = "0" } })
+                                                                        @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Number of Dinning</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend" readonly>
+                                                                            <span class="input-group-text"><i class="fas fa-utensils"></i></span>
+                                                                        </div>
+                                                                        <div class="tab-options">
+                                                                            
+                                                                            <span>1</span>
+                                                                            <span>2</span>
+                                                                            <span>3</span>
+                                                                        </div>
+                                                                        @Html.EditorFor(model => model.NoOfDinings, new { htmlAttributes = new { type = "number", oninput = "value == '' ? value = '' : value < 0 ? value = value * -1 : false", min = "0" } })
+                                                                        @Html.ValidationMessageFor(model => model.NoOfDinings, "", new { @class = "text-danger" })
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Number of Laundry</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend" readonly>
+                                                                            <span class="input-group-text"><i class="fa fa-tshirt"></i></span>
+                                                                        </div>
+                                                                        <div class="tab-options">
+                                                                            
+                                                                            <span>1</span>
+                                                                            <span>2</span>
+                                                                            <span>3</span>
+                                                                        </div>
+                                                                        @Html.EditorFor(model => model.NoOfLaundry, new { htmlAttributes = new { type = "number", oninput = "value == '' ? value = '' : value < 0 ? value = value * -1 : false", min = "0" } })
+                                                                        @Html.ValidationMessageFor(model => model.NoOfDinings, "", new { @class = "text-danger" })
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5 col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Number of Garage</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend" readonly>
+                                                                            <span class="input-group-text"><i class="fa fa-warehouse"></i></span>
+                                                                        </div>
+                                                                        <div class="tab-options">
+                                                                            
+                                                                            <span>1</span>
+                                                                            <span>2</span>
+                                                                            <span>3</span>
+                                                                        </div>
+                                                                        @Html.EditorFor(model => model.NoOfGarage, new { htmlAttributes = new { type = "number", oninput = "value == '' ? value = '' : value < 0 ? value = value * -1 : false", min = "0" } })
+                                                                        @Html.ValidationMessageFor(model => model.NoOfDinings, "", new { @class = "text-danger" })
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Furnished</label>
+                                                                    <span class="switch">
+                                                                        <label>
+                                                                            @Html.CheckBox("IsFurnished")
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Build Year</label>
+                                                                    <div class="input-group mb-2">
+                                                                        @*<input class="form-control carYear" id="BuildYear" required/>*@
+                                                                        @Html.EditorFor(model => model.BuildYear, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                                                                        @Html.ValidationMessageFor(model => model.BuildYear, "", new { @class = "text-danger" })
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text">
+                                                                                <i class="fa fa-calendar"></i>
+
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Rent (Yearly)</label>
+                                                                    <div class="input-group mb-2">
+                                                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", required = "required", oninput = "value == '' ? value = '' : value < 0 ? value = value * -1 : false", type = "number", min = "0" } })
+                                                                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text">
+                                                                                <i class="fas fa-money-bill"></i>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Size (sq ft)</label>
+                                                                    <div class="input-group mb-3">
+                                                                        @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", required = "required", oninput = "value == '' ? value = '' : value < 0 ? value = value * -1 : false", type = "number", min = "0" } })
+                                                                        @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text"><i class="fa fa-crop"></i></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @*<div class="col-md-12 col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Furnished</label>
+                                                                        <div class="input-group mb-2">
+                                                                            <select id="IsFurnished" name="IsFurnished" required class="form-control">
+                                                                                <option value="">Select Property Is Furnished...</option>
+                                                                                <option value="1">Yes</option>
+                                                                                <option value="0">No</option>
+                                                                            </select>
+                                                                            <div class="input-group-append">
+                                                                                <span class="input-group-text">
+                                                                                    <i class="fa fa-id-card"></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Description</label>
+                                                            <div class="mb-2">
+                                                                <textarea name="Description" id="Description" form="btnFormSubmit" class="form-control" placeholder="Enter Description here .." rows="3">@Model.Description</textarea>
+                                                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Description (Ar)</label>
+                                                            <div class="mb-2">
+                                                                <textarea name="DescriptionAr" id="DescriptionAr" form="btnFormSubmit" style="text-align:right" class="form-control" placeholder="Enter Description here .." rows="3">@Model.DescriptionAr</textarea>
+                                                                @Html.ValidationMessageFor(model => model.DescriptionAr, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <button type="submit" class="btn btn-info font-weight-bolder mt-5 float-right" form="btnFormSubmit" id="btnSaveCar">
+                                                            <i class="ki ki-check icon-sm"></i> Save Changes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="card card-custom gutter-b card-stretch">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionGallery">
+                                <div class="card">
+                                    <div class="card-header" id="headingGallery">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseGallery">
+                                            <div class="card-label pl-4">Gallery</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseGallery" class="collapse show" data-parent="#accordionGallery">
+                                        <div class="card-body pl-12 text-center">
+                                            <!--begin::Car images-->
+                                            <div class="Property-gallery-images mb-5">
+                                                <div class="spinner spinner-dark spinner-center"></div>
+                                            </div>
+                                            <input type="file" name="GalleryImages" value="" multiple style="display:none" accept=".png, .jpg, .jpeg" />
+                                            <!--end::Car images-->
+                                            <a href="javascript:;" class="btn btn-light-primary " id="btn-gallery-image-upload">
+                                                <span class="svg-icon svg-icon-lg m-0">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Image.svg-->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                            <path d="M6,5 L18,5 C19.6568542,5 21,6.34314575 21,8 L21,17 C21,18.6568542 19.6568542,20 18,20 L6,20 C4.34314575,20 3,18.6568542 3,17 L3,8 C3,6.34314575 4.34314575,5 6,5 Z M5,17 L14,17 L9.5,11 L5,17 Z M16,14 C17.6568542,14 19,12.6568542 19,11 C19,9.34314575 17.6568542,8 16,8 C14.3431458,8 13,9.34314575 13,11 C13,12.6568542 14.3431458,14 16,14 Z" fill="#000000"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span>Upload
+                                            </a>
+                                            <span class="form-text text-muted" style="font-size: 0.9rem; font-weight: 400;">Allowed file types: png, jpg, jpeg.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionFeatures">
+                                <div class="card">
+                                    <div class="card-header" id="headingFeatures">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseFeatures">
+                                            <div class="card-label pl-4">Location</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseFeatures" class="collapse show" data-parent="#accordionFeatures">
+                                        <div class="card-body pl-12">
+                                            <form id="PropertyLocationForm">
+                                                <div class="row">
+
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">City</label>
+                                                            <div class="input-group mb-3">
+                                                                @*@Html.HiddenFor(x => x.PropertyAddresses[0].CityId)*@
+                                                                @Html.DropDownList("CityID", null, "Select City", htmlAttributes: new { @class = "form-control", required = "required" })
+                                                                @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text"><i class="fa fa-map"></i></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Area</label>
+                                                            <div class="input-group mb-3">
+                                                                <input type="text" class="form-control" min="0" required name="Area" id="Area" placeholder="Enter area" value="@Model.Area" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text"><i class="fa fa-road"></i></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="form-group w-100">
+                                                            <label class="wo-titleinput mb-0">Search Location</label>
+                                                            <div class="wo-form-icon">
+                                                                <input type="text" class="form-control show-map-input Address" id="Address" name="Address" placeholder="Choose location" required value="@Model.Address">
+                                                                <a href="javascript:void(0);" class="wo-right-icon get-current-location" onclick="getLocation()">
+                                                                    <i class="flaticon2-map"></i>
+                                                                </a>
+                                                                <a href="javascript:void(0);" class="wo-right-icon pin-on-map" @*data-toggle="modal" data-target="#map-modal"*@ onclick="openMap()">
+                                                                    Pin On Map
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="MapSearchResult" style="display:none">
+                                                        </div>
+                                                        <input type="hidden" name="Latitude" id="Latitude" value="@Model.Latitude" />
+                                                        <input type="hidden" name="Longitude" id="Longitude" value="@Model.Longitude" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <button type="submit" class="btn btn-info font-weight-bolder mt-5 float-right" form="PropertyLocationForm" id="btnSavePropertyLocation">
+                                                            <i class="ki ki-check icon-sm"></i> Save Changes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionFeatures">
+                                <div class="card">
+                                    @*<div class="card-header" id="headingFeatures">
+                                            <div class="card-title" data-toggle="collapse" data-target="#collapseFeatures">
+                                                <div class="card-label pl-4">Features</div>
+                                            </div>
+                                            <a class="pl-4" href="javascript:;" onclick="OpenModelPopup(this,'/Vendor/Property/addfeature')">Request New</a>
+                                        </div>*@
+                                    <div class="card-header" id="headingFeatures">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseFeatures">
+                                            <div class="card-label pl-4">Features</div>
+                                        </div>
+                                        @*<a class="pl-4" onclick="OpenModelPopup(this,'/Vendor/Car/AddFeature')">Request New</a>*@
+
+                                        @*<a class="pl-4" href="javascript:;" onclick="OpenModelPopup(this,'/Vendor/Property/addfeature')">Request New p</a>*@
+                                    </div>
+                                    <div id="collapseFeatures" class="collapse show" data-parent="#accordionFeatures">
+                                        <div class="card-body pl-12">
+                                            <div class="form-group">
+                                                <input type="search" class="form-control" oninput="SearchFeatures(this)" placeholder="Search Features">
+                                                <div class="checkbox-list prop-features mt-2">
+
+                                                    @{
+                                                        foreach (var item in ViewBag.Features)
+                                                        {
+                                                            if (Model.PropertyFeatures.Any(x => x.FeatureId == item.ID))
+                                                            {
+                                                                <div class="prop-feature car-category-plain mb-1 @item.Name" id="Features" parent-id="null">
+                                                                    <label class="checkbox active">
+                                                                        <input type="checkbox" value="@item.ID" checked>
+                                                                        <span></span>@item.Name
+                                                                    </label>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="prop-feature car-category-plain mb-1 @item.Name" id="Features" parent-id="null">
+                                                                    <label class="checkbox">
+                                                                        <input type="checkbox" value="@item.ID">
+                                                                        <span></span>@item.Name
+                                                                    </label>
+                                                                </div>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="card card-custom gutter-b card-stretch">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionImage">
+                                <div class="card">
+                                    <div class="card-header" id="headingImage">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseImage">
+                                            <div class="card-label pl-4">Thumbnail</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseImage" class="collapse show" data-parent="#accordionImage">
+                                        <div class="card-body pl-12">
+                                            <div class="form-group row">
+                                                <div class="col-lg-12 text-center">
+                                                    <div class="image-input image-input-outline" id="kt_image_Property_image">
+                                                        <div class="image-input-wrapper thumbnail" style="background-image: url(@(!string.IsNullOrEmpty(Model.Thumbnail)?Model.Thumbnail: "../../../../Assets/AppFiles/Images/default.png"))"></div>
+                                                        <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change thumbnail">
+                                                            <i class="fa fa-pen icon-sm text-muted"></i>
+                                                            <input type="file" name="Image" id="Image" accept=".png, .jpg, .jpeg" />
+                                                            <input type="hidden" name="profile_avatar_remove" />
+                                                        </label>
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow cancelimage" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                        </span>
+                                                    </div>
+                                                    <span class="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+                    <div class="card card-custom gutter-b card-stretch">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionFloorPlan">
+                                <div class="card">
+                                    <div class="card-header" id="headingGallery">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseFloorPlan">
+                                            <div class="card-label pl-4">Floor Plan</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseFloorPlan" class="collapse show" data-parent="#accordionFloorPlan">
+                                        <div class="card-body pl-12 text-center">
+                                            <!--begin::Car images-->
+                                            <div class="Property-floor-images mb-5">
+                                                <div class="spinner spinner-dark spinner-center"></div>
+                                            </div>
+                                            <input type="file" name="FloorImages" value="" multiple style="display:none" accept=".png, .jpg, .jpeg" />
+                                            <!--end::Car images-->
+                                            <a href="javascript:;" class="btn btn-light-primary " id="btn-floor-image-upload">
+                                                <span class="svg-icon svg-icon-lg m-0">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Image.svg-->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                            <path d="M6,5 L18,5 C19.6568542,5 21,6.34314575 21,8 L21,17 C21,18.6568542 19.6568542,20 18,20 L6,20 C4.34314575,20 3,18.6568542 3,17 L3,8 C3,6.34314575 4.34314575,5 6,5 Z M5,17 L14,17 L9.5,11 L5,17 Z M16,14 C17.6568542,14 19,12.6568542 19,11 C19,9.34314575 17.6568542,8 16,8 C14.3431458,8 13,9.34314575 13,11 C13,12.6568542 14.3431458,14 16,14 Z" fill="#000000"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span>Upload
+
+                                            </a>
+                                            <span class="form-text text-muted" style="font-size: 0.9rem; font-weight: 400;">Allowed file types: png, jpg, jpeg.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="card card-custom gutter-b card-stretch">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionVideo">
+                                <div class="card">
+                                    <div class="card-header" id="headingVideo">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseVideo">
+                                            <div class="card-label pl-4">Video</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseVideo" class="collapse show" data-parent="#accordionVideo">
+                                        <div class="card-body pl-14">
+                                            <div class="form-group row">
+                                                <div class="col-lg-13 text-center">
+                                                    <div class="image-input image-input-outline" id="kt_Video_car_Video">
+                                                        @*<div class="image-input-wrapper" style="background-image: url(@(!string.IsNullOrEmpty(Model.Video)?Model.Video: "../../../../Assets/AppFiles/Images/default.png"))"></div>*@
+                                                        <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width: 100%;height: auto;">
+                                                            <source id="videoSource" src="@Model.Video#t=0.5" type="video/mp4">
+                                                        </video>
+                                                        <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change Video">
+                                                            <i class="fa fa-pen icon-sm text-muted"></i>
+                                                            <input type="file" name="Video" id="Video" />
+                                                            <input type="hidden" name="profile_avatar_remove" />
+                                                        </label>
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow cancelimage" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                        </span>
+                                                    </div>
+                                                    <span class="form-text text-muted">Size must be less than 10 MB</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="card card-custom gutter-b card-stretch">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="Inspections">
+                                <div class="card">
+                                    <div class="card-header" id="headingTags">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseInspections">
+                                            <div class="card-label pl-4">Inspections</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseInspections" class="collapse show" data-parent="#Inspections">
+                                        <div class="card-toolbar ">
+                                            <a href="javascript:;" id="inspectionbtn" class="btn btn-info font-weight-bolder" onclick="OpenModelPopup(this,'/Admin/PropertyInspection/CreateInspection/@Model.ID')">
+                                                <span class="svg-icon svg-icon-md">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24" />
+                                                            <circle fill="#000000" cx="9" cy="15" r="6" />
+                                                            <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span> Add Inspections
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pl-12">
+                                        <div class="car-inspections mt-2 ml-20">
+                                            <div class="mb-5 mt-5 spinner spinner-dark spinner-center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="card card-custom gutter-b card-stretch">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="NearByPlaces">
+                                <div class="card">
+                                    <div class="card-header" id="headingTags">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseNearByPlacescollapse">
+                                            <div class="card-label pl-4">Near By Places</div>
+                                        </div>
+                                    </div>
+
+                                    <div id="collapseNearByPlacescollapse" class="collapse show" data-parent="#NearByPlaces">
+                                        <div class="card-toolbar ">
+                                            <a href="javascript:;" class="btn btn-info font-weight-bolder" onclick="OpenModelPopup(this,'/Admin/PropertyNearByPlaces/NearByPlacesCreate/@Model.ID')">
+                                                <span class="svg-icon svg-icon-md">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24" />
+                                                            <circle fill="#000000" cx="9" cy="15" r="6" />
+                                                            <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span> Add Near By Places
+                                            </a>
+
+
+                                        </div>
+                                        <div class="card-body pl-12">
+                                            <div class="property-nearbyplaces d-flex row" id="collapseNearByPlaces">
+                                                <div class="mb-5 mt-5 spinner spinner-dark spinner-center"></div>
+
+                                                <!-- NearByPlaces DOM Start-->
+                                                @*<div class="bg-primary-o-65 m-5 rounded" style=" height: 75px; width: 300px;">
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-danger btn-hover-text-primary btn-shadow position-absolute" style="margin-top: -12px; margin-left: 285px;" title="remove" onclick="DeleteGalleryImage(this,1054)"><i class="icon-xs ki ki-bold-close ki-bold-trash"></i></span>
+                                                        <div class="row p-3">
+                                                            <div class="col-3">
+                                                                <img height="55" src="~/Assets/AppFiles/Images/Feature/dummy121/logo09a5e4e0-d596-46ad-8552-da5960808639.png" />
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <p class="font-size-lg m-0" style="font-weight: 700; color: steelblue;">Home</p>
+                                                                <p class="m-0 font-size-sm">Title Title Title Title Title</p>
+                                                                <p class="m-0 line-height-xs text-dark-65 font-size-sm">2.50 Km</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                                <!-- NearByPlaces DOM END-->
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Map Modal Start -->
+<div class="modal fade wo-videopopup " tabindex="-1" role="dialog" id="map-modal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="wo-modalcontent modal-content">
+            <div class="modal-body">
+                <a href="javascript:void(0);" class="close"><i class="ti-close" data-dismiss="modal"></i></a>
+                <div class="login-header">
+                    <h4 class="text-center mb-2">Search Location</h4>
+                    <p class="text-center" id="drag-map"><span>Drag marker on the map to select your desired location.</span></p>
+                </div>
+                <!-- Modal Body Start -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="map-div" style="display:none">
+                                <input type="text" class="form-control mb-3 Address" id="current-location" name="current-location" placeholder="Search Location" required="">
+                                <div id="googleMap" style="width:100%;height:400px;"></div>
+                                <button class="btn btn-block btn-theme border-radius-4 mt-3 p-3" type="button" data-dismiss="modal">Done</button>
+                            </div>
+                            <div class="map-div-spin p-5 m-5 text-center">
+                                <span class="fa fa-circle-notch fa-spin fa-2x"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Body End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Map Modal End -->
+<!-- Image Modal Start -->
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <!--<div class="modal-header">-->
+            @*<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>*@
+            <!--<h4 class="modal-title" id="myModalLabel">Car Image</h4>
+            </div>-->
+            <div class="modal-body">
+
+                <img src="" data-id="0" id="imagepreview" style="width: auto; height: 60vh; display: block; margin-left: auto; margin-right: auto;">
+                <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+            </div>
+
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="slideIndex=1" data-dismiss="modal">Close</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+<!-- Image Modal End -->
+
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content" style="min-height:100px">
+            <div id='myModalContent'>
+                <div class="row justify-content-center">
+                    <div class="col-16">
+                        <div class="kt-spinner kt-spinner--lg kt-spinner--dark kt-spinner-modal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section IndexScript {
+    <script src="~/assets/admin/plugins/custom/ckeditor/ckeditor-classic.bundle.js"></script>
+
+    <script src="~/assets/admin/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+    <!--end::Page Vendors-->
+    <!--begin::Page Scripts(used by this page)-->
+
+
+    <script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+    <script src="~/Assets/Admin/js/general/Map.js"></script>
+    <script src="@Url.ContentVersioned("~/Assets/Admin/js/admin/Property/edit.js")"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEmhLaFjth5xau57Gy1NwE1O6apk443xY&libraries=places&callback=initAutocomplete"></script>
+
+
+
+    <script>
+        var Description, DescriptionAr;
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            slideIndex = parseInt($("#imagepreview").attr("data-id"));
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("property-image");
+
+            if (n >= x.length) { slideIndex = 0 }
+            if (n < 0) { slideIndex = x.length - 1 }
+            for (i = 0; i < x.length; i++) {
+                $('#imagepreview').attr('src', x[slideIndex].style.backgroundImage.slice(5, -2))
+                $('#imagepreview').attr('data-id', x[slideIndex].dataset.id)
+            }
+            /* x[slideIndex - 1].style.display = "block";*/
+        }
+        $(document).ready(function () {
+            $("#NRValidation").hide()
+            $("#NBValidation").hide()
+
+            ClassicEditor
+               .create(document.querySelector('#Description'))
+               .then(editor => {
+                   Description = editor;
+                   Description.setData(`@Html.Raw(Model.Description != null?@Model.Description.Replace("`","'"):null)`);
+               })
+               .catch(error => {
+                   console.log(error);
+               });
+
+            ClassicEditor
+                .create(document.querySelector('#DescriptionAr'))
+                .then(editor => {
+                    DescriptionAr = editor;
+                    DescriptionAr.setData(`@Html.Raw(Model.DescriptionAr != null?@Model.DescriptionAr.Replace("`","'"):null)`);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+            if ('@Model.CategoryId' != null) {
+                $("#CategoryId").val('@Model.CategoryId')
+            }
+
+            if ('@Model.ForSale' != null) {
+                $("#ForSale").val('@Model.ForSale.ToString()')
+            }
+
+            $('input[name=NoOfRooms]').closest('.form-group').find(`span:contains(${@(Model.NoOfRooms.HasValue?Model.NoOfRooms.Value:-1)})`).addClass('active');
+            $('input[name=NoOfBaths]').closest('.form-group').find(`span:contains(${@(Model.NoOfBaths.HasValue?Model.NoOfBaths.Value:-1)})`).addClass('active');
+            $('input[name=NoOfDinings]').closest('.form-group').find(`span:contains(${@(Model.NoOfDinings.HasValue?Model.NoOfDinings.Value:0)})`).addClass('active');
+            $('input[name=NoOfLaundry]').closest('.form-group').find(`span:contains(${@(Model.NoOfLaundry.HasValue?Model.NoOfLaundry.Value:0)})`).addClass('active');
+            $('input[name=NoOfGarage]').closest('.form-group').find(`span:contains(${@(Model.NoOfGarage.HasValue?Model.NoOfGarage.Value:0)})`).addClass('active');
+        })
+
+    </script>
+
+}

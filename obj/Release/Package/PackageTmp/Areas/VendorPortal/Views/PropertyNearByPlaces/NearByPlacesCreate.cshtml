@@ -1,0 +1,312 @@
+﻿@model NowBuySell.Data.NearByPlace
+
+
+@{
+    ViewBag.Title = "Property Near By Places";
+    Layout = null;
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style>
+    .pac-container {
+        z-index: 100000 !important;
+    }
+</style>
+<div class="modal-header">
+    <div class="container-fluid">
+        <div class="row" style="justify-content: center;">
+            <div class="col-md-16 col-xs-16 text-center">
+                <h4><i class="flaticon2-architecture-and-city" area-hidden="true"></i> Property Near By Places</h4>
+                <small> Add near by places here...</small>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    
+    <form class="form" id="btnSubmitNearByPlaces">
+        @Html.AntiForgeryToken()
+        <div class="notes notes-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="control-label">Category</label>
+                        <div class="input-group mb-2">
+                            @Html.DropDownList("NearByPlacesCategoryID", null, "Select Category", htmlAttributes: new { @class = "form-control", required = "required" })
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <div class="input-group mb-2">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Name here", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="control-label">Name Ar</label>
+                        <div class="input-group mb-2">
+                            @Html.EditorFor(model => model.NameAr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter NameAr here", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.NameAr, "", new { @class = "text-danger" })
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <input type="text" hidden id="Distance" name="Distance" required="required" class="form-control Distance-value" />
+
+                <input type="text" hidden id="Lat" name="Latitude" class="form-control" required="required" />
+
+                <input type="text" hidden id="Long" name="Longitude" class="form-control" required="required" />
+
+                <input type="number" name="PropertyID" id="PropertyID" hidden value="@ViewBag.PropertyID" />
+
+            </div>
+            <div class="col-md-8 col-sm-12">
+                <input id="searchTextMapField" class="searchTextMapFieldAddress form-control" type="text" size="50">
+                <div id="map" class="rounded" style="width: 100%; height: 250px;"></div>
+                <label class="control-label text-danger">Tap on map to select place !</label>
+                <input type="hidden" name="Lat" id="Latitude" value="@ViewBag.PropertyLatitude" />
+                <input type="hidden" name="Long" id="Longitude" value="@ViewBag.PropertyLongitude" />
+
+                <!-- Modal Body End -->
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-light Distance-value" onchange="DistanceIsNullCheck()" disabled>Please select place</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btnSubmitNearByPlaces btn btn-info" form="btnSubmitNearByPlaces" onclick="DistanceIsNullCheck()">Submit</button>
+</div>
+
+@*<script src="@Url.ContentVersioned("~/Assets/Admin/js/vendor/car/edit.js")"></script>*@
+<script src="~/Assets/Admin/js/vendor/car/upload.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#btnSubmitNearByPlaces").submit(function () {
+            DistanceIsNullCheck();
+            SavePropertyNearByPlaces();
+
+        });
+        initialize();
+    })
+
+    function DistanceIsNullCheck() {
+        debugger;
+        const distance = $('.Distance-value').val();
+        if (distance == "") {
+            $('.Distance-value').text("Please select place");
+            $('.Distance-value').css("color", "red");
+            setTimeout(function () {
+                $('.Distance-value').css("color", "#7e8299");
+            }, 500)
+        } 
+    }
+
+    var map;
+    var markersArray = [];
+    var polyline = null;
+    var markerLat;
+    var markerLng;
+
+    function initAutoComplete()
+    {
+
+        
+        const propertyLocation = { lat: @ViewBag.PropertyLatitude, lng: @ViewBag.PropertyLongitude};
+
+        MyMapLocation(propertyLocation.lat, propertyLocation.lng);
+
+
+
+
+        //#region Single Id Bound
+
+        var defaultBounds = new google.maps.LatLngBounds();
+
+        var options = {
+    	    bounds: defaultBounds
+        };
+
+        // get DOM's input element
+        var input = document.getElementById('searchTextMapField');
+
+        // Make Autocomplete instance
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+        // Listener for whenever input value changes
+        autocomplete.addListener('place_changed', function () {
+
+    	    // Get place info
+            var place = autocomplete.getPlace();
+
+            if (place.geometry.location != null) {
+
+                //const latlongg = e.latLng.split(",");
+                markerLat = place.geometry.location.lat();
+                markerLng = place.geometry.location.lng();
+                $('#Lat').val(markerLat);
+                $('#Long').val(markerLng);
+                distance(propertyLocation.lat, propertyLocation.lng, markerLat, markerLng, "k");
+            }
+            if (markersArray.length >= 1) {
+                removeMarkers();
+                MyMapLocation(markerLat, markerLng);
+                addMarker(place.geometry.location);
+            } else {
+                MyMapLocation(markerLat, markerLng);
+                addMarker(place.geometry.location);
+                drawPolyline();
+            }
+        });
+
+    //#endregion
+    };
+
+    function initialize()
+    {
+
+
+        initAutoComplete();
+
+    }
+
+    function MyMapLocation(lat, long) {
+        
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: lat, lng: long },
+            zoom: 12,
+            scaleControl: true
+        });
+
+        const propertyLocation = { lat: @ViewBag.PropertyLatitude, lng: @ViewBag.PropertyLongitude};
+        // The markers for The Dakota and The Frick Collection
+        const image = "/Assets/images/MyPropertyLocation.png";
+        var mk1 = new google.maps.Marker({ position: propertyLocation, map: map, icon: image, });
+
+        // map onclick listener
+        map.addListener('click', function (e) {
+            //console.log(e);
+            
+
+            if (markersArray.length >= 1) {
+                removeMarkers();
+                addMarker(e.latLng);
+            } else {
+                addMarker(e.latLng);
+                drawPolyline();
+            }
+            $('#msg').text(e.latLng.text);
+
+            if (e.latLng != null) {
+
+                //const latlongg = e.latLng.split(",");
+                markerLat = e.latLng.lat();
+                markerLng = e.latLng.lng();
+                $('#Lat').val(markerLat);
+                $('#Long').val(markerLng);
+                distance(propertyLocation.lat, propertyLocation.lng, markerLat, markerLng, "k");
+            }
+
+        });
+
+    }
+    // define function to add marker at given lat & lng
+    function addMarker(latLng) {
+
+        
+        let marker = new google.maps.Marker({
+            map: map,
+            position: latLng,
+            draggable: false
+        });
+
+            // add listener to redraw the polyline when markers position change
+            marker.addListener('position_changed', function () {
+                drawPolyline();
+            });
+            //store the marker object drawn in global array
+            markersArray.push(marker);
+    }
+
+    // define function to draw polyline that connect markers' position
+    function drawPolyline() {
+        let markersPositionArray = [];
+        // obtain latlng of all markers on map
+        markersArray.forEach(function (e) {
+            markersPositionArray.push(e.getPosition());
+        });
+
+        // check if there is already polyline drawn on map
+        // remove the polyline from map before we draw new one
+        if (polyline !== null) {
+            polyline.setMap(null);
+        }
+
+        // draw new polyline at markers' position
+        polyline = new google.maps.Polyline({
+            map: map,
+            path: markersPositionArray,
+            strokeOpacity: 0.4
+        });
+    }
+
+
+    function removeMarkers() {
+        
+        //loop through all markers and remove it.
+        markersArray.forEach(function (e) {
+            e.setMap(null);
+        });
+        markersArray = [];
+    }
+
+    function distance(lat1, lon1, lat2, lon2, unit) {
+
+
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
+        }
+        else {
+            var radlat1 = Math.PI * lat1 / 180;
+            var radlat2 = Math.PI * lat2 / 180;
+            var theta = lon1 - lon2;
+            var radtheta = Math.PI * theta / 180;
+            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+            if (dist > 1) {
+                dist = 1;
+            }
+            dist = Math.acos(dist);
+            dist = dist * 180 / Math.PI;
+            dist = dist * 60 * 1.1515;
+            if (unit == "K") { dist = dist * 1.609344 }
+            if (unit == "N") { dist = dist * 0.8684 }
+
+            $('.Distance-value').val(dist.toFixed(3) + " km");
+            $('.Distance-value').text(dist.toFixed(3) + " km");
+            return dist;
+        }
+    }
+
+</script>
+
+

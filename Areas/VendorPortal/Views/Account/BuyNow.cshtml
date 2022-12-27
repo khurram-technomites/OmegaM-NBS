@@ -1,0 +1,212 @@
+﻿@model NowBuySell.Web.ViewModels.Vendor.VendorPackageViewModel
+
+@{
+    Layout = null;
+}
+
+
+    <div class="modal-body">
+        <h5 class="modal-title" style="margin-bottom:16px">
+            <span> @Model.Name </span>
+        </h5>
+        @using (Html.BeginForm("Pay", "Account", new { area = "VendorPortal" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+        {
+            @Html.HiddenFor(x => x.PriceToPay)
+            @Html.HiddenFor(x => x.ID)
+
+
+
+            @Html.AntiForgeryToken()
+            <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="d-flex space-between">
+                <div class="text-align-cnetre">
+                    <div class="form-group" style="margin-bottom:16px">
+                        @{
+                            if (Model.IsFree.HasValue && Model.IsFree.Value)
+                            {
+                                <label class="control-label" style="font-size: 30px; color:#008BB9">FREE</label>
+                            }
+                            else
+                            {
+                                <label class="control-label" style="font-size: 30px; color:#008BB9">
+                                    @Html.DisplayFor(x => x.Price)
+                                    <span style="font-size:25px">AED</span>
+                                </label>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex space-between">
+                <ul>
+                    @if (Model.hasPropertyModule == true)
+                    {
+                        <li><a>@Model.PropertyLimit Properties</a></li>
+                    }
+                    @if (Model.hasMotorModule == true)
+                    {
+                        <li><a>@Model.MotorLimit Motors</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="d-flex space-between">
+                <h5 class="modal-title" style="margin-bottom:16px">
+                    <span class="fa fa-folder"> &nbsp;</span>
+                    <span>Package Details</span>
+                </h5>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between" >
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                      @Html.Raw(Model.Description)
+
+                    </div>
+                </div>
+
+                
+            </div>
+         
+            <div class="d-flex space-between">
+                <h5 class="modal-title" style="margin-bottom:16px">
+                    <span class="fa fa-credit-card"> &nbsp;</span>
+                    <span>Payment Details</span>
+                </h5>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between" style="height: 30px;">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label class="control-label">Days Left</label>
+
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            @Html.DisplayFor(x => x.NoOfDaysLeft)
+                            @*@Model.NoOfDaysLeft*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between" style="height: 30px;">
+
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label class="control-label">Price Per day</label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            @Html.DisplayFor(x => x.CostPerDay)
+                            @*@Model.CostPerDay*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between" style="height: 30px;">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label class="control-label">Package Price</label>
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            @Html.DisplayFor(x => x.PackagePrice)
+                            @*@Model.CostForDaysLeft*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between" style="height: 30px;">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label class="control-label">Compensation Amount</label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            @Html.DisplayFor(x => x.CostForDaysLeft)
+                            @*@Model.CostForDaysLeft*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between" style="height: 30px;">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label class="control-label"><b style="color: #008BB9">Price Payable</b></label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            @Html.DisplayFor(x => x.PriceToPay)
+                            @*@Model.PriceToPay*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <hr />
+        <span style="color:red">@Model.PropOverflowMessage</span>
+        <br />
+        <span style="color:red">@Model.CarOverflowMessage</span>
+        <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between">
+                <div class="form-group">
+                    <h5>
+                        @{ if (!Model.IsAllowed)
+                            {
+                                <span style="color: red; font-size: 12px">*You cannot downgrage on a package untill your current package is expired!</span>
+                            }
+                        }
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-lg-end">
+            <div class="d-flex justify-content-lg-end">
+
+                <div class="form-group">
+
+                    @{ if (Model.IsAllowed)
+                        {
+                            if (Model.IsFree.Value)
+                            {
+                                <button type="submit" class="btn btn-info" form="Userform">Get Started</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-info" form="Userform">Pay Now</button>
+                            }
+
+                        }
+                        else
+                        {
+                            if (Model.IsFree.Value)
+                            {
+                                <button type="submit" class="btn btn-info" form="Userform" style=" cursor: default;" disabled>Get Started</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-info" form="Userform" style=" cursor: default;" disabled>Pay Now</button>
+                            }
+
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,328 @@
+﻿@model NowBuySell.Web.ViewModels.Vendor.VendorRegisterViewModel
+
+@{
+	ViewBag.Title = "Seller Registration";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style>
+	.referral-container {
+		box-shadow: 0px 0px 11px 6px #0000001c;
+		border-radius: 5px;
+		padding: 5px 0px;
+		margin: 10px 0px;
+	}
+</style>
+<link href="~/Assets/css/intlTelInput.css" rel="stylesheet" />
+<style>
+	.referral-container {
+		box-shadow: 0px 0px 5px #0000004f;
+		border-radius: 5px;
+		padding: 5px 0px;
+		margin: 10px 0px;
+	}
+	/* Chrome, Safari, Edge, Opera */
+	.numpad::-webkit-outer-spin-button,
+	.numpad::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	.numpad[type=number] {
+		-moz-appearance: textfield;
+	}
+
+	.iti__hide {
+		display: none;
+	}
+</style>
+<!--Body Content-->
+<div id="page-content" style="min-height: 600px;">
+	<!--Page Title-->
+	<div class="page section-header text-center">
+		<div class="page-title">
+			<div class="wrapper"><h1 class="page-width">Create an Account</h1></div>
+			<div class="bredcrumbWrap m-0">
+				<div class="container breadcrumbs">
+					<a href="/" title="Back to the home page">Home</a><span aria-hidden="true">›</span><span>Become a seller</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--End Page Title-->
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-sm-12 main-col">
+				<div class="mb-4">
+					@using (Html.BeginForm("SellerRegistration", "Home", new { area = "" }, FormMethod.Post, new { enctype = "multipart/form-data", id = "SellerRegistrationForm" }))
+					{
+						@Html.AntiForgeryToken()
+						<div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+						<div class="row">
+							<input type="text" class="form-control" name="VendorCode" id="VendorCode" value="@ViewBag.VendorCode" readonly required hidden />
+							<div class="col-md-12 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">Name</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter name here ...", required = "required" } })
+
+									</div>
+									@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<label class="control-label">Logo</label>
+									<div class="input-group mb-2">
+										<input class="form-control" type="file" name="Logo" id="Logo" accept=".png, .jpg, .jpeg" required />
+										<div class="input-group-append">
+											<span class="input-group-text">
+												<i class="fa fa-link"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 ">
+								<span class="form-text text-muted">Image dimensions should be 690 x 460 pixels and Image size must be less than 50 kb</span>
+							</div>
+							<div class="col-md-12 col-sm-12" style="display:none">
+								<div class="form-group">
+									<label class="control-label">Slug</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter vendor name here ...", required = "required", @readonly = "readonly" } })
+										@Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+										<div class="input-group-append">
+											<span class="input-group-text">
+												<i class="fa fa-link"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">Email</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter email here ...", required = "required", type = "email" } })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-envelope"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							@*<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+									<label for="Contact">Contact</label>
+									<input id="phone" name="phone" type="tel" onkeypress="return isNumber(event)">
+									<input hidden name="Contact" id="Contact" type="text" />
+									<input hidden name="IsSrilankan" id="IsSrilankan" type="text" />
+								</div>*@
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">Contact</label>
+									<div class="input-group mb-2">
+										<input class="form-control" placeholder="Enter contact here ..." id="phone" name="phone" type="tel" onkeypress="return isNumber(event)" required="required">
+										@*@Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter contact here ...", required = "required", type = "tel", onkeypress = "return isNumber(event)" } })*@
+										<input hidden name="Contact" id="Contact" type="text" />
+										<input hidden name="IsSrilankan" id="IsSrilankan" type="text" />
+										@*<div class="input-group-append">
+											<span class="input-group-text">
+												<i class="fa fa-phone"></i>
+											</span>
+										</div>*@
+									</div>
+									@Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							@*<div class="col-md-3 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">Mobile</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter mobile here ...", required = "required", type = "number" } })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-mobile"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+								</div>
+							</div>*@
+							<div class="col-md-12 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">Website</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter website address here ...", required = "required" } })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-globe"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">ID No</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.IDNo, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter id no here ...", required = "required" } })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-hashtag"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.IDNo, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">TRN</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.TRN, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter TRN here ...", required = "required" } })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-hashtag"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.TRN, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">License No</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.License, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter license here ...", required = "required" } })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-file-invoice"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.License, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">Country Name</label>
+									<div class="input-group mb-2">
+										@Html.DropDownList("CountryID", null, "Select Country", htmlAttributes: new { @class = "form-control", required = "required" })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-flag"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">City Name</label>
+									<div class="input-group mb-2">
+										@if (Model != null && Model.CityID.HasValue)
+										{
+											@Html.DropDownList("CityID", null, "Select City", htmlAttributes: new { @class = "form-control", required = "required" })
+										}
+										else
+										{
+											<select class="form-control" id="CityID" name="CityID" required="required">
+												<option value="">Select Country First</option>
+											</select>
+										}
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-home"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+								</div>
+							</div><div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">FAX No</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.FAX, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter fax no here ...", required = "required" } })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-fax"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.FAX, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label class="control-label">Address</label>
+									<div class="input-group mb-2">
+										@Html.TextAreaFor(m => m.Address, new { @class = "form-control", placeholder = "Enter address here ...", required = "required", rows = "3" })
+									</div>
+									@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-12">
+								<div class="form-group">
+									<label class="control-label">About</label>
+									<div class="input-group mb-2">
+										@Html.TextAreaFor(m => m.About, new { @class = "form-control", placeholder = "Enter about here ...", required = "required", rows = "3" })
+									</div>
+									@Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="card-title">
+								<h4 class="card-label">
+									Vendor Administrative User Credentials
+								</h4>
+							</div>
+							<hr />
+
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">User Email</label>
+									<div class="input-group mb-2">
+										@Html.EditorFor(model => model.UserEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter email here ...", required = "required" } })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-envelope"></i></span></div>
+									</div>
+									@Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-12">
+								<div class="form-group">
+									<label class="control-label">User Password</label>
+									<div class="input-group">
+										@Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter password here ...", required = "required", type = "password", pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$" } })
+										<div class="input-group-append"><span class="input-group-text"><i class="fa fa-lock"></i></span></div>
+									</div>
+									<span class="form-text text-danger" style="font-size: 9px;">Min. 8 characters, at least one uppercase letter, one lowercase letter, and one number</span>
+									@Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
+								</div>
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+								<button type="submit" class="btn btn-dark px-5" id="btnSignup">Register</button>
+								@*<p class="mb-4 mt-4">
+										<a href="/Customer/Account/Login" id="RecoverPassword"><i class="fa fa-arrow-left"></i> Back to Login</a> &nbsp; | &nbsp;
+										<a href="/Customer/Account/ForgotPassword" id="customer_register_link">Forgot your password</a>
+									</p>*@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--End Body Content-->
+<!--end::Row-->
+@section IndexScript {
+	<script>
+		var SuccessMessage = '@ViewBag.SuccessMessage';
+var ErrorMessage = '@ViewBag.ErrorMessage';
+
+if (SuccessMessage) {
+
+	$('#message').html(`<span class="fa fa-check"></span> <span class="message"> ${SuccessMessage}</span>`);
+	$('#message').slideDown();
+
+
+	setTimeout(function () {
+		$('#message').fadeIn();
+	}, 3000);
+}
+else if (ErrorMessage) {
+
+	$('#message').html(`<span class="fa fa-exclamation-triangle"></span> <span class="message"> ${ErrorMessage}</span>`);
+	$('#message').slideDown();
+
+
+	setTimeout(function () {
+		$('#message').fadeIn();
+	}, 3000);
+}
+	</script>
+	<!--end::Page Scripts-->
+	<script src="~/Assets/js/intlTelInput.js"></script>
+	<script src="@Url.ContentVersioned("~/Assets/js/web/home/seller-registration.js")"></script>
+	<!--end::Page Scripts-->
+}

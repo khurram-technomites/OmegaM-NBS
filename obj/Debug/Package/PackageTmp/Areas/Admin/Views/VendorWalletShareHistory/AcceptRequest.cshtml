@@ -1,0 +1,42 @@
+﻿@model NowBuySell.Data.VendorWithdrawalRequest
+@{
+    ViewBag.Title = "Request Approval";
+    Layout = null;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title">Request Approval / Rejection</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("AcceptRequest", "VendorWalletShareHistory", new { area = "Admin" }, FormMethod.Post, new { id = "frm-edit" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Status)
+        @Html.HiddenFor(model => model.Amount)
+        @Html.HiddenFor(model => model.VendorID)
+
+		<h5>Description</h5>
+		<p>@Html.Raw(Model.Description)</p>
+        <p>@Html.Raw(Model.Remarks)</p>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <label> Remarks</label>
+                <div class="form-group">
+                    
+                    <textarea name="Remarks" id="Remarks" class="form-control" rows='2' placeholder="Enter remarks here ..."></textarea>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="frm-edit">Save Changes</button>
+</div>

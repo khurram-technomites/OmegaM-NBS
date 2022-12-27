@@ -1,0 +1,102 @@
+﻿@model NowBuySell.Data.Car
+@{
+	ViewBag.Title = "Create";
+	Layout = null;
+}
+<div class="modal-header">
+	<h5 class="modal-title">Add Motor</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+	@using (Html.BeginForm("QuickCreate", "Car", new { area = "VendorPortal" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+	{
+		@Html.AntiForgeryToken()
+		<div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="row">
+
+    <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+            <label class="control-label">Motor Title</label>
+            <div class="input-group mb-2">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter motor title here ...", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+            <label class="control-label">Motor Title (Ar)</label>
+            <div class="input-group mb-2">
+                @Html.EditorFor(model => model.NameAr, new { htmlAttributes = new { @class = "form-control", dir = "rtl", placeholder = "...أدخل عنوان السيارة هنا", required = "required" } })
+                @Html.ValidationMessageFor(model => model.NameAr, "", new { @class = "text-danger" })
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		<div class="row">
+
+			<div class="col-md-12 col-sm-12">
+				<div class="form-group">
+                    <label class="control-label">VIN / Chassis Number (Optional)</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.SKU, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter vin / chasis number here ..." } })
+						@Html.ValidationMessageFor(model => model.SKU, "", new { @class = "text-danger" })
+						<div class="input-group-append">
+							<span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			@*<div class="col-md-6 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Slug</label>
+					<div class="input-group mb-2">
+						<input type="text" class="form-control" required readonly name="Slug" id="Slug" placeholder="" />
+						@Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<i class="fa fa-link"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>*@
+		</div>
+	}
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	<button type="submit" class="btn btn-info" form="Userform" onclick="Limit()">Submit</button>
+</div>
+
+<script>
+	var _URL = window.URL || window.webkitURL;
+	$(document).ready(function () {
+		$("#Name").on('change', function () {
+			var name = $(this);
+			$("#Slug").val($(name).val().replace(/ /g, "-").toLocaleLowerCase());
+		});
+	});
+	function Limit() {
+    var success = @((TempData["message"] != null).ToString().ToLower());
+    if (success == true) {
+            swal.fire({
+                title: 'Your Limit Has been Exceeded?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ok'
+            })
+    }
+    }
+</script>

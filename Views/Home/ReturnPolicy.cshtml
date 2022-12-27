@@ -1,0 +1,217 @@
+﻿@{
+	ViewBag.Title = Resources.ReturnPolicy;
+	var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+	bool RTL = CultureHelper.IsRighToLeft();
+}
+
+@if (!RTL) //English
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								<h2>@Html.Raw(Resources.ReturnPolicyTag)</h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>The Introduction</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enimtions an admistemi minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip extatioea commo consequat
+										aute irure dolor inhenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt intaki culpa qui officia perspiciatis unde.
+									</p>
+									<p>
+										Domnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+										quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos quistan miki ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+										adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+									</p>
+									<blockquote>
+										<q>Challenges are what make life interesting and overcoming them is what makes life meaningful.</q>
+										<a href="javascript:void(0);">–Joshua J. Marine</a>
+									</blockquote>
+									<p>
+										Adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+										aderit in voluptate velit esse cillum dolore.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Unexpected Obstacles</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>Dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+									<p>
+										Fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+										laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
+										quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt
+										ut labore et dolore magnam aliquam quaerat voluptatem.
+									</p>
+								</div>
+							</div>
+							<div class="wo-safetyrole">
+								<div class="wo-safetyrole__title">
+									<h2>Purchasing Vehicles Safety</h2>
+								</div>
+								<div class="wo-safetyrole__content">
+									<p>
+										Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat aute irure dolor in
+										reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ut <a href="javascript:void(0);">perspiciatis unde.</a>
+									</p>
+								</div>
+							</div>
+							<div class="wo-safetyrole">
+								<div class="wo-safetyrole__title">
+									<h2>Checking Security Precautions</h2>
+								</div>
+								<div class="wo-safetyrole__content">
+									<p>
+										Domnis iste natus error sit voluptatem <a href="javascript:void(0);">accusantium doloremque</a> laudantium, totam rem aperiam, eaqueipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+										Nemo enimnation ipsam voluptatem quia voluptas sit aspernatur.
+									</p>
+									<ul class="wo-safetyrole-list">
+										<li><span>Aut odit aut fugit sed quia consequuntur magni</span></li>
+										<li><span>Dolores eos quistan miki ratione voluptatem sequi nesciuntiu</span></li>
+										<li><span>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</span></li>
+										<li><span>Consectetur adipisci velite sed quia none numquam</span></li>
+										<li><span>Deius modi tempora incidunt utnalo labore</span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="wo-safetyrole">
+								<div class="wo-safetyrole__title">
+									<h2>Professional Advice</h2>
+								</div>
+								<div class="wo-safetyrole__content">
+									<p>
+										Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+										in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur <a href="javascript:void(0);">sint occaecat</a> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+										laborum.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}
+else //Arabic
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section  wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								<h2>@Html.Raw(Resources.ReturnPolicyTag)</h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50 text-right">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>المقدمة</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										لكن لا بد أن أوضح لك أن كل هذه الأفكار المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية، فلا أحد يرفض أو يكره أو يتجنب الشعور بالسعادة، ولكن بفضل هؤلاء الأشخاص الذين لا يدركون بأن السعادة لا بد أن نستشعرها بصورة أكثر عقلانية ومنطقية فيعرضهم هذا لمواجهة الظروف الأليمة، وأكرر بأنه لا يوجد من يرغب في الحب ونيل المنال ويتلذذ بالآلام، الألم هو الألم ولكن نتيجة لظروف ما قد تكمن السعاده فيما نتحمله من كد وأسي.
+									</p>
+									<p>
+										لكن لا بد أن أوضح لك أن كل هذه الأفكار المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية، فلا أحد يرفض أو يكره أو يتجنب الشعور بالسعادة، ولكن بفضل هؤلاء الأشخاص الذين لا يدركون بأن السعادة لا بد أن نستشعرها بصورة أكثر عقلانية ومنطقية فيعرضهم هذا لمواجهة الظروف الأليمة، وأكرر بأنه لا يوجد من يرغب في الحب ونيل المنال ويتلذذ بالآلام، الألم هو الألم ولكن نتيجة لظروف ما قد تكمن السعاده فيما نتحمله من كد وأسي.
+									</p>
+									<blockquote>
+										<q>المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية، فلا أحد يرفض أو يكره أو يتجنب الشعور بالسعادة، ولكن بفضل هؤ.</q>
+										<a href="javascript:void(0);">- جوشوا ج. مارين</a>
+									</blockquote>
+									<p>
+										المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية، فلا أحد يرفض أو يكره أو يتجنب الشعور بالسعادة، ولكن بفضل هؤ.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>عقبات غير متوقعة</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية، فلا أحد يرفض أو يكره أو يتجنب الشعور بالسعادة، ولكن بفضل هؤ.
+									</p>
+									<p>
+										لكن لا بد أن أوضح لك أن كل هذه الأفكار المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية، فلا أحد يرفض أو يكره أو يتجنب الشعور بالسعادة، ولكن بفضل هؤلاء الأشخاص الذين لا يدركون بأن السعادة لا بد أن نستشعرها بصورة أكثر عقلانية ومنطقية فيعرضهم هذا لمواجهة الظروف الأليمة، وأكرر بأنه لا يوجد من يرغب في الحب ونيل المنال ويتلذذ بالآلام، الألم هو الألم ولكن نتيجة لظروف ما قد تكمن السعاده فيما نتحمله من كد وأسي.
+									</p>
+								</div>
+							</div>
+							<div class="wo-safetyrole">
+								<div class="wo-safetyrole__title">
+									<h2>شراء سلامة المركبات</h2>
+								</div>
+								<div class="wo-safetyrole__content">
+									<p>
+										لكن لا بد أن أوضح لك أن كل هذه الأفكار المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية، فلا أحد يرفض أو يكره أو يتجنب الشعور بالسعادة، ولكن بفضل هؤلاء الأشخاص الذين لا يدركون بأن السعادة لا بد أن نستشعرها بصورة أكثر عقلانية ومنطقية فيعرضهم هذا لمواجهة الظروف الأليمة، وأكرر بأنه لا يوجد من يرغب في الحب ونيل المنال ويتلذذ بالآلام، الألم هو الألم ولكن نتيجة لظروف ما قد تكمن السعاده فيما نتحمله من كد وأسي <a href="javascript:void(0);">عرق النسا.</a>
+									</p>
+								</div>
+							</div>
+							<div class="wo-safetyrole">
+								<div class="wo-safetyrole__title">
+									<h2>التحقق من احتياطات الأمان</h2>
+								</div>
+								<div class="wo-safetyrole__content">
+									<p>
+										تستحق هذه الفكرة الخاطئة عن المتعة
+										<a href="javascript:void(0);">النيابة والألم</a> الهتاف ، كل شيء مفتوح ، وهي
+										الحقيقة ، الباني الرئيسي للسعادة البشرية كافية.
+										لا تلذذ بالذات ، لأنها ألم.
+									</p>
+									<ul class="wo-safetyrole-list">
+										<li><span>أو يتجنب لكن بسبب</span></li>
+										<li><span>أحزانهم ، طبيعة اللذة نفسها كويستان بواسطة ميكي</span></li>
+										<li><span>ولا يوجد أي شخص ينتمي ، والألم وحده ، هو أن الكثير من أولئك الذين يريدون الهدوء</span></li>
+										<li><span>ولكن نظرًا لأن لا أحد لن يحقق فيليت المعزز أبدًا</span></li>
+										<li><span>مواسم الرب مثل الخريف</span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="wo-safetyrole">
+								<div class="wo-safetyrole__title">
+									<h2>نصيحه مهنيه</h2>
+								</div>
+								<div class="wo-safetyrole__content">
+									<p>
+										تستحق هذه الفكرة الخاطئة عن المتعة
+										<a href="javascript:void(0);">النيابة والألم</a> الهتاف ، كل شيء مفتوح ، وهي
+										الحقيقة ، الباني الرئيسي للسعادة البشرية كافية.
+										لا تلذذ بالذات ، لأنها ألم.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}

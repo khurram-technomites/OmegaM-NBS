@@ -1,0 +1,22 @@
+propert/thumbnail
+property/createimage
+property/deleteimage
+property/getpropertyimages
+property/createfloorplans
+property/deletefloorplan
+property/getpropertyfloor
+property/getcities
+
+
+PropertyCategory/Details
+propertycategory/Details
+
+samEEd1234!
+
+
+
+alter table car add Address varchar(max)
+alter table car add Area varchar(50)
+alter table car add Condition varchar(20)
+alter table car add FuelType varchar(10)
+alter table car add WarrentyEndDate datetime

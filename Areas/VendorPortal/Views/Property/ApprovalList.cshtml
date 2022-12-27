@@ -1,0 +1,85 @@
+﻿@model IEnumerable<NowBuySell.Data.Property>
+
+@{
+    ViewBag.Title = "Property Approval List";
+    Layout = null;
+}
+<style>
+    #kt_datatable1 tbody tr td:last-child {
+        white-space: nowrap;
+    }
+</style>
+<!--begin::Row-->
+<div class="row">
+    <div class="col-xl-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        Property Approvals
+                        <span class="d-block text-muted pt-2 font-size-sm">Manage Property Approvals Here...</span>
+                    </h3>
+                </div>
+
+                <div class="card-toolbar">
+                    <!--begin::Button-->
+                    @*<div class="dropdown dropdown-inline mr-2">
+                            @using (Html.BeginForm("CarsReport", "Car", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="btn btn-dark btn-sm excel-btn">
+                                    <i class="far fa-file-excel"></i>
+                                    Export Excel
+                                </button>
+                            }
+                        </div>*@
+                    <div class="dropdown dropdown-inline mr-2">
+                        <button type="button" id="approveall" class="btn btn-outline-success btn-sm mr-1 btn-bulk-publish" onclick="BulkApproval(this,0)">
+                            <i class="fa fa-check-circle"></i> Send For Approval (0)
+                        </button>
+                    </div>
+                    <!--end::Button-->
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                <!--begin: Datatable-->
+                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+                    <thead>
+                        <tr>
+                            <th hidden>ID</th>
+                            <th>
+                                <label class="checkbox checkbox-lg checkbox-inline">
+                                    <input type="checkbox" value="1" id="checkAll" name="checkAll">
+                                    <span></span>
+                                </label>
+                            </th>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.ApprovalStatusID</td>
+                                <td data-order="@item.ID">@(item.CreatedOn.ToString("dd MMM yyyy, h:mm tt"))</td>
+                                <td>@item.Thumbnail,@item.Title,@item.AdsReferenceCode</td>
+                                <td>@item.ApprovalStatusID</td>
+                                <td>@item.Remarks</td>
+                            </tr>
+                        }*@
+                    </tbody>
+                </table>
+                <!--end: Datatable-->
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+<!--end::Row-->

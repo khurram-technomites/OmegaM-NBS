@@ -1,0 +1,71 @@
+@model NowBuySell.Data.Area
+@{
+	ViewBag.Title = "Details";
+	Layout = null;
+}
+<div class="modal-header">
+	<h5 class="modal-title">Details</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="float-right mb-3">
+				<i class="fa fa-calendar"></i>
+				<b>@Html.Label("Creation Date:", htmlAttributes: new { @class = "control-label" })</b>
+				@if (Model.CreatedOn.HasValue)
+				{
+					var date = Model.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt");
+					<label class="control-label" readonly="readonly">@date</label>
+				}
+				else
+				{
+					<label class="control-label" readonly="readonly"> - </label>
+				}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-sm-12">
+			<div class="form-group">
+				<label class="control-label">Country Name </label>
+				<div class="input-group mb-2">
+					<label class="form-control" readonly="readonly">@(Model.Country != null ? Model.Country.Name : "-")</label>
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-flag"></i></span></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<div class="form-group">
+				<label class="control-label">City Name </label>
+				<div class="input-group mb-2">
+					<label class="form-control" readonly="readonly">@(Model.City != null ? Model.City.Name : "-")</label>
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-home"></i></span></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<div class="form-group">
+				<label class="control-label">Area Name</label>
+				<div class="input-group mb-2">
+					<label class="form-control" readonly="readonly"> @Model.Name</label>
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-map-marked""></i></span></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<div class="form-group">
+				<label class="control-label">Area Name (Ar)</label>
+				<div class="input-group mb-2">
+					<label class="form-control" readonly="readonly">@Model.NameAR</label>
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-map-marked"></i></span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>

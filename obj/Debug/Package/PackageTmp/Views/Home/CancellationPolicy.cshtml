@@ -1,0 +1,190 @@
+﻿@{
+	ViewBag.Title = Resources.CANCELLATION_POLICY;
+	var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+	bool RTL = CultureHelper.IsRighToLeft();
+}
+<style>
+	.wo-forumcontent p {
+		text-align: justify;
+	}
+</style>
+@if (!RTL) //English
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								<h2>@Html.Raw(Resources.CANCELLATION_POLICY_TAG)</h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Cancellation and Change Policy</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										NOWBUYSELL does not charge a cancellation fee provided that the customer has informed about their intention to cancel the reservation within 48 hours before the start of the rental. However, if the rental price changes, the customer will be required to pay the rate that was valid at the time of the change.
+									</p>
+									<p>
+										The rental fee is non-refundable if the booking is canceled less than 48 hours before the start of the rental, or if the booking is canceled after the pick-up date specified in the booking. NOWBUYSELL would not refund the rental amount if the customer arrives at the rental office without a valid driver's license.
+									</p>
+									<p>
+										NowBuySell does not refund the rental amount, if upon picking up the vehicle the customer has presented an inappropriate credit card or a credit card with insufficient funds for depositing the security deposit. NowBuySell does not refund the payment of unused rental days if the client did not show up at the rental office on the day the rental started, or arrived more than 2 hours late without prior warning to NowBuySell, or handed over the vehicle earlier. Confirmed rental fees for 7 and 9 seater minivans received throughout UAE regardless of the date and time of cancellation, are non-refundable.
+									</p>
+									<p>
+										NowBuySell does not refund the fee for unused rental days if the client did not show up at the rental office on the day the rental started, or was late, or returned the car prematurely. Customers are entitled to provide evidence in writing to reduce property damage and lower costs for cancellation.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Receiving, Returning and picking up the Car</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										When booking a car, the client decides exactly where and when to pick up and return the car. When booking a car to be picked up at the airport, NowBuySell app and website ask for the flight number and arrival time. In the event of a delay, the customer must contact us to ensure that the vehicle will be confirmed after the time indicated on the booking. To pick up a car in the city, you only need to report the exact time of picking up the car. As a rule, the rental supplier will ensure that the car is handed over to the client even 30, maximum 60 minutes after the time of picking up the car specified in the booking, provided that this does not disrupt the rental office's work schedule and occurs before the rental office closes. Car pick-up outside of business hours is requested in advance and is subject to an additional fee.
+									</p>
+									<p>
+										If you wish to keep the vehicle for longer than you had asked, you must then send the changed location. This may result in change of rates, charges, taxes and underage fees. Kindly, see your new rates before proceeding.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>What you can do if you plan to cancel</h3>
+								</div>
+								<div class="wo-forumcontent">
+									<div class="wo-forumcontent__title">
+										<h3>Cancel booking </h3>
+									</div>
+									<div class="wo-forumcontent__description">
+										<p>
+											Enter your details to open your booking page. You will find a “<strong>Cancel</strong>” button. Click that, enter the reason why you wish to cancel, and confirm the cancellation. We will let you know if any cancellation fees apply, and we will cancel the booking for you.
+										</p>
+									</div>
+								</div>
+								<div class="wo-forumcontent">
+									<div class="wo-forumcontent__title">
+										<h3>Change booking </h3>
+									</div>
+									<div class="wo-forumcontent__description">
+										<p>
+											Click on “<strong>Manage booking</strong>” button and enter your details and open your booking. You will find an “Amend Booking”. Click that and you can then choose which details you want to change.
+										</p>
+										<p>
+											<strong>When you book a car with NowBuySell, you are signing up to the cancellation policy.</strong>
+										</p>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}
+else //Arabic
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section  wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								<h2>سياسة <em>الإلغاء والتغيير</em></h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50 text-right">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>سياسة الإلغاء والتغيير</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										لا تفرض منصة NOWBUYSELL رسوم إلغاء شريطة أن يكون العميل قد أبلغ عن نيته في إلغاء الحجز في غضون 48 ساعة قبل بدء الإيجار؛ علماً بأنه إذا تغير سعر الإيجار، فسيُطلب من العميل دفع السعر المحدد وقت التغيير.
+									</p>
+									<p>
+										لن تكون رسوم الإيجار قابلة للاسترداد إن تم إلغاء الحجز قبل أقل من 48 ساعة من بدء الإيجار أو إن تم إلغاء الحجز بعد تاريخ الاستلام المحدد في الحجز. لن ترد منصة NOWBUYSELL مبلغ الإيجار إن وصل العميل إلى مكتب التأجير بدون رخصة قيادة سارية.
+									</p>
+									<p>
+										لن ترد منصة NowBuySell مبلغ الإيجار إن قام العميل عند استلام السيارة بتقديم بطاقة ائتمان غير مناسبة أو بطاقة ائتمان لا تحمل أموالاً كافية لإيداع وديعة الضمان. لن ترد منصة NowBuySell المبلغ المدفوع نظير أيام الإيجار غير المستخدمة إذا لم يحضر العميل إلى مكتب التأجير في اليوم الذي يبدأ فيه الإيجار أو إن وصل العميل متأخراً أكثر من ساعتين دون سابق إنذار إلى منصة NowBuySell أو إن تسلم السيارة في وقت سابق. لن يتم رد رسوم الإيجار المؤكدة للسيارات الصغيرة (7 و9 مقاعد) التي يثبت استلامها في جميع أنحاء الإمارات العربية المتحدة بغض النظر عن تاريخ ووقت الإلغاء.
+									</p>
+									<p>
+										لن ترد منصة NowBuySell رسوم أيام الإيجار غير المستخدمة إذا لم يحضر العميل إلى مكتب التأجير في اليوم الذي يبدأ فيه الإيجار أو إن تأخر في الحضور أو أعاد السيارة قبل موعدها. يحق للعملاء تقديم أدلة كتابية لتقليل الأضرار التي تلحق بالممتلكات وخفض تكاليف الإلغاء.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>استلام السيارة وإعادتها وتسلمها</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										عند حجز السيارة ، يقرر العميل تحديداً مكان ووقت استلام السيارة وإعادتها. عند حجز سيارة ليتم استلامها في المطار، يسأل تطبيق NowBuySell والموقع الإلكتروني عن رقم الرحلة ووقت الوصول. وعند حدوث تأخير، يجب على العميل الاتصال بنا للتأكد من أنه سيتم تأكيد السيارة بعد الوقت المحدد في الحجز. لاستلام سيارة في المدينة، عليك فقط الإبلاغ عن الوقت المحدد لاستلام السيارة. كقاعدة عامة، يلتزم مورد خدمات التأجير بتسليم السيارة للعميل حتى 30 إلى 60 دقيقة بحد أقصى من وقت استلام السيارة المحدد في الحجز شريطة ألا يؤدي ذلك إلى تعطيل جدول عمل مكتب التأجير وأن يتم ذلك قبل إغلاق مكتب الإيجار. يُطلب استلام السيارات في غير ساعات العمل مسبقاً ويخضع ذلك لرسوم إضافية.
+									</p>
+									<p>
+										إن ثبت استلامك سيارتك بالفعل وكنت ترغب في الاحتفاظ بها لفترة أطول، فيجب عليك أن تتصل بالموقع الذي تسلمت منه السيارة.
+									</p>
+									<p>
+										إذا لم تكن قد استلمت سيارتك، فبإمكانك استلامها. وإذا قمت بتعديل موقع الاستلام أو التسليم أو التاريخ أو الوقت، فقد يؤدي ذلك إلى تغيير الأسعار المحددة لك أو الضرائب أو الرسوم الإضافية أو الرسوم المرتبطة بمن هم دون السن القانونية. يرجى الاطلاع على عرض الأسعار الجديد الخاص بك عند التحقق من بيانات حجزك.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>ما الذي يمكنك فعله إن خططت لإلغاء الحجز</h3>
+								</div>
+								<div class="wo-forumcontent">
+									<div class="wo-forumcontent__title">
+										<h3>إلغاء حجزك</h3>
+									</div>
+									<div class="wo-forumcontent__description">
+										<p>
+											أدخل بياناتك وافتح حجزك. ستجد زر “<strong>إلغاء</strong>” انقر عليه وأدخل سبب رغبتك في إلغاء الحجز وقم بتأكيد الإلغاء. سنُعلمك عند فرض أي رسوم إلغاء وسنقوم بإلغاء حجزك.
+										</p>
+									</div>
+								</div>
+								<div class="wo-forumcontent">
+									<div class="wo-forumcontent__title">
+										<h3>تغيير حجزك</h3>
+									</div>
+									<div class="wo-forumcontent__description">
+										<p>
+											انتقل إلى زر “<strong>إدارة الحجوزات</strong>” أدخل بياناتك وافتح حجزك. ستجد زر "تعديل الحجز" انقر عليه ثم اختر البيانات التي ترغب في تغييرها.
+										</p>
+										<p>
+											<strong>عند حجزك إحدى السيارات على منصة NowBuySell، توقع بذلك على سياسة الإلغاء.</strong>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}

@@ -1,0 +1,70 @@
+﻿
+@model IEnumerable<NowBuySell.Data.CarRequest>
+
+@{
+    ViewBag.Title = "Motors Request";
+    Layout = null;
+}
+<style>
+    #kt_datatable1 tbody tr td:last-child {
+        white-space: nowrap;
+    }
+</style>
+<!--begin::Row-->
+<div class="row">
+    <div class="col-xl-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h6>
+                        Custom Requests For Motors
+
+                    </h6>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                <!--begin: Datatable-->
+                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+                    <thead>
+                        <tr>
+                            <th hidden>ID</th>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Transmission</th>
+                            @*<th>HorsePower</th>*@
+                            <th>Description</th>
+                            <th>Action</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td hidden>@item.ID</td>
+                                <td data-order="@item.ID">@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")</td>
+                                <td>@item.Title</td>
+                                <td>@item.Category.CategoryName</td>
+                                <td>@item.Transmission</td>
+                                <td>@item.Description</td>
+                                <td>
+                                    <button type="button" class="btn btn-bg-secondary btn-icon btn-sm mr-1" onclick="OpenModelPopup(this,'/Admin/Customer/MotorRequestDetails?RequestId=' + @item.ID)" title="View"> 
+                                        <i class="fa fa-folder-open"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!--end: Datatable-->
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+
+
+<!--end::Row-->

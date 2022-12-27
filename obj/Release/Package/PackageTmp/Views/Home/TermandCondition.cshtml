@@ -1,0 +1,484 @@
+﻿@{
+	ViewBag.Title = Resources.TermsAndConditions;
+	var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+	bool RTL = CultureHelper.IsRighToLeft();
+}
+
+<style>
+	[dir=ltr] .wo-safetyrole-list li:before {
+		color: #2e1842;
+		font-size: 10px;
+		line-height: inherit;
+		content: "\f111";
+		font-family: "Font Awesome 5 Free";
+		position: absolute;
+		left: 0;
+		top: 0;
+		font-weight: 900;
+	}
+	[dir=rtl] .wo-safetyrole-list li:before {
+		color: #2e1842;
+		font-size: 10px;
+		line-height: inherit;
+		content: "\f111";
+		font-family: "Font Awesome 5 Free";
+		position: absolute;
+		left: unset;
+		right: 0;
+		top: 0;
+		font-weight: 900;
+	}
+	.wo-safetyrole-list li {
+		text-align: justify;
+		margin: 0 2% 0 2%;
+	}
+	ol li {
+		text-align: justify;
+		margin: 0 3% 0 3%;
+	}
+	ol li::marker {
+		font-weight: bold;
+		color: #2e1842;
+	}
+	.wo-forumcontent p {
+		text-align: justify;
+	}
+</style>
+
+@if (!RTL) //English
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								<h2>@Html.Raw(Resources.TermsAndConditionsTag)</h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>1. Terms</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										<strong>1.1</strong> Here is an application named On My Way, which is basically in the UAE and our website is www.nowbuysell.com. Through this website we complete all our operations. As you find the website and open it you agree to our terms and conditions which are narrated here. You can get services from our website anytime, anywhere of your choice but before heading forward kindly look through our terms and conditions properly and read it carefully before taking any services.
+									</p>
+									<p>
+										<strong>1.2</strong> If you are interested in this website and its assistance you should continue otherwise you should quit it. But if you agree to the terms, then these terms will make a legal agreement between you and www.nowbuysell.com.
+									</p>
+									<p>
+										<strong>1.3</strong> These terms may be changed with the passage of time without informing you. You must check the terms usually whether any change has occurred or not, and if you don't want any modification in the website or you don't agree with the changes you should leave this website as soon as possible.
+									</p>
+									<p>
+										<strong>1.4</strong> In some parts of the website you could have been asked for your personal information as per extra terms please agree to our privacy policy so that if your data is needed in such areas, we will use it. Like if you are making any deal, we would have to give your information to the opposite party e.g., suppliers, agents, dealers, the rental of cars, etc. When you agree to our extra terms then whenever your data is needed, we will use it and help you make a deal.
+									</p>
+									<p>
+										<strong>1.5</strong> nowbuysell.com is a website which is only a medium for deals. It doesn't transport anything as it is not a provider of transportation (TSP).
+									</p>
+									<p>
+										<strong>1.6</strong> There are no personal driver services with nowbuysell.com for now.
+									</p>
+									<p>
+										<strong>1.7</strong> The User is then permitted to make his own options to the transportation services once the complete information of the driver is provided and any further demands directly from the provider.
+									</p>
+									<p>
+										<strong>1.8</strong> It is very essential that the user provide their correct information to the website, or if someone else is submitting information from the user's side, he should make sure that all information is authentic and complete.
+									</p>
+									<p>
+										<strong>1.9</strong> nowbuysell.com have the authority to change policies of its website in order to make the website better and more functional. nowbuysell.com have the right to cease its offer for a short time or permanently as per its benefits even without informing the user. But, it will probably change the policies that are user friendly and highly convenient.
+									</p>
+									<p>
+										<strong>1.10</strong> The payment method is very easy and accessible as you can pay for the ride through credit card, debit card, (add another). As per different currencies, the amount may vary at the time of transaction.
+									</p>
+									<p>
+										<strong>1.11</strong> During the ride every passenger has to follow the rules and regulations of the transport authority of that area.
+									</p>
+									<ul class="wo-safetyrole-list ">
+										<li><span>The passengers are not allowed to open the door when the car is moving.</span></li>
+										<li><span>The passengers should follow all the instructions given by the driver.</span></li>
+										<li><span>They should not throw any object from the car.</span></li>
+										<li><span>They should fasten their seat belts while driving.</span></li>
+										<li><span>Smoking is strictly prohibited inside the vehicle.</span></li>
+										<li><span>Eating food within the car is not allowed.</span></li>
+										<li><span>Intake of alcoholic drinks is not allowed in the car.</span></li>
+									</ul>
+									<br />
+									<p>
+										If the passenger doesn't follow these rules, then not only they would have to pay for cleaning the vehicle but would also pay back for the loss in business caused by ignorance of the rules. It is very essential for the user that they must have their driving license while they are present in the vehicle.
+									</p>
+									<p>
+										<strong>1.12</strong> Urgent situations like harsh weather conditions or some air traffic problems, etc can be refunded on some urgent problems, but not last-minute cancellations or long waiting periods are acceptable by the website.
+									</p>
+									<p>
+										<strong>1.13</strong> A Limited amount of people and luggage is allowed in the vehicle as per the size and weight of a passenger and the size of a vehicle. The driver can reject the pieces of luggage in order to assure the safety of passengers as well as the vehicle.
+									</p>
+									<p>
+										<strong>1.14</strong> The User can choose the vehicle of their choice either a luxury, the Executive, Standard or a casual vehicle for their ride. The pictures of the vehicle we are presenting to you are just examples, but the real one could be different and if a user has booked a vehicle that is not available at the moment would be changed to a new model of the vehicle.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>2. Use License and Restrictions</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										The users should ask for permission if they download any transferral or information of the software on nowbuysell.com for self- information. Under the rules of the website, you may not.
+									</p>
+									<ol class="wo-safetyrole-list-ol  mt-2">
+										<li><span>Duplicate the material and you cannot write or make any changes to it. </span></li>
+										<li><span>Display the information in public and you cannot use it for commercial purposes. </span></li>
+										<li><span>Try to reverse engineering in which the app is analysed by looking at the source code of the website. </span></li>
+										<li><span>Delete any information or other intellectual property or any record of the website. </span></li>
+										<li><span>Move the information to someone else related to any other website. </span></li>
+									</ol>
+									<p>
+										The licence of nowbuysell.com would automatically end as soon as you break any of the above rules and you may lose your licence. After your termination all your information would be destroyed just for the sake of security.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>3. Responsibilities, Redemption and Refunds</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										It is totally a third-party business on our website. It is an online platform both the mobile app and the website. In order to work with nowbuysell.com firstly you will need to make an email id and a password. Our website only helps users and the sellers for their business purposes. We are neither sellers nor buyers. When you make a contract with nowbuysell.com you might have to make some other contracts with some other suppliers who use the Same website and you can make legal deals with them.
+									</p>
+									<p>
+										There is no warranty given by nowbuysell.com about the quality and the standard of any ride. The subject matter is totally based on the information that is given by the supplier, agent or vendor. After that the confirmation emails are sent. The payment system is totally online via credit card. As the user pays the bill of a certain service, after 24 hours a message is sent by the website as the receipt of the bill. This is not actually a car hiring or leasing company. A Lot of suppliers are registered on the website with their complete information from which they get registered and then they make a deal with the user about any ride. If the suppliers take any extra information from you the supplier is totally accountable for it.
+									</p>
+									<p>
+										The details which we have secured but if they are directly produced by the suppliers, they are unverified.
+									</p>
+									<p>
+										The User is responsible for his own deal and enquiries. We have no guarantee for any of the details, purchase and accuracy of information.
+									</p>
+									<ul class="wo-safetyrole-list ">
+										<li><span>You are accountable for the authenticity, assurance and satisfying yourself. </span></li>
+										<li><span>To get legal advice it is your own responsibility to tell a supplier before you do any transaction on our site. </span></li>
+										<li><span>It is your responsibility to give correct information about yourself before you commit any business deal with someone. </span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>4. Limitations</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										If any event occurred from which a user got any damage or loss of data or profit nowbuysell.com is not legally answerable for such a damage as well as the supplier is also not answerable for any of the damage caused at any event. If you notify any of our representatives written or orally that would not be our fault as it is not in our policy.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>5. Corrections</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										nowbuysell.com does not promise about the cars, materials and the services that they would be the same. The cars and services may differ from the original pictures. As nowbuysell.com can change its policy at any time without notifying you. The cars and the services might differ from the photograph and model etc.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>6. Payment Terms</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										In UAE equal law is for everyone as UAE obeys strict laws whether they are local laws or government laws.
+									</p>
+									<ul class="wo-safetyrole-list ">
+										<li><span>The payment method on nowbuysell.com is so secure as it is linked with a secure sockets layer (SSL).</span></li>
+										<li><span>nowbuysell.com secures and protects all processes of transactions. </span></li>
+										<li><span>For payment, the user can use the VISA, Mastercard and AED currency as only these cards are accepted in UAE. </span></li>
+										<li><span>No services will be given from nowbuysell.com to the foreign offices and the offices of sanctioned countries. No trade will be made with such users. </span></li>
+										<li><span>Any client who is under 18 years cannot register and shall not use the website as per policy. </span></li>
+										<li><span>The users who do transactions with the card must have a copy of all transaction records.</span></li>
+										<li><span>The User is responsible to make his /her account confidential. </span></li>
+										<li><span>Depending on the credit card issues the refunds will be processed in 10-45 days and the amount will be refunded back to the user and he would get the actual amount back. </span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>7. Availability of Website</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Every website can make a mistake, but we try to ensure that our website is a user-friendly website and is always available for the users, but we cannot guarantee it. We will try our level best to make it convenient for the users. If any problem occurs on the website, we will try to fix that problem as soon as possible without any notice. We have the right to change or stop any part of the website which will include your access. If any problem occurs occasionally, we will tend to fix it very quickly.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>8. Third Parties and Other Links</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										There are many other third-party sites which may open in between this site in the form of ads or like that. Those sites are not certified by nowbuysell.com as they are third party's websites on the Internet But, if you have any problem with the content of those sites you can add your complaint to the site administrator. You can tell the representatives about those links and websites from which you are having a problem. If you complain about those sites that will be at your own risk.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>9. Disclaimer</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										nowbuysell.com makes no guarantees of any deal and it denies all other warranties. nowbuysell.com is only concerned with the third-party businesses and it makes no guarantees, expressed or implied. Furthermore nowbuysell.com does not warrant the accuracy of the results of the materials. It doesn't copy the materials of any other sites on the Internet.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>10. Governing Law</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Any case in which nowbuysell.com needs any government law it will be executed with those laws without any hesitation. The claims shall be governed with the rules of UAE.
+									</p>
+									<ul class="wo-safetyrole-list ">
+										<li><span>Airport transfer composes a single, continued journey starting from and ending at a specific airport within UAE. No disturbances are allowed during the journey as it is against the laws of nowbuysell.com and it will also make other passengers disturbed. </span></li>
+										<li><span>In the case of a reservation starting or ending at the airport up to one airport parking cost is added within each service of nowbuysell.com. </span></li>
+										<li><span>If any problem in the service, in the time or location takes place please feel free to give information to the website <a class="web-email-adr" href="mailto:info@nowbuysell.com"> info@nowbuysell.com</a> as the website is very user friendly and it helps in sorting out the problem of its user. So, we will surely solve all of your problems without any discrimination within least time. You should notify nowbuysell.com authorized representatives orally or in written form. </span></li>
+									</ul>
+									<br />
+									<p>
+										PLEASE feel free to make a user quote.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}
+else //Arabic
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section  wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								@*<h2>@Html.Raw(Resources.TermsAndConditionsTag)</h2>*@
+								<h2>الشروط والأحكام <em> (بالنسبة للعملاء) </em></h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50 text-right">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>1. الشروط</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										<strong>1.1 </strong> تتمركز منصة NOWBUYSELL (يشار إليها بالضمير "نحن" وبضمير الملكية "نا" في هذا النص) بدولة الإمارات العربية المتحدة وهي تمتلك وتدير موقع الإنترنت المتاح على الرابط: www.nowbuysell.com. بالدخول إلى الموقع واستخدامه، تُقر موافقتك على الشروط والأحكام الواردة بهذا النص والتي يسري العمل بها من تاريخ ووقت تلقيك لخدماتنا من خلال موقعنا الإلكتروني. يرجى قراءة جميع شروطنا بعناية قبل الوصول إلى المعلومات والخدمات المتوفرة على هذا الموقع ومن خلاله أو استخدامها.
+									</p>
+									<p>
+										<strong>1.2 </strong> تمثل هذه الشروط اتفاقاً قانونياً "بينك" (مستخدم هذا الموقع الإلكتروني أو مستأجر خدماتنا) وموقع www.nowbuysell.com. إذا كنت لا توافق على الشروط أو لا تستطيع الالتزام بها، يرجى الامتناع عن استخدام هذا الموقع الإلكتروني وخدماته.
+									</p>
+									<p>
+										<strong>1.3 </strong> يجوز تعديل هذه الشروط من وقت لآخر دون إخطارك، ويجب عليك مراجعة هذه الشروط بانتظام للتحقق من إدخال أي تعديلات من هذا القبيل. إذا كنت لا توافق على أي تعديل يُدخَل على الشروط، فيجب عليك أن تتوقف فوراً عن استخدام الموقع أو الخدمات.
+									</p>
+									<p>
+										<strong>1.4 </strong> قد تخضع مناطق معينة من الموقع لشروط استخدام إضافية. باستخدام هذه المناطق أو أي جزء منها توافق على الالتزام بشروط الاستخدام الإضافية المطبقة على هذه المناطق. يرجى الرجوع إلى سياسة الخصوصية السارية لدينا للحصول على معلومات حول كيفية استخدامنا لبياناتك. مصطلحات "الوكيل / البائع / الجهة الخارجية / التاجر / المورد / الموزع" يعني جميعها بائع الخدمات (خدمات تأجير السيارات) الذي سيتم توفير الخدمات من خلاله.
+									</p>
+									<p>
+										<strong>1.5 </strong> يعمل موقع nowbuysell.com فقط كوسيط وليس كمزود لخدمات النقل.
+									</p>
+									<p>
+										<strong>1.6 </strong> في الوقت الحالي، لا توجد خدمة سائقين متاحة على منصة "NOWBUYSELL".
+									</p>
+									<p>
+										<strong>1.7 </strong>يحق للمستخدم بعد ذلك أن يطلب خدمات النقل من المورد بمجرد إرسال تفاصيل السائق، وأي مطالبات أخرى مباشرة من المورد.
+									</p>
+									<p>
+										<strong>1.8 </strong>يتحمل المستخدم مسؤولية التأكد من اكتمال ودقة كافة المعلومات التي يقدمها هو أو أي شخص آخر نيابة عنه إلى موقع nowbuysell.com.
+									</p>
+									<p>
+										<strong>1.9 </strong> يحتفظ موقع nowbuysell.com بالحق في أن يُدخل في أي وقت تغييرات على الموقع بطريقة تناسب المستخدمين من أجل تطوير وتحسين جودته. وبالإضافة إلى ذلك، يحتفظ موقع nowbuysell.com بالحق (لسبب وجيه) في أن يوقف بشكل مؤقت أو دائم ما يقدمه من عروض على الموقع حتى دون إبلاغ المستخدم بذلك مباشرة.
+									</p>
+									<p>
+										<strong>1.10 </strong>يمكن للمستخدم أن يدفع مقابل رحلته باستخدام بطاقة الائتمان أو بطاقة الخصم أو (يرجى إضافة أي طرق دفع أخرى) على أن يتحمل المستخدم أي رسوم معاملات عند سداد المبالغ المستحقة باستخدام بطاقة الائتمان (على سبيل المثال بسبب استخدام عملات مختلفة).
+									</p>
+									<p>
+										<strong>1.11 </strong> أثناء الرحلة، يجب على جميع الركاب اتباع القوانين التي تصدر عن هيئة النقل المحلية وخصوصاً تلك اللوائح المتعلقة باستعمال حزام الأمان. يجب اتباع أي تعليمات يقدمها السائق. ولا يُسمح للركاب بفتح الأبواب أثناء القيادة ورمي أي مواد من السيارة و / أو لصق أجزاء من الجسم خارج السيارة. التدخين ممنوع داخل السيارة. وإذا تجاهل المستخدم أو الراكب ذلك، فسيتحمل بذلك المسؤولية ليس فقط عن دفع تكاليف تنظيف السيارة بل أيضاً عن دفع تعويض خسارة العمل بسبب تعطل السيارة. لا ينصح بتناول الطعام أثناء الرحلة. ولا يُسمح بتناول المشروبات الكحولية في السيارة. وعلى المستخدمين كذلك الاحتفاظ برخصة القيادة الخاصة بهم.
+									</p>
+									<p>
+										<strong>1.12 </strong>يمكن تعويض المواقف الخاصة كإضرابات مراقبي الملاحة الجوية والظروف الجوية القاسية وغير ذلك من المواقف الخاصة الأخرى وذلك فقط إلى حد معين ما يعني أنه يجب على المستخدمين قبول فترات الانتظار الطويلة أو حالات الإلغاء في اللحظة الأخيرة.
+									</p>
+									<p>
+										<strong>1.13 </strong>يعتمد تعيين الحد الأقصى لعدد الركاب وقطع الأمتعة المحددة لكل مركبة على عوامل مثل حجم ووزن الركاب والأمتعة. ويمكن للسائق لأن يرفض نقل الركاب أو الأمتعة لضمان سلامة الركاب والمركبة.
+									</p>
+									<p>
+										<strong>1.14 </strong>يمكن للمستخدم الاختيار لرحلتهم من بين فئات المركبات المختلفة (على سبيل المثال "الفاخرة، التنفيذية، القياسية، العادية، ....الخ". صور السيارة المعروضة على الموقع هي عينات مقترحة فقط إذ تخضع السيارات لشرط الإتاحية ولذا قد يتم عرض أي ترقية حال عدم توافر فئة السيارة المحجوزة.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>2. رخصة الاستخدام والقيود</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										يُمنح الإذن لتنزيل نسخ من المواد (المعلومات أو البرامج) مؤقتاً على موقع nowbuysell.com وذلك فقط لغرض المشاهدة الشخصية غير التجارية.
+									</p>
+									<p>
+										يرتبط ذلك بمنح ترخيص فقط وليس بنقل الملكية إذا لا يجوز لك بموجب هذا الترخيص:
+									</p>
+									<ol class="wo-safetyrole-list-ol  mt-2">
+										<li><span>نسخ المواد أو إجراء أي تغييرات عليها ؛</span></li>
+										<li><span>استخدام المواد لأي غرض تجاري أو بأي عرض عام (تجاري أو غير تجاري) ؛</span></li>
+										<li><span>محاولة فك أو عكس هندسة أي برنامج موجود على موقع الويب ؛</span></li>
+										<li><span>إزالة أي حقوق نشر أو تدوينات ملكية أخرى من المواد ؛</span></li>
+										<li><span>نقل المواد إلى شخص آخر أو "نسخ" المواد الموجودة على أي خادم آخر. ينتهي هذا الترخيص تلقائياً إذا خالفت أياً من تلك القيود ويجوز لموقع nowbuysell.com إنهائه في أي وقت. عند الانتهاء من عرض هذه المواد أو عند انتهاء هذا الترخيص، يجب عليك تدمير أي مواد تم تنزيلها بحوزتك سواء بصيغة إلكترونية أو مطبوعة.</span></li>
+									</ol>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>3. مسؤولياتك والاسترداد والمستردات</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										نقدم منصة إلكترونية (من خلال موقعنا الإلكتروني وتطبيقات الأجهزة المحمولة) حيث نقوم بالترويج لأعمال جهات خارجية على موقعنا الإلكتروني. ولأجل إتمام معاملة شراء، يجب عليك التسجيل على الموقع الإلكتروني باستخدام عنوان بريد إلكتروني وكلمة مرور صالحين. في العادة نحن لسنا مشترٍ ولا بائع بل نحن نوفر مكاناً للبائعين وللتفاوض على المعاملات وإتمامها.
+									</p>
+									<p>
+										هذا يعني أنه بالإضافة إلى هذا العقد، سيكون لديك علاقات تعاقدية أخرى مع كيانات قانونية مختلفة عندما تتفاعل مع الموردين وتستخدم هذا الموقع.
+									</p>
+									<p>
+										لا يقدم موقع nowbuysell.com أي ضمانات بشأن مستوى أو جودة أي خدمة. نبني موادنا الترويجية على المعلومات التي يقدمها موفر الخدمات / المورد / الوكيل / البائع / الجهة الخارجية. يقوم موقع nowbuysell.com بتحصيل الأموال من العملاء نيابة عن موفر الخدمات / المورد / الوكيل / البائع / الجهة الخارجية ثم بإرسال رسائل تأكيد عبر البريد الإلكتروني للخدمات التي سيقدمها موفري الخدمات أو الموردون أو الوكلاء أو الجهات الخارجية أو البائعين. تُحصل المبالغ المستحقة نظير تلك الخدمات عن طريق الدفع باستخدام بطاقة الائتمان عبر الإنترنت. وبمجرد تمام معاملة الدفع، يتم إرسال إشعار التأكيد إلى المستخدم عبر البريد الإلكتروني في غضون 24 ساعة من وقت استلام المدفوعات. لسنا شركة تأجير سيارات أو وكالة مبيعات بل إننا نقدم خدمة يمكن من خلالها للموردين المسجلين على موقعنا الإلكتروني تسويق منتجاتهم ويمكنك استعراض تفاصيل السيارات التي يرغبون في تأجيرها مع أي محتوى آخر نقوم بتطويره. يتحمل الموردون مسؤولية إعداد التفاصيل والاستفسارات الميدانية التي ترد مباشرةً منك. نستضيف التفاصيل بحسن نية في حين يجري تقديمها مباشرة من طرف الموردين دون التحقق منها من طرفنا. تتحمل المسؤولية عن تقديم الاستفسارات / إتمام معاملات الشراء الخاصة بك ولا نقدم أي ضمانات ولا نتحمل أي مسؤولية عن دقة أو اكتمال أي معلومات ترد ضمن تلك التفاصيل.
+									</p>
+									<ul class="wo-safetyrole-list ">
+										<li><span>تتحمل المسؤولية عن أمور التحقق والتأكيد وإقرار رضاك عن الخدمات بنفسك كعميل نهائي.</span></li>
+										<li><span>تتحمل المسؤولية عن إرشاد أي مستكشف والحصول على المشورة القانونية اللازمة قبل إتمام أي معاملة على موقعنا.</span></li>
+										<li><span>تتحمل المسؤولية عن ضمان التصرف بحسن نية فيما يتعلق بأي من جوانب الدقة المرتبطة بأي تفاصيل تتعلق بأي أعمال.</span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>4. القيود</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										لن تتحمل منصة NOWBUYSELL أو الموردين التابعين لها المسؤولية بأي حال من الأحوال عن أي أضرار (بما في ذلك، على سبيل المثال لا الحصر، الأضرار الناجمة عن فقدان البيانات أو الربح أو عن توقف الأعمال) والتي تنشأ عن استخدام أو عدم القدرة على استخدام الخدمات والمواد التي تُتاح على / من خلال موقع nowbuysell.com حتى ولو تم إخطار موقع nowbuysell.com أو ممثل nowbuysell.com المعتمد شفهياً أو كتابياً بإمكانية حدوث هذا الضرر.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>5. التصحيحات</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										يمكن أن تتضمن المواد / الخدمات / السيارات التي تُعرض على موقع nowbuysell.com أخطاء فنية أو مطبعية أو فوتوغرافية. لا يضمن موقع nowbuysell.com دقة أو اكتمال أو حداثة أياً من المواد / السيارات / الخدمات المتاحة على الموقع. يجوز لموقع nowbuysell.com أن يُدخل في أي وقت دون إشعار مسبق أي تغييرات على المواد / السيارات / الخدمات المتاحة على الموقع.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>6. شروط الدفع</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										"الإمارات العربية المتحدة هي محل تواجدنا" وهي توجب أن يكون القانون الناظم هو القانون المحلي.
+									</p>
+									<ul class="wo-safetyrole-list ">
+										<li><span>موقع nowbuysell.com مؤمن ببروتوكول SSL وبوابة دفع آمنة.</span></li>
+										<li><span>جميع المعاملات التي تتم على موقع nowbuysell.com محمية.</span></li>
+										<li><span>يُقبل استخدام الفيزا وبطاقات ماستر كارد المفتوحة بالدرهم الإماراتي للدفع.</span></li>
+										<li><span>لن نتعامل مع / أو نقدم أي خدمات إلى مكتب مراقبة الأصول الأجنبية والدول الخاضعة للعقوبات.</span></li>
+										<li><span>لا يجوز لعملاء هذا الموقع الذين تقل أعمارهم عن 18 سنة التسجيل كمستخدم للموقع ولا يجوز لهم إتمام المعاملات على الموقع أو استخدامه.</span></li>
+										<li><span>يجب على حاملي البطاقات الاحتفاظ بنسخة من سجلات المعاملات.</span></li>
+										<li><span>يتحمل المستخدم مسؤولية الحفاظ على سرية حسابه / حسابها.</span></li>
+										<li><span>عند استرداد أي أموال، يجب ردها باستخدام طريقة الدفع الأصلية على أن تتم معالجة إجراءات الاسترداد خلال فترة من 10 إلى 45 يوماً حسب الجهات المُصدرة لبطاقات الائتمان.</span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>7. توفر الموقع الإلكتروني</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										نسعى جاهدين للتأكد من إتاحة موقعنا وخدماتنا لك في جميع الأوقات لكن لا يمكننا ضمان الحصول على خدمات خالية من الأخطاء على الموقع. قد تتسبب أعمال الصيانة الضرورية التي تتم من وقت لآخر في انقطاع الخدمات دون سابق إنذار، لكننا نسعى جاهدين لتقليل وقت التوقف عن العمل للحد الأدنى. لن نتحمل المسؤولية عن أي توقف أو فقدان للخدمة. ونحن نحتفظ بالحق المطلق في تغيير أو تعليق أو إيقاف أي جزء من موقعنا الإلكتروني بما في ذلك وصولك له.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>8. روابط الجهات الخارجية والروابط الأخرى</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										قد يحتوي الموقع على روابط لمواقع إلكترونية أخرى على الإنترنت تملكها وتشغلها جهات خارجية أو مواقع أخرى. يتم توفير هذه الروابط فقط للتسهيل عليك وليس كتأكيد من موقع nowbuysell.com للمحتويات المعروضة على مواقع مماثلة. تُقر بأن موقع nowbuysell.com لا يتحمل المسؤولية عن إتاحية أي موقع آخر أو المعلومات والمحتويات المعروضة عليه. يجب عليك الاتصال بمسؤول الموقع أو مسؤول الويب لتلك المواقع إن ساورتك أي مخاوف بشأن هذه الروابط أو المحتوى المعروض على هذه المواقع. إذا قررت الدخول إلى المواقع الإلكترونية التابعة لجهات خارجية، فعليك أن تقوم بذلك على مسؤوليتك الخاصة.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>9. تعديلات شروط استخدام الموقع</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										يمكن أن يراجع موقع nowbuysell.com شروط الاستخدام المذكورة لموقعها الإلكتروني في أي وقت دون إشعار مسبق. باستخدام هذا الموقع، توافق على الالتزام بالإصدار الحالي من شروط وأحكام الاستخدام تلك.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>10. إخلاء الطرف</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										يتم توفير المواد / الخدمات / الإيجارات على موقع nowbuysell.com "كما هي". ولا يقدم موقع nowbuysell.com أي ضمانات (صريحة أو ضمنية) وهو يرفض بمقتضى ذلك جميع الضمانات الأخرى بما في ذلك (على سبيل المثال لا الحصر) الضمانات الضمنية أو شروط القابلية للتسويق أو الملاءمة لغرض معين أو عدم التعدي على حقوق الملكية الفكرية أو أي انتهاكات أخرى للحقوق. علاوة على ذلك، لا يضمن موقع nowbuysell.com أو يقدم أي تعهدات فيما يتعلق بالدقة أو النتائج المحتملة أو موثوقية استخدام المواد المتاحة عليه أو التي ترتبط بخلاف ذلك بهذه المواد أو تُعرض على أي مواقع يرتبط بهذا الموقع.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>11. القانون الناظم</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										تخضع أي دعاوى تُقام فيما يخص موقع nowbuysell.com للقوانين السارية بدولة الإمارات العربية المتحدة بغض النظر عن تعارضها مع أحكام القانون.
+									</p>
+									<ul class="wo-safetyrole-list ">
+										<li><span>تشمل خدمات النقل من المطار رحلة واحدة دون توقف تبدأ من / أو تنتهي في المطار المحدد داخل دولة الإمارات العربية المتحدة؛ ولا يُسمح بالتوقف أثناء الرحلة.</span></li>
+										<li><span>تشمل كل خدمة تكلفة محل انتظار واحد في المطار في حال ثبت بدء الحجز أو انتهاءه في المطار.</span></li>
+										<li><span>نرجو ألا تترددوا في الكتابة لنا عبر عنوان البريد الإلكتروني: <a class="web-email-adr"  href="mailto:info@nowbuysell.com"> info@nowbuysell.com</a> للحصول على عرض أسعار مخصص إن كان ذلك لازماً.</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}

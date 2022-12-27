@@ -1,0 +1,145 @@
+﻿@model NowBuySell.Data.NewsFeed
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<style>
+    .video-frame {
+        width: 100%;
+        height: auto;
+        box-shadow: 0 0 6px 3px #0000004f;
+        border-radius: 5px;
+        padding: 10px;
+    }
+</style>
+<div class="modal-header">
+    <h5 class="modal-title">Details</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12">
+            <div class="float-right">
+                <i class="fa fa-calendar"></i>
+                <b>@Html.Label("Creation Date:", htmlAttributes: new { @class = "control-label" })</b>
+                @if (Model.CreatedOn.HasValue)
+                {
+                    var date = Model.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt");
+                    <label class="control-label" readonly="readonly">@date</label>
+                }
+                else
+                {
+                    <label class="control-label" readonly="readonly"> - </label>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 text-center">
+            <div class="flex-shrink-0 mr-7">
+                <div class="symbol symbol-50 symbol-lg-120">
+                    <img alt="Pic" src="@Model.BannerImage">
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Title</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.Title</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Title (Ar)</label>
+                <div class="input-group mb-2">
+                    <label class="form-control text-right" readonly="readonly" dir="rtl"> @Model.TitleAr</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Author</label>
+                <div class="input-group mb-2">
+                    <label class="form-control text-right" readonly="readonly"> @Model.Author</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-user"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Author (Ar)</label>
+                <div class="input-group mb-2">
+                    <label class="form-control text-right" readonly="readonly" dir="rtl"> @Model.AuthorAr</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-user"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Badge</label>
+                <div class="input-group mb-2">
+                    <label class="form-control text-right" readonly="readonly"> @Model.Badge</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-id-badge"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Badge (Ar)</label>
+                <div class="input-group mb-2">
+                    <label class="form-control text-right" readonly="readonly" dir="rtl"> @Model.BadgeAr</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-id-badge"></i></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                <div class="input-group mb-2">
+                    <textarea rows="10" cols="30" class="form-control" readonly>@Model.TitleDescription</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Description(Ar)</label>
+                <div class="input-group mb-2">
+                    <textarea rows="10" cols="30" class="form-control" readonly dir="rtl">@Model.TitleDescriptionAr</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+            <label class="control-label">Type</label>
+            <div class="input-group mb-2">
+                <label class="form-control" readonly="readonly"> @Model.Module</label>
+                <div class="input-group-append"><span class="input-group-text"><i class="fa fa-server"></i></span></div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <div class="video-frame">
+                <video style="width: 100%; height: 100%;" controls>
+                    <source src="@Url.Content(string.IsNullOrEmpty(Model.Video) ? Model.Video = "-"  : Model.Video)" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+
+

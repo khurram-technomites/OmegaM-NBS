@@ -1,0 +1,183 @@
+﻿@model List<NowBuySell.Web.Areas.VendorPortal.ViewModels.Gallery.GalleryViewModel>
+@{
+    ViewBag.Title = "Gallery";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<style>
+    .btn-lang {
+        position: absolute;
+        top: 2px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+        border: none;
+        background: none;
+        font-weight: normal;
+        color: black;
+    }
+</style>
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Heading-->
+                <div class="d-flex flex-column">
+
+                    <!--begin::Breadcrumb-->
+                    <div class="d-flex align-items-center font-weight-bold my-2">
+                        <!--begin::Item-->
+                        <a href="/Admin/Dashboard/Index" class="opacity-75 hover-opacity-100">
+                            <i class="flaticon2-shelter text-white icon-1x"></i>
+                        </a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <a href="/Admin/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript:;" class="text-white text-hover-white opacity-75 hover-opacity-100"> Generate Links</a>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Dashboard-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Links
+                                    <span class="d-block text-muted pt-2 font-size-sm">Generate links Here...</span>
+                                </h3>
+                            </div>
+                            <div class="card-toolbar">
+                                @*<div class="dropdown dropdown-inline mr-2">
+                                        @using (Html.BeginForm("Report", "Gallery", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <button type="submit" class="btn btn-dark btn-sm excel-btn">
+                                                <i class="far fa-file-excel"></i>
+                                                Export Excel
+                                            </button>
+                                        }
+                                    </div>*@
+                                <div class="dropdown dropdown-inline mr-2">
+                                    <!--begin::Button-->
+                                    <button type="submit" form="UploadGallery" class="btn btn-primary font-weight-bolder">
+                                        <span class="svg-icon svg-icon-md">
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <circle fill="#000000" cx="9" cy="15" r="6" />
+                                                    <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span> Upload
+                                    </button>
+                                    <!--end::Button-->
+                                </div>
+                                <div class="dropdown dropdown-inline mr-2">
+                                    <!--begin::Button-->
+                                    <a href="javascript:;" class="btn btn-danger font-weight-bolder" onclick="DeleteAll(this)">
+                                        <span class="svg-icon svg-icon-md">
+                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo2\dist/../src/media/svg/icons\General\Trash.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#000000" fill-rule="nonzero" />
+                                                    <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span> Delete All
+                                    </a>
+                                    <!--end::Button-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                @using (Html.BeginForm("Create", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadGallery" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="file" multiple class="form-control" name="fileUpload" id="fileUpload" placeholder="Browse" required />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="flaticon-upload"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <span class="form-text text-muted">Image size must be less than 1 Mb</span>
+                                    </div>
+                                }
+                                <hr />
+                                <div class="row" id="GalleryContainer">
+                                    @foreach (var promotionBanner in Model)
+                                    {
+
+
+                                        <div class="col-md-4 col-sm-12 mb-5 gallery-image ui-state-default" data="@promotionBanner.Name">
+                                            <a class="btn btn-icon btn-light-dark btn-pill btn-lang" href="javascript:;" onclick="copyToClipboard(this,`@promotionBanner.Path`)" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard">
+                                                <i class="fa fa-copy"></i>
+                                            </a>
+                                            <a class="btn btn-icon btn-light-danger btn-pill " onclick="Delete(this,`@promotionBanner.Path`)" style="position:absolute; right:15px;top:2px">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                            <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@promotionBanner.Path)"></div>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Dashboard-->
+        </div>
+        <!--end::Container-->
+    </div>
+</div>
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content" style="min-height:100px">
+            <div id='myModalContent'>
+                <div class="row justify-content-center">
+                    <div class="col-16">
+                        <div class="kt-spinner kt-spinner--lg kt-spinner--dark kt-spinner-modal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section IndexScript {
+    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>*@
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!--end::Page Vendors-->
+    <!--begin::Page Scripts(used by this page)-->
+    <!--end::Page Scripts-->
+    <script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+    <script src="~/Assets/Admin/js/admin/gallery/index.js"></script>
+    <script src="~/Assets/Admin/js/admin/gallery/upload.js"></script>
+}

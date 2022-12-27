@@ -1,0 +1,72 @@
+﻿@model NowBuySell.Data.Order
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Order Packing Slip</title>
+    <link href="~/Assets/css/invoice.css" rel="stylesheet" />
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
+</head>
+
+<body>
+
+    <form method="post" action="#" id="printJS-form">
+       
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td colspan="2" class="title">
+                        <img src="/Assets/images/logo/NowBuySell_logo_md.png" style="width:50%; max-width:150px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <h1 style="padding-top:10px">Packing Slip</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <h1 style="padding-top:10px">Bookings Details</h1>
+                    </td>
+                </tr>
+                <tr class="information">
+                    <td colspan="2" style="padding-top: 0px;">
+                        Booking Number: @Model.OrderNo<br />
+                        Booking Date : @Model.CreatedOn.Value.ToString("dd MMM yyyy")<br />
+                        Payment Method : @Model.PaymentMethod
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <h1 style="padding-top:10px">Customer Details</h1>
+                    </td>
+                </tr>
+                <tr class="information">
+                    <td colspan="2" style="padding-top: 0px;">
+                        Customer Name: @Model.Customer.Name<br />
+                        Contact : @Model.Customer.Contact<br />
+                        Address: @Model.Customer.Address
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
+    <div class="row offset-9 mb-2">
+        <button type="button" class="btn btn-lg btn-light-dark" onclick="printJS({
+    printable: 'printJS-form',
+    type: 'html',
+    honorColor: true,
+    css:['/Assets/css/invoice.css']
+    })">
+            Print
+        </button>
+        <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal">Close</button>
+    </div>
+</body>
+</html>

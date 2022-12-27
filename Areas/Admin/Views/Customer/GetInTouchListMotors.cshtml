@@ -1,0 +1,92 @@
+﻿
+@model IEnumerable<NowBuySell.Data.GetInTouch>
+
+@{
+    ViewBag.Title = "Get In Touch List";
+    Layout = null;
+}
+<style>
+    #kt_datatable1 tbody tr td:last-child {
+        white-space: nowrap;
+    }
+</style>
+<!--begin::Row-->
+<div class="row">
+    <div class="col-xl-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h6>
+                        Customer Enquiries For Motor
+                      
+                    </h6>
+                </div>
+              
+            </div>
+            <input value="@ViewBag.Role" id="UserRoleName" hidden />
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                <!--begin: Datatable-->
+                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable2">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Motor</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td data-order="@item.ID">@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="symbol symbol-50 flex-shrink-0 mr-4"></div>
+                                        <div>
+
+                                            <a href="#" class="text-dark-75 font-weight-bolder mb-1 font-size-lg">@item.Name</a><br>
+                                            <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-sm">@item.Email</a><br>
+                                            <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-sm">@item.PhoneNo</a>
+
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="symbol symbol-50 flex-shrink-0 mr-4">
+
+                                            <div class="symbol-label" style="border-radius: 50%;background-image: url(@item.Car.Thumbnail)"></div>
+
+                                        </div>
+                                        <div>
+
+                                            <a href="/Vendor/Car/Details/@item.Car.ID" target="_blank" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">@item.Car.Name</a><br>
+
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-bg-secondary btn-icon btn-sm mr-1" onclick="OpenModelPopup(this,'/Admin/Customer/GetInTouchListDetails?Id=' + @item.ID)" title="View">
+                                        <i class="fa fa-folder-open"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!--end: Datatable-->
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+
+
+<!--end::Row-->

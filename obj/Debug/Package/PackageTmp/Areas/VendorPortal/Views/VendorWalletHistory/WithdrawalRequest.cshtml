@@ -1,0 +1,47 @@
+﻿@model NowBuySell.Data.VendorWithdrawalRequest
+@{
+	Layout = null;
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<div class="modal-header">
+	<h5 class="modal-title"> Withdrawal Request</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+	@using (Html.BeginForm("WithdrawalRequest", "VendorWalletHistory", new { area = "VendorPortal" }, FormMethod.Post, new { id = "Userform" }))
+	{
+		@Html.AntiForgeryToken()
+		<div class="form-group">
+			<label class="control-label">Enter Amount</label>
+			<input type="number" id="Amount" name="Amount" class="form-control" required placeholder="Enter amount to transfer here..." />
+		</div>
+		<div class="form-group">
+			<label class="control-label">Description</label>
+			<input type="text" id="Description" name="Description" class="form-control" placeholder="Enter description here..." />
+		</div>
+
+	}
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	<button type="submit" id="btnsubmit" class="btn btn-info" form="Userform">Submit</button>
+</div>
+<script>
+	$("#Amount").change(function () {
+		
+		var a = $("#Amount").val();
+		var b = $("#pending").text();
+		b = b.replace(',', '');
+		if (parseFloat(a) > parseFloat(b)) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Check your pending amount!',
+				//  footer: '<a href>Image dimension should be 1713x540 and size should less than 1 Mb</a>'
+			})
+			$("#Amount").val("");
+		}
+	});
+</script>

@@ -1,0 +1,164 @@
+﻿@{
+	ViewBag.Title = Resources.Careers;
+	var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+	bool RTL = CultureHelper.IsRighToLeft();
+}
+<!-- PAGE CONTAINER START -->
+<div class="page-container min-h-300">
+	<!-- MAIN START -->
+	<section class="wo-main-section wo-main-section-50">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="wo-sectionhead">
+						<div class="wo-sectionhead__title">
+							@*<span>Great Review From Owners</span>*@
+							<h2>@Html.Raw(Resources.Careers)</h2>
+						</div>
+						@*<div class="wo-sectionhead__description">
+								<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+							</div>*@
+					</div>
+					<div class="row wo-forumsingle-section wo-forumsingle-section-50 justify-content-center">
+						<div class="col-12">
+							<input type="hidden" id="SuccessMessage" value="@ViewBag.SuccessMessage" />
+							<input type="hidden" id="ErrorMessage" value="@ViewBag.ErrorMessage" />
+
+							<form action="/@culture/Home/Careers" class="form-card wo-profileform @(RTL?"text-right":"")" method="post" enctype="multipart/form-data" id="FormCareers">
+								@Html.AntiForgeryToken()
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="mb-3">
+											<label class="form-label">@Resources.Name <span class="text-danger">*</span></label>
+											<input name="Name" id="Name" type="text" class="form-control" required placeholder="@Resources.Name" lang="@(RTL?"ar":"en")">
+										</div>
+									</div><!--end col-->
+
+									<div class="col-md-6">
+										<div class="mb-3">
+											<label class="form-label">@Resources.Gender</label>
+											<div class="form-group">
+												<div class="wo-select">
+													<select id="vehicle-condition1" class="form-control" name="Gender" aria-hidden="true" lang="@(RTL?"ar":"en")">
+														<option selected hidden>@Resources.SelectGender</option>
+														<option value="Male">@Resources.Male</option>
+														<option value="Female">@Resources.Female</option>
+														<option value="Other">@Resources.Other</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div><!--end col-->
+
+									<div class="col-md-6">
+										<div class="mb-3">
+											<label class="form-label">@Resources.DateOfBirth <span class="text-danger">*</span></label>
+											<input class="form-control" name="DateOfBirth" id="DateOfBirth" type="date" required lang="@(RTL?"ar":"en")">
+										</div>
+									</div><!--end col-->
+
+									<div class="col-md-6">
+										<div class="mb-3">
+											<label class="form-label">@Resources.Education <span class="text-danger">*</span></label>
+											<input name="Education" id="Education" type="text" class="form-control" placeholder="@Resources.Education" required lang="@(RTL?"ar":"en")">
+										</div>
+									</div><!--end col-->
+
+									<div class="col-md-6">
+										<div class="mb-3">
+											<label class="form-label">@Resources.Position (@Resources.Recent) <span class="text-danger">*</span></label>
+											<input name="Position" id="Position" type="text" class="form-control" placeholder="@Resources.Position" required lang="@(RTL?"ar":"en")">
+										</div>
+									</div><!--end col-->
+
+									<div class="col-md-6">
+										<div class="mb-3">
+											<label class="form-label">@Resources.Experience <span class="text-danger">*</span></label>
+											<input name="Experience" id="Experience" type="text" class="form-control" placeholder="@Resources.Experience" required lang="@(RTL?"ar":"en")">
+										</div>
+									</div><!--end col-->
+
+									<div class="col-lg-6">
+										<div class="mb-3">
+											<label class="form-label">@Resources.AttachCV <span class="text-danger">*</span></label>
+											<div class="file-group">
+												<label for="choose-file" class="custom-file-upload" id="choose-file-label">@Resources.UploadDocument</label>
+												<span class="choose-file-span m@(RTL?"r":"l")-2">@Resources.NoFileChosen</span>
+												<input type="file" name="FilePath" id="choose-file" placeholder="@Resources.Browse" lang="@(RTL?"ar":"en")" style="display:none;">
+											</div>
+										</div>
+									</div><!--end col-->
+									<div class="col-lg-12">
+										<div class="form-group wo-form-btn">
+											<button type="submit" class="wo-btn" id="btnSubmit" lang="@(RTL?"ar":"en")">@Resources.Submit</button>
+										</div>
+									</div><!--end col-->
+								</div><!--end row-->
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- MAIN END -->
+</div>
+<!-- PAGE CONTAINER END -->
+@section IndexScript {
+	<script>
+		$(document).ready(function () {
+			var defaultFileName = $('.choose-file-span').text();
+
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth() + 1; //January is 0!
+			var yyyy = today.getFullYear();
+			if (dd < 10) {
+				dd = '0' + dd
+			}
+			if (mm < 10) {
+				mm = '0' + mm
+			}
+
+			today = yyyy + '-' + mm + '-' + dd;
+			$("#DateOfBirth").attr("max", today);
+
+			$('#choose-file').change(function () {
+				var i = $(this).prev('span').clone();
+				try {
+					var file = $('#choose-file')[0].files[0].name;
+					$(this).prev('span').text(file);
+				} catch (e) {
+					$(this).prev('span').text(defaultFileName);
+				}
+			});
+
+			$('#FormCareers').submit(function () {
+				if ($('#choose-file')[0].files[0]) {
+					$('#btnSubmit').html('<span class="fa fa-circle-notch fa-spin ' + margin(1) + ' "></span> ' + $('#btnSubmit').text()).attr('disabled', true);
+					return true;
+				}
+				else {
+					SlideDownToasterMessage('<span class="fa fa-exclamation-triangle ' + margin(1) + ' "></span>', lang == "en" ? 'Please Attach CV first !' : 'الرجاء إرفاق السيرة الذاتية أولا!' , 6);
+					return false;
+				}
+			});
+		})
+	</script>
+	@*@if (ViewBag.SuccessMessage != null)
+	{
+		<script>
+			$(document).ready(function () {
+				SlideDownToasterMessage('<span class="fa fa-check-circle ' + margin(1) + '"></span>', '@ViewBag.SuccessMessage', 8);
+			});
+		</script>
+	}
+	@if (ViewBag.ErrorMessage != null)
+	{
+		<script>
+			$(document).ready(function () {
+				SlideDownToasterMessage('<span class="fa fa-exclamation-triangle ' + margin(1) + '"></span>', '@ViewBag.ErrorMessage', 8);
+			});
+		</script>
+	}*@
+}

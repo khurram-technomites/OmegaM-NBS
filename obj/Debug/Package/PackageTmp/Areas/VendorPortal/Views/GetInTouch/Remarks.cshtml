@@ -1,0 +1,110 @@
+@model IEnumerable<NowBuySell.Data.GetInTouchRemark>
+@{
+    ViewBag.Title = "Remarks";
+    Layout = null;
+}
+<style>
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #23aedc;
+    }
+</style>
+<div class="modal-header">
+    <h5 class="modal-title">Remarks</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div class="card p-3 mb-10 bg-gray-100 pt-5 scroll" id="Remarks_Div_Scroll" style="height: 300px; overflow: scroll; overflow-x: hidden;">
+
+        @foreach (var item in Model)
+        {
+                <div class="bg-gray-300 p-4 rounded mb-4">
+                    <span><span class="font-size-sm">@item.VendorUser.Name</span> <span class="font-size-xs">@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")</span></span>
+                    <p class="mb-0">@item.Remarks</p>
+                </div>
+        }
+
+
+    </div>
+
+    @using (Html.BeginForm("Remarks", "GetInTouch", new { area = "VendorPortal" }, FormMethod.Post, new { id = "RemarksForm", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <input name="GetInTouchId" id="GetInTouchId" value="@ViewBag.GetInTouchId" hidden />
+                    <textarea name="Remarks" id="Remarks" class="form-control" rows='2' placeholder="Enter remarks here..."></textarea>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" onclick="sendRemarksMessage();" form="frm-edit">Submit</button>
+</div>
+
+<script type="text/javascript">
+
+
+
+    function OneTimeScrollDown() {
+        var elem = $("#Remarks_Div_Scroll");
+        elem.scrollTop(elem.prop('scrollHeight'));
+    }
+
+    function sendRemarksMessage() {
+        
+        $.ajax({
+            type: 'POST',
+            url: '/Vendor/GetInTouch/Remarks',
+            data: $('#RemarksForm').serialize(),
+            success: function (response) {
+                if (response.success) {
+                    
+                    BindRemarks(response.data);
+                } else {
+                    ToastrMessage(ServerErrorShort);
+                }
+            }
+        });
+    }
+
+    function BindRemarks(data) {
+        
+        var template = get_remarks_template(data);
+        $('#Remarks_Div_Scroll').append(template);
+        $('#Remarks').val(" ");
+        OneTimeScrollDown();
+    };
+
+    function get_remarks_template(v) {
+        
+        var template = `<div class="bg-gray-300 p-4 rounded mb-4">
+                            <span class="font-size-xs">${v.VendorUserName} ${v.Date}</span>
+                            <p class="mb-0">${v.Remarks}</p>
+                        </div>`;
+        return template;
+    }
+
+
+
+</script>

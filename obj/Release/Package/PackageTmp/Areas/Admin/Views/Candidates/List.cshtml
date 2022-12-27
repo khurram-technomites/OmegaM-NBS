@@ -1,0 +1,78 @@
+﻿@model IEnumerable<NowBuySell.Data.Candidate>
+@{
+    ViewBag.Title = "List";
+    Layout = null;
+    var Server = NowBuySell.Web.Helpers.Routing.CustomURL.GetImageServer();
+}
+<style>
+    #kt_datatable1 tbody tr td:last-child {
+        white-space: nowrap;
+    }
+</style>
+<!--begin::Row-->
+<div class="row">
+    <div class="col-xl-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        Careers
+                        <span class="d-block text-muted pt-2 font-size-sm">Manage Careers Here...</span>
+                    </h3>
+                </div>
+                <div class="dropdown dropdown-inline mr-2">
+                    @using (Html.BeginForm("CVReport", "Candidates", FormMethod.Post))
+                    {
+                       @* @Html.AntiForgeryToken()*@
+
+                        <button type="submit" class="btn btn-dark btn-sm" @(Model.Count() > 0 ? "" : "disabled")>
+                            <i class="far fa-file-excel"></i>
+                            Export Excel
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="card-toolbar">
+                <!--begin::Dropdown-->
+               
+                <div class="card-body">
+                    @Html.AntiForgeryToken()
+                    <!--begin: Datatable-->
+                    <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Experience</th>
+                                <th>Position</th>
+                                @*<th hidden>CV</th>*@
+                                <th>CV</th>
+                                @*<th></th>*@
+                            </tr>
+                        </thead>
+                        <tbody style="display:none">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")	</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Gender</td>
+                                    <td>@item.Experience</td>
+                                    <td>@item.Position</td>
+                                    @*<td hidden>@Server@Url.Content(item.FilePath)</td>*@
+                                    <td nowrap="nowrap">@item.FilePath</td>
+                                    @*<td>@(item.IsActive.HasValue ? item.IsActive.Value : false)</td>*@
+                                    @*<td nowrap="nowrap">@item.MarkAsRead,@item.ID</td>*@
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!--end: Datatable-->
+                </div>
+            </div>
+            <!--end::Card-->
+        </div>
+</div>
+<!--end::Row-->

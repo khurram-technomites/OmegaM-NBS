@@ -1,0 +1,37 @@
+@model NowBuySell.Data.VendorWalletShareHistory
+@{
+	ViewBag.Title = "Details";
+	Layout = null;
+}
+
+<div class="modal-header">
+	<h5 class="modal-title">Details</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="float-left mb-3">
+				<i class="fa fa-calendar"></i>
+				<b>@Html.Label("Creation Date:", htmlAttributes: new { @class = "control-label" })</b>
+				@if (Model.CreatedOn.HasValue)
+				{
+					var date = Model.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt");
+					<label class="control-label" readonly="readonly">@date</label>
+				}
+				else
+				{
+					<label class="control-label" readonly="readonly"> - </label>
+				}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-sm-12"><div class="form-group"><label class="control-label">{0}</label><div class="input-group mb-2"><label class="form-control">@(Model.{0}!=null?Model.{0}.Name:"-")</label><div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div></div></div></div><div class="col-md-6 col-sm-12"><div class="form-group">@*<label class="control-label">Description (Ar)</label>*@<div class="input-group mb-2"><label class="form-control">@Model.Description</label><div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div></div></div></div><div class="col-md-6 col-sm-12"><div class="form-group"><label class="control-label">Amount</label><div class="input-group mb-2"><label class="form-control">@Model.Amount</label><div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div></div></div></div><div class="col-md-6 col-sm-12"><div class="form-group"><label class="control-label">Type</label><div class="input-group mb-2"><label class="form-control">@Model.Type</label><div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div></div></div></div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>

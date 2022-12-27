@@ -1,0 +1,128 @@
+﻿@model NowBuySell.Data.Invoice
+@{
+    ViewBag.Title = "Invoice";
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Booking Invoice</title>
+    <link href="~/Assets/css/invoice.css" rel="stylesheet" />
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
+</head>
+
+<body>
+    <form method="post" action="#" id="printJS-form">
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td colspan="3" class="title">
+                        <img src="~/Assets/images/logo/logo.png" style="width:85%; max-width:300px;padding-top:10px">
+                    </td>
+                    <td colspan="2" class="invoice-info">
+                        Invoice #: @Model.InvoiceNo<br>
+                        Date: @Model.CreatedOn.Value.ToString("dd MMM yyyy")<br>
+                        Customer Name: @Model.Order.Customer.Name<br>
+                        Contact: @Model.Order.Customer.Contact
+                        <!--QR Code Start-->
+                        <div class="pl-15">
+                            <img class="mt-5 pt-3" src="https://api.qrserver.com/v1/create-qr-code/?data=@HttpUtility.UrlEncode(Model.Order.OrderNo)&amp;size=100x100&amp;color=0000&amp;ecc=M" alt="@Model.Order.OrderNo" title="@Model.Order.OrderNo" />
+                        </div>
+                        <!--QR Code End-->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <h1 style="padding-top:15px">Booking Invoice</h1>
+                    </td>
+                </tr>
+                <tr class="information">
+					<td colspan="3" style="padding-top: 25px;">
+
+
+						@(Model.Order.Customer.Area != null? (Model.Order.Customer.Area.Name !=null ? Model.Order.Customer.Area.Name : "-") :"-")<br />
+						@Model.Order.Customer.Address<br />
+						@(Model.Order.Customer.City != null? (Model.Order.Customer.City.Name !=null ? Model.Order.Customer.City.Name : "-") :"-")
+					</td>
+					<td colspan="2" class="invoice-info" style="padding-top: 25px;">
+						Booking No: @Model.Order.OrderNo<br>
+						Booking Date: @Model.Order.CreatedOn.Value.ToString("dd MMM yyyy")<br>
+						Payment Method: @Model.PaymentMethod<br>
+						From: @(Model.Order.OrderDetails !=null? (Model.Order.OrderDetails.FirstOrDefault().StartDateTime.HasValue == true ? Model.Order.OrderDetails.FirstOrDefault().StartDateTime.Value.ToString("dd MMM yyyy") : "-") :"-")<br>
+						To: @(Model.Order.OrderDetails !=null? (Model.Order.OrderDetails.FirstOrDefault().EndDateTime.HasValue == true ? Model.Order.OrderDetails.FirstOrDefault().EndDateTime.Value.ToString("dd MMM yyyy") : "-") :"-")
+					</td>
+                </tr>
+
+                <tr  class="heading">
+                    <td colspan="3">
+                        Car
+                    </td>
+                    <td style="text-align: inherit;">
+                        Package
+                    </td>
+                    <td>
+                        Price
+                    </td>
+                </tr>
+
+                @foreach (var item in Model.Order.OrderDetails)
+                {
+                    <tr class="item">
+                        <td colspan="3">
+                            @item.Car.Name<br>
+                            <label style="font-size: 10px;">Chasis/Vin: @item.Car.SKU</label>
+                        </td>
+                        <td style="text-align: inherit;">
+                            @item.PackageName
+                        </td>
+                        <td>
+                            <label style="font-size: 10px;">AED</label> @item.Price
+                        </td>
+                    </tr>
+                }
+            </table>
+            <table cellpadding="0" cellspacing="0">
+                <tr class="total">
+                    <td></td>
+                    <td>
+                        Subtotal: <label style="font-size: 10px;">AED</label> @string.Format("{0:G29}", decimal.Parse(Model.Order.Amount.ToString()))
+                    </td>
+                </tr>
+                <tr class="total">
+                    <td></td>
+                    <td>
+                        Delivery: <label style="font-size: 10px;">AED</label> @string.Format("{0:G29}", decimal.Parse(Model.Order.DeliveryCharges.ToString()))
+                    </td>
+                </tr>
+                <tr class="total">
+                    <td></td>
+                    <td>
+                        Tax: <label style="font-size: 10px;">AED</label> @string.Format("{0:G29}", decimal.Parse(Model.Order.TaxAmount.ToString()))
+                    </td>
+                </tr>
+                <tr class="total">
+                    <td></td>
+                    <td>
+                        Total: <label style="font-size: 10px;">AED</label> @string.Format("{0:G29}", decimal.Parse(Model.Order.TotalAmount.ToString()))
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </form>
+    <div class="row offset-9 mb-2">
+        <button type="button" class="btn btn-lg btn-light-dark" onclick="printJS({
+    printable: 'printJS-form',
+    type: 'html',
+    honorColor: true,
+    css:['/Assets/css/invoice.css']
+    })">
+            Print
+        </button>
+        <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal">Close</button>
+    </div>
+</body>
+</html>

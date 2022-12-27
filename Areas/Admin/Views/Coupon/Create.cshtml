@@ -1,0 +1,156 @@
+@model NowBuySell.Data.Coupon
+@{
+	ViewBag.Title = "Create";
+	Layout = null;
+}
+<script src="~/assets/admin/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+<div class="modal-header">
+	<h5 class="modal-title">Create</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+	@using (Html.BeginForm("Create", "Coupon", new { area = "Admin" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+	{
+		@Html.AntiForgeryToken()
+		<div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		<div class="row">
+			<div class="col-md-4 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Coupon Code</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.CouponCode, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter coupon code here ...", required = "required", oninput = "this.value = this.value.toUpperCase();" } })
+						@Html.ValidationMessageFor(model => model.CouponCode, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-hashtag"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Coupon Name</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter coupon name here ...", dir = "ltr", required = "required" } })
+						@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Type</label>
+					<div class="input-group mb-2">
+						<select class="form-control" name="Type" id="Type" required>
+							<option value="" selected disabled>Select Type</option>
+							<option value="FixedAmount">Fixed Amount</option>
+							<option value="Percentage">Percentage</option>
+						</select>
+						@Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-toggle-off"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Frequency</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.Frequency, new { htmlAttributes = new { @class = "form-control", type = "number", step = ".01", placeholder = "Enter frequency here ...", required = "required" } })
+						@Html.ValidationMessageFor(model => model.Frequency, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-history"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12">
+				<div class="form-group coupon-value">
+					<label class="control-label">Value</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control", type = "number", step = ".01", placeholder = "Enter discount amount here ...", required = "required" } })
+						@Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-credit-card"></i></span></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-12 max-amount">
+				<div class="form-group">
+					<label class="control-label">Max Amount</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.MaxAmount, new { htmlAttributes = new { @class = "form-control", type = "number", step = ".01", placeholder = "Enter max discount amount here ...", required = "required" } })
+						@Html.ValidationMessageFor(model => model.MaxAmount, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-credit-card"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Expiry</label>
+					<div class="input-group mb-2">
+						<div class="input-daterange input-group kt_datepicker_range">
+							@*@Html.EditorFor(model => model.Expiry, new { htmlAttributes = new { @class = "form-control", type = "text", placeholder = " MM/DD/YYYY", required = "required" } })*@
+							@Html.EditorFor(model => model.Expiry, new { htmlAttributes = new { @class = "form-control kt_datepicker_range", type = "text", placeholder = " MM/DD/YYYY", required = "required" } })
+							@Html.ValidationMessageFor(model => model.Expiry, "", new { @class = "text-danger" })
+							<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Is Open To All</label>
+					<span class="switch">
+						<label>
+							@Html.CheckBox("IsOpenToAll")
+							<span></span>
+						</label>
+					</span>
+				</div>
+			</div>
+		</div>
+	}
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	<button type="submit" class="btn btn-info" form="Userform">Submit</button>
+</div>
+<script>
+
+	$(document).ready(function () {
+		//$("#IsOpenToAll").val(false);
+
+		$('#Type').change(function () {
+			if ($(this).val() == "FixedAmount") {
+				$('.coupon-value label').text("Discount Amount");
+				$('.coupon-value input').attr("placeholder", "Enter discount amount here ...");
+				$('.coupon-value i').addClass("fa-credit-card").removeClass("fa-percent");
+
+				$('.max-amount').hide();
+				$('.max-amount input').prop("disabled", true);
+			}
+			else if ($(this).val() == "Percentage") {
+				$('.coupon-value label').text("Discount Percentage");
+				$('.coupon-value input').attr("placeholder", "Enter discount percentage here ...");
+				$('.coupon-value i').removeClass("fa-credit-card").addClass("fa-percent");
+
+				$('.max-amount').fadeIn();
+				$('.max-amount input').prop("disabled", false);
+			}
+		});
+
+		$('.kt_datepicker_range').datepicker({
+			rtl: KTUtil.isRTL(),
+			todayHighlight: true,
+			//format: 'dd/mm/yyyy',
+		});
+	})
+	//$("#IsOpenToAll").change(function () {
+
+	//    if ($("#IsOpenToAll").is(':checked', true)) {
+	//        $("#IsOpenToAll").val(true);
+	//    }
+	//    else {
+	//        $("#IsOpenToAll").val(true);
+	//    }
+	//})
+</script>

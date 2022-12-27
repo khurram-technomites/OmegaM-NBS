@@ -1,0 +1,422 @@
+﻿@{
+	ViewBag.Title = Resources.Home;
+	var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+	bool RTL = CultureHelper.IsRighToLeft();
+}
+
+<link href="~/Assets/js/vendor/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Assets/css/owl.carousel.min.css">
+<link rel='stylesheet' href='~/Assets/css/bootstrap-slider.min.css'>
+<style>
+	div.pac-container {
+		/*for search locaton on map model popup txtaddress*/
+		z-index: 99999999999 !important;
+	}
+</style>
+
+<!-- BANNER START -->
+<div class="wo-mainbanner-wrap" id="wo-mainbanner-wrap-header" style="display:none;">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="wo-banner">
+					<div id="wo-banner__silder" class="wo-banner__silder owl-carousel">
+						@*<figure>
+							<a href="/en-ae/home">
+								<img src="~/Assets/images/index/banner/img-05.png" alt="img description">
+							</a>
+						</figure>
+						<figure>
+							<a href="/en-ae/home">
+								<img src="~/Assets/images/index/banner/img-04.png" alt="img description">
+							</a>
+						</figure>
+						<figure>
+							<a href="/en-ae/home">
+								<img src="~/Assets/images/index/banner/img-05.png" alt="img description">
+							</a>
+						</figure>*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- BANNER END -->
+<!-- MAIN START -->
+<main class="wo-main overflow-hidden">
+	<!-- CATEGORY START -->
+	<section class="wo-main-section">
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col-lg-8">
+					<div class="wo-sectionhead">
+						<div class="wo-sectionhead__title">
+							<span>@Resources.ExperienceWith</span>
+							<h2>@Html.Raw(Resources.TopCategories)</h2>
+						</div>
+						<div class="wo-sectionhead__description">
+							<p>
+								@Resources.TOP_CATEGORIES_LAYOUT_DETAILS
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row mb-4">
+				<div class="col-12">
+					<div class="categories wo-banner no-shadow-box">
+						<!-- <div class="wo-brands__title">
+							<h3>Start With Trending Brands</h3>
+						</div> -->
+						<div class="wo-brands__slider owl-carousel" id="CategoriesContainer">
+							@*<div class="wo-branditem category">
+									<img src="~/Assets/images/car-icon/cat-01.png" alt="img description">
+									<h4>Sports Car</h4>
+									<span>11 Cars Available</span>
+								</div>
+								<div class="wo-branditem category">
+									<img src="~/Assets/images/car-icon/cat-02.png" alt="img description">
+									<h4>SUV</h4>
+									<span>5 Cars Available</span>
+								</div>
+								<div class="wo-branditem category selected">
+									<img src="~/Assets/images/car-icon/cat-03.png" alt="img description">
+									<h4>Luxury</h4>
+									<span>7 Cars Available</span>
+								</div>
+								<div class="wo-branditem category selected">
+									<img src="~/Assets/images/car-icon/cat-04.png" alt="img description">
+									<h4>Sedans</h4>
+									<span>17 Cars Available</span>
+								</div>*@
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="wo-innerbanner">
+						<div class="wo-searchbar">
+							<div class="wo-searchbar__title @(RTL ? "text-right" : "")">
+								<h4>@Html.Raw(Resources.SearchVehicleHeading)</h4>
+							</div>
+							<form class="wo-bannerform mt-md-2" id="SearchForm">
+								<fieldset>
+									<div class="row mb-3">
+										<div class="col-md-6 col-sm-12">
+											<div class="form-group w-100">
+												<label class="wo-titleinput mb-0">@Resources.SearchLocation</label>
+												<div class="wo-form-icon">
+													<input type="text" class="form-control show-map-input @(RTL ? "flex-app" : "") txtAddress" id="txtAddress" name="txtAddress" placeholder="@Resources.Chooselocation" required>
+													<a href="javascript:void(0);" class="wo-right-icon" onclick="getLocation()">
+														<i class="ti-target"></i>
+													</a>
+													<a href="javascript:void(0);" class="wo-right-icon" @*data-toggle="modal" data-target="#map-modal"*@ onclick="openMap()">
+														@Resources.ShowOnMap
+													</a>
+												</div>
+											</div>
+											<div class="MapSearchResult" style="display:none">
+											</div>
+											<input type="hidden" name="latitude" id="latitude" value="" />
+											<input type="hidden" name="longitude" id="longitude" value="" />
+										</div>
+										<div class="col-md-6 col-sm-12">
+											<label class="wo-titleinput mb-2">@Resources.Duration</label>
+											<div class="car-packages">
+												<div class="package m-1 selected" data="1">@Resources.Hourly</div>
+												<div class="package m-1" data="2">@Resources.Daily</div>
+												<div class="package m-1" data="3">@Resources.Weekly</div>
+												<div class="package m-1" data="4">@Resources.Monthly</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 col-sm-12">
+											<label class="wo-titleinput mb-2">
+												@Resources.StartDateAndTime
+											</label>
+											<div class="row">
+												<div class="col-md-6 col-sm-12">
+													<div class="form-group w-100">
+														<div class="wo-form-icon input-group date">
+															<input type="text" class="form-control" id="StartDate" name="StartDate" required placeholder="@Resources.Date">
+															<a href="javascript:void(0);" class="wo-right-icon input-group-addon">
+																<i class="ti-calendar"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-12">
+													<div class="form-group w-100">
+														<div class="wo-form-icon input-group">
+															<input type="text" class="time form-control" id="StartTime" name="StartTime" required placeholder="@Resources.Time">
+															<a href="javascript:void(0);" class="wo-right-icon input-group-addon">
+																<i class="ti-time"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 col-sm-12">
+											<label class="wo-titleinput mb-2">@Resources.EndDateAndTime</label>
+											<div class="row">
+												<div class="col-md-6 col-sm-12">
+													<div class="form-group w-100">
+														<div class="wo-form-icon input-group date">
+															<input type="text" class="form-control" id="EndDate" name="EndDate" required placeholder="@Resources.Date">
+															<a href="javascript:void(0);" class="wo-right-icon input-group-addon">
+																<i class="ti-calendar"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-12">
+													<div class="form-group w-100">
+														<div class="wo-form-icon">
+															<input type="text" class="time form-control" id="EndTime" name="EndTime" required placeholder="@Resources.Time">
+															<a href="javascript:void(0);" class="wo-right-icon input-group-addon">
+																<i class="ti-time"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12">
+											<button type="submit" class="btn btn-block btn-theme btn-search-vehicle">
+												@Resources.SearchVehicle
+											</button>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- CATEGORY END -->
+	<!-- Vehicles Featured Start -->
+	<section class="wo-main-section" id="web-newsfeed-grid">
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col-lg-8">
+					<div class="wo-sectionhead">
+						<div class="wo-sectionhead__title">
+							<span>@Resources.Stayuptodate</span>
+							<h2>@Html.Raw(Resources.Articles)</h2>
+							@*<h2>أحدث <em>المقالات والنصائح</em> </h2>*@
+						</div>
+						<div class="wo-sectionhead__description">
+							<p>
+								@Resources.JOIN_OUR_LATEST_ARTICLES_AND_TIPS_LAYOUT_DETAILS
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="wo-articles-wrap web-newsfeed-grid justify-content-center @(RTL ? "text-right" : "")">
+					<!--
+					<div class="col-12 col-md-6 col-lg-4">
+						<div class="wo-articles">
+							<div class="wo-articles__head">
+								<img src="~/Assets/images/articles/info-circle.png" alt="img description">
+								<div class="wo-articles-title">
+									<h3>
+										<a href="forum-single.html">
+											Is it Safe to Buy Imported Car Leaving Local
+											Cars Behind
+										</a>
+									</h3>
+								</div>
+							</div>
+							<div class="wo-description">
+								<p>
+									Consectetur adipisicing elitem dotin eiusmod tempor incididunt ut labore et
+									dolore
+								</p>
+							</div>
+							<figure class="wo-articles__img">
+								<img src="~/Assets/images/index/articles/img-01.jpg" alt="img description">
+							</figure>
+							<ul class="wo-articlesmeta">
+								<li><span><i class="ti-calendar"></i>jun 27, 2020</span></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4">
+						<div class="wo-articles">
+							<div class="wo-articles__head">
+								<img src="~/Assets/images/articles/info-circle.png" alt="img description">
+								<div class="wo-articles-title">
+									<h3>
+										<a href="forum-single.html">
+											10 Best Family Car Available in Market at Low
+											Price
+										</a>
+									</h3>
+								</div>
+							</div>
+							<div class="wo-description">
+								<p>
+									Consectetur adipisicing elitem dotin eiusmod tempor incididunt ut labore et
+									dolore
+								</p>
+							</div>
+							<figure class="wo-articles__img">
+								<img src="~/Assets/images/index/articles/img-02.jpg" alt="img description">
+							</figure>
+							<ul class="wo-articlesmeta">
+								<li><span><i class="ti-calendar"></i>jun 27, 2020</span></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4">
+						<div class="wo-articles">
+							<div class="wo-articles__head">
+								<img src="~/Assets/images/articles/info-circle.png" alt="img description">
+								<div class="wo-articles-title">
+									<h3><a href="forum-single.html">Documents to Know Before Buying Any Car</a></h3>
+								</div>
+							</div>
+							<div class="wo-description">
+								<p>
+									Consectetur adipisicing elitem dotin eiusmod tempor incididunt ut labore et
+									dolore
+								</p>
+							</div>
+							<figure class="wo-articles__img">
+								<img src="~/Assets/images/index/articles/img-03.jpg" alt="img description">
+							</figure>
+							<ul class="wo-articlesmeta">
+								<li><span><i class="ti-calendar"></i>jun 27, 2020</span></li>
+							</ul>
+						</div>
+					</div>
+						-->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Vehicles Featured End -->
+	<!-- Testimonials Start -->
+	<section class="wo-main-section wo-testimonials-section" id="web-appreciation-slider">
+		<span class="wo-testimonials-section__bg"></span>
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col-lg-8">
+					<div class="wo-testimonials-slider owl-carousel web-appreciation-slider">
+						@*<div class="wo-testimonials">
+								<figure class="wo-testimonials__img">
+									<img src="~/Assets/images/index/top-vehicles/user-img/img-06.jpg" alt="img description">
+								</figure>
+								<div class="wo-sectionhead__title">
+									<span>@Resources.GreatReviewFromOwners</span>
+									<h2>@Html.Raw(Resources.AppreciationThatMatters)</h2>
+								</div>
+								<blockquote class="wo-blockquote">
+									<q>
+										@Resources.AppreciationText
+									</q>
+								</blockquote>
+								<div class="wo-testimonials__name">
+									<a href="javascript:void(0);">@Resources.MarvinWellons</a>
+								</div>
+							</div>*@
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wo-usercircle">
+			<img src="~/Assets/images/index/testimonials/img-01.png" class="wo-circle1" alt="img description">
+			<img src="~/Assets/images/index/testimonials/img-02.png" class="wo-circle2" alt="img description">
+			<img src="~/Assets/images/index/testimonials/img-03.png" class="wo-circle3" alt="img description">
+		</div>
+	</section>
+	<!-- Testimonials End -->
+	<!-- Testimonials Start -->
+	<section class="wo-main-section mobile-app">
+		<span class="wo-mobile-app-section__bg"></span>
+		<div class="container-fluid">
+			<div class="row justify-content-md-center">
+				<div class="col-lg-4">
+					<div class="wo-sectionhead">
+						<div class="wo-sectionhead__title @(RTL ? "text-right" : "")">
+							<span>@Resources.ExclusiveDiscounts</span>
+							<h2>@Html.Raw(Resources.DownloadOurApp)</h2>
+						</div>
+						<div class="wo-sectionhead__description text-justify">
+							<p>
+								@Resources.DOWNLOAD_OUR_APP_DETAILS
+							</p>
+						</div>
+					</div>
+					<div class="wo-fshare flex-app text-center">
+						<a href="javascript:void(0);">
+							<img src="~/Assets/images/footer/ios-store.png"
+								 alt="ios store.png" class="w-85">
+						</a>
+						<a href="javascript:void(0);" class="ml-0 mb-1 @(RTL ? "text-right" : "text-left")">
+							<img src="~/Assets/images/footer/android-store.png"
+								 alt="android store" class="w-85">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-lg-4 text-right">
+					<img src="~/Assets/images/footer/img-app.png" />
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Testimonials End -->
+</main>
+<!-- MAIN END -->
+<!-- Map Modal Start -->
+<div class="modal fade wo-videopopup" tabindex="-1" role="dialog" id="map-modal">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="wo-modalcontent modal-content">
+			<div class="modal-body">
+				<a href="javascript:void(0);" class="close"><i class="ti-close" data-dismiss="modal"></i></a>
+				<div class="login-header">
+					<h4 class="text-center mb-2">@Resources.SearchLocation</h4>
+					<p class="text-center" id="drag-map"><span>@Resources.DragMarker</span></p>
+				</div>
+				<!-- Modal Body Start -->
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="map-div" style="display:none">
+								<input type="text" class="form-control mb-3 txtAddress" id="current-location" name="current-location" placeholder="@Resources.SearchLocation" required="">
+								<div id="googleMap" style="width:100%;height:400px;"></div>
+								<button class="btn btn-block btn-theme border-radius-4 mt-3 p-3" type="button" data-dismiss="modal">@Resources.Done</button>
+							</div>
+							<div class="map-div-spin p-5 m-5 text-center">
+								<span class="fa fa-circle-notch fa-spin fa-2x"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal Body End -->
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Map Modal End -->
+@section IndexScript {
+	@*<script src="@Url.ContentVersioned("~/Assets/js/web/home/index.js")"></script>*@
+	<script src="~/Assets/js/vendor/owl.carousel.min.js"></script>
+	<script src="~/Assets/js/wheelon-slider.min.js"></script>
+	<script src="~/Assets/js/vendor/particles.min.js"></script>
+	<script src="~/Assets/js/vendor/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.js"></script>
+	<script src="~/Assets/js/vendor/jquery-clock-timepicker/jquery-clock-timepicker-master/jquery-clock-timepicker.min.js"></script>
+	<script src="@Url.ContentVersioned("~/Assets/js/website/home/index.js")"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=@Resources.MapApiKey&libraries=places&callback=initAutocomplete"></script>
+}

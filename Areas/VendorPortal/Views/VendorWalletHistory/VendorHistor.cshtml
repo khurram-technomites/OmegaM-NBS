@@ -1,0 +1,36 @@
+﻿@model IEnumerable<NowBuySell.Data.VendorWalletShareHistory>
+
+<style>
+	#kt_datatable1 tbody tr td:last-child {
+		white-space: nowrap;
+	}
+</style>
+<div>
+    <h2 class="float-left"></h2>
+
+</div>
+
+@Html.AntiForgeryToken()
+<!--begin: Datatable-->
+<table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+	<thead>
+		<tr>
+			<th>Transaction Date</th>
+			<th>Description</th>
+			<th>Amount</th>
+			<th>Type</th>
+		</tr>
+	</thead>
+	<tbody style="display:none">
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")	</td>
+				<td>@item.Description</td>
+				<td>@item.Amount</td>
+				<td>@item.Type</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<!--end: Datatable-->

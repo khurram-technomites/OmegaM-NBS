@@ -1,0 +1,157 @@
+﻿@{
+	ViewBag.Title = Resources.About;
+	var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+	bool RTL = CultureHelper.IsRighToLeft();
+}
+<style>
+	[dir=ltr] .wo-aboutbannerwrap {
+		padding: 29px 0 58px 0;
+		position: relative;
+	}
+
+	[dir=rtl] .wo-aboutbannerwrap {
+		padding: 29px 0 160px 0;
+		position: relative;
+	}
+</style>
+<!-- PAGE CONTAINER START -->
+<div class="page-container">
+	<!-- BANNER START -->
+	<div class="wo-aboutbannerwrap">
+		<div class="wo-aboutbannerbg">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 596.99">
+				<path class="path1" d="M1923,0V456.68C963,456.68,963,597,3,597V0H1923Z" transform="translate(-3)" />
+				<path class="path2" d="M1923,0V436.68C963,436.68,963,597,3,597V0H1923Z" transform="translate(-3)" />
+			</svg>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-7">
+					<div class="wo-aboutbanner @(RTL? "text-right":"")">
+						<div class="wo-aboutbanner__title">
+							<h2 class="h2 ml-2 text-white-50">
+								@Html.Raw(@Resources.About)
+							</h2>
+							<h2 class="text-white">@Html.Raw(Resources.AboutTextHeading)</h2>
+						</div>
+						<div class="wo-aboutbanner__description text-white">
+							<p class="text-justify">
+								@Html.Raw(@Resources.AboutText)
+							</p>
+						</div>
+						@*<ul id="wo-aboutbanner__counter" class="wo-aboutbanner__counter">
+								<li>
+									<img src="~/Assets/images/about/banner/img-01.png" alt="img description">
+									<div class="wo-counternum">
+										<h4 data-from="0" data-to="35125" data-speed="8000" data-refresh-interval="100">35,125</h4>
+										<span>Happy Clients</span>
+									</div>
+								</li>
+								<li>
+									<img src="~/Assets/images/about/banner/img-02.png" alt="img description">
+									<div class="wo-counternum">
+										<h4 data-from="0" data-to="41856" data-speed="8000" data-refresh-interval="100">41,856</h4>
+										<span>Vehicles For Sale</span>
+									</div>
+								</li>
+								<li>
+									<img src="~/Assets/images/about/banner/img-03.png" alt="img description">
+									<div class="wo-counternum">
+										<h4 data-from="0" data-to="12556" data-speed="8000" data-refresh-interval="100">12,556</h4>
+										<span>Active Members</span>
+									</div>
+								</li>
+								<li>
+									<img src="~/Assets/images/about/banner/img-04.png" alt="img description">
+									<div class="wo-counternum">
+										<h4 data-from="0" data-to="14753" data-speed="8000" data-refresh-interval="100">14,753</h4>
+										<span>Cup of Coffee</span>
+									</div>
+								</li>
+							</ul>*@
+					</div>
+				</div>
+				<div class="col-12 col-md-5">
+					<figure class="wo-aboutbanner-img">
+						<img src="~/Assets/images/about/banner/jaguar-about-@(RTL ? "rtl" : "ltr").jpg" class="border-radius-4" alt="img description">
+					</figure>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- BANNER END -->
+	<!-- MAIN START -->
+	<main class="wo-main">
+		<!-- Why We’re So Different START -->
+		<section class="wo-main-section wo-about-main-section">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-lg-9 col-xl-8">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								<span>@Resources.AboutMainSubText</span>
+								<h2>@Html.Raw(Resources.AboutMainHeading)</h2>
+							</div>
+							<div class="wo-sectionhead__description">
+								<p>@Resources.AboutMainText</p>
+							</div>
+						</div>
+					</div>
+					<div class="wo-differentpost-wrap">
+						<div class="col-12 col-md-6 col-lg-3">
+							<div class="wo-differentpost">
+								<img src="~/Assets/images/footer/img-03.png" class="tag-purple" alt="img description">
+								<h3>@Resources.BestPrice</h3>
+								<p class="txt-wrap-card-offers">@Html.Raw(Resources.BEST_PRICE_DETAILS)</p>
+								<a href="javascript:void(0);" class="read-more">@Resources.ReadMore</a>
+							</div>
+						</div>
+						<div class="col-12 col-md-6 col-lg-3">
+							<div class="wo-differentpost">
+								<img src="~/Assets/images/footer/img-02.png" class="tag-purple" alt="img description">
+								<h3>@Resources.TopCategories</h3>
+								<p class="txt-wrap-card-offers">@Html.Raw(Resources.TOP_CATEGORIES_DETAILS)</p>
+								<a href="javascript:void(0);" class="read-more">@Resources.ReadMore</a>
+							</div>
+						</div>
+						<div class="col-12 col-md-6 col-lg-3">
+							<div class="wo-differentpost">
+								<img src="~/Assets/images/footer/img-01.png" class="tag-purple" alt="img description">
+								<h3>@Resources.SecureWayofPayment</h3>
+								<p class="txt-wrap-card-offers">@Html.Raw(Resources.SECURE_WAY_OF_PAYMENTS_DETAILS)</p>
+								<a href="javascript:void(0);" class="read-more">@Resources.ReadMore</a>
+							</div>
+						</div>
+						<div class="col-12 col-md-6 col-lg-3">
+							<div class="wo-differentpost">
+								<img src="~/Assets/images/footer/img-04.png" class="tag-purple" alt="img description">
+								<h3>@Resources.QualityofVehicles</h3>
+								<p class="txt-wrap-card-offers">@Html.Raw(Resources.QUALITY_OF_VEHICLES_DETAILS)</p>
+								<a href="javascript:void(0);" class="read-more">@Resources.ReadMore</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Why We’re So Different End -->
+	</main>
+	<!-- MAIN END -->
+</div>
+<!-- PAGE CONTAINER END -->
+
+@section IndexScript {
+	<script>
+		$(".read-more").click(function () {
+			var elem = $(this);
+			var div = elem.closest('div');
+			var h3 = String.raw`${$(div).find('h3').html()}`;
+			var p = String.raw`${$(div).find('p').html()}`;
+
+			$('.readmore-heading').html(h3);
+			$('.readmore-p').html(p);
+
+			$('#readmore-text-popup').modal('show');
+		});
+	</script>
+}

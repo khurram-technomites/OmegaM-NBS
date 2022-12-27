@@ -1,0 +1,323 @@
+﻿@model NowBuySell.Data.Survey
+@{
+    ViewBag.Title = "Enquiry";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@*<script src="~/assets/admin/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>*@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!--begin::Page Vendors Styles(used by this page)-->
+<link href="~/assets/Admin/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+<!--end::Page Vendors Styles-->
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Heading-->
+                <div class="d-flex flex-column">
+
+                    <!--begin::Breadcrumb-->
+                    <div class="d-flex align-items-center font-weight-bold my-2">
+                        <!--begin::Item-->
+                        <a href="/Admin/Dashboard/Index" class="opacity-75 hover-opacity-100">
+                            <i class="flaticon2-shelter text-white icon-1x"></i>
+                        </a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <a href="/Admin/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript:void(0);" class="text-white text-hover-white opacity-75 hover-opacity-100">Enquiry</a>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--begin::Filter-->
+    <!--<div class="offset-1 pb-10 row" style="justify-content: center;margin-right: 0px">
+        <div class="form-group mb-1 col-sm-6 col-md-3">
+            <label class="text-white text-hover-white opacity-75 hover-opacity-100">From Date</label>
+            <div class="input-daterange input-group kt_datepicker_range">
+                @Html.Editor("FromDate", new { htmlAttributes = new { @class = "form-control kt_datepicker_range", type = "text", id = "fromDate", placeholder = " MM/DD/YYYY", required = "required" } })-->
+                @*<input type="date" class="form-control kt_datepicker_range"  id="fromDate" name="startDate" required="required" placeholder="FROM... MM/DD/YYYY"  />*@
+                <!--<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+
+            </div>
+        </div>
+        <div class="form-group mb-1 col-sm-6 col-md-3">
+            <label class="text-white text-hover-white opacity-75 hover-opacity-100">To Date</label>
+            <div class="input-daterange input-group kt_datepicker_range">
+                @Html.Editor("ToDate", new { htmlAttributes = new { @class = "form-control kt_datepicker_range", type = "text", id = "toDate", placeholder = " MM/DD/YYYY", required = "required" } })
+                <div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+
+            </div>
+        </div>
+        <div class="form-group mb-1 col-sm-6 col-md-3 ">
+            <label></label>
+            <br>
+            <button type="button" style="margin-top: 6px" class="btn btn-info" id="btnSearch"><i class="fa fa-search text-white"></i>Filter</button>
+        </div>
+        <br />
+    </div>-->
+    <div></div>
+    <!--end::Filter-->
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container" id="subscibers">
+
+            <!--begin::Dashboard-->
+            @{ Html.RenderAction("List", "Survey", new { area = "Admin", method = "Post" }); }
+
+            <!--end::Dashboard-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+<!--end::Content-->
+
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content" style="min-height:100px">
+            <div id='myModalContent'>
+                <div class="row justify-content-center">
+                    <div class="col-16">
+                        <div class="kt-spinner kt-spinner--lg kt-spinner--dark kt-spinner-modal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--end::Row-->
+@section IndexScript {
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <script>
+            toastr.success('@ViewBag.SuccessMessage');
+        </script>
+    }
+    else if (ViewBag.ErrorMessage != null)
+    {
+        <script>
+            toastr.error('@ViewBag.ErrorMessage');
+        </script>
+    }
+
+    @if (ViewBag.ExcelUploadErrorMessage != null)
+    {
+        <script>
+            swal.fire({
+                title: '@ViewBag.ErrorMessage',
+                html: '@Html.Raw(ViewBag.ExcelUploadErrorMessage)',
+                type: 'error',
+            });
+        </script>
+
+    }
+
+    <script>
+    $(document).ready(function () {
+
+		$("#fromDate").datepicker({
+			todayHighlight: true,
+		});
+
+		$("#toDate").datepicker({
+			todayHighlight: true,
+		});
+
+		$("#fromDate").change(function () {
+
+			if (new Date($("#fromDate").val()) > new Date($("#toDate").val())) {
+				$('#toDate').datepicker('setDate', new Date($("#fromDate").val()));
+				$("#toDate").datepicker("option", "minDate", new Date($("#fromDate").val()));
+			}
+		});
+
+		$("#toDate").change(function () {
+
+			if (new Date($("#fromDate").val()) > new Date($("#toDate").val())) {
+				$('#fromDate').datepicker('setDate', new Date($("#toDate").val()));
+				$("#fromDate").datepicker("option", "maxDate", new Date($("#toDate").val()));
+			}
+		});
+
+	//$('.kt_datepicker_range').datepicker({
+	//    todayHighlight: true,
+	//});
+
+
+            $("#btnSearch").on("click", function () {
+
+                var fromDate = $('#fromDate').val();
+                var toDate = $('#toDate').val();
+                var html = "<h3 style=margin-top:208px; margin-bottom:76px; align=center >Filtered Subscribers</h3><br/>";
+
+                //if (fromDate != "" && toDate != "")
+                { html += "<h4>From:    " + fromDate + "            TO:    " + toDate + " </h4>"; }
+
+                if (fromDate == "") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please! Select Date',
+                        //footer: '<a href>Image size should be less than or equal to  100KB and dimension should be 1713x540</a>'
+                    })
+                }
+                else if (toDate == "") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please! Select Date',
+                        //footer: '<a href>Image size should be less than or equal to  100KB and dimension should be 1713x540</a>'
+                    })
+                }
+
+                $.ajax({
+                    url: "@Url.Action("List", "Subscribers")",
+                    type: 'POST',
+                data: {
+                    fromDate: $('#fromDate').val(),
+                    toDate: $('#toDate').val(),
+                    },
+                success: function (data) {
+
+                    //
+                    "use strict";
+                    var table1;
+
+
+                    // $("#kt_datatable1").empty();
+                    if (data != null) {
+
+                        $("#subscibers").html(data);
+
+                        $('#kt_datatable1').dataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                   //{
+                                   //    extend: 'print',
+                                   //    messageTop: function () {
+                                   //        //if ( printCounter === 1 ) {
+                                   //        return html;
+                                   //        //}
+                                   //        //else {
+                                   //        //    return 'You have printed this document '+printCounter+' times';
+                                   //        //}
+                                   //    },
+                                   //    title: '',
+                                   //    exportOptions: {
+                                   //        columns: [0, 1]
+                                   //    }
+                                   //},
+                           {
+                               extend: 'excel',
+                               messageTop: function () {
+                                   return 'Subscribers';
+                               },
+                               title: '',
+                               exportOptions: {
+                                   columns: [0, 1]
+                               }
+                           }
+                            ],
+                            columnDefs: [{
+
+                                targets: 0,
+                                width: '250px',
+
+
+                            }
+
+
+                            ],
+                            //columnDefs: [
+                            //   {
+                            //       targets: 0,
+                            //       width: '250px',
+                            //   }
+                            //{ "aTargets": [1], "bSortable": true },
+                            //{ "aTargets": [0], "bSortable": true, "sType": "date-uk" },
+                            //    ],
+                            //    dom: 'Bfrtip',
+                            //    buttons: [
+                            //        {
+                            //            extend: 'print',
+                            //            messageTop: function () {
+                            //                //if ( printCounter === 1 ) {
+                            //                return html;
+                            //                //}
+                            //                //else {
+                            //                //    return 'You have printed this document '+printCounter+' times';
+                            //                //}
+                            //            },
+                            //            title: '',
+                            //            exportOptions: {
+                            //                columns: [0, 1]
+                            //            }
+                            //        },
+                            //{
+                            //    extend: 'excel',
+                            //    messageTop: function () {
+                            //        return 'Subscribers';
+                            //    },
+                            //    title: '',
+                            //    exportOptions: {
+                            //        columns: [0, 1]
+                            //    }
+                            //}
+                            //    ]
+                            //});
+                            //jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+                            //    "date-uk-pre": function (a) {
+                            //        var ukDatea = a.split('/');
+                            //        return (ukDatea[2] + ukDatea[1] + ukDatea[0]) * 1;
+                            //    },
+                            //    "date-uk-asc": function (a, b) {
+                            //        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+                            //    },
+                            //    "date-uk-desc": function (a, b) {
+                            //        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+                            //    }
+                            //});
+                            //}
+                        });
+                    }
+                }
+            });
+        });
+        })
+
+
+
+    </script>
+
+    <!--begin::Page Vendors(used by this page)-->
+    @*<script src="~/assets/Admin/plugins/custom/datatables/datatables.bundle.js"></script>*@
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <!--end::Page Vendors-->
+    <!--begin::Page Scripts(used by this page)-->
+
+    <script src="@Url.ContentVersioned("~/Assets/Admin/js/admin/survey/list.js")"></script>
+    @*<script src="@Url.ContentVersioned("~/Assets/Admin/js/admin/customersuggestion/list.js")"></script>*@
+    <!--end::Page Scripts-->
+    <script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+
+    <!--end::Page Scripts-->
+}
+
+
+

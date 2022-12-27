@@ -1,0 +1,106 @@
+﻿
+
+@{
+    ViewBag.Title = "Assign User";
+    Layout = null;
+}
+
+<style>
+    #txtstatus option:disabled {
+        background-color: #80808078;
+    }
+</style>
+
+<div class="modal-header">
+    <h5 class="modal-title">Lead Manager</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    
+        <form id="Userform" action="/Vendor/GetInTouch/AssignUser/" name="form" enctype="multipart/form-data" class="form">
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.Label("User", htmlAttributes: new { @class = "control-label" })
+                        <div class="input-group mb-3">
+                            @Html.DropDownList("UserID", null, "Select User", htmlAttributes: new { @class = "form-control kt-selectpicker", @data_actions_box = "true", id = "UserDropDown", required = "required" })
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" onclick="AssignUser()" form="Userform">Submit</button>
+</div>
+<script type="text/javascript">
+    'use strict';
+
+    function AssignUser() {
+        
+        $.ajax({
+            type: 'POST',
+            url: '/Vendor/GetInTouch/AssignUser/',
+            data: $('#Userform').serialize(),
+            success: function (response) {
+                if (response.success) {
+                    toastr.success(response.message);
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    ToastrMessage(ServerErrorShort);
+                }
+            }
+        });
+    }
+
+
+    var showErrorMsg = function (form, type, msg) {
+        var alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>\
+            <span></span>\
+        </div>');
+    };
+
+    $('#UserDropDown').attr("data-live-search", "true");
+    var KTBootstrapSelect = function () {
+
+        // Private functions
+        var demos = function () {
+            // minimum setup
+            $('.kt-selectpicker').selectpicker();
+        }
+
+        return {
+            // public functions
+            init: function () {
+                demos();
+            }
+        };
+    }();
+
+    $(document).ready(function () {
+
+        KTBootstrapSelect.init();
+    });
+
+
+</script>
+
+
+
+
+

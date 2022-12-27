@@ -1,0 +1,81 @@
+﻿@{
+	ViewBag.Title = "Become a seller";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+	.digits {
+		width: 65px;
+		height: 55px;
+		background-color: white;
+		border: 1px solid #9c9c9c;
+		border-radius: 5px;
+		line-height: 50px;
+		text-align: center;
+		font-size: 20px;
+		font-family: 'Raleway', sans-serif;
+		font-weight: 200;
+		color: black;
+		margin: 0 2px;
+	}
+</style>
+<div id="page-content" style="min-height: 600px;">
+	<!--Page Title-->
+	<div class="page section-header text-center">
+		<div class="page-title">
+			<div class="wrapper"><h1 class="page-width">OTP Verification</h1></div>
+			<div class="bredcrumbWrap m-0">
+				<div class="container breadcrumbs">
+					<a href="/" title="Back to the home page">Home</a>
+					<span aria-hidden="true">›</span>
+					<a href="/become-a-seller" title="Back to the home page">Become A Seller</a>
+					<span aria-hidden="true">›</span>
+					<span>OTP Verification</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--End Page Title-->
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+				<div class="mb-4">
+					<form class="text-center contact-form" data-autosubmit="false" autocomplete="off" method="post" action="" id="OTPVerificationForm" accept-charset="UTF-8">
+						@Html.AntiForgeryToken()
+						<div class="row pt-5">
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+								<p class="text-center">
+									<span class="lead text-body">Enter the code that was sent to your number.</span><br />
+								</p>
+								<p class="text-body">
+									<span class="small">+</span><span class="" name="otpContact" id="otpContact">@(ViewBag.Contact != null ? ViewBag.Contact : "")</span>
+								</p>
+								<div class="digit-group" data-group-name="digits">
+									<div id="otp">
+										<div class="form-group form-focus">
+											<input type="text" class="digits" id="digit-1" name="digit-1" data-next="digit-2" required />
+											<input type="text" class="digits" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" required />
+											<input type="text" class="digits" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" required />
+											<input type="text" class="digits" id="digit-4" name="digit-4" data-next="digit-5" data-previous="digit-3" required />
+										</div>
+										<div class="mt-2 mb-2"><span id="timer"></span></div>
+										<center class="mt-2 mb-2"><a class="text-danger" href="javascript:;" style="display:none;" id="otpResend">Resend OTP</a></center>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 mt-2 mb-4">
+								<button type="submit" class="btn mb-3" id="btnOtpVerfication">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--End Body Content-->
+
+@section IndexScript {
+	<script src="@Url.ContentVersioned("~/Assets/js/web/home/verifyotp.js")"></script>
+}

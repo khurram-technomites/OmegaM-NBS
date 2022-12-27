@@ -1,0 +1,95 @@
+﻿@model NowBuySell.Data.CustomerLoyaltySetting
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title">Details</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        
+        <div class="col-md-12 col-sm-12">
+            <div class="float-right mb-3">
+                <i class="fa fa-calendar"></i>
+                <b>@Html.Label("Creation Date:", htmlAttributes: new { @class = "control-label" })</b>
+                @if (Model.CreatedOn.HasValue)
+                {
+                    var date = Model.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt");
+                    <label class="control-label" readonly="readonly">@date</label>
+                }
+                else
+                {
+                    <label class="control-label" readonly="readonly"> - </label>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        
+
+      
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Customer Type</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.CustomerType</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-user-friends"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Points Generation Ratio</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.PGRatio</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-percentage"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Points Redemption Ratio</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.PRRatio</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-percentage"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Points Limit</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.PointsLimit</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-coins"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Customer Max Slab</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.CustomerTypeMaxSlab</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-coins"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Referral Point</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.ReferralPoint</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-coins"></i></span></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+

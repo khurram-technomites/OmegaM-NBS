@@ -1,0 +1,109 @@
+﻿@model NowBuySell.Data.CarInsurance
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title">Add Insurance</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    @using (Html.BeginForm("EditInsurance", "Car", new { area = "VendorPortal" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", id = "Name", placeholder = "Enter name here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">NameAr</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.NameAr, new { htmlAttributes = new { @class = "form-control",dir="rtl" ,id = "NameAr", placeholder = "Enter NameAr here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.NameAr, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Price</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control" value="@Model.Price" name="Price" id="Price" placeholder="Enter price name" />
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-money-bill"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Detail</label>
+                    <div class="input-group mb-3">
+                        @Html.TextAreaFor(model => model.Details, 5, 10, new { @class = "form-control", id = "Detail", placeholder = "Enter details here ..." })
+                        @*@Html.TextAreaFor(model => model.TitleDescriptionAr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description (ar) here ...", required = "required", dir = "rtl" } })*@
+
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Detail (Ar)</label>
+                    <div class="input-group mb-3">
+                        @Html.TextAreaFor(model => model.DetailsAr, 5, 10, new { @class = "form-control",dir="rtl", id = "DetailAr", placeholder = "Enter details here ..." })
+                        @*@Html.TextAreaFor(model => model.TitleDescriptionAr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter description (ar) here ...", required = "required", dir = "rtl" } })*@
+
+                    </div>
+                    @Html.ValidationMessageFor(model => model.DetailsAr, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="Userform">Update</button>
+</div>
+
+@section IndexScript {
+
+
+}
+<script>
+    var _URL = window.URL || window.webkitURL;
+
+    //$("#btnSubmit").click(function () {
+    //    
+    //    var name = $("#Name").val();
+    //    var namear = $("#NameAr").val();
+
+    //});
+
+</script>
+

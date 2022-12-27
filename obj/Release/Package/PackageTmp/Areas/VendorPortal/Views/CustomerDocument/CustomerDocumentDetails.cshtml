@@ -1,0 +1,407 @@
+﻿@model NowBuySell.Data.Customer 
+
+
+@{
+    
+    Layout = null;
+}
+
+
+<div class="modal-header">
+    <h5 class="modal-title">Customer Details</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="float-right mb-3">
+                <i class="fa fa-calendar"></i>
+                <b><label class="control-label">Member Since</label></b>
+                @if (Model.CreatedOn.HasValue)
+                {
+                    var date = Model.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt");
+                    <label class="control-label" readonly="readonly">@date</label>
+                }
+                else
+                {
+                    <label class="control-label" readonly="readonly"> - </label>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+
+        </div>
+        <div class="col-md-6">
+            <div class="symbol symbol-100 ">
+                <div class="symbol-label" style="background-image:url('../../../../assets/Admin/media/users/default.jpg')"></div>
+                <i class="symbol-badge bg-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="text-align:center">
+
+        <div class="col-md-4 col-sm-12">
+            <div class="mt-6 d-flex flex-column flex-root">
+                @*<span class="font-weight-bolder mb-2">Name</span>
+                    <span class="opacity-70">
+                        <i class="fa fa-user"></i>
+
+                        @Model.Name
+
+                    </span>*@
+            </div>
+        </div>
+
+        <div class="mb-6 col-md-4 col-sm-12">
+            <div class="mt-6 flex-column flex-root">
+                <span class="font-weight-bolder mb-2"><i class="fa fa-user"></i>  @Model.Name</span>
+                <span class="opacity-70">
+
+
+
+
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            <div class="mt-6 d-flex flex-column flex-root">
+                @*<span class="font-weight-bolder mb-2">Contact No</span>
+                    <span class="opacity-70">
+                        <i class="fa fa-phone-alt"></i>
+
+                        @Model.Contact
+
+                    </span>*@
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="mt-6 d-flex flex-column flex-root">
+                <span class="font-weight-bolder mb-2">Email</span>
+                <span class="opacity-70">
+                    <i class="fa fa-envelope"></i>
+                    @Model.Email
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            <div class="mt-6 d-flex flex-column flex-root">
+                <span class="font-weight-bolder mb-2">Contact No</span>
+                <span class="opacity-70">
+                    <i class="fa fa-phone-alt"></i>
+
+                    @Model.Contact
+
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            <div class=" mt-6 d-flex flex-column flex-root">
+                <span class="font-weight-bolder mb-2">Account Type</span>
+                <span class="opacity-70">
+                    <i class="fa fa-paperclip"></i>
+                    @Model.AccountType
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            <div class="mt-6 d-flex flex-column flex-root">
+                <span class="font-weight-bolder mb-2">Country</span>
+                <span class="opacity-70">
+                    <i class="fa fa-globe"></i>
+                    @(Model.Country != null ? (!string.IsNullOrEmpty(Model.Country.Name) ? Model.Country.Name : "") : "")
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class=" mt-6 d-flex flex-column flex-root">
+                <span class="font-weight-bolder mb-2">City</span>
+                <span class="opacity-70">
+                    <i class="fa fa-globe"></i>
+                    @(Model.City != null ? (!string.IsNullOrEmpty(Model.City.Name) ? Model.City.Name : "") : "")
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class=" mt-6 d-flex flex-column flex-root">
+                <span class="font-weight-bolder mb-2">Area</span>
+                <span class="opacity-70">
+                    <i class="fa fa-map-marker"></i>
+                    @(Model.Area != null ? (!string.IsNullOrEmpty(Model.Area.Name) ? Model.Area.Name : "") : "")
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class=" mt-6 d-flex flex-column flex-root">
+                @*<span class="font-weight-bolder mb-2">Address</span>
+                    <span class="opacity-70">
+                        <i class="fa fa-address-card"></i>
+                        @Model.Address
+                    </span>*@
+            </div>
+        </div>
+        <div class="mt-6 col-md-4 col-sm-12">
+            <div class=" mt-6 flex-column flex-root">
+                <span class="font-weight-bolder mb-2"><i class="fa fa-address-card"></i> Address : </span>
+                <span class="opacity-70">
+
+                    @Model.Address
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class=" mt-6 d-flex flex-column flex-root">
+                @*<span class="font-weight-bolder mb-2">Address</span>
+                    <span class="opacity-70">
+                        <i class="fa fa-address-card"></i>
+                        @Model.Address
+                    </span>*@
+            </div>
+        </div>
+
+        <div>
+
+
+
+        </div>
+    </div>
+
+    @*<div>
+
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-borderless" style="text-align:center">
+
+                        <tbody>
+
+                            <tr style="height:109px">
+                                <td>
+                                    <div class="d-flex flex-column flex-root">
+                                        <span class="font-weight-bolder mb-2">Name</span>
+                                        <span class="opacity-70">
+                                            <i class="fa fa-user"></i>
+
+                                            @Model.Name
+
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    <div class="d-flex flex-column flex-root">
+                                        <span class="font-weight-bolder mb-2">Contact</span>
+                                        <span class="opacity-70">
+                                            <i class="fa fa-user"></i>
+
+                                            @Model.Contact
+
+                                        </span>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex flex-column flex-root">
+                                        <span class="font-weight-bolder mb-2">Address</span>
+                                        <span class="opacity-70">
+                                            <i class="fa fa-user"></i>
+
+                                            @Model.Address
+
+                                        </span>
+
+                                    </div>
+                                </td>
+
+
+
+                            </tr>
+
+                            <tr style="height:109px">
+                                <td>
+                                    <div class="d-flex flex-column flex-root">
+                                        <span class="font-weight-bolder mb-2">Country</span>
+                                        <span class="opacity-70">
+                                            <i class="fa fa-user"></i>
+
+                                            @(Model.Country != null ? (!string.IsNullOrEmpty(Model.Country.Name) ? Model.Country.Name : "") : "")
+
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    <div class="d-flex flex-column flex-root">
+                                        <span class="font-weight-bolder mb-2">City</span>
+                                        <span class="opacity-70">
+                                            <i class="fa fa-user"></i>
+
+                                            @(Model.City != null ? (!string.IsNullOrEmpty(Model.City.Name) ? Model.City.Name : "") : "")
+
+                                        </span>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex flex-column flex-root">
+                                        <span class="font-weight-bolder mb-2">Area</span>
+                                        <span class="opacity-70">
+                                            <i class="fa fa-user"></i>
+
+                                            @(Model.Area != null ? (!string.IsNullOrEmpty(Model.Area.Name) ? Model.Area.Name : "") : "")
+
+                                        </span>
+
+                                    </div>
+                                </td>
+
+
+
+                            </trstyle="height:109px">
+                            <tr>
+                                <td>
+                                    <div class="d-flex flex-column flex-root">
+                                        <span class="font-weight-bolder mb-2">Email</span>
+                                        <span class="opacity-70">
+                                            <i class="fa fa-user"></i>
+
+                                            @Model.Email
+
+                                        </span>
+
+                                    </div>
+                                </td>
+
+
+
+                                <td>
+                <div class="d-flex flex-column flex-root">
+                    <span class="font-weight-bolder mb-2">Account Type</span>
+                    <span class="opacity-70">
+                        <i class="fa fa-user"></i>
+
+                        @Model.AccountType
+
+                    </span>
+
+                </div>
+            </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>*@
+
+
+    <div>
+        <hr style="width: 65%" />
+        <h5 style="text-align:center" class="mt-9 mb-9">Document</h5>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table" style="text-align:center">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-bold text-muted text-uppercase">Type</th>
+                            <th class="pr-0 font-weight-bold text-muted text-uppercase">Region </th>
+                            <th class="pr-0 font-weight-bold text-muted text-uppercase">Document</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CustomerDocuments)
+                        {
+						<tr class="font-weight-boldest">
+							<td>
+								<div class="align-items-center">
+									<div>
+										<a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+											@item.Type
+										</a>
+
+									</div>
+								</div>
+							</td>
+							@if (item.IsGCC.HasValue)
+							{
+								if ((bool)item.IsGCC)
+								{
+									<td>
+										<div class="align-items-center">
+
+											<div>
+												<a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+													GCC
+												</a>
+											</div>
+										</div>
+									</td>
+								}
+								else
+								{
+									<td>
+										<div class=" align-items-center">
+
+											<div>
+												<a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+													Non GCC
+												</a>
+											</div>
+										</div>
+									</td>
+								}
+							}
+							else
+							{
+								<td>
+									<div class=" align-items-center">
+
+										<div>
+											<a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+												Global
+											</a>
+										</div>
+									</div>
+								</td>
+
+							}
+							<td>
+								<div class="align-items-center">
+
+									<a href="@item.Path" target="_blank" class="">
+										<button class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i>View</button>
+									</a>
+
+								</div>
+							</td>
+
+
+
+						</tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+

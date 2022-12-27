@@ -1,0 +1,122 @@
+@model NowBuySell.Data.DeliveryCharge
+@{
+	ViewBag.Title = "Edit";
+	Layout = null;
+}
+<div class="modal-header">
+	<h5 class="modal-title">Update</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+	@using (Html.BeginForm("Edit", "DeliveryCharge", new { area = "Admin" }, FormMethod.Post, new { id = "frm-edit", @class = "form" }))
+	{
+		@Html.AntiForgeryToken()
+		<div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		@Html.HiddenFor(model => model.ID)
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Country Name</label>
+					<div class="input-group mb-2">
+						@Html.DropDownList("CountryID", null, "Select Country", htmlAttributes: new { @class = "form-control", required = "required" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-flag"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">City Name</label>
+					<div class="input-group mb-2">
+						@Html.DropDownList("CityID", null, "Select City", htmlAttributes: new { @class = "form-control", required = "required" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-home"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Area Name</label>
+					<div class="input-group mb-2">
+						@Html.DropDownList("AreaID", null, "Select Area", htmlAttributes: new { @class = "form-control", required = "required" })
+						@Html.ValidationMessageFor(model => model.AreaID, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-map-marked"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Minimum Order</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.MinOrder, new { htmlAttributes = new { @class = "form-control", type = "number", step = ".01", placeholder = "Enter minimum order here ...", required = "required" } })
+						@Html.ValidationMessageFor(model => model.MinOrder, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-credit-card"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Delivery Charges</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.Charges, new { htmlAttributes = new { @class = "form-control", type = "number", step = ".01", placeholder = "Enter delivery charges here ...", required = "required" } })
+						@Html.ValidationMessageFor(model => model.Charges, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-credit-card"></i></span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	<button type="submit" class="btn btn-info" form="frm-edit">Save Changes</button>
+</div>
+<script>
+	jQuery(document).ready(function () {
+		$('#CountryID').change(function () {
+			var count = 0;
+			var $dropdown = $("#CityID");
+			if ($(this).val() == 0) {
+				$dropdown.empty();
+				$dropdown.append($("<option />").val('').text("Please Select Country First!"));
+			}
+			else {
+				$.ajax({
+					type: 'Get',
+					url: '/City/GetCitiesByCountry/' + $(this).val(),
+					success: function (response) {
+						$dropdown.empty();
+						$dropdown.append($("<option />").val('').text("Select City"));
+						$.each(response.data, function (k, v) {
+							$dropdown.append($("<option />").val(v.value).text(v.text));
+							count++;
+						});
+					}
+				});
+			}
+		});
+		$('#CityID').change(function () {
+			var count = 0;
+			var $dropdown = $("#AreaID");
+			if ($(this).val() == 0) {
+				$dropdown.empty();
+				$dropdown.append($("<option />").val('').text("Please Select City First!"));
+			}
+			else {
+				$.ajax({
+					type: 'Get',
+					url: '/Area/GetAreasByCity/' + $(this).val(),
+					success: function (response) {
+						$dropdown.empty();
+						$dropdown.append($("<option />").val('').text("Select Area"));
+						$.each(response.data, function (k, v) {
+							$dropdown.append($("<option />").val(v.value).text(v.text));
+							count++;
+						});
+					}
+				});
+			}
+		});
+	});
+</script>

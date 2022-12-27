@@ -1,0 +1,516 @@
+﻿
+@model NowBuySell.Web.ViewModels.Order.OrderDetailViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/VendorPortal/Views/Shared/_Layout.cshtml";
+}
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Heading-->
+                <div class="d-flex flex-column">
+                    <!--begin::Breadcrumb-->
+                    <div class="d-flex align-items-center font-weight-bold my-2">
+                        <!--begin::Item-->
+                        <a href="/Vendor/Dashboard/Index" class="opacity-75 hover-opacity-100">
+                            <i class="flaticon2-shelter text-white icon-1x"></i>
+                        </a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <a href="/Vendor/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript: window.history.go(-1);" class="text-white text-hover-white opacity-75 hover-opacity-100">Bookings</a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript:;" class="text-white text-hover-white opacity-75 hover-opacity-100">Details</a>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Dashboard-->
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-xl-12">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Booking Details
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Booking Details Here.</span>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- begin: Invoice-->
+                            <!-- begin: Invoice header-->
+                            <div class="justify-content-center px-8 px-md-0 py-8 row text-center">
+								<div class="col-md-10">
+									<div class="border-bottom w-100"></div>
+									<div class="d-flex justify-content-between pt-6">
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">BOOKING DATE</span>
+											<span class="opacity-70">@(Model.CreatedOn.HasValue ? Model.CreatedOn.Value.ToString("MMM dd, yyyy, h:mm tt") : "")</span>
+
+										</div>
+										@*@if (Model.DeliveryDate.HasValue)
+			{
+				<div class="d-flex flex-column flex-root">
+					<span class="font-weight-bolder mb-2">DELIVERY  DATE</span>
+					<span class="opacity-70">@Model.DeliveryDate.Value.ToString("MMM dd, yyyy, h:mm tt")</span>
+				</div>
+			}*@
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">BOOKING NO.</span>
+											<span class="opacity-70">@Model.OrderNo</span>
+										</div>
+										<div class="d-flex flex-column flex-root">
+											<span class="font-weight-bolder mb-2">CUSTOMER</span>
+											<span class="opacity-70">
+												<i class="fa fa-user"></i>
+												<a class="label label-lg label-light-success label-inline" onclick="OpenModelPopup(this, '/Vendor/CustomerDocument/CustomerDocumentDetails/' + @Model.CustomerID + '', true)">
+													@Model.CustomerName
+											</a>
+											<br />
+											<i class="fa fa-phone-alt"></i>
+											@Model.Contact
+										</span>
+									</div>
+
+
+									<div class="@*d-flex flex-column flex-root*@" hidden>
+										<span class="font-weight-bolder mb-2">CUSTOMER</span>
+										<span class="opacity-70">
+
+										</span>
+									</div>
+
+									<div class="d-flex flex-column flex-root">
+										<span class="font-weight-bolder mb-2">BOOKING STATUS</span>
+										<span class="text-center align-middle">
+
+
+											@if (@Model.Status == "Pending")
+											{
+												<a href="javascript:" class="label label-lg label-light-dark label-inline" onclick="OpenModelPopup(this, '/Vendor/Order/StatusChange/' + @Model.orderID + '', true)">Pending</a>
+											}
+											else if (@Model.Status == "Confirmed")
+											{
+												<a href="javascript:" class="label label-lg label-light-primary label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChange/' + @Model.orderID + '',true)">Confirmed</a> }
+											else if (@Model.Status == "Inprocess")
+											{
+												<a href="javascript:" class="label label-lg label-light-success label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChange/' + @Model.orderID + '',true)">Inprocess</a> }
+											else if (@Model.Status == "Completed")
+											{
+												<a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChange/' + @Model.orderID + '',true)">Completed</a> }
+											else if (@Model.Status == "Dispatched")
+											{
+												<a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChange/' + @Model.orderID + '',true)">Dispatched</a> }
+											else if (@Model.Status == "Delivered")
+											{
+												<a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChange/' + @Model.orderID + '',true)">Delivered</a> }
+											else if (@Model.Status == "Returned")
+											{
+												<a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChange/' + @Model.orderID + '',true)">Returned</a> }
+											else if (@Model.Status == "Canceled")
+											{
+												<a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this, '/Vendor/Order/StatusChange/' + @Model.orderID + '', true)">Canceled</a>}
+
+
+										</span>
+
+									</div>
+
+
+								</div>
+
+
+								<div class="d-flex justify-content-between pt-6">
+									<div class="d-flex flex-column flex-root">
+										<span class="font-weight-bolder mb-2">START DATE</span>
+										<span class="opacity-70">@(Model.orderdetails.FirstOrDefault().StartDateTime.HasValue ? Model.orderdetails.FirstOrDefault().StartDateTime.Value.ToString("MMM dd, yyyy, h:mm tt") : "")</span>
+
+									</div>
+
+
+									<div class="d-flex flex-column flex-root">
+										<span class="font-weight-bolder mb-2">END DATE</span>
+										<span class="opacity-70">@(Model.orderdetails.FirstOrDefault().EndDateTime.HasValue ? Model.orderdetails.FirstOrDefault().EndDateTime.Value.ToString("MMM dd, yyyy, h:mm tt") : "")</span>
+
+
+									</div>
+
+
+								</div>
+
+								</div>
+                            </div>
+                            <!-- end: Invoice header-->
+                            <!-- begin: Invoice body-->
+                            <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-Left  font-weight-bold text-muted text-uppercase">Car</th>
+                                                    <th class="text-Left pr-0 font-weight-bold text-muted text-uppercase">Package </th>
+                                                    <th class="text-Left pr-0 font-weight-bold text-muted text-uppercase">Insurance</th>
+                                                    <th class="text-Left pr-0 font-weight-bold text-muted text-uppercase">Extra Kilometer</th>
+                                                    @*<th class="text-right font-weight-bold text-muted text-uppercase">Qty.</th>*@
+                                                    <th class="text-Left pr-0 font-weight-bold text-muted text-uppercase">Amount</th>
+                                                    @*<th class="text-center font-weight-bold text-muted text-uppercase">Shipment</th>*@
+                                                    @*<th class="text-center font-weight-bold text-muted text-uppercase">Status.</th>
+                                                    <th class="text-center font-weight-bold text-muted text-uppercase">Rating</th>*@
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.orderdetails)
+                                                {
+                                                <tr class="font-weight-boldest">
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="symbol symbol-50 flex-shrink-0 mr-4">
+                                                                <div class="symbol-label" style="background-image: url('@item.Thumbnail')"></div>
+                                                            </div>
+                                                            <div>
+                                                                <a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                                    @item.CarName
+                                                                </a>
+                                                                <span class="text-muted font-weight-bold d-block">  @item.SKU   </span>
+
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+
+                                                            <div>
+                                                                <a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                                     @item.PackageName
+                                                                </a>
+                                                                <span class="text-muted font-weight-bold d-block">  @item.PackagePrice <label class="small"> AED</label> </span>
+
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            @if (item.InsuranceID != null)
+                                                            {
+                                                                <div>
+                                                                    <a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                                        @item.InsuranceName
+                                                                    </a>
+                                                                    <span class="text-muted font-weight-bold d-block">@item.InsurancePrice  <label class="small"> AED</label></span>
+
+
+
+
+                                                                </div>
+                                                            }
+
+                                                            else
+                                                            {
+                                                                <div>
+                                                                    <a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                                       <strong>There is no insurance</strong>
+                                                                    </a>
+                                                                 
+                                                                </div>
+                                                            }
+
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+
+                                                            <div>
+                                                                <a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                                    @item.ExtraKilometer km
+                                                                </a>
+                                                                <span class="text-muted font-weight-bold d-block"> @item.ExtraKilometerPrice <label class="small">AED</label> </span>
+
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    @*<td class="text-right pt-7 align-middle">@item.Quantity</td>*@
+                                                    <td class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg price">@Model.Currency @Model.TotalAmount  </td>
+
+
+                                                    @*<td class="text-center  pt-7 align-middle">
+            @if (item.ShipmentStatus == "Pending")
+            {
+                <a href="javascript:" class="label label-lg label-light-dark label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/ShipmentChangeForDetail/' + @item.DetailID + '',true)">Pending</a> }
+            else if (item.ShipmentStatus == "Processing")
+            {
+                <a href="javascript:" class="label label-lg label-light-primary label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/ShipmentChangeForDetail/' + @item.DetailID + '',true)">Processing</a> }
+            else if (item.ShipmentStatus == "Fulfilled")
+            {
+                <a href="javascript:" class="label label-lg label-light-success label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/ShipmentChangeForDetail/' + @item.DetailID + '',true)">Fulfilled</a> }
+            else if (item.ShipmentStatus == "NotFulfilled")
+            {
+                <a href="javascript:" class="label label-lg label-light-dark label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/ShipmentChangeForDetail/' + @item.DetailID + '',true)">NotFulfilled</a>}
+
+        </td>*@
+                                                    @*<td class="text-center  pt-7 align-middle">
+            @if (item.Status == "Pending")
+            {
+                <a href="javascript:" class="label label-lg label-light-dark label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChangeForDetail/' + @item.DetailID + '',true)">Pending</a> }
+            else if (item.Status == "Confirmed")
+            {
+                <a href="javascript:" class="label label-lg label-light-primary label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChangeForDetail/' + @item.DetailID + '',true)">Confirmed</a> }
+            else if (item.Status == "Processing")
+            {
+                <a href="javascript:" class="label label-lg label-light-success label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChangeForDetail/' + @item.DetailID + '',true)">Processing</a> }
+            else if (item.Status == "Completed")
+            {
+                <a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChangeForDetail/' + @item.DetailID + '',true)">Completed</a> }
+            else if (item.Status == "Dispatched")
+            {
+                <a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChangeForDetail/' + @item.DetailID + '',true)">Dispatched</a> }
+            else if (item.Status == "Delivered")
+            {
+                <a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChangeForDetail/' + @item.DetailID + '',true)">Delivered</a> }
+            else if (item.Status == "Returned")
+            {
+                <a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChangeForDetail/' + @item.DetailID + '',true)">Returned</a> }
+            else if (item.Status == "Canceled")
+            {
+                <a href="javascript:" class="label label-lg label-light-danger label-inline" onclick="OpenModelPopup(this,'/Vendor/Order/StatusChangeForDetail/' + @item.DetailID + '',true)">Canceled</a>}
+        </td>
+        <td class="text-center pt-7 align-middle">
+            <button class="btn btn-bg-light btn-rating" onclick="OpenModelPopup(this,'/Vendor/Order/Comments/@item.DetailID')" data="@item.Rating">
+                <i class="la la-star-o"></i>
+                <i class="la la-star-o"></i>
+                <i class="la la-star-o"></i>
+                <i class="la la-star-o"></i>
+                <i class="la la-star-o"></i>
+            </button>
+        </td>*@
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- before changing begins-->
+
+                            @if (!string.IsNullOrEmpty(Model.CancelationReason))
+                            {
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-Left font-weight-bold text-muted text-uppercase">Cancelation Reason</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="font-weight-boldest">
+                                                        <td class="text-mid pt-7 align-middle">
+                                                            <textarea class="form-control" rows="5" readonly="readonly" disabled="disabled">@Model.CancelationReason</textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-4 cart__body">
+                                    <h5><i class="icon fa fa-map-marker-alt "></i> Delivery Address</h5>
+                                    <div class="cart__footer mt-5">
+                                        <div class="row  pb-2">
+                                            @if (Model.Address != null)
+                                            {
+                                                <span class="col-12 col-sm-12 cart__subtotal-title">
+
+                                                    @Model.Address
+                                                    <br />
+                                                    @Model.Area
+                                                    <br />
+                                                    @Model.City, @Model.Country
+                                                </span>
+                                            }
+
+                                            else
+                                            {
+                                                <span class="col-12 col-sm-12 cart__subtotal-title">
+
+                                                   <strong>"Self Pickup"</strong>
+                                                </span>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-4 pr-5">
+                                    <h5><i class="icon fa fa-gift "></i> Coupon</h5>
+                                    <div class="cart__footer mt-5">
+                                        <div class="solid-border">
+                                            <div class="row border-bottom pb-2">
+                                                <span class="col-12 col-sm-6 cart__subtotal-title">Coupon Code</span>
+                                                <span class="col-12 col-sm-6 text-right"><span class="coupon-code">@Model.CouponCode</span></span>
+                                            </div>
+                                            <div class="row border-bottom pb-2 pt-2">
+                                                <span class="col-12 col-sm-6 cart__subtotal-title">Coupon Discount</span>
+                                                <span class="col-12 col-sm-6 text-right price "> @Model.CouponDiscount </span>
+                                            </div>
+                                            @*<div class="row border-bottom pb-2 pt-2">
+                                                <span class="col-12 col-sm-6 cart__subtotal-title">Redeem Amount</span>
+                                                <span class="col-12 col-sm-6 text-right price">@Model.Currency @Model.RedeemAmount</span>
+                                            </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 ">
+                                    <h5><i class="fa fa-shopping-cart "></i> Billing Details</h5>
+                                    <div class="cart__footer mt-5">
+                                        <div class="solid-border">
+                                            <div class="row border-bottom pb-2">
+                                                <span class="col-12 col-sm-6 cart__subtotal-title">Subtotal</span>
+                                                <span class="col-12 col-sm-6 text-right"><span class="money price">@Model.Amount</span></span>
+                                            </div>
+                                            @*<div class="row border-bottom pb-2">
+                                                <span class="col-12 col-sm-6 cart__subtotal-title">Tax</span>
+                                                <span class="col-12 col-sm-6 text-right price">@Model.Currency @Model.OrderTaxAmount</span>
+                                            </div>*@
+                                            @*<div class="row border-bottom pb-2 pt-2">
+                                                <span class="col-12 col-sm-6 cart__subtotal-title">Shipping</span>
+                                                <span class="col-12 col-sm-6 text-right price">@Model.Currency @Model.Shipping</span>
+                                            </div>*@
+                                            <div class="row border-bottom pb-2 pt-2" style="color:darkred">
+                                                <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Grand Total</strong></span>
+                                                <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right">
+                                                    <strong><span class="money price">@Model.Currency @Model.TotalAmount</span></strong>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- before changing ends-->
+                            <!-- end: Invoice body-->
+                            <!-- begin: Invoice footer-->
+                            <!-- end: Invoice footer-->
+                            <!-- begin: Invoice action-->
+                            <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                                <div class="col-md-10">
+                                    <div class="d-flex justify-content-between">
+                                        <a href='@ViewBag.Referrer' class="btn btn-light-primary font-weight-bold">Back to Bookings</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end: Invoice action-->
+                            <!-- end: Invoice-->
+                        </div>
+                    </div>
+                    <!--end::Card-->
+                </div>
+            </div>
+            <!--end::Row-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="min-height:100px">
+            <div id='myModalContent'>
+                <div class="row justify-content-center">
+                    <div class="col-16">
+                        <div class="kt-spinner kt-spinner--lg kt-spinner--dark kt-spinner-modal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section IndexScript {
+    <script>
+    
+        jQuery(document).ready(function () {
+            $('.btn-rating').each(function (k, v) {
+                var rating = parseFloat($(v).attr('data'));
+                $(this).find('i:lt(' + (rating) + ')').addClass("la-star").removeClass("la-star-o");
+            });
+
+           
+            FormatPrices();
+        });
+
+        function callback(dialog, elem, isedit, response) {
+
+
+            if (response.success) {
+
+                toastr.success(response.message);
+                window.location.href = "/Vendor/Order/Details?id=" + response.data.ID;
+            }
+            else {
+                jQuery('form', dialog).closest('.modal').find('button[type=submit]').removeClass('spinner spinner-sm spinner-left').attr('disabled', false);
+
+                toastr.error(response.message);
+            }
+        }
+
+                    //function addRow(row) {
+
+                    //	table1.row.add([
+                    //		row.Date,
+                    //		row.OrderNo,
+                    //		row.Customer ? row.Customer.Name + '|' + row.Customer.Contact : '',
+                    //		row.TotalAmount + ' ' + row.Currency,
+                    //		row.ShipmentStatus,
+                    //		row.Status,
+                    //		row.ID,
+                    //	]).draw(true);
+
+                    //}
+    </script>
+
+    <!--begin::Page Vendors(used by this page)-->
+    <script src="~/assets/Admin/plugins/custom/datatables/datatables.bundle.js"></script>
+    <!--end::Page Vendors-->
+    <!--begin::Page Scripts(used by this page)-->
+    @*<script src="@Url.ContentVersioned("~/Assets/Admin/js/vendor/order/list.js")"></script>*@
+    <!--end::Page Scripts-->
+    <script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+    <!--end::Page Scripts-->
+}

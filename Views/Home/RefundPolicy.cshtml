@@ -1,0 +1,226 @@
+﻿@{
+	ViewBag.Title = Resources.REFUND_POLICY;
+	var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+	bool RTL = CultureHelper.IsRighToLeft();
+}
+<style>
+	.wo-forumcontent p {
+		text-align: justify;
+	}
+</style>
+@if (!RTL) //English
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								<h2>@Html.Raw(Resources.REFUND_POLICY_TAG)</h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>The policy for Refunds </h3>
+								</div>
+								<div class="wo-forumcontent__title">
+									<h3>Deposit, Cancellation and Refund Policy</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										The policy of nowbuysell.com for deposits, the process of Refunds and cancellations varies person to person and supplier to supplier and it also depends on the type of a vehicle. The policy will be detailed on the quote and confirmation email you receive and we recommend that you check with the branch you are hiring from if you have any queries.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Here is a general guide:</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										1. After the booking is done, as per Terms and Conditions of nowbuysell.com and also on the basis of Rental Agreement. Here are some more terms and conditions which need to be followed properly:
+									</p>
+									<p>
+										(a) If some accident occurred then nowbuysell.com and the supplier are not responsible for it and it's not their duty to supply another vehicle. The supplier is not responsible to refund the hired term. It is totally up to the supplier if he wants to supply any other vehicle for you. If it is not the driver’s fault in the accident then nowbuysell.com can help you sort the problem out.
+									</p>
+									<p>
+										(b) In such a case in which the rentee end its ride on the vehicle before the given time then he would not be refunded for the remaining hired time.
+									</p>
+									<p>
+										2. Some but not all locations require a minimum 10% deposit of the total hire value might inclusive of GST. This may be taken at the time of booking although not all locations require this. A 20% non-refundable deposit is required at time of booking for specialist vehicles (add some special vehicles here), again not every location requires this, please check with the location chosen.
+									</p>
+									<p>
+										In the event that you cancel your reservation, a cancellation fee may apply as follows (however this policy does vary supplier by supplier and by vehicle type):
+									</p>
+									<p>
+										(a) If you cancel your booking after 7 days of rent, 10% cancellation fee would be charged. 10% refund would not be given and if someone's deposit was not charged then a fee equal to 10% of the hire value will be payable.
+									</p>
+									<p>
+										(b) If you cancel your booking before seven days then full amount will be refunded. FULL REFUND/NO CANCELLATION FEE.
+									</p>
+									<p>
+										(c) A supplier may give a full or half refund to discreted users. The refund policy is not for the no show customers.
+									</p>
+									<p>
+										3. The cancellation process should be sent in written to the website and the supplier (via emails). When the hire is cancelled a confim cancellation email will be sent to you so that you know about your hire. May be any charges are deducted as per policy.
+									</p>
+									<p>
+										4. If a "No-Show" has confirmed a booking through website or through telephone and then he cancels the ride then no Refunds would be granted.
+									</p>
+									<p>
+										5. Bookings of a van and coaster:
+									</p>
+									<p>
+										10-20% of the total deposit will be taken from the total hire value (might include tax) WILL be taken on the coaster and van bookings.
+									</p>
+									<p>
+										You will receive no refund if you do not pick up the car, regardless of which rental supplier you use. What rental companies call a ‘no show’ does not only mean that you did not show up. It also applies if you are not able to take the car for other reasons.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>Damage refunds</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										Not a single penny would be refunded if the damage to the vehicle is caused by the violation of the traffic rules or violation of the lease agreement, or if the opposite party refuse to be guilty for such a damage.
+									</p>
+									<p>
+										If a vehicle got any kind of damage, then the amount will be deducted from the drivers’ credit card or debit card. The damage to the interior of the car, glass, tires, it's gearbox, underbody, roof of the vehicle, clutch, engine oil pan, the damage due to the third-class fuel, damage resulting from certain accidents.
+									</p>
+									<p>
+										The refund does not cover any damage or loss of personal belongings, theft of a car in case of loss of keys, lost profits of the rental supplier as a result of the inability to use the car, costs of technical assistance on the road, costs of towing the car, any handling fees in the event of damage to the vehicle (if applicable), administration fees, and any subsequent personal expenses such as telephone bills, hotel accommodations, public transportation, taxis. A refund is also not possible if the accident occurred due to a violation of local traffic rules and / or if the driver received a fine and / or if the insurance company (even in the case of a third party involved) refused to return the money. All rental agreements are subject to the laws of UAE.
+									</p>
+									<p>
+										Deductible refunds do not include: damage to the interior and gearbox.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}
+else //Arabic
+{
+	<!-- PAGE CONTAINER START -->
+	<div class="page-container">
+		<!-- MAIN START -->
+		<section class="wo-main-section  wo-main-section-50">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wo-sectionhead">
+							<div class="wo-sectionhead__title">
+								@*<span>Great Review From Owners</span>*@
+								<h2>سياسة <em>الاسترداد</em></h2>
+							</div>
+							@*<div class="wo-sectionhead__description">
+									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua enim adinim ullamco laborisn nisi ut aliquip exea commodo eniam quis nostrud exercitation consequat</p>
+								</div>*@
+						</div>
+						<div class="wo-forumsingle-section wo-forumsingle-section-50 text-right">
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>سياسة الاسترداد</h3>
+								</div>
+								<div class="wo-forumcontent__title">
+									<h3>سياسة الإيداع والإلغاء والاسترداد</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										تختلف سياستنا لقبول طلبات الإيداع والإلغاء والاسترداد حسب المورد وحسب نوع السيارة. سيتم تفصيل السياسة في عرض الأسعار وبريد التأكيد الإلكتروني الذي تتلقاه ونحن ننصحك بمراجعة الفرع الذي تؤجر منه السيارة إن كانت لديك أي استفسارات.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>نورد فيما يلي دليل إرشادات عامة:</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										1.	بعد بدء معاملة الاستئجار ووفق شروط وأحكام عقد الإيجار، تُطبق كذلك البنود التالية التي يجب قراءتها جنبًا إلى جنب مع شروط وأحكام التأجير حسب المذكور بالتفصيل أدناه:
+									</p>
+									<p>
+										(أ) 	عند وقوع أي حادث، لا نلتزم بتوفير سيارة أخرى أو رد أي مبلغ مستحق عن مدة الإيجار المتبقية. يتم توفير السيارات البديلة وفق مطلق تقدير المورد؛ علمًا بأنه إذا لم يثبت وقوع الحادث نتيجة خطأ صادر عن المستأجرين أو السائقين المعينين من قبلهم، فقد نلتزم بتوفير سيارة بديلة (حسب المتاح) مع العلم بأن هذا الأمر متروك مرة أخرى لتقديرنا.
+									</p>
+									<p>
+										(ب) 	إن رغب المستأجر في إنهاء العقد قبل الموعد المحدد لذلك، فلن نلتزم برد أي مبلغ مستحق عن فترة الإيجار المتبقية.
+									</p>
+									<p>
+										2.	توجب بعض (وليس جميع) المواقع تقديم وديعة بحد أدنى 10٪ من إجمالي قيمة الإيجار والتي قد تشمل ضريبة السلع والخدمات. يمكن تحصيل هذه الوديعة وقت الحجز على الرغم من أن جميع المواقع لا توجب ذلك. يجب سداد وديعة غير قابلة للاسترداد بنسبة 20٪ وقت الحجز بالنسبة للمركبات الخاصة (يرجى إضافة بعض المركبات الخاصة هنا). نشير مرة أخرى هنا إلى أن بعض المواقع قد لا تطلب ذلك لذا يرجى مراجعة الموقع المحدد في ذلك.
+									</p>
+									<p>
+										عند إلغاء حجزك، قد تُفرض عليك رسوم إلغاء حسب الآتي (علمًا بأن هذه السياسة قد تختلف حسب المورد ونوع السيارة):
+									</p>
+									<p>
+										(أ) 	الإلغاء خلال سبعة (7) أيام من بدء الإيجار، 10٪ رسوم إلغاء  مع يعني أنه لن يتم رد نسبة 10٪ من المبلغ المدفوع، أو إن لم يثبت تحصيل وديعة فرسم بنسبة 10٪ من قيمة الإيجار مستحقة الدفع.
+									</p>
+									<p>
+										(ب) 	الإلغاء قبل سبعة (7) أيام من بدء الإيجار، رد كامل المبلغ دون فرض رسوم إلغاء.
+									</p>
+									<p>
+										(ج) 	قد يمنح العميل حق استرداد لكامل المبلغ المدفوع أو أي جزء منه فق مطلق تقدير المورد. ولن يحصل العملاء "الذين لا يحضرون" على أي مستردات.
+									</p>
+									<p>
+										3.	يجب أن نتلقى إشعار الإلغاء أو طلب استرداد الأموال كتابةً (بما في ذلك رسائل البريد الإلكتروني). سيتم إرسال رد إليك لتأكيد إلغاء الإيجار وتفاصيل أي رسوم تم فرضها بموجب هذه السياسة.
+									</p>
+									<p>
+										4.	حال "عدم الحضور" بعد تأكيد أي حجز بما في ذلك الحجوزات التي يثبت إجراؤها من خلال إجراءات الحجز الإلكتروني أو عبر الهاتف، لن يتم إرجاع أي مستردات.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>حجز عربات النقل وحافلات الميني كوتش</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										يتم الحصول على وديعة بنسبة 10-20٪ من إجمالي قيمة الإيجار (والتي قد تشمل الضرائب) على جميع حجوزات عربات النقل وحافلات الميني كوتش.
+									</p>
+									<p>
+										لن تسترد أي مبلغ إذا لم تستلم السيارة بغض النظر عن ماهية مورد التأجير الذي تستخدمه. ما تسميه شركات التأجير مصطلح "عدم الحضور" لا يعني فقط عدم حضورك لاستلام السيارة بل ينطبق كذلك عدم تمكنك من استلام السيارة لأسباب أخرى.
+									</p>
+								</div>
+							</div>
+							<div class="wo-forumcontent">
+								<div class="wo-forumcontent__title">
+									<h3>مستردات التلف</h3>
+								</div>
+								<div class="wo-forumcontent__description">
+									<p>
+										لا يمكن استرداد أي مبلغ إن كانت الأضرار الواقعة ناتجة عن مخالفة قواعد المرور المحلية أو مخالفة أحكام عقد الإيجار أو إن رفضت أي جهة خارجية متورطة الإقرار بالجرم المرتكب.
+									</p>
+									<p>
+										لا تغطي خدمة المستردات المخصومة (يعني ذلك خصومات الأضرار المزمع خصمها) الأضرار التالية: الأضرار التي تلحق بالأجزاء الداخلية وبالزجاج والإطارات وعلبة التروس والسقف والقابض والمحرك وحوض الزيت وكذلك الأضرار التي تنجم عن استخدام النوع غير الصحيح من الوقود والأضرار تنتج عن الاصطدام بالحيوانات.
+									</p>
+									<p>
+										لا تغطي المبالغ المستردة أي حالات ضرر أو خسارة للممتلكات الشخصية أو أي حوادث سرقة للسيارات حال فقد المفاتيح أو حالات خسارة مورد التأجير للأرباح نتيجة عدم القدرة على استخدام السيارة وكذلك تكاليف المساعدات الفنية على الطريق وتكاليف سحب السيارة وأي رسوم مناولة يثبت تكبدها عند تلف السيارة (إن وجد) والرسوم الإدارية وأي مصاريف شخصية لاحقة كفواتير الهاتف ومصروفات الإقامة بالفنادق واستخدام وسائل النقل العام وسيارات الأجرة. لا يمكن كذلك استرداد أي مبالغ إن وقع الحادث بسبب مخالفة قواعد المرور المحلية و/ أو إن صدر بحق السائق أي غرامة و / أو إن رفضت شركة التأمين (حتى مع وجود طرف ثالث متورط) رد الأموال. تخضع جميع عقود الإيجار للقوانين السارية بدولة الإمارات العربية المتحدة.
+									</p>
+									<p>
+										لا تشمل المستردات المخصومة: الأضرار التي تلحق بالأجزاء الداخلية وعلبة التروس.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN END -->
+	</div>
+	<!-- PAGE CONTAINER END -->
+}

@@ -1,0 +1,86 @@
+﻿@model NowBuySell.Data.VendorWalletShare
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>VendorWalletShare</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.VendorID, "VendorID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("VendorID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.VendorID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalEarning, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.TotalEarning, new { htmlAttributes = new { @class = "form-control", id="txtEarning", @type="number" } })
+                @Html.ValidationMessageFor(model => model.TotalEarning, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PendingAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.PendingAmount, new { htmlAttributes = new { @class = "form-control", id="txtPending" } })
+                @Html.ValidationMessageFor(model => model.PendingAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferedAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.TransferedAmount, new { htmlAttributes = new { @class = "form-control",id="txtTransferred" } })
+                @Html.ValidationMessageFor(model => model.TransferedAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Transfer" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+
+    $("#VendorID").change(function () {
+        var VendorID = $('#VendorID').val();
+        getVendorDetail(VendorID);
+    });
+
+
+    function getVendorDetail(VendorID) {
+        if (VendorID == "") { VendorID = -1; }
+        var json = { "VendorID": VendorID };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: '/Admin/VendorWalletShareHistory/getVendorDetail',
+            async: true,
+            data: JSON.stringify(json),
+            success: function (data) {
+                // console.log(data);
+                
+                $("#txtEarning").val(data.TotalEarning);
+                $("#txtPending").val(data.PendingAmount);
+                $("#txtTransferred").val(data.TransferedAmount);
+                
+                //GetDropdown1("Detail", data, true);
+            },
+            error: function (err) { console.log(err); }
+        });
+    }
+</script>

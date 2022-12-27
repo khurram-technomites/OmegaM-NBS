@@ -1,0 +1,182 @@
+﻿@model NowBuySell.Data.CarMake
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title">Update</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("Edit", "CarMake", new { area = "Admin" }, FormMethod.Post, new { id = "frm-edit", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, "Make", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter make name here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tools"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameAR, "Make (Ar)", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter make name(ar) here ...", required = "required", dir = "rtl" } })
+                        @Html.ValidationMessageFor(model => model.NameAR, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tools"></i></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="frm-edit">Save Changes</button>
+</div>
+<script>
+    var _URL = window.URL || window.webkitURL;
+    $(document).ready(function () {
+        $("#logo").change(function () {
+
+
+            var file, img;
+
+            if ((file = this.files[0])) {
+
+                img = new Image();
+                img.onload = function () {
+
+                    if (this.width < 525 || this.width > 525) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image width should be 525 pixels ! ',
+
+                        }).then(function (result) {
+                            $("#logo").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (this.height < 438 || this.height > 438) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image Height should be 438 pixels!',
+
+                        }).then(function (result) {
+                            $("#logo").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (file.size > 100000) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image size must be less than 100 kb!',
+
+                        }).then(function (result) {
+                            $("#logo").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else {
+                        img.onerror = function () {
+                            alert("not a valid file: " + file.type);
+                        };
+                    }
+                };
+                img.src = _URL.createObjectURL(file);
+            }
+        });
+        var avatar1 = new KTImageInput('kt_image_1');
+
+        //$("#Userform").submit(function () {
+
+        //    $(this).closest('.modal').find('button[type=submit]').addClass('spinner spinner-sm spinner-left').attr('disabled', true);
+
+        //    var data = new FormData();
+        //    var files = $("#Image").get(0).files;
+        //    if (files.length > 0) {
+        //        data.append("Image", files[0]);
+        //    }
+        //    data.append("Name", $('#Name').val());
+        //    data.append("NameAR", $('#NameAR'));
+        //    /*data.append("Image", $('#Image').files[0]);*/
+        //    console.log(data);
+        //    $.ajax({
+        //        url: "/Admin/CarMake/Edit/",
+        //        type: "POST",
+        //        processData: false,
+        //        contentType: false,
+        //        data: data,
+        //        success: function (response) {
+
+        //            if (callback) {
+        //                callback($('#myModalContent'), element, false, response);
+        //            }
+
+        //        },
+        //        error: function (er) {
+        //            toastr.error(er);
+        //            console.log("Erro", er);
+        //        }
+        //    });
+        //    return false;
+        //});
+        //$("#frm-edit").submit(function () {
+
+        //    $(this).closest('.modal').find('button[type=submit]').addClass('spinner spinner-sm spinner-left').attr('disabled', true);
+
+        //    var data = new FormData();
+        //    var files = $("#Image").get(0).files;
+        //    if (files.length > 0) {
+        //        data.append("Image", files[0]);
+        //    }
+        //    data.append("id", $('#ID').val());
+        //    data.append("Name", $('#Name').val());
+        //    data.append("NameAR", $('#NameAR').val());
+        //    data.append("__RequestVerificationToken", $('input[name=__RequestVerificationToken]').val());
+        //    //data.append("Image", $('#Image').files[0]);
+
+        //    $.ajax({
+
+        //        url: "/Admin/CarMake/Edit",
+        //        type: "POST",
+        //        processData: false,
+        //        contentType: false,
+        //        data: data,
+
+        //        success: function (response) {
+
+        //            if (callback) {
+        //                callback($('#myModalContent'), element, false, response);
+        //            }
+        //            location.reload();
+        //        },
+        //        error: function (er) {
+        //            toastr.error(er);
+        //        }
+        //    });
+        //    return false;
+        //});
+
+    });
+</script>
+
+

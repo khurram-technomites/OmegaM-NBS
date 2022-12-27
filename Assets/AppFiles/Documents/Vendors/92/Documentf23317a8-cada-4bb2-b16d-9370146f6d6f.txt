@@ -1,0 +1,6 @@
+dashboard/index
+car/index
+car/approvalindex
+property/index
+property/approvalindex
+vendorwallethistory/index

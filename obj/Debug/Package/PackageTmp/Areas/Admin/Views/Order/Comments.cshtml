@@ -1,0 +1,43 @@
+﻿@model NowBuySell.Data.CarRating
+@{
+    ViewBag.Title = "Approval Cancel";
+    Layout = null;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title">Remarks</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @if (Model != null)
+    {
+        <p>
+            @Html.TextAreaFor(model => (string.IsNullOrEmpty(model.Remarks) ? "-" : model.Remarks), new { @class = "form-control form-control-solid", @readonly = "readonly" })
+        </p>
+        foreach (var item in Model.CarRatingImages)
+        {
+            <div class="symbol symbol-50 flex-shrink-0 mr-4">
+                <div class="symbol-label" style="width:100px;height:100px;background-image: url('@item.Image')"></div>
+            </div>
+        }
+
+    }
+
+    else
+    {
+        <p>
+           No Remarks!
+        </p>
+    }
+
+
+
+
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>

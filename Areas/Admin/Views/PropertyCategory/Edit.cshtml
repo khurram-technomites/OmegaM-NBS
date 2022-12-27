@@ -1,0 +1,330 @@
+@model NowBuySell.Data.Category
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title">Update</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("Edit", "PropertyCategory", new { area = "Admin" }, FormMethod.Post, new { id = "frm-edit" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group row">
+            <div class="col-sm-6 text-center">
+                <div class="col-lg-12 text-center">
+                    <label>Thumbnail</label>
+                </div>
+                <div class="image-input image-input-outline" id="kt_image_1">
+                    <div class="image-input-wrapper" style="background-image: url('@(Model.Image!=null?Model.Image.Replace("~",""):"")')"></div>
+                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change logo">
+                        <i class="fa fa-pen icon-sm text-muted"></i>
+                        <input type="file" name="Image" id="Image" accept=".png, .jpg, .jpeg" />
+                        <input type="hidden" name="profile_avatar_remove" />
+                    </label>
+                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow cancelimage" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                    </span>
+                </div>
+                <span class="form-text text-muted">Image dimensions should be 271 x 322 pixels and Image size must be less than 200 kb</span>
+            </div>
+            <div class="col-sm-6 text-center">
+                <div class="col-lg-12 text-center">
+                    <label>Icon</label>
+                </div>
+                <div class="image-input image-input-outline" id="kt_image_2">
+                    <div class="image-input-wrapper" style="background-image: url('@(Model.Icon!=null?Model.Icon.Replace("~",""):"")')"></div>
+                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change logo">
+                        <i class="fa fa-pen icon-sm text-muted"></i>
+                        <input type="file" name="Icon" id="Icon" accept=".png, .jpg, .jpeg" />
+
+                        <input type="hidden" name="profile_avatar_remove" />
+                    </label>
+                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow cancelimage" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                    </span>
+                </div>
+                <span class="form-text text-muted">Image dimensions should be 66 x 66 pixels and Image size must be less than 100 kb</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Category Name</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter CategoryName here ...", required = "required" } })@Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Category Name (Ar)</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.CategoryNameAr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter CategoryNameAr (Ar) here ...", required = "required", dir = "rtl" } })@Html.ValidationMessageFor(model => model.CategoryNameAr, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Slug</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Slug name here ...", required = "required", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-link"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Position</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control", id = "position", placeholder = "Enter position here ...", required = "required", min = "0" } })
+                        @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-link"></i></span></div>
+                    </div>
+                </div>
+            </div>
+
+            @{
+                var domainsList = new SelectList(new[]
+                {
+                     new SelectListItem { Text = "Select Category For", Value = ""},
+                new SelectListItem { Text = "Rent", Value = "1", Selected = true },
+                new SelectListItem { Text = "Sale", Value = "2"},
+                new SelectListItem { Text = "Both", Value = "3"},
+            }, "Value", "Text");
+
+                var PropertyTypelist = new SelectList(new[]
+               {
+                     new SelectListItem { Text = "Select Type", Value = "" , Selected = true},
+                new SelectListItem { Text = "Residential", Value = "Residential" },
+                new SelectListItem { Text = "Commercial", Value = "Commercial"},
+            }, "Value", "Text");
+            }
+
+
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Category For</label>
+                    <div class="input-group mb-2">
+                        @Html.DropDownListFor(model => model.ForSale, domainsList, htmlAttributes: new { @class = "form-control", required = "required" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+       
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Type</label>
+                    <div class="input-group mb-2">
+                        @Html.DropDownListFor(model => model.PropertyType, PropertyTypelist, htmlAttributes: new { @class = "form-control", required = "required" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+          
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <div class="input-group mb-2">
+                        <textarea class="form-control" name="Description" id="Description" rows="6" placeholder="Enter Description name here ..." required="required">@Model.Description</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Description (Ar)</label>
+                    <div class="input-group mb-2">
+                        <textarea class="form-control" name="DescriptionAR" id="DescriptionAR" rows="6" dir="rtl" placeholder="Enter Description name here ..." required="required">@Model.DescriptionAR</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+                }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="frm-edit">Save Changes</button>
+</div>
+<script>
+    var Sale = '@Model.ForSale'
+    var Rent = '@Model.ForRent'
+    $(document).ready(function () {
+
+        if (Sale && Rent) {
+            $("#ForSale").val("3")
+        }
+        else if (Sale) {
+            $("#ForSale").val("2")
+        }
+        else if (Rent) {
+            $("#ForSale").val("1")
+        }
+
+    })
+
+    var _URL = window.URL || window.webkitURL;
+    $(document).ready(function () {
+        var avatar1 = new KTImageInput('kt_image_1');
+        $("#Image").change(function (e) {
+
+
+            var file, img;
+
+            if ((file = this.files[0])) {
+
+                img = new Image();
+                img.onload = function () {
+
+                    if (this.width != 271 || this.height != 322) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image dimension should be 271 x 322 ! ',
+
+                        }).then(function (result) {
+                            $("#Image").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (file.size > 200000) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image size must be less than 200 kb!',
+
+                        }).then(function (result) {
+                            $("#Image").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else {
+                        img.onerror = function () {
+                            alert("not a valid file: " + file.type);
+                        };
+                    }
+                };
+                img.src = _URL.createObjectURL(file);
+                console.log("Image", img.src = _URL.createObjectURL(file))
+            }
+        });
+        var avatar1 = new KTImageInput('kt_image_2');
+        $("#Icon").change(function (e) {
+
+
+            var file1, img;
+
+            if ((file1 = this.files[0])) {
+
+                img = new Image();
+                img.onload = function () {
+
+
+                    if (this.width != 66 || this.height != 66) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image dimension should be equal to 66 x 66 !',
+
+                        }).then(function (result) {
+                            $("#Icon").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+
+                    else if (file1.size > 100000) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image size must be less than 100 kb!',
+
+                        }).then(function (result) {
+                            $("#Icon").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else {
+                        img.onerror = function () {
+                            alert("not a valid file: " + file.type);
+                        };
+                    }
+                };
+                img.src = _URL.createObjectURL(file1);
+            }
+        });
+
+        $("#frm-edit").submit(function () {
+
+            $(this).closest('.modal').find('button[type=submit]').addClass('spinner spinner-sm spinner-left').attr('disabled', true);
+            var data = new FormData();
+            var files = $("#Image")[0].files;
+            var files1 = $("#Icon")[0].files;
+            if (files.length > 0) {
+                
+                data.append("Image", files[0]);
+            }
+            if (files1.length > 0) {
+                data.append("Icon", files1[0]);
+            }
+            data.append("id", $('#ID').val());
+            data.append("ParentCategoryID", $('#ParentCategoryID').val());
+            data.append("CategoryName", $('#CategoryName').val());
+            data.append("CategoryNameAr", $('#CategoryNameAr').val());
+            data.append("Slug", $('#Slug').val());
+            data.append("Description", $('#Description').val());
+            data.append("DescriptionAR", $('#DescriptionAR').val());
+            data.append("Position", $("#position").val());
+            data.append('IsDefault', false);
+            data.append("type", $("#ForSale").val());
+            data.append("PropertyType", $("#PropertyType").val());
+            data.append("For", "Property")
+            data.append("__RequestVerificationToken", $('input[name=__RequestVerificationToken]').val());
+            $.ajax({
+                url: "/Admin/PropertyCategory/Edit/",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+
+                    if (callback) {
+                        callback($('#myModalContent'), element, true, response);
+                    }
+                },
+                error: function (er) {
+                    toastr.error(er);
+                }
+            });
+            return false;
+        });
+
+        $("#CategoryName").on('change', function () {
+            var name = $(this);
+            $("#Slug").val($(name).val().replace(/ /g, "-").replace(/'/g, "").toLocaleLowerCase());
+        });
+    });
+
+</script>

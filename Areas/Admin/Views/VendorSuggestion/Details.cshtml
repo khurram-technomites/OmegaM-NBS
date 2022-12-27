@@ -1,0 +1,57 @@
+@model NowBuySell.Data.VendorSuggestion
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title">Details</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="float-right mb-3">
+                <i class="fa fa-calendar"></i>
+                <b>@Html.Label("Creation Date:", htmlAttributes: new { @class = "control-label" })</b>
+                @if (Model.CreatedOn != null)
+                {
+                    var date = Model.CreatedOn.ToString("dd MMM yyyy, h:mm tt");
+                    <label class="control-label" readonly="readonly">@date</label>
+                }
+                else
+                {
+                    <label class="control-label" readonly="readonly"> - </label>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="d-flex align-items-center">
+                <div class="symbol symbol-50 flex-shrink-0 mr-4">
+                    <div class="symbol-label" style="background-image: url('@Model.Vendor.Logo')"></div>
+                </div>
+                <div>
+                    <a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">@Model.Vendor.Name</a>
+                    <br>
+                    <a href="javascript:;" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">@Model.Vendor.Email</a>
+                    <span class="text-muted font-weight-bold d-block">@Model.Vendor.VendorCode</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12 col-sm-12 mt-10">
+            <div class="form-group">
+                <label class="control-label">Suggestion</label>
+                <div class="input-group mb-2">
+                    <textarea class="form-control" readonly="readonly" rows="5">@Model.Suggestion</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>

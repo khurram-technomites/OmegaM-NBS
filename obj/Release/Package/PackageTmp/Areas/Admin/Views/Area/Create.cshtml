@@ -1,0 +1,93 @@
+@model NowBuySell.Data.Area
+@{
+	ViewBag.Title = "Create";
+	Layout = null;
+}
+<div class="modal-header">
+	<h5 class="modal-title">Create</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+	@using (Html.BeginForm("Create", "Area", new { area = "Admin" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+	{
+		@Html.AntiForgeryToken()
+		<div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Country Name</label>
+					<div class="input-group mb-2">
+						@Html.DropDownList("CountryID", null, "Select Country", htmlAttributes: new { @class = "form-control", required = "required" })@Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-flag"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">City Name</label>
+					<div class="input-group mb-2">
+						<select class="form-control" id="CityID" name="CityID" required="required">
+							<option value="">Select Country First</option>
+						</select>@Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-home"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Area Name</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter area name here ...", required = "required" } })@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-map-marked"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="form-group">
+					<label class="control-label">Area Name (Ar)</label>
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter area name (Ar) here ...", dir = "ltr", required = "required" } })@Html.ValidationMessageFor(model => model.NameAR, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-map-marked"></i></span></div>
+					</div>
+				</div>
+			</div>
+            <input type="text" class="" value="-" name="NameAr" hidden="" />
+		</div>
+	}
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	<button type="submit" class="btn btn-info" form="Userform">Submit</button>
+</div>
+
+<script>
+
+	jQuery(document).ready(function () {
+		$('#CountryID').change(function () {
+			var count = 0;
+			var $dropdown = $("#CityID");
+			if ($(this).val() == 0) {
+				$dropdown.empty();
+				$dropdown.append($("<option />").val('').text("Please Select Country First!"));
+			}
+			else {
+				$.ajax({
+					type: 'Get',
+					url: '/City/GetCitiesByCountry/' + $(this).val(),
+					success: function (response) {
+						$dropdown.empty();
+						$dropdown.append($("<option />").val('').text("Select City"));
+
+						$.each(response.data, function (k, v) {
+							$dropdown.append($("<option />").val(v.value).text(v.text));
+							count++;
+						});
+					}
+				});
+			}
+		});
+	});
+</script>

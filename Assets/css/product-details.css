@@ -1,0 +1,51 @@
+﻿.wo-stars-m-TL {
+    margin: 0 0 0 5px;
+}
+
+.wo-vslider-features li span {
+    margin-top: 1px;
+}
+
+.wo-vsinglehead__share li a:hover {
+    color: #ec4353;
+}
+
+.rating-star-0 {
+    width: 0 !important;
+}
+
+.wo-vehiclesinfo__list {
+    margin: 0px -30px 0;
+    font: 400 0.8125rem/1.5384615385em "Cabin", sans-serif;
+}
+
+.wo-singlelikepost {
+    width: 100%;
+    padding-top: 30px;
+}
+
+.wo-homepage .wo-main {
+    padding: 0px 30px 10px;
+}
+.wo-dealerprofile-contact {
+    /*padding: 0 30px 0 20px;*/
+    margin: -30px 0 20px 0;
+}
+.wo-dealerinfo > ul > li.wo-dealerprofile {
+    padding: 20px 20px 20px;
+}
+.display-flex-j-c-between {
+    display: flex;
+    justify-content: space-between;
+}
+.m-tl-5{
+    margin: -5px 5px;
+}
+
+/*Responsive CSS Start*/
+@media (max-width: 1199px) {
+    .wo-vehiclesinfo__list {
+        margin: 0;
+    }
+}
+/*Responsive CSS End*/

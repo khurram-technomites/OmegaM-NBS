@@ -1,0 +1,1450 @@
+﻿
+@model NowBuySell.Data.Car
+@{
+    ViewBag.Title = "Motor Details";
+    Layout = "~/Areas/VendorPortal/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Assets/Admin/css/vendor/car/edit.css" rel="stylesheet" />
+<!--begin::Page Custom Styles(used by this page)-->
+<link href="~/assets/admin/css/pages/wizard/wizard-2.css" rel="stylesheet" type="text/css" />
+<link href="~/assets/Admin/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+<!--end::Page Custom Styles-->
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+        <div class="container-fluid align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Heading-->
+                <div class="d-flex flex-column">
+
+                    <!--begin::Breadcrumb-->
+                    <div class="d-flex align-items-center font-weight-bold my-2">
+                        <!--begin::Item-->
+                        <a href="/Admin/Dashboard/Index" class="opacity-75 hover-opacity-100">
+                            <i class="flaticon2-shelter text-white icon-1x"></i>
+                        </a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <a href="/Admin/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript: window.history.go(-1);" class="text-white text-hover-white opacity-75 hover-opacity-100">Cars</a>
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript:;" class="text-white text-hover-white opacity-75 hover-opacity-100">Details</a>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <!--begin::Dashboard-->
+            <div class="row">
+                <div class="col-md-9">
+                    <!--begin::Card-->
+                    @*<div class="card card-custom  gutter-b" id="kt_page_sticky_card">
+                            <div class="card-body">
+
+                            </div>
+                        </div>*@
+                    <div class="card card-custom  gutter-b">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                Motor Details
+                            </h3>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Motor Title</label>
+                                        <div class="input-group mb-2">
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Car Name", required = "required", @readonly = "readonly" } })
+                                            @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })*@
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>عنوان المحرك</label>
+                                        <div class="input-group mb-2">
+                                            @Html.EditorFor(model => model.NameAr, new { htmlAttributes = new { @class = "form-control", placeholder = "اسم المنتج", dir = "rtl", @readonly = "readonly" } })
+
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Slug</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" required readonly name="Slug" id="Slug" placeholder="Enter car name" value="@Model.Slug" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-link"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">VIN / Chasis Number</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" readonly name="SKU" id="SKU" placeholder="Enter sku name" value="@Model.SKU" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-link"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Body Condition</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" required readonly name="Condition" id="Condition" value="@Model.Condition" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-tag"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Mechanical condition</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" required readonly name="MechanicalCondition" id="MechanicalCondition" value="@Model.MechanicalCondition" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-tag"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Ads Reference Code</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" required readonly name="MechanicalCondition" id="MechanicalCondition" value="@Model.AdsReferenceCode" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-tag"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Fuel Type</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" readonly name="FuelType" id="FuelType" value="@Model.FuelType" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-tag"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Motor Make</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" required readonly name="CarMake" id="CarMake" value="@Model.CarMake.Name" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-tools"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Motor Model</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" readonly name="CarModel" id="CarModel" value="@Model.CarModel.Name" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-car"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Category</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" readonly name="SKU" id="CategoryID" placeholder="Enter Motor name" value="@(Model.Category != null ?Model.Category.CategoryName: "-" )" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-car"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <row>
+                                            <label class="control-label">Body Type</label>
+
+                                        </row>
+
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" required readonly name="CarMakeID" id="CarMakeID" placeholder="Enter Motor name" value="@(Model.BodyType != null ?Model.BodyType.Name: "-" )" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-car"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Year</label>
+
+                                        <div class=" row"></div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" required readonly name="Year" id="Year" placeholder="" value="@(Model.Year != null ?Model.Year : "-" )" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Doors</label>
+
+                                        <div class="input-group mb-3">
+
+                                            <input type="text" class="form-control" required readonly name="Doors" id="Doors" placeholder="" value="@(Model.Doors != null ?Model.Doors : "-" )" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-car"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Engine Displacment Volumes</label>
+
+                                        <div class="input-group mb-3">
+
+                                            <input type="text" class="form-control" required readonly name="Doors" id="Doors" placeholder="" value="@Model.EngineDisplacement" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-car"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Wheels</label>
+
+                                        <div class="input-group mb-3">
+
+                                            <input type="text" class="form-control" required readonly name="Doors" id="Doors" placeholder="" value="@Model.Wheels" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-car"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Steering Side</label>
+
+                                        <div class="input-group mb-3">
+
+                                            <input type="text" class="form-control" required readonly name="Doors" id="Doors" placeholder="" value="@Model.SteeringSide" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-car"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Cylinders</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" readonly required name="Cylinders" id="Cylinders" placeholder="" value="@Model.Cylinders" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-tools"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <row>
+                                            <label class="control-label">Horse Power</label>
+                                        </row>
+
+                                        <div class="input-group mb-3">
+                                            @Html.EditorFor(model => model.HorsePower, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @*@Html.ValidationMessageFor(model => model.HorsePower, "", new { @class = "text-danger" })*@
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-car"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <row>
+                                            <label class="control-label">Regional Specification</label>
+                                        </row>
+
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" readonly required name="RegionalSpecification" id="RegionalSpecification" placeholder="" value="@Model.RegionalSpecification" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-id-card"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <row>
+                                            <label class="control-label">Service History</label>
+                                        </row>
+
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" readonly required name="ServiceHistory" id="ServiceHistory" placeholder="" value="@Model.ServiceHistory" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-id-card"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Capacity</label>
+                                        <div class="input-group mb-2">
+                                            @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", placeholder = "Car Name", required = "required", @readonly = "readonly" } })
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-users"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Transmission</label>
+                                        <div class="input-group mb-2">
+                                            <input type="number" class="form-control" readonly required name="Transmission" id="Transmission" placeholder="Enter year" value="@Model.Transmission" />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-link"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Kilometers</label>
+                                        <div class="input-group mb-2">
+                                            <input type="number" class="form-control" readonly required name="FuelEconomy" id="FuelEconomy" placeholder="Enter year" value="@Model.FuelEconomy" />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-gas-pump"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <!--<div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Regular Price</label>
+                                        <div class="input-group mb-2">
+                                            <input type="number" class="form-control" readonly name="Capacity" id="Capacity"  value="@Model.RegularPrice" />-->
+                                @*@Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })*@
+                                <!--<div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-money-bill"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Sale Price</label>
+                                        <div class="input-group mb-2">
+                                            <input type="number" class="form-control" readonly required name="SalePrice" id="SalePrice" value="@Model.SalePrice" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-money-bill"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Warranty</label>
+                                        <div class="input-group mb-2">
+                                            <input type="number" class="form-control" readonly required name="Warranty" id="Warranty" placeholder="" value="@Model.Warranty" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-money-bill"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Zip Code</label>
+                                            <div class="input-group mb-2">
+                                                <input type="number" class="form-control" readonly required name="Zip Code" id="Zip Code"  value="@Model.ZipCode" />
+
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-money-bill"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Country</label>
+                                            <div class="input-group mb-2">
+                                                <input type="text" class="form-control" required readonly name="Country" id="Country" value="@Model.Country.Name" />
+
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-globe"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">City</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" readonly name="SKU" id="SKU" value="@Model.City.Name" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-map"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Car Location</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" required readonly name="Address" id="Address" value="@Model.Address" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-globe"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Area</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" readonly name="SKU" id="SKU" value="@Model.Area" />
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-globe"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Latitude</label>
+                                        <div class="input-group mb-2">
+                                            @*@Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter latitude here ...", required = "required" } })*@
+                                            <input class="form-control" name="Latitude" id="Latitude" type="text" value="@Model.Latitude" readonly />
+                                            <div class="input-group-append"><span class="input-group-text"><i class="fa fa-hashtag"></i></span></div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Longitude</label>
+                                        <div class="input-group mb-2">
+                                            @*@Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter longitude here ...", required = "required" } })*@
+                                            <input class="form-control" name="Longitude" id="Longitude" type="text" value="@Model.Longitude" readonly />
+                                            <div class="input-group-append"><span class="input-group-text"><i class="fa fa-hashtag"></i></span></div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Description</label>
+                                        <div class="input-group mb-3">
+                                            <textarea name="LongDescription" id="LongDescription" form="btnFormSubmit" required class="form-control" rows="3">@Model.LongDescription</textarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">DescriptionAr</label>
+                                        <div class="input-group mb-2">
+                                            <textarea name="LongDescriptionAr" id="LongDescriptionAr" form="btnFormSubmit" required class="form-control" rows="3">@Model.LongDescriptionAr</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="row">
+                                    <div class="col-md-12 mt-2">
+                                        <h3 class="card-title">
+                                            Delivery
+                                        </h3>
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Enable Delivery</label>
+                                                    <span class="switch ml-1">
+                                                        <label>
+                                                            <input type="checkbox" disabled name="EnableDelivery" id="EnableDelivery" value="" @(Model != null && Model.EnableDelivery.HasValue && Model.EnableDelivery.Value ? "checked" : "") />
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Charges Type</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" readonly step="0.01" min="0.00" name="ChargesType" id="ChargesType" placeholder="Enter charges type" value="@Model.ChargesType" />
+                                                        @Html.ValidationMessageFor(model => model.DeliveryChargesAmount, "", new { @class = "text-danger" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fa fa-money-bill"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-sm-12">
+                                                <div class="form-group">
+                                                    <row>
+                                                        <label class="control-label">Delivery Charges</label>
+                                                    </row>
+
+                                                    <div class="input-group mb-2">
+                                                        <input type="number" class="form-control" readonly step="0.01" min="0.00" name="DeliveryChargesAmount" id="DeliveryChargesAmount" placeholder="Enter delivery charges" value="@Model.DeliveryChargesAmount" />
+                                                        @Html.ValidationMessageFor(model => model.DeliveryChargesAmount, "", new { @class = "text-danger" })
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fa fa-money-bill"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <h3 class="card-title">
+                                            Specification
+                                        </h3>
+                                        <textarea name="Specification" readonly class="form-control" rows="3">@Model.Specification</textarea>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <h3 class="card-title">
+                                            Specification (Ar)
+                                        </h3>
+                                        <textarea name="SpecificationAr" dir="rtl" readonly class="form-control" rows="3">@Model.SpecificationAr</textarea>
+                                    </div>
+                                </div>*@
+                        </div>
+                        <!--begin::Card-->
+                        <div class="card card-custom gutter-b" id="kt_page_sticky_card">
+                            @*<div class="card-header">
+                                    <div class="card-title">
+                                        <h3 class="card-label">
+                                            Vendor
+                                            <span class="d-block text-muted pt-2 font-size-sm">Create Vendor Here...</span>
+                                        </h3>
+                                    </div>
+                                    <div class="card-toolbar">
+                                        <a href="/Admin/Vendor/Index" class="btn btn-light-primary font-weight-bolder mr-2">
+                                            <i class="ki ki-long-arrow-back icon-sm"></i>Back
+                                        </a>
+                                        <div class="btn-group">
+                                            <button type="submit" class="btn btn-info font-weight-bolder" form="Userform">
+                                                <i class="ki ki-check icon-sm"></i>Save
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>*@
+
+                        </div>
+                        <!--end::Card-->
+                        <!--<div class="card card-custom  gutter-b">
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="card-title">
+                                            Packages
+                                        </h3>
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>-->
+                        @*<th>
+                                Active/InActive
+                            </th>
+                            <th style="padding-left: 90px;">
+                                Package
+                            </th>
+                            <th style="padding-left: 167px;">
+                                Package Price
+                            </th>
+                            <th style="padding-left: 131px;">
+                                Price/Kilometers
+                            </th>*@
+
+                        <!--<th>
+                                                        Active/InActive
+                                                    </th>
+                                                    <th>
+                                                        Package
+                                                    </th>
+                                                    <th>
+                                                        Package Price
+                                                    </th>
+                                                    <th>
+                                                        Price/Kilometers
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tBodyCarPackages">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-list car-packages mt-2">
+                                    <div class="mb-5 mt-5 spinner spinner-dark spinner-center"></div>
+                                </div>
+                            </div>
+                        </div>-->
+                        @*   <div class="card card-custom  gutter-b">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h3 class="card-title">
+                                                Insurance
+                                            </h3>
+
+
+                                            <table class="dataTable" id="kt_datatable1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Insurance
+                                                        </th>
+                                                        <th>
+                                                            Insurance (Ar)
+                                                        </th>
+                                                        <th>
+                                                            Car
+                                                        </th>
+                                                        <th>
+                                                            Actions
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2">
+                                        <div class="mb-5 mt-5 "></div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>*@
+
+
+                        <!--<div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-custom gutter-b">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 class="card-title">
+                                                    Terms & Condition
+                                                </h3>
+                                                @Html.TextAreaFor(model => model.TermsAndCondition, 10, 30, new { @class = "form-control", id = "termsAndCondition", @readonly = "readonly" })
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-custom gutter-b">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 class="card-title">
+                                                    Terms & Condition (Ar)
+                                                </h3>
+                                                @Html.TextAreaFor(model => model.TermsAndConditionAr, 10, 30, new { @class = "form-control", dir = "rtl", @readonly = "readonly", id = "termsAndConditionAr" })
+                                            </div>-->
+                        @*<div class="col-md-6">
+                                <h3 class="card-title text-right">
+                                    وصف طويل
+                                </h3>
+                                <textarea name="LongDescriptionAr" id="kt-ckeditor-long-description-ar"></textarea>
+                            </div>*@
+                        <!--</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--<div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-custom gutter-b">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 class="card-title">
+                                                    Cancellation Policy
+                                                </h3>
+                                                @Html.TextAreaFor(model => model.CancelationPolicy, 10, 30, new { @class = "form-control", id = "CancelationPolicy", @readonly = "readonly"})
+                                            </div>-->
+                        @*<div class="col-md-6">
+                                <h3 class="card-title text-right">
+                                    وصف طويل
+                                </h3>
+                                <textarea name="LongDescriptionAr" id="kt-ckeditor-long-description-ar"></textarea>
+                            </div>*@
+                        <!--</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-custom gutter-b">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h3 class="card-title">
+                                                Cancellation Policy (Ar)
+                                            </h3>
+                                            @Html.TextAreaFor(model => model.CancelationPolicyAr, 10, 30, new { @class = "form-control", dir = "rtl", id = "CancelationPolicyar", @readonly = "readonly"})
+                                        </div>-->
+                        @*<div class="col-md-6">
+                                <h3 class="card-title text-right">
+                                    وصف طويل
+                                </h3>
+                                <textarea name="LongDescriptionAr" id="kt-ckeditor-long-description-ar"></textarea>
+                            </div>*@
+                        <!--</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+                        <div hidden class="card card-custom gutter-b">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="card-title">
+                                            Long Description
+                                        </h3>
+                                        <textarea name="LongDescription" id="kt-ckeditor-long-description"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-custom gutter-b" style="display:none">
+                        <div class="card-body">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionPublish">
+                                <div class="card">
+                                    <div class="card-header" id="headingPublish">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapsePublish">
+                                            <div class="card-label pl-4">Publish</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapsePublish" class="collapse show" data-parent="#accordionPublish">
+                                        <div class="card-body pl-12">
+                                            <div hidden class="form-group">
+                                                @Html.LabelFor(model => model.BrandID, "Brand", htmlAttributes: new { @class = "control-label" })
+                                                <div class="input-group mb-3">
+                                                    @Html.DropDownList("BrandID", null, "Select Brand", htmlAttributes: new { @class = "form-control", required = "required", id = "BrandID", @disabled = "disabled" })
+
+                                                    <div class="input-group-append">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--end::Input-->
+
+                                            <div class="form-group">
+                                                <label class="control-label"></label>
+                                                <span class="switch ml-1">
+                                                    <label>
+                                                        <input type="checkbox" disabled name="IsFeatured" id="IsFeatured" value="" @(Model != null && Model.IsFeatured.HasValue && Model.IsFeatured.Value ? "checked" : "") />
+                                                        <span></span>
+                                                    </label> Featured
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label"></label>
+                                                <span class="switch ml-1">
+                                                    <label>
+                                                        <input type="checkbox" name="IsPublished" id="IsPublished" disabled="true" value="" @(Model != null && Model.IsPublished.HasValue && Model.IsPublished.Value ? "checked" : "") />
+                                                        <span></span>
+                                                    </label> Publish
+                                                </span>
+                                            </div>
+
+
+
+                                            @*<button type="button" class="btn btn-info font-weight-bolder" onclick="SaveCar(this)">
+                                                    <i class="ki ki-check icon-sm"></i> Save
+                                                </button>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                    <!--<div class="card card-custom gutter-b">
+                    <div class="card-body p-10">-->
+                    <!--begin::Accordion-->
+                    <!--<div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionCategories">
+                        <div class="card">
+                            <div class="card-header" id="headingCategories">
+                                <div class="card-title" data-toggle="collapse" data-target="#collapseCategories">
+                                    <div class="card-label pl-4">Car Categories</div>
+                                </div>
+                            </div>
+                            <div id="collapseCategories" class="collapse show" data-parent="#accordionCategories">
+                                <div class="card-body pl-12">
+                                    <div class="form-group">
+
+                                        <div class="checkbox-list car-categories">
+                                            <div class="spinner spinner-dark spinner-center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--end::Accordion-->
+                    <!--</div>
+                    </div>-->
+
+
+                    <div class="card card-custom gutter-b">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionCategories">
+                                <div class="card">
+                                    <div class="card-header" id="headingCategories">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseCategories">
+                                            <div class="card-label pl-4">Motor Features</div>
+
+
+                                        </div>
+                                        @*<a class="pl-4" href="javascript:;" onclick="OpenModelPopup(this,'/Vendor/Car/AddFeature')">Request New</a>*@
+                                    </div>
+                                    <div id="collapseCategories" class="collapse show" data-parent="#accordionCategories">
+                                        <div class="card-body pl-12">
+                                            <div class="form-group">
+                                                <input type="search" class="form-control" onkeyup="SearchCategory(this)" onchange="SearchCategory(this)" placeholder="Search feature" />
+                                                <div class="checkbox-list car-categories mt-2">
+                                                    <div class="mb-5 mt-5 spinner spinner-dark spinner-center"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+
+                    <div class="card card-custom gutter-b">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionImage">
+                                <div class="card">
+                                    <div class="card-header" id="headingImage">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseImage">
+                                            <div class="card-label pl-4">Motor Thumbnail</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseImage" class="collapse show" data-parent="#accordionImage">
+                                        <div class="card-body pl-12">
+                                            <div class="form-group row">
+                                                <div class="col-lg-12 text-center">
+                                                    <div class="image-input image-input-outline" id="kt_image_car_image">
+                                                        <div class="image-input-wrapper" style="background-image: url(@(!string.IsNullOrEmpty(Model.Thumbnail)?Model.Thumbnail: "../../../../Assets/AppFiles/Images/default.png"))"></div>
+                                                        @*<label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change thumbnail">*@
+                                                        @*<i class="fa fa-pen icon-sm text-muted"></i>*@
+                                                        @*<input type="file" name="Image" id="Image" accept=".png, .jpg, .jpeg" />
+                                                            <input type="hidden" name="profile_avatar_remove" />*@
+
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow cancelimage" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                        </span>
+                                                    </div>
+                                                    <span hidden class="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                    <div class="card card-custom gutter-b">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionVideo">
+                                <div class="card">
+                                    <div class="card-header" id="headingVideo">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseVideo">
+                                            <div class="card-label pl-4">Video</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseVideo" class="collapse show" data-parent="#accordionVideo">
+                                        <div class="card-body pl-12">
+                                            <div class="form-group row">
+                                                <div class="col-lg-12 text-center">
+                                                    <div class="image-input image-input-outline" id="kt_Video_car_Video">
+                                                        @*<div class="image-input-wrapper" style="background-image: url(@(!string.IsNullOrEmpty(Model.Video)?Model.Video: "../../../../Assets/AppFiles/Images/default.png"))"></div>*@
+                                                        <video id="VideoTag" width="400" controls="controls" preload="metadata">
+                                                            <source id="videoSource" src="@Model.Video#t=0.5" type="video/mp4">
+                                                        </video>
+                                                        @*<label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change Video">
+                                                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                                                <input type="file" name="Video" id="Video" />
+                                                                <input type="hidden" name="profile_avatar_remove" />
+                                                            </label>*@
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow cancelimage" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                        </span>
+                                                    </div>
+                                                    <span class="form-text text-muted">Allowed file types: mp4, MKV, FLV, MOV</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+
+                    <div class="card card-custom gutter-b">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="accordionGallery">
+                                <div class="card">
+                                    <div class="card-header" id="headingGallery">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseGallery">
+                                            <div class="card-label pl-4">Motor Gallery</div>
+                                        </div>
+                                    </div>
+                                    <div id="collapseGallery" class="collapse show" data-parent="#accordionGallery">
+                                        <div class="card-body pl-12 text-center">
+                                            <!--begin::Car images-->
+                                            <div class="car-gallery-images">
+                                            </div>
+                                            <input type="file" name="GalleryImages" value="" multiple style="display:none" />
+                                            <!--end::Car images-->
+                                            @*<a href="javascript:;" class="btn btn-light-primary " id="btn-gallery-image-upload">
+                                                    <span class="svg-icon svg-icon-lg m-0">
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Image.svg-->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                                <path d="M6,5 L18,5 C19.6568542,5 21,6.34314575 21,8 L21,17 C21,18.6568542 19.6568542,20 18,20 L6,20 C4.34314575,20 3,18.6568542 3,17 L3,8 C3,6.34314575 4.34314575,5 6,5 Z M5,17 L14,17 L9.5,11 L5,17 Z M16,14 C17.6568542,14 19,12.6568542 19,11 C19,9.34314575 17.6568542,8 16,8 C14.3431458,8 13,9.34314575 13,11 C13,12.6568542 14.3431458,14 16,14 Z" fill="#000000"></path>
+                                                            </g>
+                                                        </svg>
+                                                        <!--end::Svg Icon-->
+                                                    </span>Upload
+                                                </a>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+
+                    <div class="card card-custom gutter-b">
+                        <div class="card-body p-10">
+                            <!--begin::Accordion-->
+                            <div class="accordion accordion-light accordion-toggle-plus accordion-light-borderless accordion-svg-toggle" id="">
+                                <div class="card">
+                                    <div class="card-header" id="headingTags">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseTags">
+                                            <div class="card-label pl-4">Motor Documents</div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="card-toolbar ">
+                                    <a href="javascript:;" class="btn btn-info font-weight-bolder" onclick="OpenModelPopup(this,'/Vendor/Car/CreateDocuments/@Model.ID')">
+                                        <span class="svg-icon svg-icon-md">-->
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                    <!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="0" y="0" width="24" height="24" />
+                                            <circle fill="#000000" cx="9" cy="15" r="6" />
+                                            <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                        </g>
+                                    </svg>-->
+                                    <!--end::Svg Icon-->
+                                    <!--</span> Add Document
+                                        </a>
+                                    </div>-->
+                                    <div class="card-body pl-12">
+                                        <!--<div class="row">
+
+                                        <div class="col-sm-5">
+                                            <label>Toyota</label>-->
+                                        @*<input class="form-control" value="Toyota" readonly />*@
+                                        <!--</div>
+                                            <div class="col-sm-3">
+                                                <span class="fas fa-eye ml-19"></span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <span class="fas fa-trash ml-11"></span>
+                                            </div>
+                                        </div>-->
+                                        <div class="checkbox-list car-documents mt-2">
+                                            <div class="mb-5 mt-5 spinner spinner-dark spinner-center"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--end::Accordion-->
+                        </div>
+                    </div>
+                </div>
+                <!--end::Dashboard-->
+            </div>
+            <!--end::Container-->
+        </div>
+        <!--end::Entry-->
+    </div>
+
+    <div id="AttributeModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="AttributeModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modalmdl">
+            <div class="modal-content" style="min-height:100px">
+                <div id='myModalContent'>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Attribute</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @using (Html.BeginForm("Create", "Attribute", new { area = "VendorPortal" }, FormMethod.Post, new { id = "AttributeForm", @class = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <!--begin::Input-->
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" name="Name" id="Name" placeholder="Attribute Name" value="" />
+                                        <span class="form-text text-muted"></span>
+                                    </div>
+                                    <!--end::Input-->
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <!--begin::Input-->
+                                    <div class="form-group">
+                                        <label class="float-right">اسم</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" name="NameAr" id="NameAr" dir="rtl" placeholder="اسم السمة" value="" />
+                                        <span class="form-text text-muted"></span>
+                                    </div>
+                                    <!--end::Input-->
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info " id="btnAddNewAttribute" form="AttributeForm">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="VariationAttributeModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="VariationAttributeModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modalmdl">
+            <div class="modal-content" style="min-height:100px">
+                <div id='myModalContent'>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add New Variat</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="FormVariationAttribute">
+                            <div class="row variation-attributes-form">
+                                <div class="col-12 "></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info " id="btnAddNewVariat" form="FormVariationAttribute">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--end::Row-->
+    <script>
+	var SuccessMessage = '@ViewBag.SuccessMessage';
+	var ErrorMessage = '@ViewBag.ErrorMessage';
+    </script>
+
+    @section IndexScript {
+        <!--begin::Page Vendors(used by this page)-->
+        <script src="~/assets/admin/plugins/custom/ckeditor/ckeditor-classic.bundle.js"></script>
+
+        <script src="~/assets/admin/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+        <!--end::Page Vendors-->
+        <!--begin::Page Scripts(used by this page)-->
+        <script src="@Url.ContentVersioned("~/Assets/Admin/js/Vendor/car/detail.js")"></script>
+        @*<script src="~/Assets/Admin/js/admin/car/insurance.js"></script>*@
+        <script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+        @*<script src="~/assets/Admin/plugins/custom/datatables/datatables.bundle.js"></script>*@
+        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+        <!--end::Page Scripts-->
+
+        <script>
+		'use strict';
+
+		var arrows;
+		if (KTUtil.isRTL()) {
+			arrows = {
+				leftArrow: '<i class="la la-angle-right"></i>',
+				rightArrow: '<i class="la la-angle-left"></i>'
+			}
+		} else {
+			arrows = {
+				leftArrow: '<i class="la la-angle-left"></i>',
+				rightArrow: '<i class="la la-angle-right"></i>'
+			}
+		}
+
+		// Date Range
+		$('.kt_datepicker_range').datepicker({
+			rtl: KTUtil.isRTL(),
+			todayHighlight: true,
+			templates: arrows,
+			//format: 'dd/mm/yyyy',
+		});
+
+		// Class definition
+		var KTImageInputDemo = function () {
+			// Private functions
+			var initDemos = function () {
+				var avatar1 = new KTImageInput('kt_image_1');
+			}
+
+			return {
+				// public functions
+				init: function () {
+					initDemos();
+				}
+			};
+		}();
+
+
+		KTUtil.ready(function () {
+			KTImageInputDemo.init();
+
+			$('#CountryID').change(function () {
+				var count = 0;
+				var $dropdown = $("#CityID");
+				if ($(this).val() == 0) {
+					$dropdown.empty();
+					$dropdown.append($("<option />").val('').text("Please Select Country First!"));
+				}
+				else {
+					$.ajax({
+						type: 'Get',
+						url: '/City/GetCitiesByCountry/' + $(this).val(),
+						success: function (response) {
+							$dropdown.empty();
+							$dropdown.append($("<option />").val('').text("Select City"));
+
+							$.each(response.data, function (k, v) {
+								$dropdown.append($("<option />").val(v.value).text(v.text));
+								count++;
+							});
+						}
+					});
+				}
+			});
+		});
+
+
+		if (SuccessMessage) {
+			toastr.success(SuccessMessage);
+		}
+		else if (ErrorMessage) {
+			toastr.error(ErrorMessage);
+		}
+
+		// Class definition
+		var EditorShortDescription;
+        var EditorShortDescriptionAr;
+        var EditorMobileDescription;
+        var EditorMobileDescriptionAr;
+		var EditorLongDescription;
+		var EditorLongDescriptionAr;
+		var KTCkeditor = function () {
+			// Private functions
+            var demos = function () {
+
+				@*ClassicEditor
+				.create(document.querySelector('#kt-ckeditor-short-description')
+				)
+				.then(editor => {
+					EditorShortDescription = editor;
+					EditorShortDescription.setData(`@Html.Raw(Model.ShortDescription !=null? Model.ShortDescription: "-")`);
+				    EditorShortDescription.isReadOnly = true
+
+				})
+				.catch(error => {
+					console.error(error);
+				});*@
+				@*ClassicEditor
+				.create(document.querySelector('#kt-ckeditor-short-description-ar'),
+				{
+					language: {
+						// The UI will be English.
+						ui: 'ar',
+
+						// But the content will be edited in Arabic.
+						content: 'ar'
+					}
+				}
+				)
+				.then(editor => {
+					EditorShortDescriptionAr = editor;
+					EditorShortDescriptionAr.setData(`@Html.Raw(Model.ShortDescriptionAr)`);
+				    EditorShortDescriptionAr.isReadOnly = true
+				})
+				.catch(error => {
+					console.error(error);
+                });*@
+
+                @*ClassicEditor
+				.create(document.querySelector('#kt-ckeditor-mobile-description')
+				)
+				.then(editor => {
+                    EditorMobileDescription = editor;
+                    EditorMobileDescription.setData(`@Html.Raw(Model.MobileDescription)`);
+                    EditorMobileDescription.isReadOnly = true
+
+				})
+				.catch(error => {
+					console.error(error);
+				});*@
+				@*ClassicEditor
+				.create(document.querySelector('#kt-ckeditor-mobile-description-ar'),
+				{
+					language: {
+						// The UI will be English.
+						ui: 'ar',
+
+						// But the content will be edited in Arabic.
+						content: 'ar'
+					}
+				}
+				)
+				.then(editor => {
+                    EditorMobileDescriptionAr = editor;
+                    EditorMobileDescriptionAr.setData(`@Html.Raw(Model.MobileDescriptionAr)`);
+                    EditorMobileDescriptionAr.isReadOnly = true
+				})
+				.catch(error => {
+					console.error(error);
+				});*@
+
+				ClassicEditor
+					.create(document.querySelector('#kt-ckeditor-long-description')
+					)
+					.then(editor => {
+						EditorLongDescription = editor;
+						EditorLongDescription.setData(`@Html.Raw(Model.LongDescription)`);
+					    EditorLongDescription.isReadOnly = true
+					})
+					.catch(error => {
+						console.error(error);
+					});
+
+				@*ClassicEditor
+				.create(document.querySelector('#kt-ckeditor-long-description-ar'),
+				{
+					language: {
+						// The UI will be English.
+						ui: 'en',
+
+						// But the content will be edited in Arabic.
+						content: 'ar'
+					}
+				}
+				)
+				.then(editor => {
+					EditorLongDescriptionAr = editor;
+					EditorLongDescriptionAr.setData(`@Html.Raw(Model.LongDescriptionAr)`);
+				    EditorLongDescriptionAr.isReadOnly = true
+				})
+				.catch(error => {
+					console.error(error);
+				});*@
+			}
+
+			return {
+				// public functions
+				init: function () {
+				    demos();
+
+				}
+			};
+		}();
+
+		// Initialization
+		jQuery(document).ready(function () {
+			KTCkeditor.init();
+			$("#CarType").val(@Model.Type);
+			$('select[name=StockStatus]').val(@Model.StockStatus);
+			$('select[name=Status]').val(@Model.Status);
+			$("input[name=startDate]").datepicker('update', new Date('@Model.SalePriceFrom'));
+			$("input[name=endDate]").datepicker('update', new Date('@Model.SalePriceTo'));
+
+			$('input[name=IsManageStock]').trigger('change');
+			$('.toggle-scheduled-sale').trigger('click');
+
+
+		});
+        </script>
+        <!--end::Page Scripts-->
+    }

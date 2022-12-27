@@ -1,0 +1,176 @@
+@model NowBuySell.Data.Category
+@{
+	ViewBag.Title = "Details";
+	Layout = null;
+}
+
+
+<div class="modal-header">
+	<h5 class="modal-title">Details</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="float-left mb-3">
+                <i class="fa fa-calendar"></i>
+                <b>@Html.Label("Creation Date:", htmlAttributes: new { @class = "control-label" })</b>
+                @if (Model.CreatedOn.HasValue)
+                {
+                    var date = Model.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt");
+                    <label class="control-label" readonly="readonly">@date</label>
+                }
+                else
+                {
+                    <label class="control-label" readonly="readonly"> - </label>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class=" col-sm-6  text-center">
+            <div class="col-lg-12 text-center">
+                <label>Thumbnail</label>
+            </div>
+            <div class="flex-shrink-0 mr-7">
+                <div class="symbol symbol-50 symbol-lg-120">
+                    <img alt="Pic" src="@Model.Image">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 text-center">
+            <div class="col-lg-12 text-center">
+                <label>Icon</label>
+            </div>
+            <div class="symbol symbol-50 symbol-lg-120">
+                <img alt="Pic" src="@Model.Icon">
+            </div>
+        </div>
+        <hr />
+        @*<div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Parent Category</label>
+                    <div class="input-group mb-2">
+                        <label class="form-control" readonly="readonly"> @(Model.Category2 != null ? Model.Category2.CategoryName : "-")</label>
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-server"></i></span></div>
+                    </div>
+                </div>
+            </div>*@
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Category Name</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.CategoryName</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Category Name (Ar)</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.CategoryNameAr</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Slug</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.Slug</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-link"></i></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Position</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.Position</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-sort"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Category For</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly">
+                        @if (Model.ForRent == true && Model.ForSale == false)
+                        {
+                            <label class="control-label" readonly="readonly">Rent</label>
+                        }
+                        else if (Model.ForRent == false && Model.ForSale == true)
+                        {
+                            <label class="control-label" readonly="readonly">Sale</label>
+                        }
+                        else
+                        {
+                            <label class="control-label" readonly="readonly">Sale/Rent</label>
+                        }
+                    </label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-sort"></i></span></div>
+                </div>
+            </div>
+        </div>
+
+
+   
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Type</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly">
+                        <label class="control-label" readonly="readonly">@Model.PropertyType</label>
+                    </label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                </div>
+            </div>
+        </div>
+        
+    
+    <!--<div class="col-md-2 col-sm-12">
+    <div class="form-group">
+        <label class="control-label">Show On Header</label>
+        <span class="switch">
+            <label>
+                @Html.CheckBox("IsDefault")-->
+    @*<input type="checkbox" id="IsDefault" name="IsDefault" />*@
+    <!--<span></span>
+                </label>
+            </span>
+        </div>
+    </div>-->
+  
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                <div class="input-group mb-2">
+                    <textarea class="form-control" name="Description" id="Description" rows="6" readonly placeholder="Enter Description name here ..." required="required">@Model.Description</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Description (AR)</label>
+                <div class="input-group mb-2">
+                    <textarea class="form-control" name="DescriptionAR" id="DescriptionAR" rows="6" readonly dir="rtl" placeholder="Enter Description name here ..." required="required">@Model.DescriptionAR</textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>

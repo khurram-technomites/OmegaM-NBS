@@ -1,0 +1,14 @@
+﻿@{
+	ViewBag.Title = "Un Authorize";
+	Layout = null;
+}
+
+<script>
+
+	$('#myModal').modal('hide');
+
+	swal.fire("Access Denied", "You do not have access to this menu, please contact your administrator.", "warning").then(function () {
+		$('#myModal').modal('hide');
+	});
+
+</script>

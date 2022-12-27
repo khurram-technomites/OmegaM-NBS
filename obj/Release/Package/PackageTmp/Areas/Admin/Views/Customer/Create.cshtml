@@ -1,0 +1,172 @@
+@model NowBuySell.Data.Customer
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title">Create</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("Create", "Customer", new { area = "Admin" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter name here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Contact</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter contact here ...", required = "required", type = "number", min = "0" } })
+                        @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Country</label>
+                    <div class="input-group mb-2">
+                        @Html.DropDownList("CountryID", null, "Select country", htmlAttributes: new { @class = "form-control", required = "required", id = "CountryID" })
+                        @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-flag"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">City</label>
+                    <div class="input-group mb-2">
+                        <select class="form-control" id="CityID" name="CityID" required="required">
+                            <option value="">Select Country First</option>
+                        </select>@Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-home"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Address</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter address here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-home"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter email here ...", required = "required", type = "email" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Password</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password", placeholder = "Enter password here ...", required = "required", pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        </div>
+                    </div>
+                    <span class="form-text text-danger" style="font-size: 9px;">Min. 8 characters, at least one uppercase letter, one lowercase letter, and one number</span>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="Userform">Submit</button>
+</div>
+
+<script>
+
+    jQuery(document).ready(function () {
+        $('#CountryID').change(function () {
+
+            var count = 0;
+            var $dropdown = $("#CityID");
+            if ($(this).val() == 0) {
+                $dropdown.empty();
+                $dropdown.append($("<option />").val('').text("Please Select Country First!"));
+            }
+            else {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Admin/Customer/GetCitiesByCountry?id=' + $(this).val(),
+                    success: function (response) {
+                        $dropdown.empty();
+                        $dropdown.append($("<option />").val('').text("Select City"));
+
+                        $.each(response.data, function (k, v) {
+                            $dropdown.append($("<option />").val(v.value).text(v.text));
+                            count++;
+                        });
+                    }
+                });
+            }
+        });
+
+        $('#CityID').change(function () {
+
+            var count = 0;
+            var $dropdown = $("#AreaID");
+            if ($(this).val() == 0) {
+                $dropdown.empty();
+                $dropdown.append($("<option />").val('').text("Please Select City First!"));
+            }
+            else {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Admin/Customer/GetAreasByCity?id=' + $(this).val(),
+                    success: function (response) {
+                        $dropdown.empty();
+                        $dropdown.append($("<option />").val('').text("Select Area"));
+
+                        $.each(response.data, function (k, v) {
+                            $dropdown.append($("<option />").val(v.value).text(v.text));
+                            count++;
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,134 @@
+﻿@model IEnumerable<NowBuySell.Data.SP_GetServiceCarAtributes_Result>
+@{
+    ViewBag.Title = "Atributes";
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title">Service Car Attributes</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div id="kt_repeater_1">
+        <div class="form-group row " id="kt_repeater_1">
+            <div data-repeater-list="" class="col-md-12" id="repeatList">
+
+                @Html.AntiForgeryToken()
+                <!--Lists Create-->
+
+                @if (Model.Count() != 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div data-repeater-item class="form-group row align-items-center list-repeat">
+                            <div hidden>
+                                <input type="number" class="form-control ID" value="@item.ID" hidden />
+                            </div>
+                            <div hidden>
+                                <input type="number" class="form-control CarID" value="@item.ServiceCarsID" hidden />
+                            </div>
+                            <div class="col-md-3">
+                                <label>Name</label>
+                                <input type="text" class="form-control Name" value="@item.Name" placeholder="Enter attribute name here ..." />
+                                <div class="d-md-none mb-2"></div>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Value</label>
+                                <input type="text" class="form-control Value" value="@item.Value" placeholder="Enter attribute value here ..." />
+                                <div class="d-md-none mb-2"></div>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <p class="mt-n2">&nbsp;</p>
+                                @if ((bool)item.IsActive)
+                                {
+                                    <button type="button" class="btn btn-sm font-weight-bolder btn-outline-danger IsActive" onclick="Activate(this,@item.ID)">
+                                        <i class="fa fa-times-circle"></i>Deactivate
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-sm font-weight-bolder btn-outline-success IsActive" onclick="Activate(this,@item.ID)">
+                                        <i class="fa fa-check-circle"></i>Activate
+                                    </button>
+                                }
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <p class="mt-n2">&nbsp;</p>
+                                <button class="btn btn-sm font-weight-bolder btn-outline-danger Delete" onclick="Delete(this,@item.ID)">
+                                    <i class="la la-trash-o"></i>Delete
+                                </button>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <p class="mt-n2">&nbsp;</p>
+                                <button class="btn btn-sm font-weight-bolder btn-outline-success" onclick="AddAttribue(this);">
+                                    <i class="fa fa fa-check-circle"></i>Save
+                                </button>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div data-repeater-item class="form-group row align-items-center list-repeat">
+                        <div hidden>
+                            <input type="number" class="form-control ID" value="" hidden />
+                        </div>
+                        <div hidden>
+                            <input type="number" class="form-control CarID" value="" hidden />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Name</label>
+                            <input type="text" class="form-control Name" value="" placeholder="Enter attribute name here ..." />
+                            <div class="d-md-none mb-2"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Value</label>
+                            <input type="text" class="form-control Value" value="" placeholder="Enter attribute value here ..." />
+                            <div class="d-md-none mb-2"></div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <p class="mt-n2">&nbsp;</p>
+                                <button type="button" class="btn btn-sm font-weight-bolder btn-outline-danger IsActive" disabled="">
+                                    <i class="fa fa-times-circle"></i>Deactivate
+                                </button>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <p class="mt-n2">&nbsp;</p>
+                            <button class="btn btn-sm font-weight-bolder btn-outline-danger Delete" disabled="">
+                                <i class="la la-trash-o"></i>Delete
+                            </button>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <p class="mt-n2">&nbsp;</p>
+                            <button class="btn btn-sm font-weight-bolder btn-outline-success" onclick="AddAttribue(this);">
+                                <i class="fa fa fa-check-circle"></i>Save
+                            </button>
+                        </div>
+                    </div>
+                }
+                <!--Lists Create-->
+            </div>
+        </div>
+        <div class="form-group row">
+            @*<label class="col-lg-2 col-form-label text-right"></label>*@
+            <div class="col-lg-12">
+                <a href="javascript:;" data-repeater-create="" class="btn btn-sm font-weight-bolder btn-light-primary">
+                    <i class="la la-plus"></i>Add
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+
+<!--end::Row-->
+<script src="~/Assets/Admin/js/pages/crud/forms/widgets/form-repeater.js"></script>
+<!--begin::Page Scripts(used by this page)-->
+
+<script src="@Url.ContentVersioned("~/Assets/Admin/js/admin/servicescar/attributes.js")"></script>
+<!--end::Page Scripts-->

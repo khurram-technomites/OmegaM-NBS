@@ -1,0 +1,134 @@
+﻿@model NowBuySell.Data.Property
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title">Add Property</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    @using (Html.BeginForm("Create", "Property", new { area = "VendorPortal" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+
+            @{
+                var domainsList = new SelectList(new[]
+                {
+                new SelectListItem { Text = "Rent", Value = false.ToString(), Selected = true },
+                new SelectListItem { Text = "Sale", Value = true.ToString()},
+            }, "Value", "Text");
+            }
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Property For</label>
+                    <div class="input-group mb-2">
+                        @Html.DropDownListFor(model => model.ForSale, domainsList, htmlAttributes: new { @class = "form-control", required = "required" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Property Category</label>
+                    <div class="input-group mb-2">
+                        @Html.DropDownList("CategoryId", null, "Select Category", htmlAttributes: new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Title</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter title here", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">TitleAR</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.TitleAr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter title here", required = "required", dir = "rtl" } })
+                        @Html.ValidationMessageFor(model => model.TitleAr, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-link"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            @*<div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Ads Reference Code</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control" required readonly name="AdsReferenceCode" id="AdsReferenceCode" value="@Model.AdsReferenceCode" />
+                        @Html.ValidationMessageFor(model => model.AdsReferenceCode, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-link"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="Userform">Submit</button>
+</div>
+
+<script>
+    var _URL = window.URL || window.webkitURL;
+    $(document).ready(function () {
+        $("#Name").on('change', function () {
+            var name = $(this);
+            $("#Slug").val($(name).val().replace(/ /g, "-").toLocaleLowerCase());
+        });
+    
+    });
+    function Limit() {
+        @*var success = @((TempData["message"] != null).ToString().ToLower());*@
+        @*var success = @Viewbag.Message;*@
+        
+
+        if (@ViewBag.Message == true) {
+            swal.fire({
+                title: 'Your limit has been exceeded.',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ok'
+            })
+        }
+        else{
+
+        }
+    }
+</script>

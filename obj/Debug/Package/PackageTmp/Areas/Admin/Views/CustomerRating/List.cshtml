@@ -1,0 +1,93 @@
+﻿@model IEnumerable<NowBuySell.Data.CarRating>
+
+@{
+	ViewBag.Title = "List";
+	Layout = null;
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style>
+	#kt_datatable1 tbody tr td:last-child {
+		white-space: nowrap;
+	}
+
+	.seemore {
+		width: 100px;
+		white-space: nowrap;
+		overflow: hidden;
+		display: inline-block;
+		text-overflow: ellipsis;
+		margin: 0;
+	}
+
+	
+</style>
+<!--begin::Row-->
+<div class="row">
+	<div class="col-xl-12">
+		<!--begin::Card-->
+		<div class="card card-custom gutter-b">
+			<div class="card-header flex-wrap border-0 pt-6 pb-0">
+				<div class="card-title">
+					<h3 class="card-label">
+						Rating Approvals
+						<span class="d-block text-muted pt-2 font-size-sm">Manage Rating Approvals Here...</span>
+					</h3>
+				</div>
+				<div class="card-toolbar">
+					<!--begin::Dropdown-->
+					<div class="dropdown dropdown-inline mr-2">
+						@using (Html.BeginForm("CustomerRatingReport", "CustomerRating", FormMethod.Post))
+						{
+							@Html.AntiForgeryToken()
+
+							<button type="submit" class="btn btn-dark btn-sm" @(Model.Count() > 0 ? "" : "disabled")>
+								<i class="far fa-file-excel"></i>
+								Export Excel
+							</button>
+						}
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				@Html.AntiForgeryToken()
+				<!--begin: Datatable-->
+				<table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th hidden>Order ID</th>
+							<th>Order No</th>
+							<th>Car</th>
+							<th>Rating</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody style="display:none">
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")	</td>
+								<td hidden>@item.OrderDetailID</td>
+								<td>@item.OrderDetail.Order.OrderNo</td>
+								<td>@item.Car.Name</td>
+								<td>
+									<button class="btn btn-bg-light btn-rating p-1" data="@item.Rating">
+										<i class="la la-star-o"></i>
+										<i class="la la-star-o"></i>
+										<i class="la la-star-o"></i>
+										<i class="la la-star-o"></i>
+										<i class="la la-star-o"></i>
+									</button>
+								</td>
+								<td nowrap="nowrap">@item.IsApproved,@item.ID</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+				<!--end: Datatable-->
+			</div>
+		</div>
+		<!--end::Card-->
+	</div>
+</div>
+<!--end::Row-->

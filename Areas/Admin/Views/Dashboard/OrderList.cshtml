@@ -1,0 +1,52 @@
+﻿@model IEnumerable<NowBuySell.Data.SP_GetFilteredOrders_Result>
+@{
+	ViewBag.Title = "List";
+	Layout = null;
+}
+<div class="row">
+	<!--begin::Row Top Categories-->
+	<div class="col-md-12 col-sm-12">
+		<input type="hidden" name="hdnOrderCounter" id="hdnOrderCounter" value="@(Model != null?Model.Count():0)" />
+		<!--begin::Advance Table Widget 1-->
+		<div class="container card-custom card-stretch gutter-b">
+			<!--begin::Body-->
+			<table class="table table-borderless table-vertical-center on-going-bookings" id="datatablea">
+				<thead>
+					<tr>
+						<th>DATE</th>
+						<th>CUSTOMER</th>
+						<th>BOOKING#</th>
+						<th>MOTOR</th>
+						<th>VENDOR</th>
+						<th>ACTIONS</th>
+					</tr>
+				</thead>
+				<tbody style="display:none">
+					@if (Model != null)
+					{
+						foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.Date.Value.ToString("dd MMM yyyy, h: mm tt")</td>
+								<td>@item.CustomerImage|@item.CustomerName|@item.CustomerAddress</td>
+								<td>@item.OrderNo|@item.Status</td>
+								<td>@item.CarName</td>
+								<td>@item.VendorName</td>
+								<td nowrap="nowrap">@item.Status,@item.ID</td>
+							</tr>
+						}
+					}
+					else
+					{
+					}
+				</tbody>
+			</table>
+			<!--end::Body-->
+		</div>
+		<!--end::Advance Table Widget 1-->
+	</div>
+	<!--end::Row Top Categories-->
+</div>
+@section IndexScript {
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+}

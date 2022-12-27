@@ -1,0 +1,287 @@
+﻿@model NowBuySell.Web.Areas.Admin.ViewModels.DashboardListViewModel
+@{
+    ViewBag.Title = "List";
+    Layout = null;
+}
+
+<div class="row">
+    <!--begin::Row Top Categories-->
+    <div class="col-md-6 col-sm-12">
+        <!--begin::Advance Table Widget 1-->
+        <div class="card card-custom card-stretch gutter-b">
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label font-weight-bolder text-dark">Top Categories</span>
+                </h3>
+                <div class="card-toolbar">
+                    <!--begin::Export-->
+                    <div class="dropdown dropdown-inline mr-2">
+                        @using (Html.BeginForm("TopCategoriesReport", "Dashboard", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input type="text" value="" name="FromDate" class="form-control kt_datepicker_range FromDate" hidden="" />
+                            <input type="text" value="" name="ToDate" class="form-control kt_datepicker_range ToDate" hidden="" />
+
+                            <button type="submit" id="btnSubmit1" class="btn btn-dark btn-sm" @(Model.TopCategories.Count() > 0 ? "" : "disabled")>
+                                <i class="far fa-file-excel"></i>
+                                Report
+                            </button>
+                        }
+                    </div>
+                    <!--end::Export-->
+
+                    <a href="/Admin/Category/Index" class="btn btn-info font-weight-bolder font-size-sm">
+                        <span class="menu-icon">
+                            <i class="fa fa-eye" style="color: white;"></i>
+                        </span>View All Categories
+                    </a>
+                </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body">
+                <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_categories">
+                    <thead>
+                        <tr class="text-left">
+                            <th>Category</th>
+                            <th>Items Sold</th>
+                            <th>Net Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody style="display:none">
+                        @foreach (var categories in Model.TopCategories)
+                        {
+                            <tr>
+                                <td>
+                                    @categories.Category
+                                </td>
+                                <td>
+                                    @categories.ItemsSold
+                                </td>
+                                <td class="price">
+                                    @categories.Currency @categories.NetSales
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Advance Table Widget 1-->
+    </div>
+    <!--end::Row Top Categories-->
+    <!--begin::Row Top Cars-->
+    <div class="col-md-6 col-sm-12">
+        <!--begin::Advance Table Widget 1-->
+        <div class="card card-custom card-stretch gutter-b">
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label font-weight-bolder text-dark">Top Cars</span>
+                </h3>
+                <div class="card-toolbar">
+                    <!--begin::Export-->
+                    <div class="dropdown dropdown-inline mr-2">
+                        @using (Html.BeginForm("TopCarsReport", "Dashboard", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input type="text" value="" name="FromDate" class="form-control kt_datepicker_range FromDate" hidden="" />
+                            <input type="text" value="" name="ToDate" class="form-control kt_datepicker_range ToDate" hidden="" />
+
+                            <button type="submit" id="btnSubmit2" class="btn btn-dark btn-sm" @(Model.TopCars.Count() > 0 ? "" : "disabled")>
+                                <i class="far fa-file-excel"></i>
+                                Report
+                            </button>
+                        }
+                    </div>
+                    <!--end::Export-->
+                    <a href="/Admin/Car/Index" class="btn btn-info font-weight-bolder font-size-sm">
+                        <span class="menu-icon">
+                            <i class="fa fa-eye" style="color: white;"></i>
+                        </span>View All Motors
+                    </a>
+                </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body">
+                <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_cars">
+                    <thead>
+                        <tr class="text-left">
+                            <th>Motor</th>
+                            <th>Items Sold</th>
+                            <th>Net Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody style="display:none">
+                        @foreach (var cars in Model.TopCars)
+                        {
+                            <tr>
+                                <td>
+                                    @cars.Name
+                                </td>
+                                <td>
+                                    @cars.ItemsSold
+                                </td>
+                                <td class="price">
+                                    @cars.Currency @cars.NetSales
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!--end::Body-->
+        </div>
+
+        <!--end::Advance Table Widget 1-->
+    </div>
+    <!--end::Row Top Cars-->
+</div>
+<!--begin::Row Top Customers-->
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <!--begin::Advance Table Widget 1-->
+        <div class="card card-custom card-stretch gutter-b">
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label font-weight-bolder text-dark">Top Customers</span>
+                </h3>
+                <div class="card-toolbar">
+                    <!--begin::Export-->
+                    <div class="dropdown dropdown-inline mr-2">
+                        @using (Html.BeginForm("TopCustomersReport", "Dashboard", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input type="text" value="" name="FromDate" class="form-control kt_datepicker_range FromDate" hidden="" />
+                            <input type="text" value="" name="ToDate" class="form-control kt_datepicker_range ToDate" hidden="" />
+
+                            <button type="submit" id="btnSubmit3" class="btn btn-dark btn-sm" @(Model.TopCustomers.Count() > 0 ? "" : "disabled")>
+                                <i class="far fa-file-excel"></i>
+                                Report
+                            </button>
+
+                        }
+                    </div>
+                    <!--end::Export-->
+                    <a href="/Admin/Customer/Index" class="btn btn-info font-weight-bolder font-size-sm">
+                        <span class="menu-icon">
+                            <i class="fa fa-eye" style="color: white;"></i>
+                        </span>View All Customers
+                    </a>
+                </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body">
+                <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_customer">
+                    <thead>
+                        <tr class="text-left">
+                            <th>Customer</th>
+                            <th>Orders</th>
+                            <th>Total Spend</th>
+                        </tr>
+                    </thead>
+                    <tbody style="display:none">
+                        @foreach (var customer in Model.TopCustomers)
+                        {
+                            <tr>
+                                <td>
+                                    @customer.Name
+                                </td>
+                                <td>
+                                    @customer.Orders
+                                </td>
+                                <td class="price">
+                                    @customer.Currency @customer.TotalSpend
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Advance Table Widget 1-->
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <!--begin::Advance Table Widget 1-->
+        <div class="card card-custom card-stretch gutter-b">
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label font-weight-bolder text-dark">Top Used Coupons</span>
+                </h3>
+                <div class="card-toolbar">
+                    <!--begin::Export-->
+                    <div class="dropdown dropdown-inline mr-2">
+                        @using (Html.BeginForm("TopCouponsReport", "Dashboard", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input type="text" value="" name="FromDate" class="form-control kt_datepicker_range FromDate" hidden="" />
+                            <input type="text" value="" name="ToDate" class="form-control kt_datepicker_range ToDate" hidden="" />
+
+                            <button type="submit" id="btnSubmit4" class="btn btn-dark btn-sm" @(Model.TopCoupons.Count() > 0 ? "" : "disabled")>
+                                <i class="far fa-file-excel"></i>
+                                Report
+                            </button>
+                        }
+                    </div>
+                    <!--end::Export-->
+                    <a href="/Admin/Coupon/Index" class="btn btn-info font-weight-bolder font-size-sm">
+                        <span class="menu-icon">
+                            <i class="fa fa-eye" style="color: white;"></i>
+                        </span>View All Coupons
+                    </a>
+                </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body">
+                <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_coupons">
+                    <thead>
+                        <tr class="text-left">
+                            <th>Coupon Code</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Orders</th>
+                            <th>Total Discount</th>
+                        </tr>
+                    </thead>
+                    <tbody style="display:none">
+                        @foreach (var coupon in Model.TopCoupons)
+                        {
+                            <tr>
+                                <td>
+                                    @coupon.CouponCode
+                                </td>
+                                <td>
+                                    @coupon.CouponName
+                                </td>
+                                <td>
+                                    @coupon.Type
+                                </td>
+                                <td class="price">
+                                    @coupon.Currency @coupon.TotalCouponDiscount
+                                </td>
+                                <td>
+                                    @coupon.TotalOrders
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Advance Table Widget 1-->
+    </div>
+</div>
+<!--end::Row Top Customers-->

@@ -1,0 +1,51 @@
+﻿@model NowBuySell.Data.LeadRequest
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title">Lead Request Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i aria-hidden="true" class="ki ki-close"></i>
+        </button>
+    </div>
+    @using (Html.BeginForm("StatusChange", "LeadRequest", new { area = "Admin" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+<div class="col-md-12" style="margin-top:20px">
+    <label class="control-label">Status</label>
+    @Html.HiddenFor(Model => Model.ID)
+    <select class="col-sm-12 form-control" name="Status" id="Status">
+        <option value="Pending">Pending</option>
+        <option value="Processing">Processing</option>
+        <option value="Canceled">Canceled</option>
+        <option value="Closed">Closed</option>
+    </select>
+    <br />
+    <label class="control-label">Remarks</label>
+    <p>@Html.Raw(Model.Remarks)</p>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <textarea name="Remarks" id="Remarks" class="form-control" rows='2' placeholder="Enter remarks here ..."></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-info" form="Userform">Submit</button>
+    </div>
+</div>
+    }
+</body>
+</html>
+<script>
+	$(document).ready(function () {
+        $("#Status").val("@Model.Status");
+
+	});
+</script>

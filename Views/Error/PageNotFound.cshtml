@@ -1,0 +1,96 @@
+﻿<!doctype html>
+@{
+	ViewBag.Title = "404 - Page Not Found";
+	Layout = null;
+	var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+	bool RTL = CultureHelper.IsRighToLeft();
+}
+
+
+<!--[if lt IE 7]>       <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>          <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>          <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="@CultureHelper.GetCurrentNeutralCulture()" dir="@(RTL ? "rtl" : "ltr")">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge;charset=UTF-8">
+	<title>@Resources.AppName | @ViewBag.Title</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="icon" href="~/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="~/Assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/Assets/css/fontawesome/all.min.css">
+	<link rel="stylesheet" href="~/Assets/css/linearicons.css">
+	<link rel="stylesheet" href="~/Assets/css/themify-icons.css">
+	<link rel="stylesheet" href="~/Assets/css/jquery-ui.css">
+	<link rel="stylesheet" href="~/Assets/css/owl.carousel.min.css">
+	<link rel='stylesheet' href='~/Assets/css/bootstrap-slider.min.css'>
+	<link rel="stylesheet" href="~/Assets/css/select2.min.css">
+	<link rel="stylesheet" href="~/Assets/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="~/Assets/css/sweetalert2.min.css" />
+
+	<link rel="stylesheet" href="~/Assets/css/main-custom.css">
+	<link rel="stylesheet" href="@Url.ContentVersioned("~/Assets/css/layout.css")">
+	<link rel="stylesheet" href="@Url.ContentVersioned("~/Assets/css/web-custom-style"+ ( RTL ? "-rtl" : "") + ".css")">
+	<link rel="stylesheet" href="@Url.ContentVersioned("~/Assets/css/custom-responsive.css")">
+</head>
+
+<body class="wo-homepage">
+	<!-- Preloader Start -->
+	<div class="preloader-outer">
+		<div class="loader"></div>
+	</div>
+	<!-- Preloader End -->
+	<!-- HEADER START -->
+	<!-- HEADER END -->
+	<!-- MAIN BODY START -->
+	<main class="wo-main overflow-hidden" style="padding: 50px 30px">
+		<!-- Appreciation Start -->
+		<section class="wo-main-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="wo-404error">
+							<figure class="wo-404error__img">
+								<img src="~/Assets/images/404.png" alt="img description">
+							</figure>
+							<div class="wo-errorcontent">
+								<h3>Whoops...</h3>
+								<p>We couldn’t find the page you were looking for. Maybe our FAQ or Community can help?</p>
+								<a href="javascript:history.back()" class="wo-btn">Go Back</a>
+								@*<a href="/contact-us" class="wo-reportbtn">Report Issue</a>*@
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Appreciation End -->
+	</main>
+	<!-- MAIN BODY END -->
+	<!-- FOOTER START -->
+	<!-- FOOTER END -->
+
+	<script src="~/Assets/js/vendor/jquery.min.js"></script>
+	<script src="~/Assets/js/vendor/jquery-library.js"></script>
+	<script src="~/Assets/js/vendor/bootstrap-slider.min.js"></script>
+	<script src="~/Assets/js/vendor/bootstrap.min.js"></script>
+	<script src="~/Assets/js/vendor/popper.js"></script>
+	<script src="~/Assets/js/vendor/tippy.js"></script>
+	<script src="~/Assets/js/vendor/appear.js"></script>
+	<script src="~/Assets/js/vendor/countTo.js"></script>
+	<script src="~/Assets/js/vendor/select2.min.js"></script>
+	<script src="~/Assets/js/vendor/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="~/Assets/js/vendor/owl.carousel.min.js"></script>
+	<script src="~/Assets/js/wheelon-slider.min.js"></script>
+	<script src="~/Assets/js/vendor/jquery-ui.js"></script>
+	<script src="~/Assets/js/vendor/particles.min.js"></script>
+	<script src="~/Assets/js/main.js"></script>
+	<script src="~/Assets/js/vendor/jquery.cookie.min.js"></script>
+	<script src="~/Assets/js/vendor/numeral.min.js"></script>
+	<script src="~/Assets/js/sweetalert2.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+﻿@model NowBuySell.Data.Car
+
+@{
+	ViewBag.Title = "Brand Category";
+	Layout = null;
+}
+<div class="modal-header">
+	<h5 class="modal-title">Brand Categories</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-12">
+			<input type="hidden" name="BrandID" id="BrandID" value="@ViewBag.BrandID" />
+			<div class="form-group">
+				<input id="kt_tagify_brand_categories" class="form-control tagify" name="kt_tagify_brand_categories" placeholder="Add Categories">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	@*<button type="submit" class="btn btn-info" form="Userform">Submit</button>*@
+</div>
+
+<script>
+	jQuery(document).ready(function () {
+
+		toastr.options = {
+			"positionClass": "toast-bottom-left",
+		};
+
+		KTTagifyCarTags.init("kt_tagify_brand_categories");
+	});
+
+	var KTTagifyCarTags = function (id) {
+		var tagify;
+		// Private functions
+		var demo5 = function (id) {
+			$.ajax({
+				url: '/Admin/BrandCategory/GetAll/' + $('#BrandID').val(),
+				type: 'GET',
+				success: function (response) {
+					if (response.success) {
+
+						// Init autocompletes
+						var toEl = document.getElementById(id);
+						tagify = new Tagify(toEl, {
+							delimiters: ", ", // add new tags when a comma or a space character is entered
+							maxTags: 10,
+							keepInvalidTags: false, // do not remove invalid tags (but keep them marked as invalid)
+							whitelist: response.brands,
+							templates: {
+								dropdownItem: function (tagData) {
+									try {
+										var html = '';
+
+										html += '<div class="tagify__dropdown__item">';
+										html += '   <div class="d-flex align-items-center">';
+										//html += '       <span class="symbol sumbol-' + (tagData.initialsState ? tagData.initialsState : '') + ' mr-2">';
+										//html += '           <span class="symbol-label" style="background-image: url(\'' + (tagData.pic ? tagData.pic : '') + '\')">' + (tagData.initials ? tagData.initials : '') + '</span>';
+										//html += '       </span>';
+										html += '       <div class="d-flex flex-column">';
+										html += '           <a href="#" id="' + (tagData.id ? tagData.id : '') + '" class="text-dark-75 text-hover-primary font-weight-bold">' + (tagData.value ? tagData.value : '') + '</a>';
+										//html += '           <span class="text-muted font-weight-bold">' + (tagData.value ? tagData.value : '') + '</span>';
+										html += '       </div>';
+										html += '   </div>';
+										html += '</div>';
+
+										return html;
+									} catch (err) { }
+								}
+							},
+							transformTag: function (tagData) {
+								tagData.class = 'tagify__tag tagify__tag--primary';
+							},
+							dropdown: {
+								classname: "color-blue",
+								enabled: 1,
+								maxItems: 5
+							}
+						})
+
+						tagify.addTags(response.brandCategories);
+						tagify.on('dropdown:select', onSelectSuggestion)
+						tagify.on('remove', function (e) {
+
+							$.ajax({
+								url: '/Admin/BrandCategory/Delete/',
+								type: 'POST',
+								data: {
+									"__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val(),
+									brandCategory: { BrandID: $('#BrandID').val(), CategoryID: e.detail.data.id }
+								},
+								success: function (response) {
+									if (response.success) {
+										toastr.success(response.message);
+									}
+									else {
+										toastr.error(response.message);
+										return false;
+									}
+								},
+								error: function (e) {
+									toastr.error("Ooops, something went wrong.Try to refresh this page or contact Administrator if the problem persists.");
+								},
+								failure: function (e) {
+									toastr.error("Ooops, something went wrong.Try to refresh this page or contact Administrator if the problem persists.");
+								}
+							});
+						})
+					} else {
+					}
+				}
+			});
+
+			var addAllSuggestionsElm;
+
+			function onSelectSuggestion(e) {
+				$.ajax({
+					url: '/Admin/BrandCategory/Create/',
+					type: 'POST',
+					data: {
+						"__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val(),
+						brandCategory: { BrandID: $('#BrandID').val(), CategoryID: $(e.detail.tagify.DOM.dropdown).find('.tagify__dropdown__item--active a').attr('id') }
+					},
+					success: function (response) {
+						if (response.success) {
+							toastr.success(response.message);
+						}
+						else {
+							toastr.error(response.message);
+							return false;
+						}
+					},
+					error: function (e) {
+						toastr.error("Ooops, something went wrong.Try to refresh this page or contact Administrator if the problem persists.");
+					},
+					failure: function (e) {
+						toastr.error("Ooops, something went wrong.Try to refresh this page or contact Administrator if the problem persists.");
+					}
+				});
+			}
+
+			// create a "add all" custom suggestion element every time the dropdown changes
+			function getAddAllSuggestionsElm() {
+				// suggestions items should be based on "dropdownItem" template
+				return tagify.parseTemplate('dropdownItem', [{
+					class: "addAll",
+					name: "Add all",
+					email: tagify.settings.whitelist.reduce(function (remainingSuggestions, item) {
+						return tagify.isTagDuplicate(item.value) ? remainingSuggestions : remainingSuggestions + 1
+					}, 0) + " Members"
+				}])
+			}
+		}
+		return {
+			// public functions
+			init: function (id) {
+				demo5(id);
+			}
+		};
+	}();
+</script>

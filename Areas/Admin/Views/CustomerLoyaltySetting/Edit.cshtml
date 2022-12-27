@@ -1,0 +1,89 @@
+﻿@model NowBuySell.Data.CustomerLoyaltySetting
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title">Update</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("Edit", "CustomerLoyaltySetting", new { area = "Admin" }, FormMethod.Post, new { id = "frm-edit", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CustomerType, "Customer Type", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.CustomerType, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter customer type here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.CustomerType, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-user-friends"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PGRatio, "Points Generation Ratio", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.PGRatio, new { htmlAttributes = new { @class = "form-control", type = "number", step = ".01", placeholder = "Enter point generation ratio here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.PGRatio, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-percentage"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PRRatio, "Points Redemption Ratio", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.PRRatio, new { htmlAttributes = new { @class = "form-control", type = "number", step = ".01", placeholder = "Enter point redemption ratio here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.PRRatio, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-percentage"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PointsLimit, "Points Limit", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.PointsLimit, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0", placeholder = "Enter point limit here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.PointsLimit, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-coins"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CustomerTypeMaxSlab, "Customer Max Slab", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.CustomerTypeMaxSlab, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0.1", placeholder = "Enter customer max slab  here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.CustomerTypeMaxSlab, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-coins"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReferralPoint, " Referral Point", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.ReferralPoint, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0", placeholder = "Enter referral point here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.ReferralPoint, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-coins"></i></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="frm-edit">Save Changes</button>
+</div>

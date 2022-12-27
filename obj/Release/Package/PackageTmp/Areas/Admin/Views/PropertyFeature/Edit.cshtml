@@ -1,0 +1,173 @@
+﻿@model NowBuySell.Data.Feature
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title">Update</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("Edit", "PropertyFeature", new { area = "Admin" }, FormMethod.Post, new { id = "frm-edit"}))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+<div class="form-group row">
+    <div class="col-lg-12 text-center">
+        <div class="image-input image-input-outline" id="kt_image_1">
+            <div class="image-input-wrapper" style="background-image: url('@Model.Image.Replace("~","")')"></div>
+            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change logo">
+                <i class="fa fa-pen icon-sm text-muted"></i>
+                <input type="file" name="Image" id="Image" accept=".png, .jpg, .jpeg" />
+                <input type="hidden" name="profile_avatar_remove" />
+            </label>
+            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow cancelimage" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                <i class="ki ki-bold-close icon-xs text-muted"></i>
+            </span>
+        </div>
+        <span class="form-text text-muted">Image dimensions should be 89 x 89 pixels and Image size must be less than 20 kb</span>
+    </div>
+</div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, "Feature", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter feature name here ...", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-building "></i></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameAR, "Feature (Ar)", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control",placeholder = "Enter feature name arabic here ...", required = "required", dir = "rtl" } })
+                        @Html.ValidationMessageFor(model => model.NameAR, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-building "></i></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="frm-edit">Save Changes</button>
+</div>
+
+<script>
+        'use strict';
+
+        // Class definition
+
+
+        var avatar1 = new KTImageInput('kt_image_1');
+    $("#frm-edit").submit(function () {
+            
+            $(this).closest('.modal').find('button[type=submit]').addClass('spinner spinner-sm spinner-left').attr('disabled', true);
+            var data = new FormData();
+        
+        
+        var files = $("#Image").get(0).files;
+        console.log("files", files);
+            if (files.length > 0) {
+                data.append("Image", files[0]);
+            }
+            data.append("ID", $('#ID').val())
+            data.append("Name", $('#Name').val());
+        data.append("NameAr", $('#NameAR').val());
+        data.append("Category", "Property")
+     /*       data.append("Slug", $('#Slug').val());*/
+
+            $.ajax({
+                url: "/Admin/PropertyFeature/Edit/",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    location.reload();
+                    //if (callback) {
+                    //    callback($('#myModalContent'), element, true, response);
+                    //}
+                },
+                error: function (er) {
+                    toastr.error(er);
+                }
+            });
+            return false;
+        });
+
+
+        var _URL = window.URL || window.webkitURL;
+    $("#Image").change(function (e) {
+
+
+            var file, img;
+
+            if ((file = this.files[0])) {
+
+                img = new Image();
+                img.onload = function () {
+
+                    if (this.width < 89 || this.width > 89) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image dimension should be 89 x 89 !',
+
+                        }).then(function (result) {
+                            $("#Image").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (this.height < 89 || this.height > 89 ) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image dimension should be 89 x 89 !',
+
+                        }).then(function (result) {
+                            $("#Image").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (this.size > 50) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image size must be less than 50 kb!',
+
+                        }).then(function (result) {
+                            $("#Image").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else {
+                        img.onerror = function () {
+                            alert("not a valid file: " + file.type);
+                        };
+                    }
+                };
+                img.src = _URL.createObjectURL(file);
+            }
+        });
+</script>
+
+
+
+
+

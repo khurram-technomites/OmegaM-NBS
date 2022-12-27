@@ -1,0 +1,263 @@
+﻿@model NowBuySell.Data.VendorWalletShare
+
+@{
+	Layout = null;
+}
+
+<style>
+	.stats-color {
+		color: #b35205;
+		background: -webkit-linear-gradient(#663399, #663399);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+</style>
+<div class="row">
+	<div class="col-md-12">
+		<div class="card" style="min-height: 100%; ">
+			<div class="card-header flex-wrap border-0 pt-6 pb-0">
+				<div class="card-title">
+					<h3 class="card-label">
+						Vendor Wallet Share
+						<span class="d-block text-muted pt-2 font-size-sm">Transfer Amount To Vendor Wallets Here...</span>
+					</h3>
+				</div>
+			</div>
+			<div class="card-body">
+				@using (Html.BeginForm("TransferAmount", "VendorWalletShareHistory", new { area = "Admin" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+				{
+					@Html.AntiForgeryToken()
+
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					<div class="form-group mt-3">
+						@Html.LabelFor(model => model.VendorID, "Vendor Name", htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-12">
+							@Html.DropDownList("VendorID", null, "Select Vendor", htmlAttributes: new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.VendorID, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="row mt-5" id="VendorWalletShare" style="display:none">
+						<div class="col-4">
+							<div class="card card-custom gutter-b" style="height: 150px">
+								<div class="card-body">
+									<span class="menu-icon">
+										<i class="fa fa-money-bill fa-2x stats-color"></i>
+									</span>
+									<div class="text-dark font-weight-bolder font-size-h2 mt-3 points" id="earning"></div>
+									<a href="javascript:void(0)" class="text-muted font-weight-bold  mt-1">Total Earning</a>
+									@*<a href="javascript:void(0)" class="text-muted text-hover-primary font-weight-bold  mt-1">Total Earning</a>*@
+								</div>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="card card-custom gutter-b" style="height: 150px">
+								<div class="card-body">
+									<span class="menu-icon">
+										<i class="fa fa-money-bill fa-2x stats-color"></i>
+									</span>
+									<div class="text-dark font-weight-bolder font-size-h2 mt-3 points" id="pendingamount"></div>
+									<a href="javascript:void(0)" class="text-muted font-weight-bold mt-1">Pending Amount</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="card card-custom gutter-b" style="height: 150px">
+								<div class="card-body">
+									<span class="menu-icon">
+										<i class="fa fa-money-bill fa-2x stats-color" style="color:#663399;"></i>
+									</span>
+									<div class="text-dark font-weight-bolder font-size-h2 mt-3 points" id="transferedAmount"></div>
+									<a href="javascript:void(0)" class="text-muted font-weight-bold mt-1">Transferred</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group" hidden>
+						@Html.LabelFor(model => model.TotalEarning, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-12">
+							@Html.EditorFor(model => model.TotalEarning, new { htmlAttributes = new { @class = "form-control", id = "txtEarning", @type = "number" } })
+							@Html.ValidationMessageFor(model => model.TotalEarning, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="form-group" hidden>
+						@Html.LabelFor(model => model.PendingAmount, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-12">
+							@Html.EditorFor(model => model.PendingAmount, new { htmlAttributes = new { @class = "form-control", id = "txtPending" } })
+							@Html.ValidationMessageFor(model => model.PendingAmount, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-4">Transferring Amount</label>
+						<div class="col-md-12">
+							@Html.EditorFor(model => model.TransferedAmount, new { htmlAttributes = new { @class = "form-control", id = "txtTransferred", @type = "number", @required = "required", @min = "1", @step = "0.01", oninput = "validity.valid||(value='');" } })
+							@Html.ValidationMessageFor(model => model.TransferedAmount, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-10">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<input type="submit" value="Transfer" class="btn btn-dark" />
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12" id="request">
+		<div class="card" style="min-height: 100%; ">
+			<div class="card-header flex-wrap border-0 pt-6 pb-0">
+				<div class="card-title">
+					<h3 class="card-label">
+						Pending Requests
+						<span class="d-block text-muted pt-2 font-size-sm">Manage Pending Requests Here...</span>
+					</h3>
+				</div>
+			</div>
+			@{ Html.RenderAction("PendingReuests", "VendorWalletShareHistory", new { area = "Admin" }); }
+		</div>
+	</div>
+</div>
+<div class="card mt-5">
+	<div class="card-header flex-wrap border-0 pt-6 pb-0">
+		<div class="card-title">
+			<h3 class="card-label">
+				History
+				<span class="d-block text-muted pt-2 font-size-sm">View Transfer History Here...</span>
+			</h3>
+		</div>
+	</div>
+	<div class="row pl-17" style="justify-content: flex-end;">
+		<div class="form-group mb-1 col-sm-6 col-md-4">
+			<label>From Date</label>
+			<div class="input-daterange input-group kt_datepicker_range">
+				@Html.Editor("FromDate", new { htmlAttributes = new { @class = "form-control kt_datepicker_range", type = "text", id = "fromDate", placeholder = " MM/DD/YYYY", required = "required" } })
+				@*<input type="date" class="form-control kt_datepicker_range"  id="fromDate" name="startDate" required="required" placeholder="FROM... MM/DD/YYYY"  />*@
+				<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+
+			</div>
+		</div>
+		<div class="form-group mb-1 col-sm-6 col-md-4">
+			<label>To Date</label>
+			<div class="input-daterange input-group kt_datepicker_range">
+				@Html.Editor("ToDate", new { htmlAttributes = new { @class = "form-control kt_datepicker_range", type = "text", id = "toDate", placeholder = " MM/DD/YYYY", required = "required" } })
+				<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+
+			</div>
+		</div>
+		<div class="form-group mb-1 col-sm-6 col-md-3">
+			<label></label>
+			<br>
+			<button type="button" style="margin-top:6px;" class="btn btn-info" id="btnSearch"><i class="fa fa-search text-white"></i>Filter</button>
+		</div>
+
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-12" id="wallet">
+				<div class="alert alert-secondary">Please Select Vendor</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script>
+
+	"use strict";
+	$(document).ready(function () {
+		$("#fromDate").datepicker({
+			todayHighlight: true,
+		});
+
+		$("#toDate").datepicker({
+			todayHighlight: true,
+		});
+
+		$("#fromDate").change(function () {
+
+			if (new Date($("#fromDate").val()) > new Date($("#toDate").val())) {
+				$('#toDate').datepicker('setDate', new Date($("#fromDate").val()));
+				$("#toDate").datepicker("option", "minDate", new Date($("#fromDate").val()));
+			}
+		});
+
+		$("#toDate").change(function () {
+
+			if (new Date($("#fromDate").val()) > new Date($("#toDate").val())) {
+				$('#fromDate').datepicker('setDate', new Date($("#toDate").val()));
+				$("#fromDate").datepicker("option", "maxDate", new Date($("#toDate").val()));
+			}
+		});
+
+	//$('.kt_datepicker_range').datepicker({
+	//    todayHighlight: true,
+	//});
+
+
+		$("#btnSearch").on("click", function () {
+
+			var fromDate = $('#fromDate').val();
+			var toDate = $('#toDate').val();
+			var html = "<h3 style=margin-top:208px; margin-bottom:76px; align=center >Filtered Subscribers</h3><br/>";
+
+			{ html += "<h4>From:    " + fromDate + "            TO:    " + toDate + " </h4>"; }
+
+			if (fromDate == "") {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Please! Select Date',
+					//footer: '<a href>Image size should be less than or equal to  100KB and dimension should be 1713x540</a>'
+				})
+			}
+			else if (toDate == "") {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Please! Select Date',
+					//footer: '<a href>Image size should be less than or equal to  100KB and dimension should be 1713x540</a>'
+				})
+            }
+
+			$.ajax({
+				url: "@Url.Action("WalletHitoryList", "VendorWalletShareHistory")",
+				type: 'POST',
+                data: {
+                    ed : $('#toDate').val(),
+                    sd : $('#fromDate').val(),
+					VendorID: $('#VendorID').val(),
+				},
+				success: function (data) {
+					var table1;
+					if (data != null) {
+						$("#wallet").html(data);
+						$('#kt_datatable_history').dataTable({
+							dom: 'Bfrtip',
+							buttons: [
+                           {
+                           	extend: 'excel',
+                           	messageTop: function () {
+                           		return 'Vendor Transfer History';
+                           	},
+                           	title: '',
+                           	exportOptions: {
+                           		columns: [0, 1, 2, 3]
+                           	}
+                           }
+							],
+						});
+					}
+				}
+			});
+		});
+	})
+
+</script>
+

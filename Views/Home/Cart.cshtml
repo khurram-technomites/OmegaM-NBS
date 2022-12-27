@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<style>
+/* Chrome, Safari, Edge, Opera */
+    #qty::-webkit-outer-spin-button,
+    #qty::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    #qty[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+<!--Body Content-->
+<div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">Shopping Cart</h1></div>
+            <!--Breadcrumb-->
+            <div class="bredcrumbWrap m-0">
+                <div class="container-fluid breadcrumbs">
+                    <a href="/" title="Back to the home page">Home</a>
+                    <span aria-hidden="true">›</span>
+                    <span>Shopping Cart</span>
+                </div>
+            </div>
+            <!--End Breadcrumb-->
+        </div>
+    </div>
+    <!--End Page Title-->
+    <div class="container" id="shopping-cart-container"  style="min-height: 500px;">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+
+                <form action="#" method="post" class="cart style2">
+                    <table>
+                        <thead class="cart__row cart__header">
+                            <tr>
+                                <th colspan="2" class="text-cente  r">Car</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-right">Total</th>
+                                <th class="action">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody id="CartCars"></tbody>
+                        @*<tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-left">
+                                        <a href="/" class="btn btn-secondary btn--small cart-continue">Continue shopping</a>
+                                    </td>
+                                    <td colspan="3" class="text-right">
+                                        <button type="submit" name="clear" class="btn btn-secondary btn--small  small--hide">Clear Cart</button>
+                                        <button type="submit" name="update" class="btn btn-secondary btn--small cart-continue ml-2">Update Cart</button>
+                                    </td>
+                                </tr>
+                            </tfoot>*@
+                    </table>
+                </form>
+            </div>
+            <div class="container mt-4">
+                <div class="row justify-content-end">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
+                        <div class="solid-border">
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Subtotal</strong></span>
+                                <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right">
+                                    <span class="money" id="Subtotal">AED 0.0</span>
+                                </span>
+                            </div>
+                            <div class="cart__shipping">Shipping &amp; taxes calculated at checkout</div>
+
+                            <a href="checkout" name="checkout" id="cartCheckout" class="btn btn--small-wide checkout">Proceed To Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Body Content-->
+<!--End Body Content-->
+@section IndexScript {
+    @if (Session["CustomerID"] != null)
+    {
+        <script>
+            $(".guest-fields").remove();
+        </script>
+    }
+    else
+    {
+        <script>
+            $(".customer-fields").remove();
+        </script>
+    }
+    <script src="@Url.ContentVersioned("~/Assets/js/web/home/cart.js")"></script>
+}

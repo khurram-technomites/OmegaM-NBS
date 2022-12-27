@@ -1,0 +1,242 @@
+@model NowBuySell.Data.ServiceCompare
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title">Update</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("Edit", "Services", new { area = "Admin" }, FormMethod.Post, new { id = "frm-edit" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group row">
+            <div class="col-lg-12 text-center">
+                <div class="image-input image-input-outline" id="kt_image_1">
+                    <div class="image-input-wrapper" style="background-image: url('@Model.Image.Replace("~","")')"></div>
+                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change logo">
+                        <i class="fa fa-pen icon-sm text-muted"></i>
+                        <input type="file" name="Image" id="Image" accept=".png, .jpg, .jpeg" />
+                        <input type="hidden" name="profile_avatar_remove" />
+                    </label>
+                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow cancelimage" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                    </span>
+                </div>
+                <span class="form-text text-muted">Image dimensions should be 408 x 480 pixels and Image size must be less than 50 kb</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Category</label>
+                    <div class="input-group mb-2">
+                        @Html.DropDownList("CategoryID", null, "Select service Category", htmlAttributes: new { @class = "form-control" })@Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-server"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter name here ...", required = "required" } })@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">Category Name (Ar)</label>
+                        <div class="input-group mb-2">
+                            @Html.EditorFor(model => model.CategoryNameAr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter CategoryNameAr (Ar) here ...", dir = "ltr", required = "required" } })@Html.ValidationMessageFor(model => model.CategoryNameAr, "", new { @class = "text-danger" })
+                            <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Slug</label>
+                    <div class="input-group mb-2">
+                        @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Slug name here ...", required = "required", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-link"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <div class="mb-2">
+                        <textarea class="form-control" name="Description" id="kt-ckeditor-description" placeholder="Enter description here ..."></textarea>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">Description (AR)</label>
+                        <div class="input-group mb-2">
+                            <textarea class="form-control" name="DescriptionAR" id="DescriptionAR" rows="3" dir="rtl" placeholder="Enter Description name here ..." required="required">@Model.DescriptionAR</textarea>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="frm-edit">Save Changes</button>
+</div>
+
+
+<script src="~/assets/admin/plugins/custom/ckeditor/ckeditor-classic.bundle.js"></script>
+
+<script>
+    'use strict';
+
+    // Class definition
+    var EditorDescription;
+    var KTCkeditor = function () {
+        // Private functions
+        var demos = function () {
+            ClassicEditor
+                .create(document.querySelector('#kt-ckeditor-description')
+                )
+                .then(editor => {
+                    EditorDescription = editor;
+                    EditorDescription.setData(`@Html.Raw(Model.Description)`);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        return {
+            // public functions
+            init: function () {
+                demos();
+            }
+        };
+    }();
+
+    // Initialization
+    jQuery(document).ready(function () {
+        KTCkeditor.init();
+    });
+</script>
+<script>
+
+    var _URL = window.URL || window.webkitURL;
+    $(document).ready(function () {
+        //Image Validation Begin
+        $("#Image").change(function (e) {
+            
+
+            var file, img;
+
+            if ((file = this.files[0])) {
+                
+                img = new Image();
+                img.onload = function () {
+
+
+                    if (this.width < 408 || this.width > 408) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image dimension should be equal to 408x480!',
+
+                        }).then(function (result) {
+                            $("#Image").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (this.height < 480 || this.height > 480) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image dimension should be equal to 408x480!',
+
+                        }).then(function (result) {
+                            $("#Image").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else if (this.size > 50) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Image size must be less than 50 kb!',
+
+                        }).then(function (result) {
+                            $("#Image").attr("src", "/Assets/AppFiles/Images/default.png");
+                            $(".cancelimage").trigger('click');
+                        });
+                    }
+                    else {
+                        img.onerror = function () {
+                            alert("not a valid file: " + file.type);
+                        };
+                    }
+                };
+                img.src = _URL.createObjectURL(file);
+            }
+        });
+        //Image Validation End
+        var avatar1 = new KTImageInput('kt_image_1');
+
+        $("#frm-edit").submit(function () {
+            var Description = EditorDescription.getData();
+            $(this).closest('.modal').find('button[type=submit]').addClass('spinner spinner-sm spinner-left').attr('disabled', true);
+
+            var data = new FormData();
+            var files = $("#Image").get(0).files;
+            if (files.length > 0) {
+                data.append("Image", files[0]);
+            }
+            data.append("id", $('#ID').val());
+            data.append("CategoryID", $('#CategoryID').val());
+            data.append("Name", $('#Name').val());
+            data.append("Slug", $('#Slug').val());
+            data.append("Description", Description);
+            data.append("__RequestVerificationToken", $('input[name=__RequestVerificationToken]').val());
+            $.ajax({
+                url: "/Admin/Services/Edit/",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+
+                    if (callback) {
+                        callback($('#myModalContent'), element, true, response);
+                    }
+                },
+                error: function (er) {
+                    toastr.error(er);
+                }
+            });
+            return false;
+        });
+
+        $("#Name").on('change', function () {
+            var name = $(this);
+            $("#Slug").val($(name).val().replace(/ /g, "-").toLocaleLowerCase());
+        });
+    });
+
+</script>

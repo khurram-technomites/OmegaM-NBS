@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Bulk Upload";
+    Layout = null;
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@using (Html.BeginForm("CreateDocuments", "Car", FormMethod.Post, new { id = "UploadCar", @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-header">
+        <div class="container-fluid">
+            <div class="row" style="justify-content: center;">
+                <div class="col-md-16 col-xs-16 text-center">
+                    <h4><i class="flaticon2-position" area-hidden="true"></i> Documents</h4>
+                    <small> Upload Motor Document Here</small>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="notes notes-danger text-center" id="divMessage" style="display:none"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-12">
+                <label> Name</label>
+                <div class="input-group">
+                    <input type="text" id="NameDocs" name="NameDocs" class="form-control" required="required" />
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-upload"></i></span></div>
+                </div>
+            </div>
+            <input type="number" name="CarID" id="CarID"hidden value="@ViewBag.CarID" />
+            <div class="col-12 mt-10">
+                <div class="input-group">
+                    <input type="file" id="fileUpload" name="FileUpload" class="form-control" required="required" />
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-upload"></i></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer text-muted">
+        <div class="row">
+            <div class="col-md-16  col-xs-16">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" id="btnSubmitDocument" class="btn btn-info">
+                    Upload
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@*<script src="@Url.ContentVersioned("~/Assets/Admin/js/vendor/car/edit.js")"></script>*@
+<script src="~/Assets/Admin/js/vendor/car/upload.js"></script>
+
+<script>
+	$(document).ready(function () {
+		$("#btnSubmitDocument").click(function () {
+			SaveNewCarDocs();
+		});
+	})
+	$("#fileUpload").change(function (e) {
+		var file, img;
+
+
+
+		if ((file = this.files[0])) {
+			if (this.files[0].size >= 100000) {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Document size should be equal to 100 KB !',
+					//footer: '<a href>Image size should be less than or equal to  100KB and dimension should be 1713x540</a>'
+				})
+				$("#fileUpload").val("");
+			}
+			img = new Image();
+			//img.onload = function () {
+
+
+			//	if (this.width < 1713 || this.width > 1713) {
+			//		Swal.fire({
+			//			icon: 'error',
+			//			title: 'Oops...',
+			//			text: 'Image size should be equal to 100 KB and dimension should be 1713 x 540!',
+			//			//  footer: '<a href>Image dimension should be 1713x540 and size should less than 1 Mb</a>'
+			//		})
+			//		$("#file").val("");
+			//	}
+			//	else if (this.height < 540 || this.height > 540) {
+			//		Swal.fire({
+			//			icon: 'error',
+			//			title: 'Oops...',
+			//			text: 'Image size should be equal to 100 KB and dimension should be 1713 x 540!',
+			//			// footer: '<a href>Image dimension should be 1713x540 and size should less than 1 Mb</a>'
+			//		})
+			//		$("#file").val("");
+			//	}
+
+			//	else {
+			//		img.onerror = function () {
+			//			alert("not a valid file: " + file.type);
+			//		};
+			//	}
+			//};
+
+			img.src = _URL.createObjectURL(file);
+
+
+		}
+
+	});
+</script>

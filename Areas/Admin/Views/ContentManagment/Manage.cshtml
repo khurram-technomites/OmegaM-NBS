@@ -1,0 +1,1358 @@
+﻿@model NowBuySell.Web.Areas.Admin.ViewModels.Banners.BannersViewModel
+@{
+    ViewBag.Title = "Manage Website";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style>
+    .btn-lang {
+        position: absolute;
+        top: 2px;
+    }
+
+    .btn-module {
+        position: absolute;
+        top: 2px;
+    }
+
+    .cc-scroll::-webkit-scrollbar {
+        width: .5em;
+    }
+
+    .cc-scroll::-webkit-scrollbar-track {
+        /*box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);*/
+        background-color: #000;
+    }
+
+    .cc-scroll::-webkit-scrollbar-thumb {
+        background-color: #06add3;
+        outline: 1px solid #06add3;
+    }
+</style>
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Heading-->
+                <div class="d-flex flex-column">
+
+                    <!--begin::Breadcrumb-->
+                    <div class="d-flex align-items-center font-weight-bold my-2">
+                        <!--begin::Item-->
+                        <a href="/Admin/Dashboard/Index" class="opacity-75 hover-opacity-100">
+                            <i class="flaticon2-shelter text-white icon-1x"></i>
+                        </a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <a href="/Admin/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript:;" class="text-white text-hover-white opacity-75 hover-opacity-100">Banners</a>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Dashboard-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Main Banners
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Main Banners Here...</span>
+                                </h3>
+                            </div>
+                            <!--<div class="card-toolbar">-->
+                            <!--begin::Button-->
+                            <!--<button type="submit" form="FormWebsiteBanners" class="btn btn-info font-weight-bolder" id="btnsubmit">
+                            <span class="svg-icon svg-icon-md">-->
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                            <!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24" />
+                                    <circle fill="#000000" cx="9" cy="15" r="6" />
+                                    <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                </g>
+                            </svg>-->
+                            <!--end::Svg Icon-->
+                            <!--</span> Upload
+                            </button>-->
+                            <!--end::Button-->
+                            <!--</div>-->
+                        </div>
+                        <div id="createform" class="card-body" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            <div>
+                                <div style="margin:auto;padding: 40px;">
+                                    @using (Html.BeginForm("Manage", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormWebsiteBanners" }))
+                                    {
+                                        <input id="MVType" name="MVType" hidden value="WebsiteHeader" />
+                                        <div class="row" style="margin:auto;padding: 40px;">
+                                            @*<div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Language</label>
+                                                        <div class="input-group">
+                                                            <select name="Lang" id="Lang" class="form-control" required>
+                                                                <option value="en" selected>English</option>
+                                                                <option value="ar">Arabic</option>
+                                                            </select>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="fa fa-globe-asia"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>*@
+                                            <div class="col-md-4 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Content Type</label>
+                                                    <div class="input-group">
+                                                        <select name="ContentType" id="ContentType" class="form-control" required>
+                                                            <option value="Website" selected disabled>Select Content Type</option>
+                                                            <option value="Video">Video</option>
+                                                            <option value="Image">Image</option>
+                                                        </select>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fa fa-mobile"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*<div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Url (Where to navigate on click)</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="Url" id="Url" placeholder="Redirect to" required />
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="flaticon2-open-text-book"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>*@
+                                            @*<div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Description</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="Description" id="Description" placeholder="Description" />
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="flaticon2-open-text-book"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Description Ar</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="DescriptionAr" id="DescriptionAr" placeholder="وصف" dir="rtl" />
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="flaticon2-open-text-book"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>*@
+                                            <div class="col-md-8 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">File</label>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control fileuploadheader" name="file" placeholder="Browse" required />
+                                                        <video id="video" style="display:none"></video>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="flaticon-upload"></i>
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+                                                    <span hidden class="form-text text-muted image">Image dimensions should be 1836 x 546 pixels and Image size must be less than 500 kb</span>
+                                                    <span hidden class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="row" style="">
+                            @foreach (var websiteBanner in Model.WebsiteBanners.Where(x => x.BannerType == "WebsiteHeader"))
+                            {
+                                <div class="col-md-12 p-0 col-sm-12 website-banner banner" data="@websiteBanner.ID">
+                                    @*<a class="btn btn-icon btn-light-dark btn-pill btn-lang" style="z-index: 1">
+                                            @websiteBanner.Lang
+
+                                        </a>*@
+                                    @*<span class="btn btn-light-info btn-pill btn-module" z-index: 1">
+                                            @websiteBanner.Module
+                                        </span>*@
+
+                                    @*<a class="btn btn-icon btn-light-dark btn-pill" onclick="OpenModelPopup(this,'/Admin/ContentManagment/Edit/'+@websiteBanner.ID,true)" style="position: absolute; right: 56px; top: 2px; z-index: 1">
+                                            <i class="fa fa-pen"></i>
+                                        </a>*@
+                                    <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position: absolute; right: 42px; top: 47px; z-index: 1">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    @if (websiteBanner.ContentType == "Image")
+                                    {
+                                        <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%; background-image: url( @websiteBanner.ImagePath );border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px  "></div>
+
+                                    }
+                                    else
+                                    {
+                                        <div style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                                            <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width: 100%; height: auto; ">
+                                                <source id="videoSource" src="@websiteBanner.ImagePath#t=0.5" type="video/mp4">
+                                            </video>
+                                        </div>
+
+
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Side banner
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Side banner here...</span>
+                                </h3>
+                            </div>
+                            @*<div class="card-toolbar">*@
+                            <!--begin::Button-->
+                            <!--<button type="submit" form="FormmotorBanners" class="btn btn-info font-weight-bolder" id="btnsubmitmotor">
+                            <span class="svg-icon svg-icon-md">-->
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                            <!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24" />
+                                    <circle fill="#000000" cx="9" cy="15" r="6" />
+                                    <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                </g>
+                            </svg>-->
+                            <!--end::Svg Icon-->
+                            <!--</span> Upload
+                            </button>-->
+                            <!--end::Button-->
+                        </div>
+                        @*</div>*@
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between overflow-auto cc-scroll">
+                                <div>
+                                    <div id="motorcreateform" style="width: 278px; height: 637px; border: 1px dashed #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                                        @using (Html.BeginForm("MotorSideBanner", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormmotorBanners" }))
+                                        {
+
+                                            <h3 class="card-label" style="text-align: center; letter-spacing: -0.24px; font: normal normal 600 20px/27px Poppins; margin-top: 20px">
+                                                Motor Side Banner
+                                                <span class="d-block text-muted pt-2 font-size-sm">English</span>
+                                            </h3>
+                                            <input id="MVType" name="MVType" hidden value="MotorSideBanner" />
+                                            <input id="MVType" name="Lang" hidden value="en" />
+                                            <div class="row">
+
+                                                <div hidden class="col-md-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Content Type</label>
+                                                        <div class="input-group">
+                                                            <select name="ContentType" id="ContentType" class="form-control" required>
+                                                                @*<option value="Website" selected disabled>Select Content Type</option>*@
+                                                                @*<option value="Video">Video</option>*@
+                                                                <option selected value="Image">Image</option>
+                                                            </select>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="fa fa-mobile"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="padding: 27px; margin-top: 200px; " class="col-md-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">File</label>
+                                                        <div class="input-group">
+                                                            <input type="file" class="form-control fileupload" name="file" id="file" placeholder="Browse" data-width="278" data-height="637" data-size="50000" required accept="image/png, image/gif, image/jpeg" />
+
+                                                        </div>
+                                                        <span class="form-text text-muted ">Image dimensions should be 278 x 637 pixels and Image size must be less than 50 kb</span>
+                                                        @*<span class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    </div>
+
+                                    <div>
+                                        @foreach (var websiteBanner in Model.WebsiteBanners.Where(x => x.BannerType == "MotorSideBanner" && x.Lang == "en"))
+                                        {
+
+                                            <div class=" website-banner banner position-relative" data="@websiteBanner.ID">
+                                                @*<a class="btn btn-icon btn-light-dark btn-pill btn-lang" style="z-index: 1">
+                                                        @websiteBanner.Lang
+
+                                                    </a>*@
+                                                @*<span class="btn btn-light-info btn-pill btn-module" z-index: 1">
+                                                        @websiteBanner.Module
+                                                    </span>*@
+
+                                                @*<a class="btn btn-icon btn-light-dark btn-pill" onclick="OpenModelPopup(this,'/Admin/ContentManagment/Edit/'+@websiteBanner.ID,true)" style="position: absolute;  z-index: 1">
+                                                        <i class="fa fa-pen"></i>
+                                                    </a>*@
+                                                <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position: absolute; right: 10px; top: 9px; z-index: 1">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                @if (websiteBanner.ContentType == "Image")
+                                                {
+                                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath); width: 278px; height: 637px; border: 1px dashed #C1C1C1; background-color: #F5F5F5 ;border-radius: 6px;border-width:2px"></div>
+
+                                                }
+                                                else
+                                                {
+                                                    <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width:100%;height:auto">
+                                                        <source id="videoSource" src="@websiteBanner.ImagePath#t=0.5" type="video/mp4">
+                                                    </video>
+
+                                                }
+                                            </div>
+
+
+                                        }
+                                    </div>
+                                </div>
+                                <div style="margin-left: 14px">
+                                    <div id="motorcreateformar" style="width: 278px; height: 637px; border: 1px dashed #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                                        @using (Html.BeginForm("MotorSideBanner", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormmotorBanners" }))
+                                        {
+
+                                            <h3 class="card-label" style="text-align: center; letter-spacing: -0.24px; font: normal normal 600 20px/27px Poppins; margin-top: 20px">
+                                                Motor Side Banner
+                                                <span class="d-block text-muted pt-2 font-size-sm">Arabic</span>
+                                                <input id="MVType" name="Lang" hidden value="ar" />
+                                            </h3>
+                                            <input id="MVType" name="MVType" hidden value="MotorSideBanner" />
+                                            <div class="row">
+
+                                                <div hidden class="col-md-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Content Type</label>
+                                                        <div class="input-group">
+                                                            <select name="ContentType" id="ContentType" class="form-control" required>
+                                                                @*<option value="Website" selected disabled>Select Content Type</option>*@
+                                                                @*<option value="Video">Video</option>*@
+                                                                <option selected value="Image">Image</option>
+                                                            </select>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="fa fa-mobile"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="padding: 27px; margin-top: 200px; " class="col-md-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">File</label>
+                                                        <div class="input-group">
+                                                            <input type="file" class="form-control fileupload" name="file" id="file" placeholder="Browse" data-width="278" data-height="637" data-size="50000" required accept="image/png, image/gif, image/jpeg" />
+                                                            <video id="video" style="display:none"></video>
+
+
+                                                        </div>
+                                                        <span class="form-text text-muted ">Image dimensions should be 278 x 637 pixels and Image size must be less than 50 kb</span>
+                                                        @*<span class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    </div>
+
+                                    <div>
+                                        @foreach (var websiteBanner in Model.WebsiteBanners.Where(x => x.BannerType == "MotorSideBanner" && x.Lang == "ar"))
+                                        {
+
+                                            <div class=" website-banner banner position-relative" data="@websiteBanner.ID">
+                                                @*<a class="btn btn-icon btn-light-dark btn-pill btn-lang" style="z-index: 1">
+                                                        @websiteBanner.Lang
+
+                                                    </a>*@
+                                                @*<span class="btn btn-light-info btn-pill btn-module" z-index: 1">
+                                                        @websiteBanner.Module
+                                                    </span>*@
+
+                                                @*<a class="btn btn-icon btn-light-dark btn-pill" onclick="OpenModelPopup(this,'/Admin/ContentManagment/Edit/'+@websiteBanner.ID,true)" style="position: absolute;  z-index: 1">
+                                                        <i class="fa fa-pen"></i>
+                                                    </a>*@
+                                                <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position: absolute; right: 10px; top: 9px; z-index: 1">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                @if (websiteBanner.ContentType == "Image")
+                                                {
+                                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath); width: 278px; height: 637px; border: 1px dashed #C1C1C1; background-color: #F5F5F5 ;border-radius: 6px;border-width:2px"></div>
+
+                                                }
+                                                else
+                                                {
+                                                    <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width:100%;height:auto">
+                                                        <source id="videoSource" src="@websiteBanner.ImagePath#t=0.5" type="video/mp4">
+                                                    </video>
+
+                                                }
+                                            </div>
+
+
+                                        }
+                                    </div>
+                                </div>
+                                <div style="margin-left: 14px">
+                                    <div id="propertycreateform" style="width: 278px; height: 637px; border: 1px dashed #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                                        @using (Html.BeginForm("PropertySideBanner", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormpropertyBanners" }))
+                                        {
+                                            <h3 class="card-label" style="text-align: center; letter-spacing: -0.24px; font: normal normal 600 20px/27px Poppins; margin-top: 20px">
+                                                Property Side Banner
+                                                <span class="d-block text-muted pt-2 font-size-sm">English</span>
+                                            </h3>
+                                            <input id="MVType" name="MVType" hidden value="PropertySideBanner" />
+                                            <input id="MVType" name="Lang" hidden value="en" />
+                                            <div>
+
+                                                <div hidden class="col-md-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Content Type</label>
+                                                        <div class="input-group">
+                                                            <select name="ContentType" id="ContentType" class="form-control" required>
+                                                                @*<option value="Website" selected disabled>Select Content Type</option>*@
+                                                                @*<option value="Video">Video</option>*@
+                                                                <option selected value="Image">Image</option>
+                                                            </select>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="fa fa-mobile"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="padding: 27px; margin-top: 200px; " class="col-md-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">File</label>
+                                                        <div class="input-group">
+                                                            <input type="file" class="form-control fileupload" name="file" id="file" placeholder="Browse" data-width="278" data-height="637" data-size="50000" required accept="image/png, image/gif, image/jpeg" />
+                                                            <video id="video" style="display:none"></video>
+
+
+                                                        </div>
+                                                        <span class="form-text text-muted ">Image dimensions should be 278 x 637 pixels and Image size must be less than 50 kb</span>
+                                                        @*<span class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>*@
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        }
+                                    </div>
+
+                                    <div>
+                                        @foreach (var websiteBanner in Model.WebsiteBanners.Where(x => x.BannerType == "PropertySideBanner" && x.Lang == "en"))
+                                        {
+
+                                            <div class=" website-banner banner position-relative" data="@websiteBanner.ID">
+                                                @*<a class="btn btn-icon btn-light-dark btn-pill btn-lang" style="z-index: 1">
+                                                        @websiteBanner.Lang
+
+                                                    </a>*@
+                                                @*<span class="btn btn-light-info btn-pill btn-module" z-index: 1">
+                                                        @websiteBanner.Module
+                                                    </span>*@
+
+                                                @*<a class="btn btn-icon btn-light-dark btn-pill" onclick="OpenModelPopup(this,'/Admin/ContentManagment/Edit/'+@websiteBanner.ID,true)" style="position: absolute; right: 56px; top: 2px; z-index: 1">
+                                                        <i class="fa fa-pen"></i>
+                                                    </a>*@
+                                                <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position: absolute; right: 10px; top: 9px; z-index: 1 ">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                @if (websiteBanner.ContentType == "Image")
+                                                {
+                                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath); width: 278px; height: 637px; border: 1px dashed #C1C1C1; background-color: #F5F5F5 ;border-radius: 6px;border-width:2px"></div>
+
+                                                }
+                                                else
+                                                {
+                                                    <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width:100%;height:auto">
+                                                        <source id="videoSource" src="@websiteBanner.ImagePath#t=0.5" type="video/mp4">
+                                                    </video>
+
+                                                }
+                                            </div>
+
+
+                                        }
+                                    </div>
+                                </div>
+                                <div style="margin-left: 14px">
+                                    <div id="propertycreateformar" style="width: 278px; height: 637px; border: 1px dashed #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                                        @using (Html.BeginForm("PropertySideBanner", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormpropertyBanners" }))
+                                        {
+                                            <h3 class="card-label" style="text-align: center; letter-spacing: -0.24px; font: normal normal 600 20px/27px Poppins; margin-top: 20px">
+                                                Property Side Banner
+                                                <span class="d-block text-muted pt-2 font-size-sm">Arabic</span>
+                                            </h3>
+                                            <input id="MVType" name="MVType" hidden value="PropertySideBanner" />
+                                            <input id="MVType" name="Lang" hidden value="ar" />
+
+                                            <div>
+
+                                                <div hidden class="col-md-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Content Type</label>
+                                                        <div class="input-group">
+                                                            <select name="ContentType" id="ContentType" class="form-control" required>
+                                                                @*<option value="Website" selected disabled>Select Content Type</option>*@
+                                                                @*<option value="Video">Video</option>*@
+                                                                <option selected value="Image">Image</option>
+                                                            </select>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="fa fa-mobile"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="padding: 27px; margin-top: 200px; " class="col-md-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">File</label>
+                                                        <div class="input-group">
+                                                            <input type="file" class="form-control fileupload" name="file" id="file" placeholder="Browse" data-width="278" data-height="637" data-size="50000" required accept="image/png, image/gif, image/jpeg" />
+                                                            <video id="video" style="display:none"></video>
+
+
+                                                        </div>
+                                                        <span class="form-text text-muted ">Image dimensions should be 278 x 637 pixels and Image size must be less than 50 kb</span>
+                                                        @*<span class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>*@
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        }
+                                    </div>
+
+                                    <div>
+                                        @foreach (var websiteBanner in Model.WebsiteBanners.Where(x => x.BannerType == "PropertySideBanner" && x.Lang == "ar"))
+                                        {
+
+                                            <div class=" website-banner banner position-relative" data="@websiteBanner.ID">
+                                                @*<a class="btn btn-icon btn-light-dark btn-pill btn-lang" style="z-index: 1">
+                                                        @websiteBanner.Lang
+
+                                                    </a>*@
+                                                @*<span class="btn btn-light-info btn-pill btn-module" z-index: 1">
+                                                        @websiteBanner.Module
+                                                    </span>*@
+
+                                                @*<a class="btn btn-icon btn-light-dark btn-pill" onclick="OpenModelPopup(this,'/Admin/ContentManagment/Edit/'+@websiteBanner.ID,true)" style="position: absolute; right: 56px; top: 2px; z-index: 1">
+                                                        <i class="fa fa-pen"></i>
+                                                    </a>*@
+                                                <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position: absolute; right: 10px; top: 9px; z-index: 1 ">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                @if (websiteBanner.ContentType == "Image")
+                                                {
+                                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath); width: 278px; height: 637px; border: 1px dashed #C1C1C1; background-color: #F5F5F5 ;border-radius: 6px;border-width:2px"></div>
+
+                                                }
+                                                else
+                                                {
+                                                    <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width:100%;height:auto">
+                                                        <source id="videoSource" src="@websiteBanner.ImagePath#t=0.5" type="video/mp4">
+                                                    </video>
+
+                                                }
+                                            </div>
+
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Properties Main Banners
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Properties Main Banners Here...</span>
+                                </h3>
+                            </div>
+
+                        </div>
+                        <div class="row showparent" id="propmainbanner" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            <div>
+                                <div style="margin:auto;padding: 40px;">
+                                    @using (Html.BeginForm("MainBanner", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormWebsiteBanners" }))
+                                    {
+                                        <input id="MVType" name="MVType" hidden value="Website" />
+                                        <div class="row" style="margin:auto">
+                                            <input id="MVType" name="Lang" hidden value="en" />
+                                            <input id="Type" name="Type" hidden value="Property" />
+
+                                            <div hidden class="col-md-4 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Content Type</label>
+                                                    <div class="input-group">
+                                                        <select name="ContentType" id="ContentType" class="form-control" required>
+                                                            @*<option value="Website" selected disabled>Select Content Type</option>*@
+                                                            @*<option value="Video">Video</option>*@
+                                                            <option selected value="Image">Image</option>
+                                                        </select>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fa fa-mobile"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="control-label">File</label>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control fileupload" name="file" id="file" placeholder="Browse" data-width="1836" data-height="546" data-size="500000" required accept="image/png, image/gif, image/jpeg" />
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="flaticon-upload"></i>
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+                                                    <span style=" text-align: center;" class="form-text text-muted image">Image dimensions should be 1836 x 546 pixels and Image size must be less than 500 kb</span>
+                                                    @*<span hidden class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>*@
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div hidden class="row DeleteParent" id="proplist" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            @foreach (var websiteBanner in Model.WebsiteBanners.Where(x => x.Module == "Property" && x.Lang == "en"))
+                            {
+                                <div class="col-md-12 col-sm-12 p-0 website-banner banner" data="@websiteBanner.ID">
+
+                                    @*<span class="btn btn-light-info btn-pill btn-module" z-index: 1">
+                                            @websiteBanner.Module
+                                        </span>*@
+
+
+                                    <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position:absolute; right:10px;top:2px;z-index:1">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    @if (websiteBanner.ContentType == "Image")
+                                    {
+                                        <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath)"></div>
+
+                                    }
+                                    else
+                                    {
+                                        <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width:100%;height:auto">
+                                            <source id="videoSource" src="@websiteBanner.ImagePath#t=0.5" type="video/mp4">
+                                        </video>
+
+                                    }
+                                </div>
+                            }
+                        </div>
+
+
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Properties Promo Banners
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Properties Promo Banners Here...</span>
+                                </h3>
+                            </div>
+
+                        </div>
+                        <div id="proppromobanner" class="row showparentpromo" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            <div>
+                                <div style="margin:auto;padding: 40px;">
+                                    @using (Html.BeginForm("PromoBanner", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormWebsiteBanners" }))
+                                    {
+                                        <input id="MVType" name="MVType" hidden value="Website" />
+                                        <div class="row" style="margin:auto">
+                                            <input id="MVType" name="Lang" hidden value="en" />
+                                            <input id="Type" name="Type" hidden value="Property" />
+
+                                            <div hidden class="col-md-4 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Content Type</label>
+                                                    <div class="input-group">
+                                                        <select name="ContentType" id="ContentType" class="form-control" required>
+                                                            @*<option value="Website" selected disabled>Select Content Type</option>*@
+                                                            @*<option value="Video">Video</option>*@
+                                                            <option selected value="Image">Image</option>
+                                                        </select>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fa fa-mobile"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="control-label">File</label>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control fileupload" name="file" id="file" placeholder="Browse" data-width="1836" data-height="546" data-size="500000" required accept="image/png, image/gif, image/jpeg" />
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="flaticon-upload"></i>
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+                                                    <span style=" text-align: center;" class="form-text text-muted image">Image dimensions should be 1836 x 546 pixels and Image size must be less than 500 kb</span>
+                                                    @*<span hidden class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>*@
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div hidden class="row DeleteParentpromo" id="proppromolist" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            @foreach (var websiteBanner in Model.PromoBannerWeb.Where(x => x.Module == "Property" && x.Lang == "en" && x.BannerType == "Website"))
+                            {
+                                <div class="col-md-12 col-sm-12 p-0 website-banner banner" data="@websiteBanner.ID">
+
+                                    @*<span class="btn btn-light-info btn-pill btn-module" z-index: 1">
+                                            @websiteBanner.Module
+                                        </span>*@
+
+
+                                    <a class="btn btn-icon btn-light-danger btn-pill" onclick="DeletePromo(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position:absolute; right:10px;top:2px;z-index:1">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath)"></div>
+                                </div>
+                            }
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Motor Main Banners
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Motor Main Banners Here...</span>
+                                </h3>
+                            </div>
+
+                        </div>
+                        <div class="row showparent" id="motormainbanner" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            <div>
+                                <div style="margin:auto;padding: 40px;">
+                                    @using (Html.BeginForm("MainBanner", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormWebsiteBanners" }))
+                                    {
+                                        <input id="MVType" name="MVType" hidden value="Website" />
+                                        <div class="row" style="margin:auto">
+                                            <input id="MVType" name="Lang" hidden value="en" />
+                                            <input id="Type" name="Type" hidden value="Motor" />
+
+                                            <div hidden class="col-md-4 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Content Type</label>
+                                                    <div class="input-group">
+                                                        <select name="ContentType" id="ContentType" class="form-control" required>
+                                                            @*<option value="Website" selected disabled>Select Content Type</option>*@
+                                                            @*<option value="Video">Video</option>*@
+                                                            <option selected value="Image">Image</option>
+                                                        </select>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fa fa-mobile"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="control-label">File</label>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control fileupload" name="file" id="file" placeholder="Browse" data-width="1836" data-height="546" data-size="500000" required accept="image/png, image/gif, image/jpeg" />
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="flaticon-upload"></i>
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+                                                    <span style=" text-align: center;" class="form-text text-muted image">Image dimensions should be 1836 x 546 pixels and Image size must be less than 500 kb</span>
+                                                    @*<span hidden class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>*@
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div hidden class="row DeleteParent" id="motorlist" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            @foreach (var websiteBanner in Model.WebsiteBanners.Where(x => x.Module == "Motor" && x.Lang == "en"))
+                            {
+                                <div class="col-md-12 col-sm-12 p-0 website-banner banner" data="@websiteBanner.ID">
+
+                                    @*<span class="btn btn-light-info btn-pill btn-module" z-index: 1">
+                                            @websiteBanner.Module
+                                        </span>*@
+
+
+                                    <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position:absolute; right:10px;top:2px;z-index:1">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    @if (websiteBanner.ContentType == "Image")
+                                    {
+                                        <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath)"></div>
+
+                                    }
+                                    else
+                                    {
+                                        <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width:100%;height:auto">
+                                            <source id="videoSource" src="@websiteBanner.ImagePath#t=0.5" type="video/mp4">
+                                        </video>
+
+                                    }
+                                </div>
+                            }
+                        </div>
+
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Motor Promo Banners
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Motor Promo Banners Here...</span>
+                                </h3>
+                            </div>
+
+                        </div>
+                        <div class="row showparentpromo" id="motorpromobanner" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            <div>
+                                <div style="margin:auto;padding: 40px;">
+                                    @using (Html.BeginForm("PromoBanner", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormWebsiteBanners" }))
+                                    {
+                                        <input id="MVType" name="MVType" hidden value="Website" />
+                                        <div class="row" style="margin:auto">
+                                            <input id="MVType" name="Lang" hidden value="en" />
+                                            <input id="Type" name="Type" hidden value="Motor" />
+
+                                            <div hidden class="col-md-4 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Content Type</label>
+                                                    <div class="input-group">
+                                                        <select name="ContentType" id="ContentType" class="form-control" required>
+                                                            @*<option value="Website" selected disabled>Select Content Type</option>*@
+                                                            @*<option value="Video">Video</option>*@
+                                                            <option selected value="Image">Image</option>
+                                                        </select>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fa fa-mobile"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="control-label">File</label>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control fileupload" name="file" id="file" placeholder="Browse" data-width="1836" data-height="546" data-size="500000" required accept="image/png, image/gif, image/jpeg" />
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="flaticon-upload"></i>
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+                                                    <span style=" text-align: center;" class="form-text text-muted image">Image dimensions should be 1836 x 546 pixels and Image size must be less than 500 kb</span>
+                                                    @*<span hidden class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>*@
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div hidden class="row DeleteParentpromo" id="motorpromolist" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            @foreach (var websiteBanner in Model.PromoBannerWeb.Where(x => x.Module == "Motor" && x.Lang == "en" && x.BannerType == "Website"))
+                            {
+                                <div class="col-md-12 col-sm-12 p-0 website-banner banner" data="@websiteBanner.ID">
+
+                                    @*<span class="btn btn-light-info btn-pill btn-module" z-index: 1">
+                                            @websiteBanner.Module
+                                        </span>*@
+
+
+                                    <a class="btn btn-icon btn-light-danger btn-pill" onclick="DeletePromo(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position:absolute; right:10px;top:2px;z-index:1">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath)"></div>
+                                </div>
+                            }
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <!--end::Dashboard-->
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Mobile App Banner
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage  Mobile App Banner Here...</span>
+                                </h3>
+                            </div>
+
+                        </div>
+                        <div id="createformmobile" class="card-body" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                            <div>
+                                <div style="margin:auto;padding: 40px;">
+                                    @using (Html.BeginForm("MainBanner", "ContentManagment", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormWebsiteBanners" }))
+                                    {
+                                        <input id="MVType" name="MVType" hidden value="Mobile" />
+                                        <div class="row" style="margin:auto;padding: 40px;">
+
+                                            <div hidden class="col-md-4 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Content Type</label>
+                                                    <div class="input-group">
+                                                        <select name="ContentType" id="ContentType" class="form-control" required>
+                                                            @*<option value="Website" selected disabled>Select Content Type</option>*@
+                                                            @*<option value="Video">Video</option>*@
+                                                            <option selected value="Image">Image</option>
+                                                        </select>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fa fa-mobile"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Language</label>
+                                                    <div class="input-group">
+                                                        <select name="Lang" id="Lang" class="form-control" required>
+                                                            <option value="en" selected>English</option>
+                                                            <option value="ar">Arabic</option>
+                                                        </select>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fa fa-globe-asia"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-8 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">File</label>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control fileupload" name="file" id="file" placeholder="Browse" data-width="378" data-height="168" data-size="500000" required accept="image/png, image/gif, image/jpeg" />
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="flaticon-upload"></i>
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+                                                    <span class="form-text text-muted image">Image dimensions should be 378 x 168 pixels and Image size must be less than 500 kb</span>
+                                                    @*<span hidden class="form-text text-muted video">Video dimensions should be 1920 x 1080 pixels and Image size must be less than 30mb</span>*@
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div style="text-align:center">
+                                    <h3 class="card-label">
+                                        English
+                                        <span class="d-block text-muted pt-2 font-size-sm">Manage English Banner Here...</span>
+                                    </h3>
+                                </div>
+                                <div>
+                                    @foreach (var websiteBanner in Model.WebsiteBanners.Where(x => x.BannerType == "Mobile" && x.Lang == "en"))
+                                    {
+                                        <div class=" banner" style="border: dashed 1px;padding:0; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+
+                                            <div class="col-md-12 p-0 col-sm-12 website-banner " data="@websiteBanner.ID">
+
+                                                <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position: absolute; right: 10px; top: 9px; z-index: 1">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                @if (websiteBanner.ContentType == "Image")
+                                                {
+                                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%; background-image: url( @websiteBanner.ImagePath ) "></div>
+
+                                                }
+                                                else
+                                                {
+                                                    <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width:100%;height:auto">
+                                                        <source id="videoSource" src="@websiteBanner.ImagePath#t=0.5" type="video/mp4">
+                                                    </video>
+
+                                                }
+                                            </div>
+
+                                        </div>
+                                    }
+                                </div>
+
+                                <div hidden id="mobilebanneren" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                                    <div>
+                                        <div style="margin:auto;padding: 40px;">
+
+                                            <div class="d-flex justify-content-center" style="margin:auto;padding: 40px;">
+                                                <h6>No Data Found!</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div style="text-align:center">
+                                    <h3 class="card-label">
+                                        Arabic
+                                        <span class="d-block text-muted pt-2 font-size-sm">Manage Arabic Banner Here...</span>
+                                    </h3>
+                                </div>
+                                <div>
+                                    @foreach (var websiteBanner in Model.WebsiteBanners.Where(x => x.BannerType == "Mobile" && x.Lang == "ar"))
+                                    {
+                                        <div class=" banner" style="border: dashed 1px; padding: 0; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+
+                                            <div class="col-md-12 p-0 col-sm-12 website-banner " data="@websiteBanner.ID">
+
+                                                <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID,'@websiteBanner.Lang')" style="position: absolute; right: 10px; top: 9px; z-index: 1">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                @if (websiteBanner.ContentType == "Image")
+                                                {
+                                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%; background-image: url( @websiteBanner.ImagePath ) "></div>
+
+                                                }
+                                                else
+                                                {
+                                                    <video id="VideoTag" width="100%" height="auto" controls="controls" preload="metadata" style="width:100%;height:auto">
+                                                        <source id="videoSource" src="@websiteBanner.ImagePath#t=0.5" type="video/mp4">
+                                                    </video>
+
+                                                }
+                                            </div>
+
+                                        </div>
+                                    }
+                                </div>
+
+                                <div hidden id="mobilebannerar" style="border: dashed 1px; margin: 25px; border-color: #C1C1C1; background-color: #F5F5F5; border-radius: 6px; border-width: 2px ">
+                                    <div>
+                                        <div style="margin:auto;padding: 40px;">
+                                            <div class="d-flex justify-content-center" style="margin:auto;padding: 40px;">
+                                                <h6>No Data Found!</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content" style="min-height:100px">
+            <div id='myModalContent'>
+                <div class="row justify-content-center">
+                    <div class="col-16">
+                        <div class="kt-spinner kt-spinner--lg kt-spinner--dark kt-spinner-modal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::Row-->
+
+@section IndexScript {
+
+
+
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="@Url.ContentVersioned("~/Assets/Admin/js/admin/website/content.js")"></script>
+    <!--end::Page Scripts-->
+    <script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+    <!--end::Page Scripts-->
+
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <script>
+        toastr.success('@ViewBag.SuccessMessage');
+        </script>
+    }
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <script>
+        toastr.error('@ViewBag.ErrorMessage');
+        </script>
+    }
+    @if (Model.WebsiteBanners.Count(x => x.BannerType == "WebsiteHeader") > 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#createform').attr("hidden", "hidden")
+                $('#btnsubmit').attr("hidden", "hidden")
+
+            })
+
+
+        </script>
+    }
+    @if (Model.WebsiteBanners.Count(x => x.BannerType == "MotorSideBanner" && x.Lang == "en") > 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#motorcreateform').attr("hidden", "hidden")
+                $('#btnsubmitmotor').attr("hidden", "hidden")
+
+            })
+
+
+        </script>
+    }
+    @if (Model.WebsiteBanners.Count(x => x.BannerType == "MotorSideBanner" && x.Lang == "ar") > 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#motorcreateformar').attr("hidden", "hidden")
+                $('#btnsubmitmotor').attr("hidden", "hidden")
+
+            })
+
+
+        </script>
+    }
+    @if (Model.WebsiteBanners.Count(x => x.BannerType == "PropertySideBanner" && x.Lang == "en") > 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#propertycreateform').attr("hidden", "hidden")
+                $('#btnsubmitpropery').attr("hidden", "hidden")
+
+            })
+
+
+        </script>
+    }
+    @if (Model.WebsiteBanners.Count(x => x.BannerType == "PropertySideBanner" && x.Lang == "ar") > 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#propertycreateformar').attr("hidden", "hidden")
+                $('#btnsubmitpropery').attr("hidden", "hidden")
+
+            })
+
+
+        </script>
+    }
+    @if (Model.WebsiteBanners.Count(x => x.Module == "Property" && x.Lang == "en") > 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#propmainbanner').attr("hidden", "hidden")
+                $('#proplist').removeAttr("hidden", "hidden")
+
+            })
+
+
+        </script>
+    }
+
+    @if (Model.WebsiteBanners.Count(x => x.Module == "Motor" && x.Lang == "en") > 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#motormainbanner').attr("hidden", "hidden")
+                $('#motorlist').removeAttr("hidden", "hidden")
+
+            })
+
+
+        </script>
+    }
+    @if (Model.PromoBannerWeb.Count(x => x.Module == "Property" && x.Lang == "en" && x.BannerType == "Website") > 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#proppromobanner').attr("hidden", "hidden")
+                $('#proppromolist').removeAttr("hidden", "hidden")
+
+            })
+
+
+        </script>
+    }
+    @if (Model.PromoBannerWeb.Count(x => x.Module == "Motor" && x.Lang == "en" && x.BannerType == "Website") > 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#motorpromobanner').attr("hidden", "hidden")
+                $('#motorpromolist').removeAttr("hidden", "hidden")
+
+            })
+
+
+        </script>
+    }
+    @if (Model.WebsiteBanners.Count(x => x.BannerType == "Mobile" && x.Lang == "ar") == 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+
+                $('#mobilebannerar').removeAttr("hidden", "hidden")
+
+            })
+
+
+        </script>
+
+    }
+    @if (Model.WebsiteBanners.Count(x => x.BannerType == "Mobile" && x.Lang == "en") == 0)
+    {
+        <script>
+            jQuery(document).ready(function () {
+
+                $('#mobilebanneren').removeAttr("hidden", "hidden")
+
+            })
+
+
+        </script>
+
+    }
+
+}

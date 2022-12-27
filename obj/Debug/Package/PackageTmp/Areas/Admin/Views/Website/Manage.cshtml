@@ -1,0 +1,397 @@
+﻿@model NowBuySell.Web.Areas.Admin.ViewModels.Banners.BannersViewModel
+@{
+    ViewBag.Title = "Manage Website";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<style>
+	.btn-lang {
+		position: absolute;
+		top: 2px;
+	}
+
+    .btn-module {
+        position: absolute;
+        top: 2px;
+    }
+</style>
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+	<!--begin::Subheader-->
+	<div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+		<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div class="d-flex align-items-center flex-wrap mr-1">
+				<!--begin::Heading-->
+				<div class="d-flex flex-column">
+
+					<!--begin::Breadcrumb-->
+					<div class="d-flex align-items-center font-weight-bold my-2">
+						<!--begin::Item-->
+						<a href="/Admin/Dashboard/Index" class="opacity-75 hover-opacity-100">
+							<i class="flaticon2-shelter text-white icon-1x"></i>
+						</a>
+						<!--end::Item-->
+						<!--begin::Item-->
+						<a href="/Admin/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+						<!--end::Item-->
+						<!--begin::Item-->
+						<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+						<a href="javascript:;" class="text-white text-hover-white opacity-75 hover-opacity-100">Banners</a>
+						<!--end::Item-->
+					</div>
+					<!--end::Breadcrumb-->
+				</div>
+				<!--end::Heading-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+	<!--end::Subheader-->
+	<!--begin::Entry-->
+	<div class="d-flex flex-column-fluid">
+		<!--begin::Container-->
+		<div class="container">
+			<!--begin::Dashboard-->
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Website Banners
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Banners Here...</span>
+                                </h3>
+                            </div>
+                            <div class="card-toolbar">
+                                <!--begin::Button-->
+                                <button type="submit" form="FormWebsiteBanners" class="btn btn-info font-weight-bolder">
+                                    <span class="svg-icon svg-icon-md">
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <circle fill="#000000" cx="9" cy="15" r="6" />
+                                                <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span> Upload
+                                </button>
+                                <!--end::Button-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                @using (Html.BeginForm("Manage", "Website", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormWebsiteBanners" }))
+                                {
+                                    <input id="MVType" name="MVType" hidden value="Website" />
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Language</label>
+                                                <div class="input-group">
+                                                    <select name="Lang" id="Lang" class="form-control" required>
+                                                        <option value="en" selected>English</option>
+                                                        <option value="ar">Arabic</option>
+                                                    </select>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-globe-asia"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Type</label>
+                                                <div class="input-group">
+                                                    <select name="Type" id="Type" class="form-control" required>
+                                                        <option value="Website" selected disabled>Select Type</option>
+                                                        <option value="Motor">Motor</option>
+                                                        <option value="Property">Property</option>
+                                                    </select>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-mobile"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Url (Where to navigate on click)</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="Url" id="Url" placeholder="Redirect to" required />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="flaticon2-open-text-book"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Description</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="Description" id="Description" placeholder="Description" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="flaticon2-open-text-book"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Description Ar</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="DescriptionAr" id="DescriptionAr" placeholder="وصف" dir="rtl" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="flaticon2-open-text-book"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="file" class="form-control" name="file" id="file" placeholder="Browse" required />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="flaticon-upload"></i>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                        <span class="form-text text-muted">Image dimensions should be 1836 x 546 pixels and Image size must be less than 500 kb</span>
+                                    </div>
+                                }
+                                <hr />
+                                <div class="row">
+                                    @foreach (var websiteBanner in Model.WebsiteBanners)
+                                    {
+                                    <div class="col-md-12 col-sm-12 mb-5 website-banner banner" data="@websiteBanner.ID">
+                                        <a class="btn btn-icon btn-light-dark btn-pill btn-lang">
+                                            @websiteBanner.Lang
+
+                                        </a>
+                                        <span class="btn btn-light-info btn-pill btn-module" style="margin-left: 46px;">
+                                            @websiteBanner.Module
+                                        </span>
+
+                                        <a class="btn btn-icon btn-light-dark btn-pill" onclick="OpenModelPopup(this,'/Admin/Website/Edit/'+@websiteBanner.ID,true)" style="position:absolute; right:56px;top:2px">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
+                                        <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID)" style="position:absolute; right:15px;top:2px">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                        <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath)"></div>
+                                    </div>
+                                    }
+                                </div>
+                                @*<div class="row">
+            @foreach (var websiteBanner in Model.MobileBanners)
+            {
+                <div class="col-md-12 col-sm-12 mb-5 website-banner banner" data="@websiteBanner.ID">
+                    <a class="btn btn-icon btn-light-dark btn-pill btn-lang">
+                        @websiteBanner.Lang
+                    </a>
+                    <a class="btn btn-icon btn-light-dark btn-pill" onclick="OpenModelPopup(this,'/Admin/Website/Edit/'+@websiteBanner.ID,true)" style="position:absolute; right:56px;top:2px">
+                        <i class="fa fa-pen"></i>
+                    </a>
+                    <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID)" style="position:absolute; right:15px;top:2px">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath)"></div>
+                </div>
+            }
+        </div>*@
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                @*mobile banner card start*@
+
+                <div class="col-md-6">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Mobile Banners
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Banners Here...</span>
+                                </h3>
+                            </div>
+                            <div class="card-toolbar">
+                                <!--begin::Button-->
+                                <button type="submit" form="FormMobileBanners" class="btn btn-info font-weight-bolder">
+                                    <span class="svg-icon svg-icon-md">
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <circle fill="#000000" cx="9" cy="15" r="6" />
+                                                <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span> Upload
+                                </button>
+                                <!--end::Button-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                @using (Html.BeginForm("Manage", "Website", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormMobileBanners" }))
+                                {
+                                    <input id="MVType" name="MVType" hidden value="Mobile"/>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Language</label>
+                                                <div class="input-group">
+                                                    <select name="Lang" id="Lang" class="form-control" required>
+                                                        <option value="en" selected>English</option>
+                                                        <option value="ar">Arabic</option>
+                                                    </select>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-globe-asia"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Type</label>
+                                                <div class="input-group">
+                                                    <select name="Type" id="Type" class="form-control" required>
+                                                        <option value="Website" selected disabled>Select Type</option>
+                                                        <option value="Motor">Motor</option>
+                                                        <option value="Property">Property</option>
+                                                    </select>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-mobile"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                        @*<div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Url (Where to navigate on click)</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="Url" id="Url" placeholder="Redirect to" required />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="flaticon2-open-text-book"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="file" class="form-control" name="file" id="file" placeholder="Browse" required />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="flaticon-upload"></i>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                        <span class="form-text text-muted">Image dimensions should be 378 x 168 pixels and Image size must be less than 500 kb</span>
+                                    </div>
+                                }
+                                <hr />
+                                @*<div class="row">
+                                    @foreach (var websiteBanner in Model.WebsiteBanners)
+                                    {
+                                        <div class="col-md-12 col-sm-12 mb-5 website-banner banner" data="@websiteBanner.ID">
+                                            <a class="btn btn-icon btn-light-dark btn-pill btn-lang">
+                                                @websiteBanner.Lang
+                                            </a>
+                                            <a class="btn btn-icon btn-light-dark btn-pill" onclick="OpenModelPopup(this,'/Admin/Website/Edit/'+@websiteBanner.ID,true)" style="position:absolute; right:56px;top:2px">
+                                                <i class="fa fa-pen"></i>
+                                            </a>
+                                            <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID)" style="position:absolute; right:15px;top:2px">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                            <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath)"></div>
+                                        </div>
+                                    }
+                                </div>*@
+                                <div class="row">
+                                    @foreach (var websiteBanner in Model.MobileBanners)
+                                    {
+                                    <div class="col-md-12 col-sm-12 mb-5 website-banner banner" data="@websiteBanner.ID">
+                                        <a class="btn btn-icon btn-light-dark btn-pill btn-lang">
+                                            @websiteBanner.Lang
+                                        </a>
+                                        @*<span class="btn btn-light-info btn-pill btn-lang" style=" margin-left: 46px;">
+                                            @websiteBanner.Module
+
+                                        </span>*@
+                                        <a class="btn btn-icon btn-light-dark btn-pill" onclick="OpenModelPopup(this,'/Admin/Website/Edit/'+@websiteBanner.ID,true)" style="position:absolute; right:56px;top:2px">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
+                                        <a class="btn btn-icon btn-light-danger btn-pill" onclick="Delete(this,@websiteBanner.ID)" style="position:absolute; right:15px;top:2px">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                        <div class="bgi-no-repeat bgi-size-cover rounded min-h-200px shadow-sm" style="background-position: 50% 50%;background-image: url(@websiteBanner.ImagePath)"></div>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+			<!--end::Dashboard-->
+		</div>
+		<!--end::Container-->
+	</div>
+	<!--end::Entry-->
+</div>
+
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-dialog-centered modal-md">
+		<div class="modal-content" style="min-height:100px">
+			<div id='myModalContent'>
+				<div class="row justify-content-center">
+					<div class="col-16">
+						<div class="kt-spinner kt-spinner--lg kt-spinner--dark kt-spinner-modal"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--end::Row-->
+
+@section IndexScript {
+
+
+
+	<!--begin::Page Scripts(used by this page)-->
+	<script src="@Url.ContentVersioned("~/Assets/Admin/js/admin/website/manage.js")"></script>
+	<!--end::Page Scripts-->
+	<script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+	<!--end::Page Scripts-->
+}

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<NowBuySell.Data.VendorWithdrawalRequest>
+@{
+	Layout = null;
+}
+<style>
+	#kt_datatable1 tbody tr td:last-child {
+		white-space: nowrap;
+	}
+
+	.seemore {
+		width: 100px;
+		white-space: nowrap;
+		overflow: hidden;
+		display: inline-block;
+		text-overflow: ellipsis;
+		margin: 0;
+	}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<table class="table table-separate table-head-custom table-checkable" id="kt_datatable123">
+	<thead>
+		<tr>
+			<th>Request Date</th>
+			<th>Amount</th>
+			<th>Status</th>
+			<th>Remarks</th>
+		</tr>
+	</thead>
+	<tbody style="display:none">
+		@foreach (var item in Model)
+			{
+			<tr>
+				<td data-order="@item.ID">@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")	</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Amount)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Status)
+				</td>
+				<td>
+					<span class="seemore">
+
+						@Html.DisplayFor(modelItem => item.Remarks)
+					</span>
+				</td>
+			</tr>
+			}
+	</tbody>
+</table>
+
+<script>
+	$(document).ready(function () {
+		$('#kt_datatable123').DataTable({
+			"order": [[0, "desc"]],
+		});
+	});
+	$(".seemore").click(function () {
+		Swal.fire($(this).text());
+	})
+</script>

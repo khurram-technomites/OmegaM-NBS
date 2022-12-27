@@ -1,0 +1,84 @@
+﻿
+
+@{
+    ViewBag.Title = "StatusChange";
+    Layout = null;
+}
+
+<style>
+    #txtstatus option:disabled {
+        background-color: #80808078;
+    }
+</style>
+
+<div class="modal-header">
+    <h5 class="modal-title">User</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+
+    @using (Html.BeginForm("AssignUser", "Ticket", new { area = "Admin" }, FormMethod.Post, new { id = "Userform", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.Label("User", htmlAttributes: new { @class = "control-label" })
+                    <div class="input-group mb-3">
+                        @Html.DropDownList("UserID", null, "Select User", htmlAttributes: new { @class = "form-control kt-selectpicker", @data_actions_box = "true", id = "UserDropDown", required = "required" })
+                      
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-info" form="Userform">Submit</button>
+</div>
+<script>
+    'use strict';
+    var showErrorMsg = function (form, type, msg) {
+        var alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>\
+            <span></span>\
+        </div>');
+    };
+
+    $('#UserDropDown').attr("data-live-search", "true");
+    var KTBootstrapSelect = function () {
+
+        // Private functions
+        var demos = function () {
+            // minimum setup
+            $('.kt-selectpicker').selectpicker();
+        }
+
+        return {
+            // public functions
+            init: function () {
+                demos();
+            }
+        };
+    }();
+
+    $(document).ready(function () {
+
+        KTBootstrapSelect.init();
+    });
+
+
+</script>
+
+
+
+
+

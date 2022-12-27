@@ -1,0 +1,211 @@
+﻿
+@model IEnumerable<NowBuySell.Data.VendorPackage>
+
+@{
+    ViewBag.Title = "Subscription List";
+    Layout = null;
+}
+<style>
+    #kt_datatable1 tbody tr td:last-child {
+        white-space: nowrap;
+    }
+
+    .card {
+        transition: all 0.5s ease-in;
+    }
+    .cc-scroll::-webkit-scrollbar {
+        width: .5em;
+    }
+
+    .cc-scroll::-webkit-scrollbar-track {
+        /*box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);*/
+        background-color: #000;
+    }
+
+    .cc-scroll::-webkit-scrollbar-thumb {
+        background-color: #06add3;
+        outline: 1px solid #06add3;
+    }
+    .newbie {
+    }
+
+    .card:hover {
+        /*transition: width 5s, height 5s;*/
+        transform: scale(1.05);
+        box-shadow: 1px 4px 15px #dfdcde;
+        /*	box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);*/
+        background-color: #b8e6f5;
+    }
+
+    .selectedPackage {
+        transform: scale(1.05);
+        box-shadow: 2px 2px 21px;
+        /*		box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    */ background-color: #b8e6f5;
+    }
+
+    .packageExpired {
+        transform: scale(1.05);
+        box-shadow: 2px 2px 21px;
+        /*		box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    */ background-color: #f5b8b8;
+    }
+</style>
+@Html.AntiForgeryToken()
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-xl-3" >
+            <!--begin::Stats Widget 1-->
+            <div class="card Subscription-@item.ID div-package card-custom bgi-no-repeat card-stretch gutter-b " attr-id="@item.ID"
+                 onclick="OpenModelPopup(this, '/Vendor/Account/BuyNow/' + @item.ID);" style="background-position: right top; background-size: 30% auto;">
+                <!--begin::Body-->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <a href="#" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">@item.Name</a>
+                        </div>
+                        <div class="col-md-2 name1-@item.ID">
+                            <div class="name-@item.ID">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    @{
+            if (item.IsFree.HasValue && item.IsFree.Value)
+            {
+                <div class="font-weight-bold mt-4 mb-4" style="color: #008BB9; font-size: 18px;">FREE</div>
+            }
+            else
+            {
+                <div class="font-weight-bold mt-4 mb-4" style="color: #008BB9; font-size: 18px;">@item.Price AED</div>
+            }
+        }
+                    <div class="d-flex justify-content-between cc-scroll" style="height:160px;overflow:auto">
+                        <div class="d-flex justify-content-between">
+                            <div class="form-group">
+                                @Html.Raw(item.Description)
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    @*<ul>
+                        @if (item.hasPropertyModule == true)
+                        {
+                            <li><a>@item.PropertyLimit Properties</a></li>
+                        }
+                        @if (item.hasMotorModule == true)
+                        {
+                            <li><a>@item.MotorLimit Motors</a></li>
+                        }
+                    </ul>*@
+
+                    @*@Html.Raw(item.Description)*@
+                </div>
+                <!--end::Body-->
+            </div>
+            <!--end::Stats Widget 1-->
+        </div>
+    }
+</div>
+<!--begin::Row-->
+<!--end::Row-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script>
+
+    var stats = "Active";
+    var deactive = "Expired"
+    var data = @ViewBag.VendorPackageID
+            var isExpired = '@ViewBag.IsExpired'
+
+                console.log(isExpired)
+
+    $(document).ready(function () {
+
+        if (data != 0 && isExpired == "False") {
+            $('.Subscription-' + data + '').addClass('selectedPackage');
+            $('.name-' + data + '').append("<p class='label-lg label-inline label label-success ml-xxl-n8'>" + stats + "</p>");
+            $('.name-' + data + '').prop('disabled')
+        } else {
+            $('.Subscription-' + data + '').addClass('packageExpired');
+            $('.name-' + data + '').append("<p class='label-lg label-inline label label-danger ml-xxl-n8'>" + deactive + "</p>");
+            $('.name-' + data + '').prop('disabled')
+        }
+    });
+
+    var flag = true;
+
+    //function Subscribe(f) {
+
+    //    if (data == 0) {
+    //        var div = f;
+    //        $('.div-package').prop('disabled', true);
+
+    //        if (flag) {
+    //            $(div).prop('disabled', false);
+    //            flag = false;
+    //        }
+    //        var id = $(f).attr('attr-id');
+    //        if (!$(div).prop('disabled')) {
+    //            $.ajax({
+    //                type: 'Get',
+    //                url: '/Vendor/Account/UpdateVendorPackage/' + id,
+    //                success: function (response) {
+    //                    window.location.href = response.url
+    //                }
+    //            });
+    //        }
+    //    }
+    //    else {
+
+    //    var div = f;
+    //    $('.div-package').prop('disabled', true);
+
+    //    if (flag) {
+    //        $(div).prop('disabled', false);
+    //        flag = false;
+    //    }
+
+    //    //if (!$(div).prop('disabled')) {
+
+    //        var id = $(f).attr('attr-id');
+
+    //        OpenModelPopup(this, '/Vendor/Account/BuyNow/' + id);
+
+    //        $('.name1-' + id + '').addClass('spinner spinner-success spinner-left').prop('disabled', true);
+    //        $('.name-' + data + '').remove();
+    //        $('.name-' + data + '').removeClass('name - ' + data + '');
+
+
+    //        $.ajax({
+    //            type: 'Get',
+    //            url: '/Vendor/Account/UpdateVendorPackage/' + id,
+    //            success: function (response) {
+    //                window.location.href = response.url
+    //                //$('.name1-' + id + '').removeClass('spinner spinner-light spinner-left').prop('disabled', false);
+    //                //data = response.id;
+    //                //$('.selectedPackage').removeClass('selectedPackage');
+
+    //                //$('.Subscription-' + response.id + '').addClass('selectedPackage');
+    //                //var html = '<div class="name-' + data + '">' +
+    //                //    '<p class="label-lg label-inline label label-success ml-xxl-n8"> ' + stats + '</p>' +
+    //                //    '</div>';
+    //                //$('.Subscription-' + response.id + '').find('.name1-' + response.id + '').append(html);
+    //                //toastr.success(response.message);
+    //                //flag = true;
+    //            }
+    //        });
+    //    }
+    //}
+    //}
+
+</script>    

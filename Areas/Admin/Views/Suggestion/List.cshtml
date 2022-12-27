@@ -1,0 +1,118 @@
+﻿@model IEnumerable<NowBuySell.Data.CustomerSuggestion>
+
+
+@{
+	ViewBag.Title = "List";
+	Layout = null;
+}
+
+
+<style>
+	.seemore {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 30vw;
+	}
+
+		.seemore .fa-thumbtack {
+			display: none;
+		}
+
+
+
+		.seemore:hover {
+			overflow: visible;
+			white-space: normal;
+			cursor: pointer;
+		}
+
+			.seemore:hover .fa-thumbtack, .seemore.hover .fa-thumbtack {
+				display: block;
+			}
+
+	tr.docked .seemore {
+		overflow: visible;
+		white-space: normal;
+		cursor: pointer;
+	}
+
+		tr.docked .seemore .fa-thumbtack {
+			display: block;
+			background: #6993ff;
+			padding: 5px 6.7px;
+			border-radius: 50%;
+			color: #2d2d2d;
+		}
+
+	.fa-thumbtack {
+		position: relative;
+		top: -7px;
+		right: 0px;
+		float: right;
+		background: #2d2d2d;
+		padding: 5px 6.7px;
+		border-radius: 50%;
+		color: #fff;
+	}
+
+		.fa-thumbtack:hover {
+			box-shadow: 3px 3px 5px #000000b3;
+		}
+</style>
+<!--begin::Row-->
+<div class="row">
+	<div class="col-xl-12">
+		<!--begin::Card-->
+		<div class="card card-custom gutter-b">
+			<div class="card-header flex-wrap border-0 pt-6 pb-0">
+				<div class="card-title">
+					<h3 class="card-label">
+						Suggestions
+					</h3>
+				</div>
+				<div class="card-toolbar">
+					
+				</div>
+			</div>
+
+			<div class="card-body">
+				@Html.AntiForgeryToken()
+				<!--begin: Datatable-->
+				<table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+					<thead>
+						<tr>
+							<th hidden>ID</th>
+							<th>Date</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Contact</th>
+							<th>Message</th>
+							<th hidden>Rating</th>
+							<th hidden>On Website</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td hidden>@item.ID</td>
+								<td data-order="@item.ID">@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")	</td>
+								<td>@(!string.IsNullOrEmpty(item.Name) ? item.Name : (item.Customer != null ? item.Customer.Name : "-"))</td>
+								<td>@(!string.IsNullOrEmpty(item.Email) ? item.Email : (item.Customer != null ? item.Customer.Email : "-"))</td>
+								<td>@(item.Customer != null ? item.Customer.Contact : "-")</td>
+                                <td><div class="seemore"><i class="fa fa-thumbtack"></i>@(item.Suggestion != null ? item.Suggestion : "-")</div></td>
+								<td hidden>@(item.Rating > 0 ? item.Rating : 0)</td>
+								<td nowrap="nowrap" hidden>@item.IsShowOnWebsite,@item.ID</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+				<!--end: Datatable-->
+			</div>
+		</div>
+		<!--end::Card-->
+	</div>
+</div>
+<!--end::Row-->
+

@@ -1,0 +1,255 @@
+﻿@model NowBuySell.Data.VendorWalletShare
+
+@{
+    ViewBag.Title = "Vendor Wallet History";
+}
+
+<!--begin::Page Vendors Styles(used by this page)-->
+<style>
+    .stats-color {
+        color: #b35205;
+        background: -webkit-linear-gradient(#663399, #663399);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+<link href="~/assets/Admin/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+<!--end::Page Vendors Styles-->
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Heading-->
+                <div class="d-flex flex-column">
+
+                    <!--begin::Breadcrumb-->
+                    <div class="d-flex align-items-center font-weight-bold my-2">
+                        <!--begin::Item-->
+                        <a href="/Vendor/Dashboard/Index" class="opacity-75 hover-opacity-100">
+                            <i class="flaticon2-shelter text-white icon-1x"></i>
+                        </a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <a href="/Vendor/Dashboard/Index" class="text-white text-hover-white opacity-75 hover-opacity-100">&nbsp;&nbsp;Dashboard</a>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a href="javascript:;" class="text-white text-hover-white opacity-75 hover-opacity-100">Vendor Wallet Share History</a>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4">
+                    <!--begin::Tiles Widget 11-->
+                    <div class="card card-custom gutter-b" style="height: 150px">
+                        <div class="card-body">
+                            <span class="menu-icon">
+                                <i class="fa fa-coins fa-2x stats-color"></i>
+                            </span>
+                            <div class="text-dark font-weight-bolder font-size-h2 mt-3" id="earning"></div>
+                            <a href="javascript:void(0);" class="text-muted text-hover-primary font-weight-bold font-size-lg mt-1">Total Earning</a>
+                        </div>
+                    </div>
+                    <!--end::Tiles Widget 11-->
+                </div>
+                <div class="col-xl-4">
+                    <!--begin::Tiles Widget 11-->
+                    <div class="card card-custom gutter-b" style="height: 150px">
+                        <div class="card-body">
+                            <span class="menu-icon">
+                                <i class="fa fa-money-bill-wave fa-2x stats-color"></i>
+                            </span>
+                            <div class="text-dark font-weight-bolder font-size-h2 mt-3" id="pending"></div>
+                            <a href="javascript:void(0);" class="text-muted text-hover-primary font-weight-bold font-size-lg mt-1">Pending Amount</a>
+                        </div>
+                    </div>
+                    <!--end::Tiles Widget 11-->
+                </div>
+                <div class="col-xl-4">
+                    <!--begin::Tiles Widget 12-->
+                    <div class="card card-custom gutter-b" style="height: 150px">
+                        <div class="card-body">
+                            <span class="menu-icon">
+                                <i class="fa fa-shopping-cart fa-2x stats-color"></i>
+                            </span>
+                            <div class="text-dark font-weight-bolder font-size-h2 mt-3" id="transfered"></div>
+                            <a href="javascript:void(0);" class="text-muted text-hover-primary font-weight-bold font-size-lg mt-1">Transfered</a>
+                        </div>
+                    </div>
+                    <!--end::Tiles Widget 12-->
+                </div>
+            </div>
+            <div class="row">
+                <!--<div class="col-md-12 col-sm-12">
+                    <div class="card-toolbar float-right">-->
+                <!--begin::Button-->
+                <!--<a href="javascript:;" class="btn btn-info font-weight-bolder mb-5" onclick="OpenModelPopup(this, '/Vendor/VendorWalletHistory/WithdrawalRequest')">
+                    <span class="svg-icon svg-icon-md">-->
+                <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                <!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect x="0" y="0" width="24" height="24" />
+                        <circle fill="#000000" cx="9" cy="15" r="6" />
+                        <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                    </g>
+                </svg>-->
+                <!--end::Svg Icon-->
+                <!--</span> Generate Withdrawal Request
+                </a>-->
+                <!--end::Button-->
+                <!--</div>
+                </div>-->
+                @*<div class="col-md-12 col-sm-12 mb-2">
+                        <div class="card">
+                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                <div class="card-title">
+                                    <h3 class="card-label">
+                                        Wallet Request History
+                                        <span class="d-block text-muted pt-2 font-size-sm">Manage Wallet Request History Here...</span>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                @{ Html.RenderAction("RequestList", "VendorWalletHistory", new { area = "VendorPortal" }); }
+                            </div>
+                        </div>
+                    </div>*@
+                <div class="col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                            <div class="card-title">
+                                <h3 class="card-label">
+                                    Wallet Transaction History
+                                    <span class="d-block text-muted pt-2 font-size-sm">Manage Wallet Transaction History Here...</span>
+                                </h3>
+                            </div>
+                        </div>
+                        <!--begin::Filter-->
+                        <div class="offset-1 pb-10 row" style="justify-content: center;margin-right: 0px">
+                            <div class="form-group mb-1 col-sm-6 col-md-3">
+                                <label class="text-white text-hover-white opacity-75 hover-opacity-100">From Date</label>
+                                <div class="input-daterange input-group kt_datepicker_range">
+                                    @Html.Editor("FromDate", new { htmlAttributes = new { @class = "form-control kt_datepicker_range", type = "text", id = "fromDate", placeholder = " MM/DD/YYYY", required = "required" } })
+                                    @*<input type="date" class="form-control kt_datepicker_range"  id="fromDate" name="startDate" required="required" placeholder="FROM... MM/DD/YYYY"  />*@
+                                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+
+                                </div>
+                            </div>
+                            <div class="form-group mb-1 col-sm-6 col-md-3">
+                                <label class="text-white text-hover-white opacity-75 hover-opacity-100">To Date</label>
+                                <div class="input-daterange input-group kt_datepicker_range">
+                                    @Html.Editor("ToDate", new { htmlAttributes = new { @class = "form-control kt_datepicker_range", type = "text", id = "toDate", placeholder = " MM/DD/YYYY", required = "required" } })
+                                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+
+                                </div>
+                            </div>
+                            <div class="form-group mb-1 col-sm-6 col-md-3 ">
+                                <label></label>
+                                <br>
+                                <button type="button" style="margin-top: 6px" class="btn btn-bg-secondary" id="btnSearch"><i class="fa fa-search"></i>Filter</button>
+                            </div>
+                            <br />
+                        </div>
+                        <div></div>
+                        <!--end::Filter-->
+                        <div class="card-body" id="VendorHistory">
+                            @{ Html.RenderAction("VendorHistor", "VendorWalletHistory", new { area = "VendorPortal" }); }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+
+
+
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content" style="min-height:100px">
+            <div id='myModalContent'>
+                <div class="row justify-content-center">
+                    <div class="col-16">
+                        <div class="kt-spinner kt-spinner--lg kt-spinner--dark kt-spinner-modal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section IndexScript {
+
+    @*@if (ViewBag.SuccessMessage != null)
+        {
+            <script>
+                toastr.success('@ViewBag.SuccessMessage');
+            </script>
+        }
+        else if (ViewBag.ErrorMessage != null)
+        {
+            <script>
+                toastr.error('@ViewBag.ErrorMessage');
+            </script>
+        }*@
+
+    @if (ViewBag.ExcelUploadErrorMessage != null)
+    {
+        <script>
+			swal.fire({
+				title: '@ViewBag.ErrorMessage',
+				html: '@Html.Raw(ViewBag.ExcelUploadErrorMessage)',
+				type: 'error',
+			});
+        </script>
+    }
+
+
+
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script>
+		$(document).ready(function () {
+
+            $("#earning").text(numeral(@Model.TotalEarning).format('0,0.00'));
+            $("#pending").text(numeral(@Model.PendingAmount).format('0,0.00'));
+            $("#transfered").text(numeral(@Model.TransferedAmount).format('0,0.00'));
+		});
+
+    </script>
+    <!--begin::Page Vendors(used by this page)-->
+    @*<script src="~/assets/Admin/plugins/custom/datatables/datatables.bundle.js"></script>*@
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <!--end::Page Vendors-->
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="@Url.ContentVersioned("~/Assets/Admin/js/vendor/wallethistory/list.js")"></script>
+    <!--end::Page Scripts-->
+    <script src="~/Assets/Admin/js/general/ModalPopup.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <!--end::Page Scripts-->
+}
+
+
+
+
+

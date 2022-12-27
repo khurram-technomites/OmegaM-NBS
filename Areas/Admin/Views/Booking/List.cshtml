@@ -1,0 +1,98 @@
+﻿@model IEnumerable<NowBuySell.Data.Booking>
+
+@{
+    ViewBag.Title = "List";
+    Layout = null;
+}
+<style>
+    #kt_datatable1 tbody tr td:last-child {
+        white-space: nowrap;
+    }
+</style>
+
+<!--begin::Row-->
+<div class="row">
+    <div class="col-xl-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        Bookings
+                        <span class="d-block text-muted pt-2 font-size-sm">Manage Bookings Here...</span>
+                    </h3>
+                </div>
+                <div class="card-toolbar">
+                    <!--begin::Dropdown-->
+                    <div class="dropdown dropdown-inline mr-2">
+                        @using (Html.BeginForm("CitiesReport", "City", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            
+                        }
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                <!--begin: Datatable-->
+                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Car</th>
+                            <th>Customer</th>
+                            <th>Vendor</th>
+
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody style="display:none">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt") : "-")	</td>
+                                <td>@item.Car.Name</td>
+                                <td>@item.Customer.Name</td>
+                                <td>@item.Vendor.Name</td>
+                                <td>@item.Status</td>
+                                @*<td>@(item.IsActive.HasValue ? item.IsActive.Value : false)</td>*@
+                                <td nowrap="nowrap">@item.ID</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!--end: Datatable-->
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+<!--end::Row-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    //$("#btnSelect").click(function () {
+    //    var $input = $('<input type="file" />');
+    //    $input.change(function () {
+    //        console.log("selected file:" + $(this).val());
+    //        $("#BlkUploader").trigger("submit");
+    //    });
+    //   // $input.trigger('click');
+    //});
+
+
+
+
+    //$("#btnSelect").click(function () {
+    //    $("#BulkFile").val($('<input type="file" />').val());
+    //    var $input = $('#FileUpload');
+    //    $input.change(function () {
+    //        console.log("selected file:" + $(this).val());
+            //$("#BlkUploader").trigger("submit");
+      //  });
+        //$input.trigger('click');
+//});
+</script>

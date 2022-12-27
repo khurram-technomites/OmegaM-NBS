@@ -1,0 +1,69 @@
+﻿@model NowBuySell.Data.Feature
+@{
+	ViewBag.Title = "Create";
+	Layout = null;
+}
+<div class="modal-header">
+	<h5 class="modal-title">New Feature(request)</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+
+	@using (Html.BeginForm("AddFeature", "Car", new { area = "VendorPortal" }, FormMethod.Post))
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="alert alert-danger text-center" id="divMessage" style="display:none"></div>
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="form-group">
+					@Html.LabelFor(model => model.Name, "Feature", htmlAttributes: new { @class = "control-label" })
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", id = "FeatureName", placeholder = "Enter feature name here ...", required = "required" } })
+						@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-car"></i></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-sm-12">
+				<div class="form-group">
+					@Html.LabelFor(model => model.NameAR, "Feature (Ar)", htmlAttributes: new { @class = "control-label" })
+					<div class="input-group mb-2">
+						@Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control", id = "FeatureNamear", placeholder = "Enter feature name arabic here ...", required = "required", dir = "rtl" } })
+						@Html.ValidationMessageFor(model => model.NameAR, "", new { @class = "text-danger" })
+						<div class="input-group-append"><span class="input-group-text"><i class="fa fa-car"></i></span></div>
+					</div>
+				</div>
+			</div>
+			@*<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+						@Html.LabelFor(model => model.NameAr, " Country Name (Ar)", htmlAttributes: new { @class = "control-label" })
+						<div class="input-group mb-2">
+							@Html.EditorFor(model => model.NameAr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter country name (ar) here ...", required = "required", dir = "rtl" } })
+							@Html.ValidationMessageFor(model => model.NameAr, "", new { @class = "text-danger" })
+							<div class="input-group-append"><span class="input-group-text"><i class="fa fa-flag"></i></span></div>
+						</div>
+					</div>
+				</div>*@
+		</div>
+	}
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	<button type="button" id="btnSubmitFeature" class="btn btn-info">Submit</button>
+</div>
+
+<script>
+	$(document).ready(function () {
+		$("#btnSubmitFeature").click(function () {
+			SaveNewFeature();
+		});
+	})
+</script>
+
+
+

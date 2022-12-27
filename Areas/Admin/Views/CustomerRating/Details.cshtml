@@ -1,0 +1,100 @@
+﻿
+@model NowBuySell.Data.CarRating
+@{
+	ViewBag.Title = "Details";
+	Layout = null;
+}
+
+
+<div class="modal-header">
+	<h5 class="modal-title">Details</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<i aria-hidden="true" class="ki ki-close"></i>
+	</button>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-6 col-sm-12 mb-1">
+			<div class="float-left">
+				<i class="fa fa-calendar"></i>
+				<b>@Html.Label("Order No:", htmlAttributes: new { @class = "control-label" })</b>
+				@if (Model.CreatedOn.HasValue)
+				{
+
+					<label class="control-label" readonly="readonly">@Model.OrderDetail.Order.OrderNo</label>
+				}
+				else
+				{
+					<label class="control-label" readonly="readonly"> - </label>
+				}
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-12 mb-1">
+			<div class="float-right">
+				<i class="fa fa-calendar"></i>
+				<b>@Html.Label("Creation Date:", htmlAttributes: new { @class = "control-label" })</b>
+				@if (Model.CreatedOn.HasValue)
+				{
+					var date = Model.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt");
+					<label class="control-label" readonly="readonly">@date</label>
+				}
+				else
+				{
+					<label class="control-label" readonly="readonly"> - </label>
+				}
+			</div>
+		</div>
+
+		<div class="col-md-6 col-sm-12">
+			<div class="input-group mb-3">
+				<label class="control-label">Customer</label>
+				<div class="input-group mb-3">
+					<label class="form-control" readonly="readonly">@(Model.Customer.Name != null ? Model.Customer.Name : "-")</label>
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-user"></i></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<div class="form-group">
+				<label class="control-label">Car</label>
+				<div class="input-group mb-3">
+					<label class="form-control float-right" readonly="readonly">@Model.Car.Name</label>
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fa fa-cube"></i></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 col-sm-12">
+			<div class="form-group">
+				<label class="control-label">Remarks</label>
+				<div class="input-group mb-2">
+					@Html.TextAreaFor(model => model.Remarks, 0, 100, new { @class = "form-control", placeholder = "Enter remarks  here ...", @readonly = "readonly" })
+					@*@Html.EditorFor(model => model.TitleDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter descriptipn here ...", required = "required" } })*@
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	@*<h3>Images</h3>
+	<hr class="m-1 mb-3" />
+	<div class="row">
+		@foreach (var item in Model.CarRatingImages)
+		{
+			<div class="col-md-2 text-center">
+				<div class="flex-shrink-0 mr-7">
+					<div class="symbol symbol-50 symbol-lg-120">
+						<img alt="Pic" src="@item.Image">
+					</div>
+				</div>
+			</div>
+		}
+	</div>*@
+
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>

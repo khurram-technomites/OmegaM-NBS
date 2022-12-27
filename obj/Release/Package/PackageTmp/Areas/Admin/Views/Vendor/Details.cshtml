@@ -1,0 +1,235 @@
+@model NowBuySell.Data.Vendor
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<style>
+    .car-name {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 70%;
+        /* height: 1.2em; */
+        white-space: nowrap;
+    }
+</style>
+<div class="modal-header">
+    <h5 class="modal-title">Details</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="float-left mb-3">
+                <i class="fa fa-tag"></i>
+                <label class="control-label kt-font-bold">Vendor Code : </label>
+                <label class="control-label" readonly="readonly">@Model.VendorCode</label>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="float-right mb-3">
+                <i class="fa fa-calendar"></i>
+                <b>@Html.Label("Creation Date:", htmlAttributes: new { @class = "control-label" })</b>
+                @if (Model.CreatedOn.HasValue)
+                {
+                    var date = Model.CreatedOn.Value.ToString("dd MMM yyyy, h:mm tt");
+                    <label class="control-label" readonly="readonly">@date</label>
+                }
+                else
+                {
+                    <label class="control-label" readonly="readonly"> - </label>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 text-center">
+            <div class="flex-shrink-0 mr-7">
+                <div class="symbol symbol-50 symbol-lg-120">
+                    <img alt="Pic" src="@Model.Logo">
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-6 col-sm-12 text-center">
+            <div class="flex-shrink-0 mr-7">
+                <div class="symbol symbol-50 symbol-lg-120">
+                    <img alt="Pic" src="@Model.CoverImage" style="max-width: 500px;">
+                </div>
+            </div>
+        </div>*@
+
+        <hr />
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Legal Name as per Trade License</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.Name</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Vendor Name (Ar)</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.NameAr</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-tag"></i></span></div>
+                </div>
+            </div>
+        </div>*@
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.Email</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-envelope"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Slug</label>
+                <div class="input-group mb-2">
+                    <label class="form-control car-name" readonly="readonly" style="overflow:hidden"> @Model.Slug</label>
+                    <div class="input-group-append "><span class="input-group-text"><i class="fa fa-globe"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Landline Number</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.Contact</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-phone"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Phone Number</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.Mobile</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-mobile"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Website Address</label>
+                <div class="input-group mb-2">
+                    <label class="form-control car-name" readonly="readonly" style="overflow:hidden"> @Model.Website</label>
+                    <div class="input-group-append "><span class="input-group-text"><i class="fa fa-globe"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Emirates ID</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.IDNo</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-hashtag"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">TRN</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.TRN</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-hashtag"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Licence / Permit Number</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.License</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-file-invoice"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Passport number</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @Model.PassportNo</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-fax"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Package</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly">@(Model.VendorPackage.Name != null ? Model.VendorPackage.Name : "-")</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-home"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Opening Time</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @ViewBag.OpeningTime </label>
+                    @*@Html.EditorFor(model => model.OpeningTime, new { htmlAttributes = new { @class = "form-control mytimepicker", id = "OpeningTime", placeholder = "Select Time ...", disabled = true } })*@
+
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-clock"></i></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Closing Time</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly"> @ViewBag.ClosingTime</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-clock"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <h4 class="card-label">
+                Location
+            </h4>
+            <hr />
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Country Name</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly">@(Model.Country != null ? Model.Country.Name : "-")</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-flag"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">City Name</label>
+                <div class="input-group mb-2">
+                    <label class="form-control" readonly="readonly">@(Model.City != null ? Model.City.Name : "-")</label>
+                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-home"></i></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Complete Address</label>
+                <div class="input-group mb-2">
+                    <textarea class="form-control" readonly="readonly">@Model.Address</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#Test").removeClass("modal-sm").attr('disabled', false);
+        $("#Test").addClass("modal-xl").attr('disabled', false);
+    });
+</script>

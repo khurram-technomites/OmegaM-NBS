@@ -1,0 +1,256 @@
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\ApplicationInsights.config
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\csc.exe
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\System.Collections.Immutable.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\vbc.exe
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\VBCSCompiler.exe
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\roslyn\VBCSCompiler.exe.config
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\NowBuySell.Web.dll.config
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\NowBuySell.Web.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\NowBuySell.Web.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Antlr3.Runtime.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Aspose.Imaging.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Autofac.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Autofac.Integration.Mvc.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Autofac.Integration.WebApi.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\EntityFramework.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\EntityFramework.SqlServer.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\EPPlus.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\ImageProcessor.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\ImageProcessor.Web.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\LinqToExcel.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\log4net.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.Web.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.WindowsServer.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.ApplicationInsights.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.Cors.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.Security.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Newtonsoft.Json.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\NowBuySell.Data.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\NowBuySell.Service.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Owin.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Remotion.Data.Linq.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Remotion.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Remotion.Interfaces.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Resources.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Swashbuckle.Core.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Net.Http.Formatting.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Threading.Tasks.Extensions.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.ValueTuple.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Cors.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Helpers.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Http.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Http.Owin.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Http.WebHost.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Mvc.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Optimization.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Razor.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.WebPages.Deployment.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.WebPages.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.WebPages.Razor.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\WebActivatorEx.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\WebGrease.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\NowBuySell.Data.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\NowBuySell.Data.dll.config
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\NowBuySell.Service.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Resources.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Aspose.Imaging.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Autofac.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Autofac.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Autofac.Integration.Mvc.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Autofac.Integration.WebApi.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Autofac.Integration.WebApi.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\EntityFramework.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\EntityFramework.SqlServer.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\EPPlus.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\ImageProcessor.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\ImageProcessor.Web.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\LinqToExcel.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\log4net.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.Web.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AI.WindowsServer.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.ApplicationInsights.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.Core.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.IO.RecyclableMemoryStream.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.Cors.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.Security.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Newtonsoft.Json.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Net.Http.Formatting.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Threading.Tasks.Extensions.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.ValueTuple.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Helpers.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Http.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Http.Owin.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Http.WebHost.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Mvc.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Razor.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.WebPages.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.WebPages.Deployment.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.WebPages.Razor.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\System.Web.Optimization.xml
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\Antlr3.Runtime.pdb
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\bin\ar\Resources.resources.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\obj\Debug\NowBuySell.Web.csproj.AssemblyReference.cache
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\obj\Debug\NowBuySell.Web.csproj.CoreCompileInputs.cache
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\obj\Debug\NowBuySell.Web.csproj.CopyComplete
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\obj\Debug\NowBuySell.Web.dll
+D:\Data_Center\Repositories\ReposLatest_Live\NowBuySell.Web\obj\Debug\NowBuySell.Web.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\ApplicationInsights.config
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\csc.exe
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\System.Collections.Immutable.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\vbc.exe
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\VBCSCompiler.exe
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\roslyn\VBCSCompiler.exe.config
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\NowBuySell.Web.dll.config
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\NowBuySell.Web.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\NowBuySell.Web.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Antlr3.Runtime.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Aspose.Imaging.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Autofac.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Autofac.Integration.Mvc.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Autofac.Integration.WebApi.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\EntityFramework.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\EntityFramework.SqlServer.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\EPPlus.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\ImageProcessor.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\ImageProcessor.Web.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\LinqToExcel.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\log4net.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.Web.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.WindowsServer.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.ApplicationInsights.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.Cors.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.Security.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Newtonsoft.Json.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\NowBuySell.Data.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\NowBuySell.Service.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Owin.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Remotion.Data.Linq.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Remotion.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Remotion.Interfaces.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Resources.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Swashbuckle.Core.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Net.Http.Formatting.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Threading.Tasks.Extensions.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.ValueTuple.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Cors.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Helpers.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Http.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Http.Owin.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Http.WebHost.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Mvc.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Optimization.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Razor.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.WebPages.Deployment.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.WebPages.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.WebPages.Razor.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\WebActivatorEx.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\WebGrease.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\NowBuySell.Data.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\NowBuySell.Data.dll.config
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\NowBuySell.Service.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Resources.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Aspose.Imaging.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Autofac.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Autofac.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Autofac.Integration.Mvc.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Autofac.Integration.WebApi.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Autofac.Integration.WebApi.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\EntityFramework.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\EntityFramework.SqlServer.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\EPPlus.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\ImageProcessor.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\ImageProcessor.Web.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\LinqToExcel.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\log4net.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.Web.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AI.WindowsServer.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.ApplicationInsights.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.Core.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.IO.RecyclableMemoryStream.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.Cors.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.Security.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Newtonsoft.Json.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Net.Http.Formatting.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Threading.Tasks.Extensions.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.ValueTuple.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Helpers.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Http.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Http.Owin.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Http.WebHost.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Mvc.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Razor.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.WebPages.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.WebPages.Deployment.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.WebPages.Razor.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\System.Web.Optimization.xml
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\Antlr3.Runtime.pdb
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\bin\ar\Resources.resources.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\obj\Debug\NowBuySell.Web.csproj.AssemblyReference.cache
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\obj\Debug\NowBuySell.Web.csproj.CoreCompileInputs.cache
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\obj\Debug\NowBuySell.Web.csproj.CopyComplete
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\obj\Debug\NowBuySell.Web.dll
+D:\Data_Center\AWS Portal\Repositories\Repo_NowBuySell_Backend\NowBuySell.Web\obj\Debug\NowBuySell.Web.pdb

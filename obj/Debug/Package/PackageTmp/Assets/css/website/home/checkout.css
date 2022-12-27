@@ -1,0 +1,154 @@
+﻿
+.out-of-stock-td {
+	opacity: 0.5;
+}
+
+.out-of-stock {
+	box-shadow: 0px 0px 1px 1px #cccccc;
+}
+
+	.out-of-stock:after {
+		content: 'Out of Stock';
+		position: absolute;
+		background: #110044;
+		color: #fff;
+		border-radius: 10px;
+		padding: 3px 10px;
+		right: 60px;
+		font-size: 10px;
+		z-index: 12;
+		margin-top: 45px;
+		font-weight: 700;
+	}
+
+.coupon-badge {
+	position: absolute;
+	background: #f4a03b;
+	color: #fff;
+	border-radius: 10px;
+	padding: 3px 10px;
+	right: 45px;
+	font-size: 10px;
+	z-index: 12;
+	margin-top: -15px;
+	font-weight: 700;
+	box-shadow: 0px 0px 1px 1px #cccccc;
+}
+
+.coupon-category-not-allowed {
+	background: #f4a03b;
+}
+
+	.coupon-category-not-allowed:before {
+		content: 'coupon not allowed';
+		position: absolute;
+		background: #0d4947;
+		color: #fff;
+		border-radius: 10px;
+		padding: 1px 10px;
+		left: 50px;
+		font-size: 10px;
+		z-index: 12;
+		margin-top: -10px;
+		font-weight: 700;
+	}
+
+.car-thumbnail {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 1px solid;
+}
+
+table tr:first-child th {
+	border-radius: 20px 0 0 20px;
+	border-top: none;
+	border-color: none;
+}
+
+.box-shadow-card {
+	box-shadow: 0px 0px 1px 1px #0d4947;
+}
+
+/*.cart_td{
+		padding-bottom: 1em;
+	}*/
+
+.delivery-address {
+	text-align: left;
+	border-radius: 5px;
+	box-shadow: inset 0px 0px 20px #0d494724;
+	margin: 1px;
+}
+
+	.delivery-address a.delete {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	}
+
+	.delivery-address p {
+		padding: 15px;
+		margin: 0px;
+	}
+
+	.delivery-address .fa-tag {
+		position: absolute;
+		left: 10px;
+		top: 20px;
+	}
+
+#ShippingAddress .fa-map-marker-alt {
+	position: absolute;
+	margin-top: 5px;
+	margin-left: -13px;
+}
+
+#DeliveryEstimation {
+	font-size: 10px;
+	float: right;
+	position: relative;
+	top: 25px;
+	font-weight: 800;
+}
+
+.customer-box h3 {
+	background-color: #104;
+}
+
+.redeem-amount-container .fa-gift {
+	padding: 10px 13px;
+	background: #d5c6ff;
+	border-radius: 50%;
+	color: #110044;
+}
+
+#CheckoutCars .pName {
+	width: 250px;
+	display: block;
+	font-weight: 700;
+}
+
+#CheckoutCars .car-details {
+	display: unset;
+	position: unset;
+	top: -5px;
+}
+
+#CheckoutCars .car-image {
+	height: 50px;
+	width: 50px;
+	box-shadow: 1px 1px 5px #00000029;
+	border-radius: 5px;
+	background-position: 50% 50%;
+	background-size: cover;
+	float: left;
+	border: 3px solid #110044;
+	margin: 5px;
+}
+
+
+.order-table .table td {
+	padding: .75rem;
+}
